@@ -9,7 +9,7 @@ body {
   line-height: 1.5;
   color: #606c71;
   background-image: url(http://imgur.com/fO1Hsvu.png.png);
-  background-size: cover; }
+  background-size: 100%; }
 
 a {
   color: #1e6bb8;
