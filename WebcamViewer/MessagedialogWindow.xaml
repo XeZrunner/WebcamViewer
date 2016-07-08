@@ -1,0 +1,160 @@
+﻿<Controls:MetroWindow x:Name="metroWindow" x:Class="WebcamViewer.MessagedialogWindow"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WebcamViewer"
+        mc:Ignorable="d"
+        Title="" MinHeight="200" MinWidth="300" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" SizeToContent="WidthAndHeight" ShowTitleBar="False"
+        ShowInTaskbar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False"
+        BorderBrush="#fff39c12" BorderThickness="1" SnapsToDevicePixels="True">
+
+    <Controls:MetroWindow.Resources>
+
+        <Style x:Key="DialogWindowControlButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border x:Name="Background" Background="{TemplateBinding Background}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{x:Null}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <Border x:Name="DisabledVisualElement" Background="{DynamicResource ControlsDisabledBrush}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" Opacity="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Rectangle x:Name="MouseOverDim" Fill="#00FFFFFF" Visibility="Hidden"/>
+                            <Rectangle x:Name="MouseDownDim" Fill="#1FFFFFFF" Visibility="Hidden"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="Background" Value="#fff39c12"/>
+                                <Setter Property="Foreground" TargetName="PART_ContentPresenter" Value="White"/>
+                                <Setter Property="Visibility" TargetName="MouseOverDim" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="Background" Value="#fff39c12"/>
+                                <Setter Property="Foreground" TargetName="PART_ContentPresenter" Value="White"/>
+                                <Setter Property="Visibility" TargetName="MouseDownDim" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="DisabledVisualElement" Value="0.7"/>
+                                <Setter Property="Opacity" TargetName="PART_ContentPresenter" Value="0.3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DarkButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="#EFFFFFFF"/>
+            <Setter Property="Background" Value="#FFFFFFFF"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="MinHeight" Value="25"/>
+            <Setter Property="Padding" Value="5,6"/>
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <!-- <Border x:Name="Background" Background="{TemplateBinding Background}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/> -->
+                            <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{x:Null}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RenderTransformOrigin="0.5, 0.5"/>
+                            <Rectangle x:Name="hoverRectangle" Fill="#000060B0" Height="1" VerticalAlignment="Bottom"/>
+                            <Border x:Name="DisabledVisualElement" Background="{DynamicResource ControlsDisabledBrush}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" Opacity="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <Controls:ContentControlEx x:Name="PART_ContentPresenter" Foreground="#9FFFFFFF" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <!-- <Setter Property="Background" TargetName="Background" Value="#2FFFFFFF"/> -->
+                                <Setter Property="Fill" TargetName="hoverRectangle" Value="#fff39c12"/>
+                                <Setter Property="Foreground" TargetName="PART_ContentPresenter" Value="#fff39c12"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <!-- <Setter Property="Foreground" Value="White"/> -->
+                                <Setter Property="Fill" TargetName="hoverRectangle" Value="White"/>
+                                <Setter Property="Foreground" TargetName="PART_ContentPresenter" Value="White"/>
+                                <Setter Property="RenderTransform" TargetName="Border">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="DisabledVisualElement" Value="0.7"/>
+                                <Setter Property="Opacity" TargetName="PART_ContentPresenter" Value="0.3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="LightButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="#EF000000"/>
+            <Setter Property="Background" Value="#00000000"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="{DynamicResource DefaultFont}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="MinHeight" Value="25"/>
+            <Setter Property="Padding" Value="5,6"/>
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border x:Name="Background" Background="{TemplateBinding Background}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{x:Null}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <Rectangle x:Name="hoverRectangle" Fill="#000050A0" Height="1" VerticalAlignment="Bottom"/>
+                            <Border x:Name="DisabledVisualElement" Background="{DynamicResource ControlsDisabledBrush}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" Opacity="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <!-- <Setter Property="Background" TargetName="Background" Value="#3F000000"/> -->
+                                <Setter Property="Fill" TargetName="hoverRectangle" Value="#fff39c12"/>
+                                <Setter Property="Foreground" Value="#fff39c12"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <!-- <Setter Property="Background" TargetName="Background" Value="#FF000000"/> -->
+                                <!-- <Setter Property="Foreground" Value="White"/> -->
+                                <Setter Property="Fill" TargetName="hoverRectangle" Value="#FF000000"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="DisabledVisualElement" Value="0.7"/>
+                                <Setter Property="Opacity" TargetName="PART_ContentPresenter" Value="0.3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Controls:MetroWindow.Resources>
+
+    <Grid x:Name="grid" Background="White">
+
+        <Button x:Name="windowCloseButton" FontFamily="Segoe MDL2 Assets" FontSize="10.5" Content="&#xE894;" Style="{DynamicResource DialogWindowControlButtonStyle}" Click="closeButton_Click"/>
+
+        <StackPanel Margin="25,25,25,65">
+            <Label x:Name="titleLabel" HorizontalAlignment="Left" Margin="0,0,25,0" FontSize="20" Foreground="Black">Title</Label>
+            <Label x:Name="messageLabel" Margin="0,5,0,0" FontSize="14" Foreground="Black">Lorem ipsum should be here, but I'm too lazy to get it...</Label>
+        </StackPanel>
+
+        <Button x:Name="closeButton" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="25,25,25,20" Height="32" Width="120" Click="closeButton_Click" Style="{DynamicResource LightButtonStyle}">OK</Button>
+
+    </Grid>
+
+</Controls:MetroWindow>

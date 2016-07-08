@@ -1,0 +1,40 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WebcamViewer.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="camera_names" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;Michalovce - Námestie osloboditeľov 01 [SK]&lt;/string&gt;
+  &lt;string&gt;Nowy Targ - Ugazdy - Kamera na Tatry [PL]&lt;/string&gt;
+  &lt;string&gt;Glavmore (Camera 2) [RU]&lt;/string&gt;
+  &lt;string&gt;Poprad - Funsat Meteo [SK]&lt;/string&gt;
+  &lt;string&gt;Michalovce - Busová stanica (gecom.sk) [SK]&lt;/string&gt;
+  &lt;string&gt;Zywiec - Zywiec Lake (megasurf.pl) [PL]&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="camera_urls" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;http://www.michalovce.sk/webcam/michalovce.sk-camera-001.jpg&lt;/string&gt;
+  &lt;string&gt;http://www.ugazdy.pl/kamerka/obrazek.jpg&lt;/string&gt;
+  &lt;string&gt;http://static.glavmore.ru/cam/cam-1.jpg&lt;/string&gt;
+  &lt;string&gt;http://funsat.sk.d.websupport.sk/webcam/funsat.jpg&lt;/string&gt;
+  &lt;string&gt;http://gecom.sk/img/autobuska-aktualne.jpg&lt;/string&gt;
+  &lt;string&gt;http://www.megasurf.pl/cam/Video01.jpg&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="buildid" Type="System.String" Scope="User">
+      <Value Profile="(Default)">20160708-00</Value>
+    </Setting>
+    <Setting Name="changelog" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Changes for 20160706-00:
+
+Release build on GitHub.
+</Value>
+    </Setting>
+    <Setting Name="birthday_notice" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
