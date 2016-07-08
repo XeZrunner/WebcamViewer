@@ -8,19 +8,8 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: #ffffff;
-  background-image: url(http://imgur.com/fO1Hsvu.png.png);
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('http://imgur.com/fO1Hsvu.png.png');
   background-size: 100%; }
-  
-  .overlay {
-    position:fixed;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    background-color:#fff;
-    opacity:0.8;
-    z-index:1001;
-}
 
 a {
   color: #1e6bb8;
