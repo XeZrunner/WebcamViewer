@@ -112,14 +112,15 @@ a {
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: normal;
-  color: #159957; }
+  color: #ffffff; }
 .main-content p {
-  margin-bottom: 1em; }
+  margin-bottom: 1em;
+  color: #ffffff; }
 .main-content code {
   padding: 2px 4px;
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 0.9rem;
-  color: #383e41;
+  color: #ffffff;
   background-color: #f3f6fa;
   border-radius: 0.3rem; }
 .main-content pre {
@@ -127,7 +128,7 @@ a {
   margin-top: 0;
   margin-bottom: 1rem;
   font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  color: #567482;
+  color: #ffffff;
   word-wrap: normal;
   background-color: #f3f6fa;
   border: solid 1px #dce6f0;
@@ -169,7 +170,7 @@ a {
 .main-content blockquote {
   padding: 0 1rem;
   margin-left: 0;
-  color: #819198;
+  color: #ffffff;
   border-left: 0.3rem solid #dce6f0; }
   .main-content blockquote > :first-child {
     margin-top: 0; }
@@ -200,7 +201,7 @@ a {
   height: 2px;
   padding: 0;
   margin: 1rem 0;
-  background-color: #eff0f1;
+  background-color: #ffffff;
   border: 0; }
 
 @media screen and (min-width: 64em) {
@@ -230,7 +231,7 @@ a {
   font-weight: bold; }
 
 .site-footer-credits {
-  color: #819198; }
+  color: #ffffff; }
 
 @media screen and (min-width: 64em) {
   .site-footer {
