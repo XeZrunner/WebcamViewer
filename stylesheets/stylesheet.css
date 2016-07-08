@@ -10,6 +10,9 @@ body {
   color: #ffffff;
   background-image: url(http://imgur.com/fO1Hsvu.png.png);
   background-size: 100%; }
+  
+  .main:hover .bg{
+    opacity:0.5;
 
 a {
   color: #1e6bb8;
