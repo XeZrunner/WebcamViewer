@@ -56,7 +56,7 @@ a {
 .page-header {
   color: #fff;
   text-align: center;
-  background:url("http://imgur.com/fO1Hsvu"); }
+  background-image: url(http://imgur.com/fO1Hsvu.png); }
 
 @media screen and (min-width: 64em) {
   .page-header {
