@@ -39,7 +39,6 @@ namespace WebcamViewer
             if (Keyboard.IsKeyDown(Key.LeftCtrl))
                 if (Keyboard.IsKeyDown(Key.LeftShift))
                 {
-                    Thread.Sleep(1000);
                     ResetSettingsWindow wnd = new ResetSettingsWindow(true);
                     wnd.Owner = this; webcamimagePage.Visibility = Visibility.Collapsed; wnd.Show();
                     wnd.Closed += (s, ev) => { SwitchToPage(0); }; // in the case of canceling the window
