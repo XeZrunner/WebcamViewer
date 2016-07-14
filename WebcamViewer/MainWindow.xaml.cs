@@ -132,7 +132,7 @@ namespace WebcamViewer
 
             if (ARGS_MULTIPLE)
                 settingsPage_MainPage_infoGrid_Label.Content = "Multiple things disabled - check your command line arguments";
-            
+
         }
 
         void GetUserSettings()
@@ -1093,17 +1093,15 @@ namespace WebcamViewer
         private void settingsPage_UserInterfacePage_ImageBlurToggleButton_Click(object sender, RoutedEventArgs e)
         {
             if (e.Source == settingsPage_UserInterfacePage_ImageBlurToggleButton)
-            {
                 settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.IsChecked = !settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.IsChecked;
 
-                if (settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.IsChecked == true)
-                {
-                    Properties.Settings.Default.blur_image = true;
-                }
-                else
-                {
-                    Properties.Settings.Default.blur_image = false;
-                }
+            if (settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.IsChecked == true)
+            {
+                Properties.Settings.Default.blur_image = true; Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.blur_image = false; Properties.Settings.Default.Save();
             }
         }
     }

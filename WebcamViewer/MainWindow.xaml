@@ -1048,7 +1048,7 @@
                                                    FontSize="11">Make the image blurred when doing an action on the image. (can impact performance on low-end GPUs)</Label>
                                         </StackPanel>
 
-                                        <Controls:ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle" Grid.Column="2" BorderThickness="0" ThumbIndicatorBrush="{Binding ElementName=window, Path=BorderBrush}" OffSwitchBrush="#FFD7D7D7" OnSwitchBrush="#99F39C12"/>
+                                        <Controls:ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle" Grid.Column="2" BorderThickness="0" ThumbIndicatorBrush="{Binding ElementName=window, Path=BorderBrush}" OffSwitchBrush="#FFD7D7D7" OnSwitchBrush="#99F39C12" Click="settingsPage_UserInterfacePage_ImageBlurToggleButton_Click"/>
 
                                     </Grid>
 
