@@ -31,6 +31,22 @@ namespace WebcamViewer
 
             archivebrowser.ProgressChanged += archivebrowser_ProgressChanged;
             archivebrowser.DocumentCompleted += Archivebrowser_DocumentCompleted;
+
+            // Command line arguments
+            string[] args = Environment.GetCommandLineArgs();
+            foreach (string arg in args)
+            {
+                if (arg == "-readonly")
+                    READONLY_MODE = true;
+                if (arg == "-disable_archive")
+                    DISABLE_ARCHIVEORG = true;
+                if (arg == "-disable_localsave")
+                    DISABLE_LOCALSAVE = true;
+                if (arg == "-disable_webcameditor")
+                    DISABLE_WEBCAMEDITOR = true;
+            }
+            if (args.Length >= 2)
+                ARGS_MULTIPLE = true;
         }
 
         private void window_Loaded(object sender, RoutedEventArgs e)
@@ -64,8 +80,9 @@ namespace WebcamViewer
             }
             #endregion
 
-            if (GetUserCameras() == true)
-                LoadImage(Properties.Settings.Default.camera_names[0]);
+            GetUserCameras();
+
+            GetUserSettings();
 
             if (SystemParameters.PrimaryScreenWidth == 800 && SystemParameters.PrimaryScreenHeight == 600)
             {
@@ -79,6 +96,48 @@ namespace WebcamViewer
                 this.Width = 320;
                 this.Height = 320;
             }
+
+            // disable stuff
+            if (READONLY_MODE)
+            {
+                webcamPage_savePanel.Visibility = Visibility.Collapsed;
+                webcamPage_menu_infoandactionsGrid.Height -= 37;
+
+                settingsPage_MainPage_infoGrid.Visibility = Visibility.Visible;
+                settingsPage_MainPage_infoGrid_Label.Content = "Webcam Viewer is running in read-only mode (-readonly)";
+            }
+            if (DISABLE_ARCHIVEORG)
+            {
+                webcamPage_saveimageonarchiveButton.Visibility = Visibility.Collapsed;
+                webcamPage_saveallButton.Visibility = Visibility.Collapsed;
+
+                settingsPage_MainPage_infoGrid.Visibility = Visibility.Visible;
+                settingsPage_MainPage_infoGrid_Label.Content = "archive.org saving disabled by command line argument (-disable_archive)";
+            }
+            if (DISABLE_LOCALSAVE)
+            {
+                webcamPage_saveimageButton.Visibility = Visibility.Collapsed;
+                webcamPage_saveallButton.Visibility = Visibility.Collapsed;
+
+                settingsPage_MainPage_infoGrid.Visibility = Visibility.Visible;
+                settingsPage_MainPage_infoGrid_Label.Content = "Local save disabled by command line argument (-disable_localsave)";
+            }
+            if (DISABLE_WEBCAMEDITOR)
+            {
+                settingsPage_MainPage_WebcamEditorButton.Visibility = Visibility.Collapsed;
+
+                settingsPage_MainPage_infoGrid.Visibility = Visibility.Visible;
+                settingsPage_MainPage_infoGrid_Label.Content = "Webcam editor disabled by command line argument (-readonly)";
+            }
+
+            if (ARGS_MULTIPLE)
+                settingsPage_MainPage_infoGrid_Label.Content = "Multiple things disabled - check your command line arguments";
+            
+        }
+
+        void GetUserSettings()
+        {
+            UI_HOME_BLURIMAGE = Properties.Settings.Default.blur_image;
         }
 
         private void window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -123,11 +182,16 @@ namespace WebcamViewer
 
         bool UI_SLOW_MOTION = false;
         bool UI_AUTOSIZE_WINDOW = false;
+        bool UI_HOME_BLURIMAGE = true;
 
         bool READONLY_MODE = false;
         bool DISABLE_ARCHIVEORG = false;
         bool DISABLE_LOCALSAVE = false;
         bool DISABLE_WEBCAMEDITOR = false;
+
+        bool ARGS_MULTIPLE = false;
+
+        int SETTINGS_LAST_CAMERA = 0;
 
         void SwitchToPage(int page)
         {
@@ -203,7 +267,10 @@ namespace WebcamViewer
                 return false;
             }
             else
+            {
+                if (!Keyboard.IsKeyDown(Key.LeftShift)) LoadImage(Properties.Settings.Default.camera_names[SETTINGS_LAST_CAMERA]);
                 return true;
+            }
         }
 
         void DebugLog(string message, int prirority = 0)
@@ -562,7 +629,7 @@ namespace WebcamViewer
         void SaveImageFile()
         {
             ShowProgressUI(2); webcamPage_progresslabel.Content = "preparing to download image...";
-            webcamimageBlur.Radius = 10;
+            if (UI_HOME_BLURIMAGE) webcamimageBlur.Radius = 10;
 
             DebugLog("local save - preparing...");
 
@@ -621,7 +688,7 @@ namespace WebcamViewer
         {
             archivebrowser.Url = new Uri("http://web.archive.org/save/" + currentcameraUrl);
             ShowProgressUI(1); webcamPage_progresslabel.Content = "connecting to archive.org...";
-            webcamimageBlur.Radius = 10;
+            if (UI_HOME_BLURIMAGE) webcamimageBlur.Radius = 10;
 
             DebugLog("archive.org - saving image to archive.org...");
 
@@ -652,17 +719,32 @@ namespace WebcamViewer
         private void webcamPage_menu_settingsButton_Click(object sender, RoutedEventArgs e)
         {
             SwitchToPage(1);
+
+            int settingsPage_lastcameraCounter = 0;
+
+            foreach (string camera in Properties.Settings.Default.camera_names)
+            {
+                if (camera == (string)webcamPage_ActionBarCameraNameLabel.Content)
+                    SETTINGS_LAST_CAMERA = settingsPage_lastcameraCounter;
+                else
+                    settingsPage_lastcameraCounter++;
+            }
         }
 
         private void settingsPage_ActionBar_backButton_Click(object sender, RoutedEventArgs e)
         {
             SwitchToPage(0);
 
+            /*
             if (webcamPage_menuCameraList.Children.Count != Properties.Settings.Default.camera_names.Count)
             {
                 GetUserCameras();
                 DebugLog("camera added or removed - need to reload user config");
             }
+            */
+
+            GetUserCameras();
+            GetUserSettings();
         }
 
         private void settingsPage_MainPage_WebcamEditorButton_Click(object sender, RoutedEventArgs e)
@@ -844,13 +926,47 @@ namespace WebcamViewer
         {
             MessageDialog(
                 "Technical information and credits",
-                "Webcam Viewer version 1.0\n" +
+                "Webcam Viewer version 1.0.1\n" + // get actual version number later, for now, it's just hard-coded like this
                 "Build number: " + Properties.Settings.Default.buildid + "\n\n" +
                 "Partially based on code from previous versions of WViewer.\n\n" +
                 "Credits:\n\n" +
                 "Application icon by Freepik at flaticon.com\n" +
                 "Window and control base by MahApps.Metro"
                 );
+        }
+
+        private void settingsPage_MainPage_UserInterfaceButton_Click(object sender, RoutedEventArgs e)
+        {
+            settingsPage_UserInterfacePage.Opacity = 0;
+            settingsPage_UserInterfacePage.Visibility = Visibility.Visible;
+
+            DoubleAnimation main_opacityanimation = new DoubleAnimation(0, new TimeSpan(0, 0, 0, 0, 300));
+            settingsPage_MainPage.BeginAnimation(Grid.OpacityProperty, main_opacityanimation);
+
+            DoubleAnimation opacityanimation = new DoubleAnimation(1.0, new TimeSpan(0, 0, 0, 0, 300));
+            settingsPage_UserInterfacePage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
+
+            // Get the settings
+            settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.IsChecked = Properties.Settings.Default.blur_image;
+        }
+
+        private void settingsPage_UserInterfacePage_ActionBar_backButton_Click(object sender, RoutedEventArgs e)
+        {
+            DoubleAnimation main_opacityanimation = new DoubleAnimation(1.0, new TimeSpan(0, 0, 0, 0, 300));
+            settingsPage_MainPage.BeginAnimation(Grid.OpacityProperty, main_opacityanimation);
+
+            DoubleAnimation opacityanimation = new DoubleAnimation(0, new TimeSpan(0, 0, 0, 0, 300));
+            settingsPage_UserInterfacePage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 300);
+            timer.Tick += (s, ev) => { timer.Stop(); settingsPage_UserInterfacePage.Visibility = Visibility.Collapsed; };
+            timer.Start();
+        }
+
+        private void settingsPage_UserInterfacePage_ActionBar_moreButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageDialog("", "AccentColorWindow does not exist\nTo use grid editor with UWP buttons");
         }
 
         private void webcamPage_saveallButton_Click(object sender, RoutedEventArgs e)
@@ -972,6 +1088,23 @@ namespace WebcamViewer
         {
             ResetSettingsWindow wnd = new ResetSettingsWindow(true);
             wnd.Owner = this; wnd.ShowDialog();
+        }
+
+        private void settingsPage_UserInterfacePage_ImageBlurToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (e.Source == settingsPage_UserInterfacePage_ImageBlurToggleButton)
+            {
+                settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.IsChecked = !settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.IsChecked;
+
+                if (settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.IsChecked == true)
+                {
+                    Properties.Settings.Default.blur_image = true;
+                }
+                else
+                {
+                    Properties.Settings.Default.blur_image = false;
+                }
+            }
         }
     }
 }

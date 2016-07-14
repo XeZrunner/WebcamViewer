@@ -123,8 +123,8 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <!-- <Setter Property="Background" TargetName="Background" Value="#3F000000"/> -->
-                                <Setter Property="Fill" TargetName="hoverRectangle" Value="#fff39c12"/>
-                                <Setter Property="Foreground" Value="#fff39c12"/>
+                                <Setter Property="Fill" TargetName="hoverRectangle" Value="#ffe28b01"/>
+                                <Setter Property="Foreground" Value="#ffe28b01"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <!-- <Setter Property="Background" TargetName="Background" Value="#FF000000"/> -->

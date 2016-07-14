@@ -196,8 +196,8 @@
             <Setter Property="BorderThickness"
                 Value="2" />
             <Setter Property="BorderBrush" Value="Transparent" />
-            <Setter Property="Height" Value="200"/>
-            <Setter Property="Width" Value="230"/>
+            <Setter Property="Height" Value="180"/>
+            <Setter Property="Width" Value="180"/>
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -240,7 +240,9 @@
                                  Value="True">
                                 <Setter Property="BorderBrush"
                                             TargetName="Border"
-                                            Value="#3F000000" />
+                                            Value="#00000000" />
+                                <Setter Property="Background"
+                                        Value="#1F000000" />
                                 <Setter Property="RenderTransform" TargetName="PART_ContentPresenter">
                                     <Setter.Value>
                                         <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
@@ -300,6 +302,7 @@
             <Setter Property="FontSize" Value="{DynamicResource FlatButtonFontSize}"/>
             <Setter Property="Padding" Value="10,5"/>
             <Setter Property="Height" Value="32"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -311,9 +314,9 @@
                                 <Setter Property="BorderBrush" Value="#5F000000"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#2F000000"/>
-                                <Setter Property="BorderBrush" Value="#2F000000"/>
-                                <Setter Property="RenderTransform" TargetName="PART_ContentPresenter">
+                                <Setter Property="Background" Value="#4D000000"/>
+                                <Setter Property="BorderBrush" Value="#4D000000"/>
+                                <Setter Property="RenderTransform">
                                     <Setter.Value>
                                         <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
                                     </Setter.Value>
@@ -355,6 +358,37 @@
                 <Trigger Property="IsPressed" Value="True">
                     <Setter Property="Foreground" Value="Black"/>
                     <Setter Property="Background" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="{DynamicResource GrayBrush2}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="DebugmenuButtonStyle_Light" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="{DynamicResource FlatButtonFontSize}"/>
+            <Setter Property="Padding" Value="25,5"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1F000000"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="Black"/>
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Foreground" Value="{DynamicResource GrayBrush2}"/>
@@ -689,7 +723,8 @@
 
     <Grid Background="Black">
 
-        <Grid x:Name="webcamimagePage" Margin="0,0,0,0" Background="Black" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="webcamimagePage" Margin="0,0,0,0" Background="Black" RenderTransformOrigin="0.5,0.5"
+              Visibility="Visible">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -793,14 +828,14 @@
                     </TransformGroup>
                 </Grid.RenderTransform>
 
-                <StackPanel Margin="0,23,0,0">
+                <StackPanel Margin="0,30,0,0">
 
-                    <Grid Height="90" Margin="10" VerticalAlignment="Top">
+                    <Grid x:Name="webcamPage_menu_infoandactionsGrid" Height="90" Margin="10,10,10,0" VerticalAlignment="Top">
 
                         <StackPanel>
                             <TextBlock x:Name="webcamPage_MenuCameraNameLabel" Foreground="#FFD2D2D2" FontFamily="Segoe UI" FontWeight="SemiBold" Margin="5,5,55,0" TextTrimming="CharacterEllipsis">CAMERA NAME</TextBlock>
                             <TextBlock x:Name="webcamPage_MenuCameraUrlLabel" Foreground="#FFD2D2D2" FontFamily="Segoe UI" FontWeight="Regular" Margin="5,5,55,5" TextTrimming="CharacterEllipsis">camera url</TextBlock>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
+                            <StackPanel x:Name="webcamPage_savePanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0">
                                 <Button x:Name="webcamPage_saveimageButton" Style="{DynamicResource MenuButtonStyle}" Click="webcamPage_saveimageButton_Click">SAVE IMAGE</Button>
                                 <Button x:Name="webcamPage_saveallButton" Style="{DynamicResource MenuButtonStyle}" Click="webcamPage_saveallButton_Click" Width="10"></Button>
                                 <Button x:Name="webcamPage_saveimageonarchiveButton" Style="{DynamicResource MenuButtonStyle}" Click="webcamPage_saveimageonarchiveButton_Click">SAVE ON ARCHIVE.ORG</Button>
@@ -854,33 +889,52 @@
                 <Grid x:Name="settingsPage_MainPage" Margin="0,50,0,0"
                       Visibility="Visible">
 
-                    <Rectangle Visibility="Collapsed" Fill="#FF139DEA" Height="45" VerticalAlignment="Top"/>
+                    <Grid x:Name="settingsPage_MainPage_infoGrid" VerticalAlignment="Top" 
+                          Visibility="Collapsed">
+
+                        <Rectangle Fill="{Binding ElementName=settingsPage_ActionBar, Path=Background}" Height="45"/>
+
+                        <Label x:Name="settingsPage_MainPage_infoGrid_Label" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">info label</Label>
+                        
+                    </Grid>
 
                     <Label Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0" Foreground="#FFFFFFFF">Under construction - some things might not work as expected.</Label>
 
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ScrollViewer HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
 
-                        <Button x:Name="settingsPage_MainPage_WebcamEditorButton" Margin="0,5,0,5" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_WebcamEditorButton_Click">
-                            <StackPanel Orientation="Vertical">
-                                <Label HorizontalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="24">&#xE80A;</Label>
-                                <StackPanel>
-                                    <Label FontWeight="SemiBold" FontSize="11" HorizontalAlignment="Center">WEBCAMS</Label>
-                                    <Label FontSize="10.5" HorizontalAlignment="Center">Add, edit or remove webcams</Label>
+                            <Button x:Name="settingsPage_MainPage_WebcamEditorButton" Margin="0,5,0,5" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_WebcamEditorButton_Click">
+                                <StackPanel Orientation="Vertical">
+                                    <Label HorizontalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="24">&#xE80A;</Label>
+                                    <StackPanel>
+                                        <Label FontWeight="SemiBold" FontSize="11" HorizontalAlignment="Center">WEBCAMS</Label>
+                                        <Label FontSize="10.5" HorizontalAlignment="Center">Add, edit or remove webcams</Label>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </Button>
+                            </Button>
 
-                        <Button x:Name="settingsPage_MainPage_AboutButton" Margin="0,0,0,5" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_AboutButton_Click">
-                            <StackPanel Orientation="Vertical">
-                                <Label HorizontalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="24">&#xE946;</Label>
-                                <StackPanel>
-                                    <Label FontWeight="SemiBold" FontSize="11" HorizontalAlignment="Center">ABOUT</Label>
-                                    <Label FontSize="10.5" HorizontalAlignment="Center">About Webcam Viewer</Label>
+                            <Button x:Name="settingsPage_MainPage_UserInterfaceButton" Margin="0,5,0,5" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_UserInterfaceButton_Click">
+                                <StackPanel Orientation="Vertical">
+                                    <Label HorizontalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="24">&#xE2B1;</Label>
+                                    <StackPanel>
+                                        <Label FontWeight="SemiBold" FontSize="11" HorizontalAlignment="Center">USER INTERFACE</Label>
+                                        <Label FontSize="10.5" HorizontalAlignment="Center">Customize the look and feel</Label>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </Button>
+                            </Button>
 
-                    </StackPanel>
+                            <Button x:Name="settingsPage_MainPage_AboutButton" Margin="0,0,0,5" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_AboutButton_Click">
+                                <StackPanel Orientation="Vertical">
+                                    <Label HorizontalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="24">&#xE946;</Label>
+                                    <StackPanel>
+                                        <Label FontWeight="SemiBold" FontSize="11" HorizontalAlignment="Center">ABOUT</Label>
+                                        <Label FontSize="10.5" HorizontalAlignment="Center">About Webcam Viewer</Label>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Button>
+
+                        </StackPanel>
+                    </ScrollViewer>
 
                 </Grid>
 
@@ -901,7 +955,7 @@
                         </StackPanel>
                     </Grid>
 
-
+                    <!-- Content -->
                     <Grid Margin="10,60,10,10">
 
                         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" >
@@ -914,7 +968,7 @@
 
                         </StackPanel>
 
-                        <Button x:Name="WebcamEditor_SaveButton" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20" Width="150" Height="35" Click="WebcamEditor_SaveButton_Click">Save changes</Button>
+                        <Button x:Name="WebcamEditor_SaveButton" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20" Width="150" Height="35" Click="WebcamEditor_SaveButton_Click" Style="{DynamicResource UWPButtonStyle}">Save changes</Button>
 
 
                     </Grid>
@@ -945,6 +999,63 @@
                             </Grid>
 
                         </Grid>
+
+                    </Grid>
+
+                </Grid>
+                <Grid x:Name="settingsPage_UserInterfacePage" Margin="0,0,0,0"
+                      Visibility="Collapsed">
+
+                    <!-- Action bar -->
+                    <Grid x:Name="settingsPage_UserInterfacePage_ActionBar" Height="50" VerticalAlignment="Top" Background="#fff39c12">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                            <Button x:Name="settingsPage_UserInterfacePage_ActionBar_backButton" Foreground="White" FontFamily="Segoe MDL2 Assets" FontSize="16" Style="{DynamicResource ActionBarButtonStyle_Light}" Click="settingsPage_UserInterfacePage_ActionBar_backButton_Click">&#xE0A6;</Button>
+                            <Label HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontWeight="SemiBold" FontSize="14" Margin="5,0,0,0">USER INTERFACE</Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="settingsPage_UserInterfacePage_ActionBar_moreButton" Foreground="White" Style="{DynamicResource ActionBarButtonStyle_Light}" ToolTip="More..." FontFamily="Segoe MDL2 Assets" FontSize="16" Click="settingsPage_UserInterfacePage_ActionBar_moreButton_Click">&#xE10C;</Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Content -->
+                    <Grid Margin="10,60,10,10">
+
+                        <ScrollViewer>
+                            <StackPanel>
+
+                                <Label Foreground="{Binding ElementName=window, Path=BorderBrush}">Graphics</Label>
+                                <Rectangle Height="2" Margin="3" Fill="{Binding ElementName=window, Path=BorderBrush}" />
+
+                                <!-- Blur effect toggle-->
+                                <Button x:Name="settingsPage_UserInterfacePage_ImageBlurToggleButton" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_ImageBlurToggleButton_Click">
+
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="100"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Foreground="{Binding ElementName=settingsPage_UserInterfacePage_ImageBlurToggleButton, Path=Foreground}"
+                                           Grid.Column="0" FontFamily="Segoe MDL2 Assets" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center">&#xE8FF;</Label>
+
+                                        <StackPanel Grid.Column="1">
+                                            <Label Foreground="{Binding ElementName=settingsPage_UserInterfacePage_ImageBlurToggleButton, Path=Foreground}"
+                                                   FontFamily="Segoe UI Semibold" FontSize="11">BLUR IMAGE ON ACTION</Label>
+
+                                            <Label Foreground="{Binding ElementName=settingsPage_UserInterfacePage_ImageBlurToggleButton, Path=Foreground}"
+                                                   FontSize="11">Make the image blurred when doing an action on the image. (can impact performance on low-end GPUs)</Label>
+                                        </StackPanel>
+
+                                        <Controls:ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle" Grid.Column="2" BorderThickness="0" ThumbIndicatorBrush="{Binding ElementName=window, Path=BorderBrush}" OffSwitchBrush="#FFD7D7D7" OnSwitchBrush="#99F39C12"/>
+
+                                    </Grid>
+
+                                </Button>
+
+                            </StackPanel>
+                        </ScrollViewer>
 
                     </Grid>
 
@@ -1009,7 +1120,7 @@
                                 </TextBlock>
                             </Label>
                             <Label HorizontalAlignment="Center" Foreground="White">
-                                <TextBlock Text="A simple, Material Design application designed to look at online cameras.">
+                                <TextBlock Text="A simple application designed to look at online cameras.">
                                     <TextBlock.Effect>
                                         <DropShadowEffect Direction="320" BlurRadius="23" ShadowDepth="12"/>
                                     </TextBlock.Effect>

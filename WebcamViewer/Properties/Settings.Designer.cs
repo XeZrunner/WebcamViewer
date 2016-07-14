@@ -65,7 +65,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20160708-00")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20160714-01")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -77,7 +77,43 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Changes for 20160706-00:\r\n\r\nRelease build on GitHub.\r\n")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"Changes for 20160714-01:
+
+  Fixes:
+- Fixed the big buttons on the Settings page to look more like the ones in Windows 10's
+Settings app.
+- Fixed the webcam editor page's Save changes button to use the UWP button style.
+- Fixed a bug where exiting Settings would not reload your configuration, so the app
+would infinitely load. Now, whenever you exit out of Settings, all your configuration gets
+reloaded, applying any changes you've made.
+
+  Improvements:
+- Added an additional Settings page ""User interface"".
+- Added a toggle for blurring the webcam image when action is happening
+  This applies for saving the image and will apply to other features in the future.
+  The blur can impact performance on lower-end computers, turning it off should reduce 
+lag when saving the image.
+- Reduced the accent color on light dialogs for better visibility.
+
+  New features:
+- There are 4 new command line arguments you can use:
+
+  | -readonly
+  | Disables the save buttons.
+  
+  | -disable_archive
+  | Disables the archive.org save button, along with the ""save all"" button.
+
+  | -disable_localsave
+  | Disables the local save button, along with the ""save all"" button.
+
+  | -disable_webcameditor
+  | Disables the webcam editor in Settings.
+
+  You are notified when any of them is active on the Settings page.
+
+  Additionally, Webcam Viewer has a webpage: xezrunner.github.io/WebcamViewer.
+")]
         public string changelog {
             get {
                 return ((string)(this["changelog"]));
@@ -96,6 +132,18 @@ namespace WebcamViewer.Properties {
             }
             set {
                 this["birthday_notice"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool blur_image {
+            get {
+                return ((bool)(this["blur_image"]));
+            }
+            set {
+                this["blur_image"] = value;
             }
         }
     }
