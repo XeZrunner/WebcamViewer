@@ -12,6 +12,18 @@ A simple image webcam viewer for Windows.
   <img src="https://github.com/XeZrunner/WebcamViewer/blob/master/Screenshots/2.png" width="250"/>
 </p>
 
+# Command line arguments
+
+Webcam Viewer has a few command line arguments you can use to disable some functions.
+
+> -readonly | Disables the save buttons.
+  
+> -disable_archive | Disables the archive.org save button, along with the "save all" button.
+
+> -disable_localsave | Disables the local save button, along with the "save all" button.
+
+> -disable_webcameditor | Disables the webcam editor in Settings.
+
 # Download
 [Click this link for downloads](https://github.com/XeZrunner/WebcamViewer/releases)
 
