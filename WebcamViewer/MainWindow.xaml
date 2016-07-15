@@ -876,6 +876,7 @@
                 </TransformGroup>
             </Grid.RenderTransform>
 
+            <!-- Content -->
             <Grid Margin="0,30,0,0">
 
                 <!-- Action bar -->
@@ -1104,26 +1105,46 @@
                             <Label x:Name="label" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontWeight="SemiBold" FontSize="14" Margin="5,0,0,0">ABOUT</Label>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button x:Name="settingsPage_AboutPage_ActionBar_moreButton" Foreground="White" Style="{DynamicResource ActionBarButtonStyle_Light}" FontFamily="Segoe MDL2 Assets" FontSize="16" Click="settingsPage_AboutPage_ActionBar_moreButton_Click">&#xE10C;</Button>
+                            <!-- <Button x:Name="settingsPage_AboutPage_ActionBar_moreButton" Foreground="White" Style="{DynamicResource ActionBarButtonStyle_Light}" FontFamily="Segoe MDL2 Assets" FontSize="16" Click="settingsPage_AboutPage_ActionBar_moreButton_Click">&#xE10C;</Button> -->
                         </StackPanel>
                     </Grid>
 
+                    <!-- Content -->
                     <Grid Margin="10,60,10,10">
 
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel HorizontalAlignment="Left" Margin="30" VerticalAlignment="Top">
 
-                            <Label HorizontalAlignment="Center" Foreground="White" FontSize="26">
+                            <Label Foreground="White" FontSize="42">
                                 <TextBlock Text="Webcam Viewer">
                                     <TextBlock.Effect>
                                         <DropShadowEffect Direction="320" BlurRadius="15" ShadowDepth="10" Opacity="0.3"/>
                                     </TextBlock.Effect>
                                 </TextBlock>
                             </Label>
-                            <Label HorizontalAlignment="Center" Foreground="White">
+                            <Label Foreground="White" FontSize="16">
                                 <TextBlock Text="A simple application designed to look at online cameras.">
                                     <TextBlock.Effect>
                                         <DropShadowEffect Direction="320" BlurRadius="23" ShadowDepth="12"/>
                                     </TextBlock.Effect>
+                                </TextBlock>
+                            </Label>
+
+                            <Label Margin="0,50,0,0" Background="#1F000000" Foreground="#FFDDDDDD">
+                                <TextBlock>
+                                    Technical information:
+                                    <LineBreak/>
+                                    <TextBlock x:Name="aboutPage_versionnumberLabel">Version: </TextBlock> <LineBreak/>
+                                    <TextBlock x:Name="aboutPage_buildidLabel">Build ID: </TextBlock> <LineBreak/>
+                                    <LineBreak/>
+                                    Application icon by Freepik at flaticon.com
+                                    <LineBreak/>
+                                    Window and control base by MahApps.Metro
+                                    <LineBreak/> <LineBreak/>
+                                    This program is open-source, feel free to use the code to your liking. :)
+                                    <LineBreak/> <LineBreak/>
+                                    <TextBlock x:Name="aboutPage_githubLinkLabel" MouseLeftButtonUp="aboutPage_githubLinkLabel_MouseLeftButtonUp" Cursor="Hand">github.com/xezrunner/WebcamViewer</TextBlock>
+                                    <LineBreak/>
+                                    <TextBlock x:Name="aboutPage_officialpageLinkLabel" MouseLeftButtonUp="aboutPage_officialpageLinkLabel_MouseLeftButtonUp" Cursor="Hand">xezrunner.github.io/WebcamViewer</TextBlock>
                                 </TextBlock>
                             </Label>
 

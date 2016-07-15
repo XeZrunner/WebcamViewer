@@ -2,6 +2,7 @@
 using Microsoft.Win32;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -45,8 +46,21 @@ namespace WebcamViewer
                 if (arg == "-disable_webcameditor")
                     DISABLE_WEBCAMEDITOR = true;
             }
-            if (args.Length >= 2)
+            if (args.Length > 1)
                 ARGS_MULTIPLE = true;
+
+            // Check if we have MDL2 Assets installed
+            using (System.Drawing.Font font = new System.Drawing.Font("Segoe MDL2 Assets", 12))
+            {
+                if (font.Name != "Segoe MDL2 Assets")
+                {
+                    this.Show(); webcamimagePage.Visibility = Visibility.Collapsed;
+                    MessageDialog("Can't find Segoe MDL2 Assets", "It seems that you didn't install the Segoe MDL2 Assets font that is needed to display icons in the app.\n"
+                        + "The font is included in the zip that you download from GitHub.\n"
+                        + "Open the font file named \"Segoe MDL2 Assets.ttf\", then click Install to install it.", true);
+                    Application.Current.Shutdown();
+                }
+            }
         }
 
         private void window_Loaded(object sender, RoutedEventArgs e)
@@ -259,7 +273,7 @@ namespace WebcamViewer
             }
 
             DebugLog("GetUserCameras() : " + counter);
-            DebugLog("-----------------------------------------");
+            DebugLog("-----------------------------------------", 3);
 
             if (counter == 0)
             {
@@ -294,6 +308,12 @@ namespace WebcamViewer
                 case 2: //warning
                     {
                         finaltexttowrite = "[WARNING] ";
+
+                        break;
+                    }
+                case 3: //empty, for new lines
+                    {
+                        finaltexttowrite = "";
 
                         break;
                     }
@@ -391,6 +411,8 @@ namespace WebcamViewer
         Uri currentcameraUrl;
         BitmapImage bimage;
 
+        bool InitialProgressRingDone = false;
+
         void LoadImage(string cameraname)
         {
             // Show progress UI
@@ -414,7 +436,14 @@ namespace WebcamViewer
                         webcamPage_MenuCameraUrlLabel.Text = currentcameraUrl.ToString();
 
                         // Hide progress UI, some kind of bug aswell
-                        HideProgressUI(); webcamPage_progressring.Visibility = Visibility.Collapsed;
+
+                        HideProgressUI();
+
+                        if (InitialProgressRingDone == false)
+                        {
+                            InitialProgressRingDone = true;
+                            webcamPage_progressring.Visibility = Visibility.Collapsed;
+                        }
 
                         if (UI_AUTOSIZE_WINDOW)
                             titlebarGrid_contextmenu_SetImageSizeForWindow_Click(this, new RoutedEventArgs());
@@ -424,13 +453,13 @@ namespace WebcamViewer
                         debugoverlay_cameraurl.Content = "Camera url: " + currentcameraUrl;
                         debugoverlay_cameraresolution.Content = "Image resolution: " + bimage.PixelWidth + "x" + bimage.PixelHeight;
 
-                        DebugLog("");
-                        DebugLog("-----webcam image-----");
+                        DebugLog("", 3);
+                        DebugLog("-----webcam image-----", 3);
                         DebugLog("Camera name: " + cameraname);
                         DebugLog("Camera url: " + currentcameraUrl);
                         DebugLog("Camera resolution: " + bimage.PixelWidth + "x" + bimage.PixelHeight);
-                        DebugLog("-----webcam image-----");
-                        DebugLog("");
+                        DebugLog("-----webcam image-----", 3);
+                        DebugLog("", 3);
                     };
                     bimage.DownloadFailed += (s, ev) =>
                     {
@@ -452,7 +481,7 @@ namespace WebcamViewer
             }
         }
 
-        private void SetTitlebarColor(Color backgroundcolor, bool blackforegroundcolor = false)
+        private void SetTitlebarColor(Color backgroundcolor, bool blackforegroundcolor = false) // legacy
         {
             titlebarGrid.Background = new SolidColorBrush(backgroundcolor);
             if (blackforegroundcolor)
@@ -471,7 +500,7 @@ namespace WebcamViewer
                 maximizeButton.Foreground = new SolidColorBrush(Colors.White);
                 minimizeButton.Foreground = new SolidColorBrush(Colors.White);
             }
-        } // legacy
+        }
 
         private void titlebarGrid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -483,6 +512,7 @@ namespace WebcamViewer
         {
             this.Width = 800;
             this.Height = 680;
+            CenterWindowOnScreen();
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
@@ -501,6 +531,7 @@ namespace WebcamViewer
 
                 return;
             }
+
             switch (this.WindowState)
             {
                 case WindowState.Normal:
@@ -525,6 +556,7 @@ namespace WebcamViewer
                 SwitchToPage(2);
                 return;
             }
+
             this.WindowState = WindowState.Minimized;
         }
 
@@ -735,14 +767,6 @@ namespace WebcamViewer
         {
             SwitchToPage(0);
 
-            /*
-            if (webcamPage_menuCameraList.Children.Count != Properties.Settings.Default.camera_names.Count)
-            {
-                GetUserCameras();
-                DebugLog("camera added or removed - need to reload user config");
-            }
-            */
-
             GetUserCameras();
             GetUserSettings();
         }
@@ -784,12 +808,12 @@ namespace WebcamViewer
                     WebcamEditor_UrlsBox.Text += url;
             }
 
-            DebugLog("");
-            DebugLog("-----webcam editor-----");
+            DebugLog("", 3);
+            DebugLog("-----webcam editor-----", 3);
             DebugLog("Camera names count: " + namecounter);
             DebugLog("Camera urls count: " + urlcounter);
-            DebugLog("-----webcam editor-----");
-            DebugLog("");
+            DebugLog("-----webcam editor-----", 3);
+            DebugLog("", 3);
         }
 
         private void settingsPage_MainPage_AboutButton_Click(object sender, RoutedEventArgs e)
@@ -807,6 +831,19 @@ namespace WebcamViewer
             if (UI_SLOW_MOTION == true)
                 board.SpeedRatio = 0.3;
             board.Begin();
+
+            // Get some info
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fileversioninfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+            string versionnumber;
+
+            if (fileversioninfo.FileVersion.Substring(6, 1) == "0")
+                versionnumber = fileversioninfo.FileVersion.Substring(0, 5);
+            else
+                versionnumber = fileversioninfo.FileVersion;
+
+            aboutPage_versionnumberLabel.Text = "Version: " + versionnumber + Properties.Settings.Default.versionid;
+            aboutPage_buildidLabel.Text = "Build ID: " + Properties.Settings.Default.buildid;
         }
 
         private void settingsPage_WebcamEditorPage_ActionBar_backButton_Click(object sender, RoutedEventArgs e)
@@ -892,7 +929,7 @@ namespace WebcamViewer
 
         private void AboutPage_BackgroundCreditsLabel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://imgur.com/fO1Hsvu");
+            Process.Start("http://imgur.com/fO1Hsvu");
         }
 
         private void settingsPage_AboutPage_ActionBar_backButton_Click(object sender, RoutedEventArgs e)
@@ -945,6 +982,7 @@ namespace WebcamViewer
 
             DoubleAnimation opacityanimation = new DoubleAnimation(1.0, new TimeSpan(0, 0, 0, 0, 300));
             settingsPage_UserInterfacePage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
+
 
             // Get the settings
             settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.IsChecked = Properties.Settings.Default.blur_image;
@@ -1103,6 +1141,16 @@ namespace WebcamViewer
             {
                 Properties.Settings.Default.blur_image = false; Properties.Settings.Default.Save();
             }
+        }
+
+        private void aboutPage_githubLinkLabel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://github.com/xezrunner/webcamviewer");
+        }
+
+        private void aboutPage_officialpageLinkLabel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://xezrunner.github.io/WebcamViewer");
         }
     }
 }
