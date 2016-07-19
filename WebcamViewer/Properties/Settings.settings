@@ -25,22 +25,36 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20160715-00</Value>
+      <Value Profile="(Default)">20160719-01@webcamviewer_rel/update2/prerelease/alpha</Value>
     </Setting>
     <Setting Name="versionid" Type="System.String" Scope="User">
-      <Value Profile="(Default)"> (Update 1)</Value>
+      <Value Profile="(Default)"> (Update 2 Alpha)</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Changes for 20160715-00:
+      <Value Profile="(Default)">Update pre-release builds
+| Alpha - these (usually) only contain one or two specific changes that the new update is going to bring.
+| Beta - contains almost all (if not all) changes that the new update is going to bring, though 
+  they might not be the finalized.
+| Bugtest Release - not always released, this is the first finalized version of the update, sent out to a few people to find
+  bugs and instabilities or other non-working functions of the update.
+| Release - the final version
 
-  Fixes:
-- Fixed the progressring hiding before animation finishes.
+Changes for Update 2 Alpha:
 
-  Improvements / New features:
-- Redesigned the About page
-  The technical information and credits are now on the page rather than
-behind a dialog.
-- Added a warning on startup if Segoe MDL2 Assets isn't installed.
+  Improvements
+- Redesigned Settings
+  The Settings page is now more intuitive, it's easier and faster to navigate through settings pages.
+
+  New features:
+- Accent colors
+  You can now change the accent color of Webcam Viewer. Simply go to Settings -&gt; User Interface -&gt; Accent color.
+There are 5 colors you can choose from:
+| Orange (Summer)
+| Red (Autumn)
+| Green
+| Blue (Winter)
+| Dark blue/Purple
+New accent colors might be added in future releases.
 </Value>
     </Setting>
     <Setting Name="birthday_notice" Type="System.Boolean" Scope="User">
@@ -48,6 +62,21 @@ behind a dialog.
     </Setting>
     <Setting Name="blur_image" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="accentcolor" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="savelocations" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="home_dynamiccoloring" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="home_weather" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="weather_units" Type="System.String" Scope="User">
+      <Value Profile="(Default)">metric</Value>
     </Setting>
   </Settings>
 </SettingsFile>

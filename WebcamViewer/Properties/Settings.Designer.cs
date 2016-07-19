@@ -65,7 +65,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20160715-00")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20160719-01@webcamviewer_rel/update2/prerelease/alpha")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -77,7 +77,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(" (Update 1)")]
+        [global::System.Configuration.DefaultSettingValueAttribute(" (Update 2 Alpha)")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
@@ -89,16 +89,30 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"Changes for 20160715-00:
+        [global::System.Configuration.DefaultSettingValueAttribute(@"Update pre-release builds
+| Alpha - these (usually) only contain one or two specific changes that the new update is going to bring.
+| Beta - contains almost all (if not all) changes that the new update is going to bring, though 
+  they might not be the finalized.
+| Bugtest Release - not always released, this is the first finalized version of the update, sent out to a few people to find
+  bugs and instabilities or other non-working functions of the update.
+| Release - the final version
 
-  Fixes:
-- Fixed the progressring hiding before animation finishes.
+Changes for Update 2 Alpha:
 
-  Improvements / New features:
-- Redesigned the About page
-  The technical information and credits are now on the page rather than
-behind a dialog.
-- Added a warning on startup if Segoe MDL2 Assets isn't installed.
+  Improvements
+- Redesigned Settings
+  The Settings page is now more intuitive, it's easier and faster to navigate through settings pages.
+
+  New features:
+- Accent colors
+  You can now change the accent color of Webcam Viewer. Simply go to Settings -> User Interface -> Accent color.
+There are 5 colors you can choose from:
+| Orange (Summer)
+| Red (Autumn)
+| Green
+| Blue (Winter)
+| Dark blue/Purple
+New accent colors might be added in future releases.
 ")]
         public string changelog {
             get {
@@ -130,6 +144,65 @@ behind a dialog.
             }
             set {
                 this["blur_image"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int accentcolor {
+            get {
+                return ((int)(this["accentcolor"]));
+            }
+            set {
+                this["accentcolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection savelocations {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["savelocations"]));
+            }
+            set {
+                this["savelocations"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool home_dynamiccoloring {
+            get {
+                return ((bool)(this["home_dynamiccoloring"]));
+            }
+            set {
+                this["home_dynamiccoloring"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool home_weather {
+            get {
+                return ((bool)(this["home_weather"]));
+            }
+            set {
+                this["home_weather"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("metric")]
+        public string weather_units {
+            get {
+                return ((string)(this["weather_units"]));
+            }
+            set {
+                this["weather_units"] = value;
             }
         }
     }

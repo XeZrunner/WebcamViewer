@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace WebcamViewer
@@ -29,6 +30,8 @@ namespace WebcamViewer
             saveFileDialog.Filter = "JPG image (*.jpg)|*.jpg|All files (*.*)|*.*";
             saveFileDialog.Title = "Save image";
             saveFileDialog.DefaultExt = "jpg";
+
+            settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.OnSwitchBrush.Opacity = 0.7;
 
             archivebrowser.ProgressChanged += archivebrowser_ProgressChanged;
             archivebrowser.DocumentCompleted += Archivebrowser_DocumentCompleted;
@@ -151,6 +154,9 @@ namespace WebcamViewer
 
         void GetUserSettings()
         {
+            // accent color
+            SetAccentColor(Properties.Settings.Default.accentcolor);
+
             UI_HOME_BLURIMAGE = Properties.Settings.Default.blur_image;
         }
 
@@ -752,6 +758,8 @@ namespace WebcamViewer
         {
             SwitchToPage(1);
 
+            settingsPage_MainPage_WebcamEditorButton_Click(this, new RoutedEventArgs());
+
             int settingsPage_lastcameraCounter = 0;
 
             foreach (string camera in Properties.Settings.Default.camera_names)
@@ -771,16 +779,71 @@ namespace WebcamViewer
             GetUserSettings();
         }
 
+        void settingsPage_SetActiveButton(int button)
+        {
+            settingsPage_MainPage_WebcamEditorButton_rectangle.Visibility = Visibility.Hidden;
+            settingsPage_MainPage_WebcamEditorButton.Foreground = new SolidColorBrush(Colors.Black);
+
+            settingsPage_MainPage_UserInterfaceButton_rectangle.Visibility = Visibility.Hidden;
+            settingsPage_MainPage_UserInterfaceButton.Foreground = new SolidColorBrush(Colors.Black);
+
+            settingsPage_MainPage_AboutButton_rectangle.Visibility = Visibility.Hidden;
+            settingsPage_MainPage_AboutButton.Foreground = new SolidColorBrush(Colors.Black);
+
+            switch (button)
+            {
+                case 0:
+                    {
+                        settingsPage_MainPage_WebcamEditorButton_rectangle.Visibility = Visibility.Visible;
+                        settingsPage_MainPage_WebcamEditorButton.Foreground = (SolidColorBrush)this.Resources["res_accentForeground"];
+
+                        break;
+                    }
+                case 1:
+                    {
+                        settingsPage_MainPage_UserInterfaceButton_rectangle.Visibility = Visibility.Visible;
+                        settingsPage_MainPage_UserInterfaceButton.Foreground = (SolidColorBrush)this.Resources["res_accentForeground"];
+
+                        break;
+                    }
+                case 2:
+                    {
+                        settingsPage_MainPage_AboutButton_rectangle.Visibility = Visibility.Visible;
+                        settingsPage_MainPage_AboutButton.Foreground = (SolidColorBrush)this.Resources["res_accentForeground"];
+
+                        break;
+                    }
+            }
+        }
+
         private void settingsPage_MainPage_WebcamEditorButton_Click(object sender, RoutedEventArgs e)
         {
+            // Close other pages
+            settingsPage_AboutPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
+            settingsPage_UserInterfacePage_ActionBar_backButton_Click(this, new RoutedEventArgs());
+
+            // Set button look to active
+            settingsPage_SetActiveButton(0);
+
             settingsPage_WebcamEditorPage.Opacity = 0;
             settingsPage_WebcamEditorPage.Visibility = Visibility.Visible;
 
-            DoubleAnimation main_opacityanimation = new DoubleAnimation(0, new TimeSpan(0, 0, 0, 0, 300));
-            settingsPage_MainPage.BeginAnimation(Grid.OpacityProperty, main_opacityanimation);
-
             DoubleAnimation opacityanimation = new DoubleAnimation(1.0, new TimeSpan(0, 0, 0, 0, 300));
             settingsPage_WebcamEditorPage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
+
+            // prevent visually unloading the page (glitch)
+            settingsPage_MainPage_WebcamEditorButton.IsEnabled = false;
+            settingsPage_MainPage_UserInterfaceButton.IsEnabled = false;
+            settingsPage_MainPage_AboutButton.IsEnabled = false;
+
+            DispatcherTimer enableTimer = new DispatcherTimer();
+            enableTimer.Interval = opacityanimation.Duration.TimeSpan;
+            enableTimer.Tick += (s, ev) => { enableTimer.Stop();
+                settingsPage_MainPage_WebcamEditorButton.IsEnabled = true;
+                settingsPage_MainPage_UserInterfaceButton.IsEnabled = true;
+                settingsPage_MainPage_AboutButton.IsEnabled = true;
+            };
+            enableTimer.Start();
 
             // Fetch settings
 
@@ -816,21 +879,71 @@ namespace WebcamViewer
             DebugLog("", 3);
         }
 
+        private void settingsPage_MainPage_UserInterfaceButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Close other pages
+
+            settingsPage_WebcamEditorPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
+            settingsPage_AboutPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
+
+            // Set button look to active
+            settingsPage_SetActiveButton(1);
+
+            settingsPage_UserInterfacePage.Opacity = 0;
+            settingsPage_UserInterfacePage.Visibility = Visibility.Visible;
+
+            DoubleAnimation opacityanimation = new DoubleAnimation(1.0, new TimeSpan(0, 0, 0, 0, 300));
+            settingsPage_UserInterfacePage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
+
+            // prevent visually unloading the page (glitch)
+            settingsPage_MainPage_WebcamEditorButton.IsEnabled = false;
+            settingsPage_MainPage_UserInterfaceButton.IsEnabled = false;
+            settingsPage_MainPage_AboutButton.IsEnabled = false;
+
+            DispatcherTimer enableTimer = new DispatcherTimer();
+            enableTimer.Interval = opacityanimation.Duration.TimeSpan;
+            enableTimer.Tick += (s, ev) => {
+                enableTimer.Stop();
+                settingsPage_MainPage_WebcamEditorButton.IsEnabled = true;
+                settingsPage_MainPage_UserInterfaceButton.IsEnabled = true;
+                settingsPage_MainPage_AboutButton.IsEnabled = true;
+            };
+            enableTimer.Start();
+
+            // Get the settings
+            settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.IsChecked = Properties.Settings.Default.blur_image;
+        }
+
         private void settingsPage_MainPage_AboutButton_Click(object sender, RoutedEventArgs e)
         {
+            // Close other pages
+
+            settingsPage_WebcamEditorPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
+            settingsPage_UserInterfacePage_ActionBar_backButton_Click(this, new RoutedEventArgs());
+
+            // Set button look to active
+            settingsPage_SetActiveButton(2);
+
             settingsPage_AboutPage.Opacity = 0;
             settingsPage_AboutPage.Visibility = Visibility.Visible;
-
-            DoubleAnimation main_opacityanimation = new DoubleAnimation(0, new TimeSpan(0, 0, 0, 0, 300));
-            settingsPage_MainPage.BeginAnimation(Grid.OpacityProperty, main_opacityanimation);
 
             DoubleAnimation opacityanimation = new DoubleAnimation(1.0, new TimeSpan(0, 0, 0, 0, 300));
             settingsPage_AboutPage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
 
-            Storyboard board = (Storyboard)FindResource("AboutPage_TransitionIn");
-            if (UI_SLOW_MOTION == true)
-                board.SpeedRatio = 0.3;
-            board.Begin();
+            // prevent visually unloading the page (glitch)
+            settingsPage_MainPage_WebcamEditorButton.IsEnabled = false;
+            settingsPage_MainPage_UserInterfaceButton.IsEnabled = false;
+            settingsPage_MainPage_AboutButton.IsEnabled = false;
+
+            DispatcherTimer enableTimer = new DispatcherTimer();
+            enableTimer.Interval = opacityanimation.Duration.TimeSpan;
+            enableTimer.Tick += (s, ev) => {
+                enableTimer.Stop();
+                settingsPage_MainPage_WebcamEditorButton.IsEnabled = true;
+                settingsPage_MainPage_UserInterfaceButton.IsEnabled = true;
+                settingsPage_MainPage_AboutButton.IsEnabled = true;
+            };
+            enableTimer.Start();
 
             // Get some info
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
@@ -848,9 +961,6 @@ namespace WebcamViewer
 
         private void settingsPage_WebcamEditorPage_ActionBar_backButton_Click(object sender, RoutedEventArgs e)
         {
-            DoubleAnimation main_opacityanimation = new DoubleAnimation(1.0, new TimeSpan(0, 0, 0, 0, 300));
-            settingsPage_MainPage.BeginAnimation(Grid.OpacityProperty, main_opacityanimation);
-
             DoubleAnimation opacityanimation = new DoubleAnimation(0, new TimeSpan(0, 0, 0, 0, 300));
             settingsPage_WebcamEditorPage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
 
@@ -934,29 +1044,14 @@ namespace WebcamViewer
 
         private void settingsPage_AboutPage_ActionBar_backButton_Click(object sender, RoutedEventArgs e)
         {
-            Storyboard board = (Storyboard)FindResource("AboutPage_TransitionOut");
-            if (UI_SLOW_MOTION)
-                board.SpeedRatio = 0.3;
-            board.Begin();
 
-            DispatcherTimer mainTimer = new DispatcherTimer();
-            mainTimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
-            mainTimer.Tick += (s1, ev1) =>
-            {
-                DoubleAnimation main_opacityanimation = new DoubleAnimation(1.0, new TimeSpan(0, 0, 0, 0, 300));
-                settingsPage_MainPage.BeginAnimation(Grid.OpacityProperty, main_opacityanimation);
+            DoubleAnimation opacityanimation = new DoubleAnimation(0, new TimeSpan(0, 0, 0, 0, 300));
+            settingsPage_AboutPage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
 
-                DoubleAnimation opacityanimation = new DoubleAnimation(0, new TimeSpan(0, 0, 0, 0, 300));
-                settingsPage_AboutPage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
-
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = new TimeSpan(0, 0, 0, 0, 300);
-                timer.Tick += (s2, ev2) => { timer.Stop(); settingsPage_AboutPage.Visibility = Visibility.Collapsed; };
-                timer.Start();
-
-                mainTimer.Stop();
-            };
-            mainTimer.Start();
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 300);
+            timer.Tick += (s2, ev2) => { timer.Stop(); settingsPage_AboutPage.Visibility = Visibility.Collapsed; };
+            timer.Start();
         }
 
         private void settingsPage_AboutPage_ActionBar_moreButton_Click(object sender, RoutedEventArgs e)
@@ -972,27 +1067,8 @@ namespace WebcamViewer
                 );
         }
 
-        private void settingsPage_MainPage_UserInterfaceButton_Click(object sender, RoutedEventArgs e)
-        {
-            settingsPage_UserInterfacePage.Opacity = 0;
-            settingsPage_UserInterfacePage.Visibility = Visibility.Visible;
-
-            DoubleAnimation main_opacityanimation = new DoubleAnimation(0, new TimeSpan(0, 0, 0, 0, 300));
-            settingsPage_MainPage.BeginAnimation(Grid.OpacityProperty, main_opacityanimation);
-
-            DoubleAnimation opacityanimation = new DoubleAnimation(1.0, new TimeSpan(0, 0, 0, 0, 300));
-            settingsPage_UserInterfacePage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
-
-
-            // Get the settings
-            settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.IsChecked = Properties.Settings.Default.blur_image;
-        }
-
         private void settingsPage_UserInterfacePage_ActionBar_backButton_Click(object sender, RoutedEventArgs e)
         {
-            DoubleAnimation main_opacityanimation = new DoubleAnimation(1.0, new TimeSpan(0, 0, 0, 0, 300));
-            settingsPage_MainPage.BeginAnimation(Grid.OpacityProperty, main_opacityanimation);
-
             DoubleAnimation opacityanimation = new DoubleAnimation(0, new TimeSpan(0, 0, 0, 0, 300));
             settingsPage_UserInterfacePage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
 
@@ -1004,7 +1080,24 @@ namespace WebcamViewer
 
         private void settingsPage_UserInterfacePage_ActionBar_moreButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageDialog("", "AccentColorWindow does not exist\nTo use grid editor with UWP buttons");
+            // show grid
+            Storyboard board = (Storyboard)FindResource("settingsPage_UserInterfacePage_AccentColorDialogIn");
+            board.Begin();
+
+            // get config
+            settingsPage_UserInterfacePage_SetActiveAccentColorButton(Properties.Settings.Default.accentcolor);
+        }
+
+        void settingsPage_UserInterfacePage_SetActiveAccentColorButton(int accent)
+        {
+            AccentColorButton_0.BorderThickness = new Thickness(0);
+            AccentColorButton_1.BorderThickness = new Thickness(0);
+            AccentColorButton_2.BorderThickness = new Thickness(0);
+            AccentColorButton_3.BorderThickness = new Thickness(0);
+            AccentColorButton_4.BorderThickness = new Thickness(0);
+
+            Button targetbutton = (Button)FindName("AccentColorButton_" + accent);
+            targetbutton.BorderThickness = new Thickness(3);
         }
 
         private void webcamPage_saveallButton_Click(object sender, RoutedEventArgs e)
@@ -1151,6 +1244,51 @@ namespace WebcamViewer
         private void aboutPage_officialpageLinkLabel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Process.Start("https://xezrunner.github.io/WebcamViewer");
+        }
+
+        int settingsPage_UserInterfacePage_AccentColorToSet;
+
+        private void settingsPage_UserInterfacePage_AccentColorButtonClick(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            string button_accentid = button.Name.Substring(18, 1);
+
+            settingsPage_UserInterfacePage_SetActiveAccentColorButton(int.Parse(button_accentid));
+            settingsPage_UserInterfacePage_AccentColorToSet = int.Parse(button_accentid);
+
+            if (int.Parse(button_accentid) != Properties.Settings.Default.accentcolor)
+                settingsPage_UserInterfacePage_AccentColorAcceptButton.IsEnabled = true;
+            else
+                settingsPage_UserInterfacePage_AccentColorAcceptButton.IsEnabled = false;
+        }
+
+        private void settingsPage_UserInterfacePage_AccentColorCancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            // hide grid
+            Storyboard board = (Storyboard)FindResource("settingsPage_UserInterfacePage_AccentColorDialogOut");
+            board.Begin();
+        }
+
+        private void settingsPage_UserInterfacePage_AccentColorAcceptButton_Click(object sender, RoutedEventArgs e)
+        {
+            // save and hide
+            Properties.Settings.Default.accentcolor = settingsPage_UserInterfacePage_AccentColorToSet;
+
+            Storyboard board = (Storyboard)FindResource("settingsPage_UserInterfacePage_AccentColorDialogOut");
+            board.Begin();
+
+            SetAccentColor(settingsPage_UserInterfacePage_AccentColorToSet);
+        }
+
+        void SetAccentColor(int accentcolor)
+        {
+            SolidColorBrush backgroundcolor = (SolidColorBrush)FindResource("res_Background" + accentcolor.ToString());
+            SolidColorBrush foregroundcolor = (SolidColorBrush)FindResource("res_Foreground" + accentcolor.ToString());
+
+            this.Resources["res_accentBackground"] = new SolidColorBrush(backgroundcolor.Color);
+            this.Resources["res_accentForeground"] = new SolidColorBrush(foregroundcolor.Color);
+
+            settingsPage_SetActiveButton(1);
         }
     }
 }
