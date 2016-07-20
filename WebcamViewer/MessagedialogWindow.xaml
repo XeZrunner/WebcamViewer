@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="" MinHeight="200" MinWidth="300" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" SizeToContent="WidthAndHeight" ShowTitleBar="False"
         ShowInTaskbar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False"
-        BorderBrush="#fff39c12" BorderThickness="1" SnapsToDevicePixels="True">
+        BorderBrush="{DynamicResource res_accentBackground}" BorderThickness="1" SnapsToDevicePixels="True">
 
     <Controls:MetroWindow.Resources>
 
@@ -34,12 +34,12 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" TargetName="Background" Value="#fff39c12"/>
+                                <Setter Property="Background" TargetName="Background" Value="{DynamicResource res_accentBackground}"/>
                                 <Setter Property="Foreground" TargetName="PART_ContentPresenter" Value="White"/>
                                 <Setter Property="Visibility" TargetName="MouseOverDim" Value="Visible"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" TargetName="Background" Value="#fff39c12"/>
+                                <Setter Property="Background" TargetName="Background" Value="{DynamicResource res_accentBackground}"/>
                                 <Setter Property="Foreground" TargetName="PART_ContentPresenter" Value="White"/>
                                 <Setter Property="Visibility" TargetName="MouseDownDim" Value="Visible"/>
                             </Trigger>
@@ -76,8 +76,8 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <!-- <Setter Property="Background" TargetName="Background" Value="#2FFFFFFF"/> -->
-                                <Setter Property="Fill" TargetName="hoverRectangle" Value="#fff39c12"/>
-                                <Setter Property="Foreground" TargetName="PART_ContentPresenter" Value="#fff39c12"/>
+                                <Setter Property="Fill" TargetName="hoverRectangle" Value="{DynamicResource res_accentForeground}"/>
+                                <Setter Property="Foreground" TargetName="PART_ContentPresenter" Value="{DynamicResource res_accentForeground}"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <!-- <Setter Property="Foreground" Value="White"/> -->
@@ -123,8 +123,8 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <!-- <Setter Property="Background" TargetName="Background" Value="#3F000000"/> -->
-                                <Setter Property="Fill" TargetName="hoverRectangle" Value="#ffe28b01"/>
-                                <Setter Property="Foreground" Value="#ffe28b01"/>
+                                <Setter Property="Fill" TargetName="hoverRectangle" Value="{DynamicResource res_accentForeground}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource res_accentForeground}"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <!-- <Setter Property="Background" TargetName="Background" Value="#FF000000"/> -->
@@ -142,11 +142,12 @@
             </Setter>
         </Style>
 
+        <SolidColorBrush x:Key="res_accentBackground" Color="#fff39c12"/>
+        <SolidColorBrush x:Key="res_accentForeground" Color="#ffe28b01"/>
+
     </Controls:MetroWindow.Resources>
 
     <Grid x:Name="grid" Background="White">
-
-        <Button x:Name="windowCloseButton" FontFamily="Segoe MDL2 Assets" FontSize="10.5" Content="&#xE894;" Style="{DynamicResource DialogWindowControlButtonStyle}" Click="closeButton_Click"/>
 
         <StackPanel Margin="25,25,25,65">
             <Label x:Name="titleLabel" HorizontalAlignment="Left" Margin="0,0,25,0" FontSize="20" Foreground="Black">Title</Label>
@@ -154,6 +155,10 @@
         </StackPanel>
 
         <Button x:Name="closeButton" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="25,25,25,20" Height="32" Width="120" Click="closeButton_Click" Style="{DynamicResource LightButtonStyle}">OK</Button>
+
+        <Grid x:Name="titlebarGrid" Height="35" VerticalAlignment="Top" MouseDown="titlebarGrid_MouseDown">
+            <Button x:Name="windowCloseButton" FontFamily="Segoe MDL2 Assets" FontSize="10.5" Content="&#xE894;" Style="{DynamicResource DialogWindowControlButtonStyle}" Click="closeButton_Click"/>
+        </Grid>
 
     </Grid>
 

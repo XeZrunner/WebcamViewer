@@ -49,7 +49,7 @@ namespace WebcamViewer
                 if (arg == "-disable_webcameditor")
                     DISABLE_WEBCAMEDITOR = true;
             }
-            if (args.Length > 1)
+            if (args.Length >= 2)
                 ARGS_MULTIPLE = true;
 
             // Check if we have MDL2 Assets installed
@@ -120,35 +120,33 @@ namespace WebcamViewer
                 webcamPage_savePanel.Visibility = Visibility.Collapsed;
                 webcamPage_menu_infoandactionsGrid.Height -= 37;
 
-                settingsPage_MainPage_infoGrid.Visibility = Visibility.Visible;
-                settingsPage_MainPage_infoGrid_Label.Content = "Webcam Viewer is running in read-only mode (-readonly)";
+                infoButton.Visibility = Visibility.Visible;
             }
             if (DISABLE_ARCHIVEORG)
             {
                 webcamPage_saveimageonarchiveButton.Visibility = Visibility.Collapsed;
                 webcamPage_saveallButton.Visibility = Visibility.Collapsed;
 
-                settingsPage_MainPage_infoGrid.Visibility = Visibility.Visible;
-                settingsPage_MainPage_infoGrid_Label.Content = "archive.org saving disabled by command line argument (-disable_archive)";
+                infoButton.Visibility = Visibility.Visible;
             }
             if (DISABLE_LOCALSAVE)
             {
                 webcamPage_saveimageButton.Visibility = Visibility.Collapsed;
                 webcamPage_saveallButton.Visibility = Visibility.Collapsed;
 
-                settingsPage_MainPage_infoGrid.Visibility = Visibility.Visible;
-                settingsPage_MainPage_infoGrid_Label.Content = "Local save disabled by command line argument (-disable_localsave)";
+                infoButton.Visibility = Visibility.Visible;
             }
             if (DISABLE_WEBCAMEDITOR)
             {
                 settingsPage_MainPage_WebcamEditorButton.Visibility = Visibility.Collapsed;
 
-                settingsPage_MainPage_infoGrid.Visibility = Visibility.Visible;
-                settingsPage_MainPage_infoGrid_Label.Content = "Webcam editor disabled by command line argument (-readonly)";
+                infoButton.Visibility = Visibility.Visible;
             }
 
             if (ARGS_MULTIPLE)
-                settingsPage_MainPage_infoGrid_Label.Content = "Multiple things disabled - check your command line arguments";
+            {
+
+            }
 
         }
 
@@ -508,10 +506,25 @@ namespace WebcamViewer
             }
         }
 
+        int titlebarGrid_doubleclickcounter = 0;
+
         private void titlebarGrid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
+            {
                 this.DragMove();
+
+                // double click titlebar to maximize/restore
+                titlebarGrid_doubleclickcounter++;
+
+                if (titlebarGrid_doubleclickcounter == 2)
+                    maximizeButton_Click(this, new RoutedEventArgs());
+
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = new TimeSpan(0, 0, 0, 0, 500);
+                timer.Tick += (s, ev) => { titlebarGrid_doubleclickcounter = 0; timer.Stop(); };
+                timer.Start();
+            }
         }
 
         private void titlebarGrid_contextmenu_ResetWindowSize_Click(object sender, RoutedEventArgs e)
@@ -758,7 +771,10 @@ namespace WebcamViewer
         {
             SwitchToPage(1);
 
-            settingsPage_MainPage_WebcamEditorButton_Click(this, new RoutedEventArgs());
+            if (!DISABLE_WEBCAMEDITOR)
+                settingsPage_MainPage_WebcamEditorButton_Click(this, new RoutedEventArgs());
+            else
+                settingsPage_MainPage_UserInterfaceButton_Click(this, new RoutedEventArgs());
 
             int settingsPage_lastcameraCounter = 0;
 
@@ -818,6 +834,7 @@ namespace WebcamViewer
 
         private void settingsPage_MainPage_WebcamEditorButton_Click(object sender, RoutedEventArgs e)
         {
+
             // Close other pages
             settingsPage_AboutPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
             settingsPage_UserInterfacePage_ActionBar_backButton_Click(this, new RoutedEventArgs());
@@ -838,7 +855,9 @@ namespace WebcamViewer
 
             DispatcherTimer enableTimer = new DispatcherTimer();
             enableTimer.Interval = opacityanimation.Duration.TimeSpan;
-            enableTimer.Tick += (s, ev) => { enableTimer.Stop();
+            enableTimer.Tick += (s, ev) =>
+            {
+                enableTimer.Stop();
                 settingsPage_MainPage_WebcamEditorButton.IsEnabled = true;
                 settingsPage_MainPage_UserInterfaceButton.IsEnabled = true;
                 settingsPage_MainPage_AboutButton.IsEnabled = true;
@@ -902,7 +921,8 @@ namespace WebcamViewer
 
             DispatcherTimer enableTimer = new DispatcherTimer();
             enableTimer.Interval = opacityanimation.Duration.TimeSpan;
-            enableTimer.Tick += (s, ev) => {
+            enableTimer.Tick += (s, ev) =>
+            {
                 enableTimer.Stop();
                 settingsPage_MainPage_WebcamEditorButton.IsEnabled = true;
                 settingsPage_MainPage_UserInterfaceButton.IsEnabled = true;
@@ -937,7 +957,8 @@ namespace WebcamViewer
 
             DispatcherTimer enableTimer = new DispatcherTimer();
             enableTimer.Interval = opacityanimation.Duration.TimeSpan;
-            enableTimer.Tick += (s, ev) => {
+            enableTimer.Tick += (s, ev) =>
+            {
                 enableTimer.Stop();
                 settingsPage_MainPage_WebcamEditorButton.IsEnabled = true;
                 settingsPage_MainPage_UserInterfaceButton.IsEnabled = true;
@@ -1273,6 +1294,7 @@ namespace WebcamViewer
         {
             // save and hide
             Properties.Settings.Default.accentcolor = settingsPage_UserInterfacePage_AccentColorToSet;
+            Properties.Settings.Default.Save();
 
             Storyboard board = (Storyboard)FindResource("settingsPage_UserInterfacePage_AccentColorDialogOut");
             board.Begin();
@@ -1288,7 +1310,29 @@ namespace WebcamViewer
             this.Resources["res_accentBackground"] = new SolidColorBrush(backgroundcolor.Color);
             this.Resources["res_accentForeground"] = new SolidColorBrush(foregroundcolor.Color);
 
-            settingsPage_SetActiveButton(1);
+            int lastSettingsPage = 0;
+
+            if (settingsPage_WebcamEditorPage.Visibility == Visibility.Visible) lastSettingsPage = 0;
+            if (settingsPage_UserInterfacePage.Visibility == Visibility.Visible) lastSettingsPage = 1;
+            if (settingsPage_AboutPage.Visibility == Visibility.Visible) lastSettingsPage = 2;
+
+            settingsPage_SetActiveButton(lastSettingsPage);
+        }
+
+        private void infoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (READONLY_MODE | DISABLE_ARCHIVEORG | DISABLE_LOCALSAVE | DISABLE_WEBCAMEDITOR)
+                MessageDialog("Certain functions have been disabled.", "You've probably used one or more of the command line switches that disable certain things in the program.\n" +
+                    "READONLY: " + READONLY_MODE + "\n" +
+                    "DISABLE_ARCHIVEORG: " + DISABLE_ARCHIVEORG + "\n" +
+                    "DISABLE_LOCALSAVE: " + DISABLE_LOCALSAVE + "\n" +
+                    "DISABLE_WEBCAMEDITOR: " + DISABLE_WEBCAMEDITOR + "\n" +
+                    "ARGS_MULTIPLE: " + ARGS_MULTIPLE);
+        }
+
+        private void weatherButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

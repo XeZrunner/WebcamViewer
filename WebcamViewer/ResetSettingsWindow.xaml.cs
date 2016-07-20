@@ -28,6 +28,14 @@ namespace WebcamViewer
                 continueButton.Background = new SolidColorBrush(Color.FromArgb(255, 42, 43, 45)); continueButton.Foreground = new SolidColorBrush(Colors.White); continueButton.Style = this.Resources["DarkButtonStyle"] as Style;
                 windowCloseButton.Foreground = new SolidColorBrush(Colors.White);
             }
+
+            // get accent color from parent
+            Window mainwindow = Application.Current.MainWindow;
+            SolidColorBrush background = mainwindow.Resources["res_accentBackground"] as SolidColorBrush;
+            SolidColorBrush foreground = mainwindow.Resources["res_accentForeground"] as SolidColorBrush;
+
+            this.Resources["res_accentBackground"] = background;
+            this.Resources["res_accentForeground"] = foreground;
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)

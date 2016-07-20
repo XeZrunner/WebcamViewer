@@ -65,7 +65,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20160719-01@webcamviewer_rel/update2/prerelease/alpha")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20160720-00@webcamviewer_rel/update2/prerelease/alpha")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));

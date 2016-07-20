@@ -25,7 +25,7 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20160719-01@webcamviewer_rel/update2/prerelease/alpha</Value>
+      <Value Profile="(Default)">20160720-00@webcamviewer_rel/update2/prerelease/alpha</Value>
     </Setting>
     <Setting Name="versionid" Type="System.String" Scope="User">
       <Value Profile="(Default)"> (Update 2 Alpha)</Value>
