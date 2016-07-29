@@ -25,10 +25,10 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20160720-00@webcamviewer_rel/update2/prerelease/alpha</Value>
+      <Value Profile="(Default)">20160729-00@webcamviewer_rel/update2/prerelease/beta</Value>
     </Setting>
     <Setting Name="versionid" Type="System.String" Scope="User">
-      <Value Profile="(Default)"> (Update 2 Alpha)</Value>
+      <Value Profile="(Default)"> (Update 2 Beta)</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="User">
       <Value Profile="(Default)">Update pre-release builds
@@ -39,22 +39,9 @@
   bugs and instabilities or other non-working functions of the update.
 | Release - the final version
 
-Changes for Update 2 Alpha:
+Changes for Update 2 Beta:
 
-  Improvements
-- Redesigned Settings
-  The Settings page is now more intuitive, it's easier and faster to navigate through settings pages.
-
-  New features:
-- Accent colors
-  You can now change the accent color of Webcam Viewer. Simply go to Settings -&gt; User Interface -&gt; Accent color.
-There are 5 colors you can choose from:
-| Orange (Summer)
-| Red (Autumn)
-| Green
-| Blue (Winter)
-| Dark blue/Purple
-New accent colors might be added in future releases.
+Soon(tm).
 </Value>
     </Setting>
     <Setting Name="birthday_notice" Type="System.Boolean" Scope="User">
@@ -77,6 +64,15 @@ New accent colors might be added in future releases.
     </Setting>
     <Setting Name="weather_units" Type="System.String" Scope="User">
       <Value Profile="(Default)">metric</Value>
+    </Setting>
+    <Setting Name="window_autosize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="window_aeroborder" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="imagesizing" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
     </Setting>
   </Settings>
 </SettingsFile>

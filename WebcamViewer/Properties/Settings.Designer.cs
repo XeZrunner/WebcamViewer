@@ -65,7 +65,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20160720-00@webcamviewer_rel/update2/prerelease/alpha")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20160729-00@webcamviewer_rel/update2/prerelease/beta")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -77,7 +77,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(" (Update 2 Alpha)")]
+        [global::System.Configuration.DefaultSettingValueAttribute(" (Update 2 Beta)")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
@@ -97,22 +97,9 @@ namespace WebcamViewer.Properties {
   bugs and instabilities or other non-working functions of the update.
 | Release - the final version
 
-Changes for Update 2 Alpha:
+Changes for Update 2 Beta:
 
-  Improvements
-- Redesigned Settings
-  The Settings page is now more intuitive, it's easier and faster to navigate through settings pages.
-
-  New features:
-- Accent colors
-  You can now change the accent color of Webcam Viewer. Simply go to Settings -> User Interface -> Accent color.
-There are 5 colors you can choose from:
-| Orange (Summer)
-| Red (Autumn)
-| Green
-| Blue (Winter)
-| Dark blue/Purple
-New accent colors might be added in future releases.
+Soon(tm).
 ")]
         public string changelog {
             get {
@@ -203,6 +190,42 @@ New accent colors might be added in future releases.
             }
             set {
                 this["weather_units"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool window_autosize {
+            get {
+                return ((bool)(this["window_autosize"]));
+            }
+            set {
+                this["window_autosize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool window_aeroborder {
+            get {
+                return ((bool)(this["window_aeroborder"]));
+            }
+            set {
+                this["window_aeroborder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int imagesizing {
+            get {
+                return ((int)(this["imagesizing"]));
+            }
+            set {
+                this["imagesizing"] = value;
             }
         }
     }

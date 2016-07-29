@@ -34,8 +34,8 @@ namespace WebcamViewer
 
             if (darkmode == true)
             {
-                grid.Background = new SolidColorBrush(Color.FromArgb(255, 20, 20, 20));
-                titleLabel.Foreground = new SolidColorBrush(Colors.White); messageLabel.Foreground = new SolidColorBrush(Colors.White); closeButton.Background = new SolidColorBrush(Color.FromArgb(255, 42, 43, 45)); closeButton.Foreground = new SolidColorBrush(Colors.White); closeButton.Style = this.Resources["DarkButtonStyle"] as Style; windowCloseButton.Foreground = new SolidColorBrush(Colors.White);
+                grid.Background = new SolidColorBrush(Color.FromArgb(255, 56, 56, 56));
+                titleLabel.Foreground = new SolidColorBrush(Colors.White); messageLabel.Foreground = new SolidColorBrush(Colors.White); closeButton.Style = this.Resources["UWPButtonStyle_Dark"] as Style; windowCloseButton.Foreground = new SolidColorBrush(Colors.White);
             }
 
             // get accent color from parent
