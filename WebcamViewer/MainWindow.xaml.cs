@@ -72,6 +72,9 @@ namespace WebcamViewer
             webcamPage_menu_debugmenuButton.Visibility = Visibility.Collapsed;
 #endif
 
+            if (UPDATE_AVAIL_FEED)
+                infoButton.Visibility = Visibility.Visible;
+
         }
 
         private void window_Loaded(object sender, RoutedEventArgs e)
@@ -153,6 +156,7 @@ namespace WebcamViewer
 
             SetAeroBorder();
 
+            CenterWindowOnScreen();
         }
 
         void GetUserSettings()
@@ -160,12 +164,20 @@ namespace WebcamViewer
             UI_HOME_BLURIMAGE = Properties.Settings.Default.blur_image;
             UI_AUTOSIZE_WINDOW = Properties.Settings.Default.window_autosize;
             UI_AEROBORDER = Properties.Settings.Default.window_aeroborder;
+            UI_SETTINGSPAGE_SHOWACCENTCOLOR = Properties.Settings.Default.settings_showaccentcolor;
 
             // accent color
             SetAccentColor(Properties.Settings.Default.accentcolor);
 
             // aero border
             SetAeroBorder();
+
+            if (Properties.Settings.Default.home_menu_blurbehind == false)
+                webcamPage_menu_blurbehindBorder.Visibility = Visibility.Collapsed;
+            else
+                webcamPage_menu_blurbehindBorder.Visibility = Visibility.Visible;
+
+            UI_SETTINGSPAGE_SHOWACCENTCOLOR = Properties.Settings.Default.settings_showaccentcolor;
 
             #region Image sizing
 
@@ -204,7 +216,10 @@ namespace WebcamViewer
         {
             debugoverlay_windowsize.Content = "Window size: " + this.Width + "x" + this.Height
                 + " (" + this.Width + "x" + (this.Height - titlebarGrid.Height - debugmenuPage_ActionBar.Height) + " without UI elements)";
-            webcamPage_menuCameraList.Height = this.Height - 170;
+            if (webcamPage_menu_debugmenuButton.Visibility != Visibility.Visible)
+                webcamPage_menuCameraList.Height = this.Height - 45 - 90 - 40;
+            else
+                webcamPage_menuCameraList.Height = this.Height - 45 - 90 - 40 - 40;
 
             // Make the maximize button change if we Aero snap or keyboard maximize or whatever else
             if (WindowState == WindowState.Maximized)
@@ -264,6 +279,10 @@ namespace WebcamViewer
         bool DISABLE_LOCALSAVE = false;
         bool DISABLE_WEBCAMEDITOR = false;
 
+        bool UPDATE_AVAIL_FEED = false;
+
+        bool UI_SETTINGSPAGE_SHOWACCENTCOLOR = false;
+
         int SETTINGS_LAST_CAMERA = 0;
 
         int CURRENT_PAGE = 0;
@@ -302,6 +321,8 @@ namespace WebcamViewer
                             var board = (Storyboard)FindResource("settingsPage_In");
                             if (UI_SLOW_MOTION) board.SpeedRatio = 0.15;
                             board.Begin();
+
+                            settingsPage_UpdateTitlebarState();
                         }
 
                         DebugLog("switched to page settingsPage");
@@ -353,7 +374,7 @@ namespace WebcamViewer
             }
             else
             {
-                if (!Keyboard.IsKeyDown(Key.LeftAlt)) LoadImage(Properties.Settings.Default.camera_names[SETTINGS_LAST_CAMERA]);
+                if (!Keyboard.IsKeyDown(Key.LeftAlt)) try { LoadImage(Properties.Settings.Default.camera_names[SETTINGS_LAST_CAMERA]); } catch { SETTINGS_LAST_CAMERA = 0; LoadImage(Properties.Settings.Default.camera_names[SETTINGS_LAST_CAMERA]); }
                 return true;
             }
         }
@@ -559,7 +580,7 @@ namespace WebcamViewer
             titlebarGrid.Background = new SolidColorBrush(backgroundcolor);
             if (blackforegroundcolor)
             {
-                window_titleLabel.Foreground = new SolidColorBrush(Colors.Black);
+                titlebarGrid_titleLabel.Foreground = new SolidColorBrush(Colors.Black);
                 // title text
                 closeButton.Foreground = new SolidColorBrush(Colors.Black);
                 maximizeButton.Foreground = new SolidColorBrush(Colors.Black);
@@ -567,7 +588,7 @@ namespace WebcamViewer
             }
             else
             {
-                window_titleLabel.Foreground = new SolidColorBrush(Colors.White);
+                titlebarGrid_titleLabel.Foreground = new SolidColorBrush(Colors.White);
                 // title text
                 closeButton.Foreground = new SolidColorBrush(Colors.White);
                 maximizeButton.Foreground = new SolidColorBrush(Colors.White);
@@ -599,7 +620,7 @@ namespace WebcamViewer
         private void titlebarGrid_contextmenu_ResetWindowSize_Click(object sender, RoutedEventArgs e)
         {
             this.Width = 800;
-            this.Height = 680;
+            this.Height = 600 + 30 + 45;
             CenterWindowOnScreen();
         }
 
@@ -714,6 +735,26 @@ namespace WebcamViewer
                 Button btn = sender as Button; btn.Content = "Show debug overlay";
                 webcamPage_DebugOverlay.Visibility = Visibility.Collapsed;
                 DebugLog("Debug overlay disabled.");
+            }
+        }
+
+        void settingsPage_UpdateTitlebarState()
+        {
+            if (Properties.Settings.Default.settings_showaccentcolor == false)
+            {
+                settings_rectangle.Fill = new SolidColorBrush(Colors.White);
+                settings_rectangle_dim.Visibility = Visibility.Collapsed;
+
+                Storyboard foregroundboard = (Storyboard)FindResource("titlebarToBlack");
+                foregroundboard.Begin();
+            }
+            else
+            {
+                settings_rectangle.Fill = this.Resources["res_accentBackground"] as SolidColorBrush;
+                settings_rectangle_dim.Visibility = Visibility.Visible;
+
+                Storyboard foregroundboard = (Storyboard)FindResource("titlebarToWhite");
+                foregroundboard.Begin();
             }
         }
 
@@ -950,6 +991,9 @@ namespace WebcamViewer
             WebcamEditor_NamesBox.Text = "";
             WebcamEditor_UrlsBox.Text = "";
 
+            settingsPage_WebcamEditor_namesLinesStackPanel.Children.Clear();
+            settingsPage_WebcamEditor_urlsLinesStackPanel.Children.Clear();
+
             foreach (string name in Properties.Settings.Default.camera_names)
             {
                 namecounter++;
@@ -968,12 +1012,249 @@ namespace WebcamViewer
                     WebcamEditor_UrlsBox.Text += url;
             }
 
+            WebcamEditor_DoLineUI();
+
             DebugLog("", 3);
             DebugLog("-----webcam editor-----", 3);
             DebugLog("Camera names count: " + namecounter);
             DebugLog("Camera urls count: " + urlcounter);
             DebugLog("-----webcam editor-----", 3);
             DebugLog("", 3);
+        }
+
+        void WebcamEditor_DoLineUI()
+        {
+            int namecounter = 0;
+            int urlcounter = 0;
+
+            settingsPage_WebcamEditor_namesLinesStackPanel.Children.Clear();
+            settingsPage_WebcamEditor_urlsLinesStackPanel.Children.Clear();
+
+            string[] names = WebcamEditor_NamesBox.Text.Split('\n');
+            string[] urls = WebcamEditor_UrlsBox.Text.Split('\n');
+
+            foreach (string name in names)
+            {
+                namecounter++;
+
+                Button name_linebutton = new Button();
+                name_linebutton.Style = this.Resources["ActionBarButtonStyle_Light"] as Style;
+                name_linebutton.Foreground = new SolidColorBrush(Colors.Black);
+                name_linebutton.FontSize = 9;
+                name_linebutton.Height = 21.5; name_linebutton.Width = 25;
+                name_linebutton.Content = namecounter;
+                name_linebutton.Click += webcameditor_nameLineButton_Click;
+
+                settingsPage_WebcamEditor_namesLinesStackPanel.Children.Add(name_linebutton);
+
+                Rectangle seperator = new Rectangle();
+                seperator.Height = 1;
+                seperator.Fill = new SolidColorBrush(Colors.Gray);
+
+                settingsPage_WebcamEditor_namesLinesStackPanel.Children.Add(seperator);
+            }
+
+            foreach (string url in urls)
+            {
+                urlcounter++;
+
+                Button url_linebutton = new Button();
+                url_linebutton.Style = this.Resources["ActionBarButtonStyle_Light"] as Style;
+                url_linebutton.Foreground = new SolidColorBrush(Colors.Black);
+                url_linebutton.FontSize = 9;
+                url_linebutton.Height = 21.5; url_linebutton.Width = 25;
+                url_linebutton.Content = urlcounter;
+                url_linebutton.Click += webcameditor_urlLineButton_Click;
+
+                settingsPage_WebcamEditor_urlsLinesStackPanel.Children.Add(url_linebutton);
+
+                Rectangle seperator = new Rectangle();
+                seperator.Height = 1;
+                seperator.Fill = new SolidColorBrush(Colors.Gray);
+
+                settingsPage_WebcamEditor_urlsLinesStackPanel.Children.Add(seperator);
+            }
+
+            settingsPage_WebcamEditor_namesLinesStackPanel.Visibility = Visibility.Visible;
+            settingsPage_WebcamEditor_urlsLinesStackPanel.Visibility = Visibility.Visible;
+            WebcamEditor_EditorGrid.SetValue(Grid.ColumnProperty, 1);
+            WebcamEditor_EditorGrid.SetValue(Grid.ColumnSpanProperty, 1);
+        }
+
+        void webcameditor_nameLineButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            int index = int.Parse(btn.Content.ToString()) - 1;
+
+            try
+            {
+                WebcamEditor_NamesBox.Select(WebcamEditor_NamesBox.Text.IndexOf(Properties.Settings.Default.camera_names[index]), Properties.Settings.Default.camera_names[index].Length);
+            }
+            catch
+            {
+                return;
+            }
+            WebcamEditor_NamesBox.Focus();
+
+            foreach (var frchange_resetButton in settingsPage_WebcamEditor_namesLinesStackPanel.Children)
+            {
+                if (frchange_resetButton is Button)
+                {
+                    Button button = frchange_resetButton as Button;
+                    button.Foreground = new SolidColorBrush(Colors.Black);
+                }
+                else
+                {
+                    Rectangle rec = frchange_resetButton as Rectangle;
+                    rec.Fill = new SolidColorBrush(Colors.Gray);
+                }
+            }
+
+            foreach (var frchange_resetButton in settingsPage_WebcamEditor_urlsLinesStackPanel.Children)
+            {
+                if (frchange_resetButton is Button)
+                {
+                    Button button = frchange_resetButton as Button;
+                    button.Foreground = new SolidColorBrush(Colors.Black);
+                }
+                else
+                {
+                    Rectangle rec = frchange_resetButton as Rectangle;
+                    rec.Fill = new SolidColorBrush(Colors.Gray);
+                }
+            }
+
+            int urlcounter = 0;
+            foreach (var button in settingsPage_WebcamEditor_urlsLinesStackPanel.Children)
+            {
+                if (button is Button)
+                {
+                    Button urlbutton = button as Button;
+                    if (urlbutton.Content.ToString() != btn.Content.ToString())
+                        urlcounter++;
+                    else
+                    {
+                        urlbutton.Foreground = this.Resources["res_accentForeground"] as SolidColorBrush;
+                        break;
+                    }
+                }
+            }
+
+            btn.Foreground = this.Resources["res_accentForeground"] as SolidColorBrush;
+
+            int indexofPrevRectangle;
+            int indexofNextRectangle;
+
+            indexofPrevRectangle = int.Parse(btn.Content.ToString()) * 2 - 3;
+            indexofNextRectangle = int.Parse(btn.Content.ToString()) * 2 - 1;
+
+            Rectangle rec_1 = new Rectangle();
+
+            if (indexofPrevRectangle > 0)
+                rec_1 = settingsPage_WebcamEditor_namesLinesStackPanel.Children[indexofPrevRectangle] as Rectangle;
+
+            Rectangle rec_2 = settingsPage_WebcamEditor_namesLinesStackPanel.Children[indexofNextRectangle] as Rectangle;
+
+            Rectangle rec_1_url = new Rectangle();
+
+            if (indexofPrevRectangle > 0)
+                rec_1_url = settingsPage_WebcamEditor_urlsLinesStackPanel.Children[indexofPrevRectangle] as Rectangle;
+
+            Rectangle rec_2_url = settingsPage_WebcamEditor_urlsLinesStackPanel.Children[indexofNextRectangle] as Rectangle;
+
+            rec_1.Fill = this.Resources["res_accentForeground"] as SolidColorBrush;
+            rec_2.Fill = this.Resources["res_accentForeground"] as SolidColorBrush;
+
+            rec_1_url.Fill = this.Resources["res_accentForeground"] as SolidColorBrush;
+            rec_2_url.Fill = this.Resources["res_accentForeground"] as SolidColorBrush;
+        }
+
+        void webcameditor_urlLineButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            int index = int.Parse(btn.Content.ToString()) - 1;
+
+            try
+            {
+                WebcamEditor_UrlsBox.Select(WebcamEditor_UrlsBox.Text.IndexOf(Properties.Settings.Default.camera_urls[index]), Properties.Settings.Default.camera_urls[index].Length);
+            }
+            catch
+            {
+                return;
+            }
+            WebcamEditor_UrlsBox.Focus();
+
+            foreach (var frchange_resetButton in settingsPage_WebcamEditor_urlsLinesStackPanel.Children)
+            {
+                if (frchange_resetButton is Button)
+                {
+                    Button button = frchange_resetButton as Button;
+                    button.Foreground = new SolidColorBrush(Colors.Black);
+                }
+                else
+                {
+                    Rectangle rec = frchange_resetButton as Rectangle;
+                    rec.Fill = new SolidColorBrush(Colors.Gray);
+                }
+            }
+
+            foreach (var frchange_resetButton in settingsPage_WebcamEditor_namesLinesStackPanel.Children)
+            {
+                if (frchange_resetButton is Button)
+                {
+                    Button button = frchange_resetButton as Button;
+                    button.Foreground = new SolidColorBrush(Colors.Black);
+                }
+                else
+                {
+                    Rectangle rec = frchange_resetButton as Rectangle;
+                    rec.Fill = new SolidColorBrush(Colors.Gray);
+                }
+            }
+
+            int namecounter = 0;
+            foreach (var button in settingsPage_WebcamEditor_namesLinesStackPanel.Children)
+            {
+                if (button is Button)
+                {
+                    Button namebutton = button as Button;
+                    if (namebutton.Content.ToString() != btn.Content.ToString())
+                        namecounter++;
+                    else
+                    {
+                        namebutton.Foreground = this.Resources["res_accentForeground"] as SolidColorBrush;
+                        break;
+                    }
+                }
+            }
+
+            btn.Foreground = this.Resources["res_accentForeground"] as SolidColorBrush;
+
+            int indexofPrevRectangle;
+            int indexofNextRectangle;
+
+            indexofPrevRectangle = int.Parse(btn.Content.ToString()) * 2 - 3;
+            indexofNextRectangle = int.Parse(btn.Content.ToString()) * 2 - 1;
+
+            Rectangle rec_1 = new Rectangle();
+
+            if (indexofPrevRectangle > 0)
+                rec_1 = settingsPage_WebcamEditor_namesLinesStackPanel.Children[indexofPrevRectangle] as Rectangle;
+
+            Rectangle rec_2 = settingsPage_WebcamEditor_namesLinesStackPanel.Children[indexofNextRectangle] as Rectangle;
+
+            Rectangle rec_1_url = new Rectangle();
+
+            if (indexofPrevRectangle > 0)
+                rec_1_url = settingsPage_WebcamEditor_urlsLinesStackPanel.Children[indexofPrevRectangle] as Rectangle;
+
+            Rectangle rec_2_url = settingsPage_WebcamEditor_urlsLinesStackPanel.Children[indexofNextRectangle] as Rectangle;
+
+            rec_1.Fill = this.Resources["res_accentForeground"] as SolidColorBrush;
+            rec_2.Fill = this.Resources["res_accentForeground"] as SolidColorBrush;
+
+            rec_1_url.Fill = this.Resources["res_accentForeground"] as SolidColorBrush;
+            rec_2_url.Fill = this.Resources["res_accentForeground"] as SolidColorBrush;
         }
 
         string[] colorDefinitions = { "Orange", "Red", "Green", "Blue", "Gray", "System accent color" };
@@ -1012,7 +1293,9 @@ namespace WebcamViewer
 
             // Get the settings
             settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.IsChecked = UI_HOME_BLURIMAGE;
+            settingsPage_UserInterfacePage_MenuBlurBehindButton_Toggle.IsChecked = Properties.Settings.Default.home_menu_blurbehind;
             settingsPage_UserInterfacePage_AutosizeToggleButton_Toggle.IsChecked = UI_AUTOSIZE_WINDOW;
+            settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton_Toggle.IsChecked = UI_SETTINGSPAGE_SHOWACCENTCOLOR;
 
             settingsPage_UserInterfacePage_AccentColorEditorButton_DescriptionLabel.Content = "Current color: " + colorDefinitions[Properties.Settings.Default.accentcolor];
             settingsPage_UserInterfacePage_ImageSizingButton_DescriptionLabel.Content = "Current mode: " + imagesizingDefinitions[Properties.Settings.Default.imagesizing];
@@ -1139,6 +1422,9 @@ namespace WebcamViewer
             }
 
             Properties.Settings.Default.Save();
+
+            WebcamEditor_DoLineUI();
+
             DebugLog("Configuration saved.");
         }
 
@@ -1207,7 +1493,20 @@ namespace WebcamViewer
 
             settingsPage_UserInterfacePage_AccentColorUseAeroBorder_CheckBox.IsChecked = Properties.Settings.Default.window_aeroborder;
 
-            AccentColorButton_5.Background = new SolidColorBrush(AccentColorSet.ActiveSet["SystemAccent"]);
+            string major = Environment.OSVersion.Version.ToString().Substring(0, 2);
+
+            if (major == "10")
+            {
+                AccentColorButton_5.Background = new SolidColorBrush(AccentColorSet.ActiveSet["SystemAccent"]);
+
+                DebugLog("accentcolor - Windows 10 detected: System accent color option available");
+            }
+            else
+            {
+                AccentColorButton_5.Visibility = Visibility.Collapsed;
+
+                DebugLog("accentcolor - Older version of Windows detected: System accent color option unavailable");
+            }
         }
 
         void settingsPage_UserInterfacePage_SetActiveAccentColorButton(int accent)
@@ -1289,7 +1588,7 @@ namespace WebcamViewer
             if (bimage != null)
             {
                 this.Width = bimage.PixelWidth;
-                this.Height = bimage.PixelHeight + 80;
+                this.Height = bimage.PixelHeight + 30 + 45;
                 CenterWindowOnScreen();
 
             }
@@ -1427,6 +1726,10 @@ namespace WebcamViewer
                     "DISABLE_ARCHIVEORG: " + DISABLE_ARCHIVEORG + "\n" +
                     "DISABLE_LOCALSAVE: " + DISABLE_LOCALSAVE + "\n" +
                     "DISABLE_WEBCAMEDITOR: " + DISABLE_WEBCAMEDITOR);
+            if (UPDATE_AVAIL_FEED)
+            {
+                MessageDialog("UPDATE_AVAIL_FEED", "");
+            }
         }
 
         private void weatherButton_Click(object sender, RoutedEventArgs e)
@@ -1511,34 +1814,38 @@ namespace WebcamViewer
         {
             // create dialog for editing configuration
 
-            string cameranames = "";
-            string cameraurls = "";
+            ConfigurationEditorWindow window = new ConfigurationEditorWindow();
+            window.Owner = this;
+            window.ShowDialog();
 
-            int namecounter = 0;
-            foreach (string name in Properties.Settings.Default.camera_names)
-            {
-                namecounter++;
+            //string cameranames = "";
+            //string cameraurls = "";
 
-                if (namecounter != Properties.Settings.Default.camera_names.Count)
-                    cameranames += name + "\n";
-                else
-                    cameranames += name;
+            //int namecounter = 0;
+            //foreach (string name in Properties.Settings.Default.camera_names)
+            //{
+            //    namecounter++;
 
-            }
+            //    if (namecounter != Properties.Settings.Default.camera_names.Count)
+            //        cameranames += name + "\n";
+            //    else
+            //        cameranames += name;
 
-            int urlcounter = 0;
-            foreach (string url in Properties.Settings.Default.camera_urls)
-            {
-                urlcounter++;
+            //}
 
-                if (urlcounter != Properties.Settings.Default.camera_urls.Count)
-                    cameraurls += url + "\n";
-                else
-                    cameraurls += url;
+            //int urlcounter = 0;
+            //foreach (string url in Properties.Settings.Default.camera_urls)
+            //{
+            //    urlcounter++;
 
-            }
+            //    if (urlcounter != Properties.Settings.Default.camera_urls.Count)
+            //        cameraurls += url + "\n";
+            //    else
+            //        cameraurls += url;
 
-            MessageDialog("User configuration dump", "camera_names:\n\n" + cameranames + "\n\ncamera_urls:\n\n" + cameraurls, true);
+            //}
+
+            //MessageDialog("User configuration dump", "camera_names:\n\n" + cameranames + "\n\ncamera_urls:\n\n" + cameraurls, true);
         }
 
         private void debugmenu_disabledebugmenuUIButton_Click(object sender, RoutedEventArgs e)
@@ -1701,6 +2008,46 @@ namespace WebcamViewer
                 settingsPage_UserInterfacePage_ImageSizingAcceptButton.IsEnabled = true;
             else
                 settingsPage_UserInterfacePage_ImageSizingAcceptButton.IsEnabled = false;
+        }
+
+        private void settingsPage_UserInterfacePage_MenuBlurBehindButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (e.Source == settingsPage_UserInterfacePage_MenuBlurBehindButton)
+                settingsPage_UserInterfacePage_MenuBlurBehindButton_Toggle.IsChecked = !settingsPage_UserInterfacePage_MenuBlurBehindButton_Toggle.IsChecked;
+
+            if (settingsPage_UserInterfacePage_MenuBlurBehindButton_Toggle.IsChecked == true)
+            {
+                Properties.Settings.Default.home_menu_blurbehind = true; Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.home_menu_blurbehind = false; Properties.Settings.Default.Save();
+            }
+        }
+
+        private void settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (e.Source == settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton)
+                settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton_Toggle.IsChecked = !settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton_Toggle.IsChecked;
+
+            if (settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton_Toggle.IsChecked == true)
+            {
+                Properties.Settings.Default.settings_showaccentcolor = true; Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.settings_showaccentcolor = false; Properties.Settings.Default.Save();
+            }
+
+            settingsPage_UpdateTitlebarState();
+        }
+
+        private void WebcamEditor_Boxes_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            settingsPage_WebcamEditor_namesLinesStackPanel.Visibility = Visibility.Collapsed;
+            settingsPage_WebcamEditor_urlsLinesStackPanel.Visibility = Visibility.Collapsed;
+            WebcamEditor_EditorGrid.SetValue(Grid.ColumnProperty, 0);
+            WebcamEditor_EditorGrid.SetValue(Grid.ColumnSpanProperty, 2);
         }
     }
 }

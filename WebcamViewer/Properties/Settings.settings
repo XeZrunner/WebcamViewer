@@ -25,10 +25,10 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20160729-00@webcamviewer_rel/update2/prerelease/beta</Value>
+      <Value Profile="(Default)">20160802-01@webcamviewer_internal/update2/prerelease/beta/compiled/Debug/webcameditorv2_preview/</Value>
     </Setting>
     <Setting Name="versionid" Type="System.String" Scope="User">
-      <Value Profile="(Default)"> (Update 2 Beta)</Value>
+      <Value Profile="(Default)"> (Update 2 Beta - Internal Preview)</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="User">
       <Value Profile="(Default)">Update pre-release builds
@@ -41,7 +41,7 @@
 
 Changes for Update 2 Beta:
 
-Soon(tm).
+This is an Internal Preview build. This build is only meant for internal testing, do not publish to public.
 </Value>
     </Setting>
     <Setting Name="birthday_notice" Type="System.Boolean" Scope="User">
@@ -73,6 +73,12 @@ Soon(tm).
     </Setting>
     <Setting Name="imagesizing" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="home_menu_blurbehind" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="settings_showaccentcolor" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

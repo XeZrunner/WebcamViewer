@@ -167,7 +167,7 @@
         </Style>
         <Style x:Key="MenuCameraButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Background" Value="#0FFFFFFF"/>
+            <Setter Property="Background" Value="#00FFFFFF"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Padding" Value="10,5"/>
@@ -279,7 +279,7 @@
                                         Value="#1F000000" />
                                 <Setter Property="RenderTransform" TargetName="PART_ContentPresenter">
                                     <Setter.Value>
-                                        <ScaleTransform ScaleX="0.95" ScaleY="0.95"/>
+                                        <ScaleTransform ScaleX="0.97" ScaleY="0.97"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -641,6 +641,15 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(BlurEffect.Radius)" Storyboard.TargetName="webcamPage_menu_blurbehindBorder">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="10"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="webcamPage_menu_blurbehindBorder">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="webcamPage_MenuClose">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="webcamPage_menu">
@@ -657,6 +666,12 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="webcamPage_menu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="webcamPage_menu_blurbehindBorder">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Effect).(BlurEffect.Radius)" Storyboard.TargetName="webcamPage_menu_blurbehindBorder">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="webcamPage_progressShow">
@@ -727,7 +742,7 @@
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="titlebarGrid">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#00000000"/>
             </ColorAnimationUsingKeyFrames>
-            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="window_titleLabel">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="titlebarGrid_titleLabel">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="minimizeButton">
@@ -779,12 +794,36 @@
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="weatherButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="infoButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="titlebarGrid_appicon">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="metroProgressBar">
+                <EasingColorKeyFrame KeyTime="0" Value="#59FFFFFF"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                <EasingColorKeyFrame KeyTime="0" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="titlebar_backButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="updatingPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="updatingPage">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="debugmenuPage_In">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="titlebarGrid">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#001997DD"/>
             </ColorAnimationUsingKeyFrames>
-            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="window_titleLabel">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="titlebarGrid_titleLabel">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="minimizeButton">
@@ -833,6 +872,30 @@
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settingsPage">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0.7" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="titlebarGrid_appicon">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="metroProgressBar">
+                <EasingColorKeyFrame KeyTime="0" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                <EasingColorKeyFrame KeyTime="0" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="titlebar_backButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="updatingPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="updatingPage">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="weatherButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="infoButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="settingsPage_In">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="debugmenuPage">
@@ -878,6 +941,12 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="-645"/>
             </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="updatingPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="updatingPage">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="settingsPage_UserInterfacePage_AccentColorDialogIn">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settingsPage_UserInterfacePage_AccentColorGrid">
@@ -918,13 +987,16 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle_dim">
-                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#51000000"/>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settings_rectangle_dim">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="settings_rectangle_dim">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#4C000000"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="settingsPage_UserInterfacePage_AccentColorDialogOut">
-            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle_dim">
-                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#0A000000"/>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="settings_rectangle_dim">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#00000000"/>
             </ColorAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settingsPage_UserInterfacePage_AccentColorGrid">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
@@ -940,6 +1012,9 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="settingsPage_UserInterfacePage_AccentColorBorderGrid">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.9"/>
             </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settings_rectangle_dim">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="settingsPage_UserInterfacePage_ImageSizingDialogIn">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settingsPage_UserInterfacePage_ImageSizingGrid">
@@ -980,13 +1055,16 @@
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
-            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle_dim">
-                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#51000000"/>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="settings_rectangle_dim">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#4C000000"/>
             </ColorAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settings_rectangle_dim">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="settingsPage_UserInterfacePage_ImageSizingDialogOut">
-            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle_dim">
-                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#0A000000"/>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="settings_rectangle_dim">
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#00000000"/>
             </ColorAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settingsPage_UserInterfacePage_ImageSizingGrid">
                 <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
@@ -1002,6 +1080,9 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="settingsPage_UserInterfacePage_ImageSizingBorderGrid">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.9"/>
             </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settings_rectangle_dim">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="home_weather_in">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="stackPanel">
@@ -1080,10 +1161,75 @@
                 <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="titlebarToBlack">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="titlebar_backButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="Black"/>
+            </ColorAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="titlebarGrid_appicon">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="titlebarGrid_titleLabel">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="Black"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="metroProgressBar">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="#FF2D2D2D"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="#FF2D2D2D"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="infoButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="Black"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="weatherButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="Black"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="minimizeButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="Black"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="maximizeButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="Black"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="closeButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="Black"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="titlebarToWhite">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="titlebar_backButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="titlebarGrid_appicon">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="titlebarGrid_titleLabel">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="metroProgressBar">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="infoButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="weatherButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="minimizeButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="maximizeButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="closeButton">
+                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
         <!--#endregion-->
 
     </Controls:MetroWindow.Resources>
 
+    <!-- Content -->
     <Grid Background="Black">
 
         <Grid x:Name="webcamimagePage" Margin="0,0,0,0" Background="Black" RenderTransformOrigin="0.5,0.5"
@@ -1097,7 +1243,7 @@
                 </TransformGroup>
             </Grid.RenderTransform>
 
-            <Rectangle Fill="#FF000000" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top"/>
+            <Rectangle Fill="#FF101010" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top"/>
 
             <!-- Content -->
             <Grid x:Name="webcamimagePage_ContentGrid" RenderTransformOrigin="0.5,0.5" Margin="0,30,0,0">
@@ -1111,7 +1257,7 @@
                 </Grid.RenderTransform>
 
                 <!-- Action bar -->
-                <Grid Height="45" VerticalAlignment="Top" Background="#FF000000">
+                <Grid x:Name="webcamPage_ActionBar" Height="45" VerticalAlignment="Top" Background="#FF0B0B0B">
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,5,0">
                         <Button x:Name="webcamPage_ActionBar_menuButton" FontFamily="Segoe MDL2 Assets" FontSize="16" Style="{DynamicResource ActionBarButtonStyle}" Click="webcamPage_ActionBar_menuButton_Click">&#xE700;</Button>
@@ -1120,7 +1266,7 @@
 
                 </Grid>
 
-                <Image x:Name="webcamimage" Margin="0,45,0,0" SnapsToDevicePixels="True" >
+                <Image x:Name="webcamimage" Margin="0,45,0,0" SnapsToDevicePixels="True">
                     <Image.Effect>
                         <BlurEffect x:Name="webcamimageBlur" Radius="0"/>
                     </Image.Effect>
@@ -1182,7 +1328,8 @@
 
             </Grid>
 
-            <Grid x:Name="webcamPage_menu" Width="320" HorizontalAlignment="Left" Background="#CC000000" RenderTransformOrigin="0.5,0.5"
+            <!-- Background="#CC000000" -->
+            <Grid x:Name="webcamPage_menu" Width="320" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5"
                   Visibility="Collapsed">
                 <Grid.RenderTransform>
                     <TransformGroup>
@@ -1192,6 +1339,19 @@
                         <TranslateTransform/>
                     </TransformGroup>
                 </Grid.RenderTransform>
+
+                <!-- blurbehind border-->
+                <Border x:Name="webcamPage_menu_blurbehindBorder" Margin="0,30,0,0">
+                    <Border.Effect>
+                        <BlurEffect x:Name="webcamPage_menu_blurbehindBlurEffect" Radius="10"/>
+                    </Border.Effect>
+                    <Border.Background>
+                        <VisualBrush Visual="{Binding ElementName=webcamimagePage_ContentGrid}" Stretch="None" AlignmentX="Left" />
+                    </Border.Background>
+                </Border>
+
+                <Rectangle Fill="#B5000000" />
+                <Rectangle Fill="{DynamicResource res_accentBackground}" Opacity="0.05"/>
 
                 <StackPanel Margin="0,30,0,0">
 
@@ -1229,6 +1389,7 @@
                         <Label Foreground="White" VerticalAlignment="Center" Margin="5,0,0,0">Settings</Label>
                     </StackPanel>
                 </Button>
+
             </Grid>
 
             <Grid x:Name="webcamPage_weatherGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Height="220" Width="360" Margin="0,0,0,0" Background="#AA000000"
@@ -1350,8 +1511,8 @@
 
         </Grid>
 
-        <Grid x:Name="settingsPage" Background="White" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5"
-              Visibility="Collapsed" >
+        <Grid x:Name="settingsPage" Background="White" SnapsToDevicePixels="True" RenderTransformOrigin="0.5,0.5" 
+              Visibility="Collapsed">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -1405,7 +1566,7 @@
                                         <Label FontSize="10.5" Foreground="{Binding ElementName=settingsPage_MainPage_WebcamEditorButton, Path=Foreground}">Add, edit or remove webcams</Label>
                                     </StackPanel>
 
-                                    <Rectangle x:Name="settingsPage_MainPage_WebcamEditorButton_rectangle" Grid.Column="0" HorizontalAlignment="Left" Fill="{DynamicResource res_accentForeground}" Width="4" Height="30" Margin="-2,8,0,8" Visibility="Hidden" />
+                                    <Rectangle x:Name="settingsPage_MainPage_WebcamEditorButton_rectangle" Grid.Column="0" HorizontalAlignment="Left" Fill="{DynamicResource res_accentForeground}" Width="8" Height="30" Margin="-5,8,0,8" Visibility="Hidden" />
 
                                 </Grid>
                             </Button>
@@ -1427,7 +1588,7 @@
                                         </StackPanel>
                                     </StackPanel>
 
-                                    <Rectangle x:Name="settingsPage_MainPage_UserInterfaceButton_rectangle" Grid.Column="0" HorizontalAlignment="Left" Fill="{DynamicResource res_accentForeground}" Width="4" Height="30" Margin="-2,8,0,8" Visibility="Hidden" />
+                                    <Rectangle x:Name="settingsPage_MainPage_UserInterfaceButton_rectangle" Grid.Column="0" HorizontalAlignment="Left" Fill="{DynamicResource res_accentForeground}" Width="8" Height="30" Margin="-5,8,0,8" Visibility="Hidden" />
 
                                 </Grid>
 
@@ -1450,7 +1611,29 @@
                                         </StackPanel>
                                     </StackPanel>
 
-                                    <Rectangle x:Name="settingsPage_MainPage_AboutButton_rectangle" Grid.Column="0" HorizontalAlignment="Left" Fill="{DynamicResource res_accentForeground}" Width="4" Height="30" Margin="-2,8,0,8" Visibility="Hidden" />
+                                    <Rectangle x:Name="settingsPage_MainPage_AboutButton_rectangle" Grid.Column="0" HorizontalAlignment="Left" Fill="{DynamicResource res_accentForeground}" Width="8" Height="30" Margin="-5,8,0,8" Visibility="Hidden" />
+
+                                </Grid>
+                            </Button>
+
+                            <Button x:Name="settingsPage_MainPage_FeedDebugButton" Foreground="Black" Margin="0,0,0,5" Width="250" Style="{DynamicResource SettingsPage_MainPageButton}">
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Margin="10,0,0,0" Foreground="{Binding ElementName=settingsPage_MainPage_FeedDebugButton, Path=Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="24"></Label>
+
+                                    <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                                        <StackPanel>
+                                            <Label FontWeight="SemiBold" FontSize="11" Foreground="{Binding ElementName=settingsPage_MainPage_FeedDebugButton, Path=Foreground}">INTERNAL: FEED DEBUG</Label>
+                                            <Label FontSize="10.5" Foreground="{Binding ElementName=settingsPage_MainPage_FeedDebugButton, Path=Foreground}">Internal Feed Debug</Label>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <Rectangle x:Name="settingsPage_MainPage_FeedDebugButton_rectangle" Grid.Column="0" HorizontalAlignment="Left" Fill="{DynamicResource res_accentForeground}" Width="8" Height="30" Margin="-5,8,0,8" Visibility="Hidden" />
 
                                 </Grid>
                             </Button>
@@ -1465,26 +1648,42 @@
                       Visibility="Collapsed">
 
                     <!-- Content -->
-                    <Grid Margin="10,10,10,10">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <Grid Margin="10,10,10,10">
 
-                        <Label FontFamily="Segoe UI Light" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20">Webcams</Label>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
 
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                            <StackPanel Margin="0,40,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                            <Label FontFamily="Segoe UI Light" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2">Webcams</Label>
+
+                            <StackPanel x:Name="WebcamEditor_EditorGrid" Margin="0,40,0,0" Grid.Column="1">
 
                                 <Label FontWeight="Normal" HorizontalAlignment="Center">Webcam names</Label>
-                                <TextBox x:Name="WebcamEditor_NamesBox" MaxWidth="600" Height="230" AcceptsReturn="True"/>
+                                <TextBox x:Name="WebcamEditor_NamesBox" MaxWidth="600" AcceptsReturn="True" FontSize="16" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="WebcamEditor_Boxes_TextChanged"/>
 
                                 <Label FontWeight="Normal" HorizontalAlignment="Center">Webcam URLs</Label>
-                                <TextBox x:Name="WebcamEditor_UrlsBox" MaxWidth="600" Height="230" AcceptsReturn="True"/>
+                                <TextBox x:Name="WebcamEditor_UrlsBox" MaxWidth="600" AcceptsReturn="True" FontSize="16" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="WebcamEditor_Boxes_TextChanged"/>
 
                                 <Button x:Name="WebcamEditor_SaveButton" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,22,20,0" Width="150" Height="35" Click="WebcamEditor_SaveButton_Click" Style="{DynamicResource UWPButtonStyle}">Save changes</Button>
 
                             </StackPanel>
-                        </ScrollViewer>
 
+                            <StackPanel Margin="0,66,0,0" Grid.Column="0">
 
-                    </Grid>
+                                <StackPanel x:Name="settingsPage_WebcamEditor_namesLinesStackPanel" Height="{Binding ElementName=WebcamEditor_NamesBox, Path=Height}">
+
+                                </StackPanel>
+
+                                <StackPanel x:Name="settingsPage_WebcamEditor_urlsLinesStackPanel" Height="{Binding ElementName=WebcamEditor_UrlsBox, Path=Height}" Margin="0,27,0,0" >
+
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </ScrollViewer>
 
                     <!-- Action bar -->
                     <Grid x:Name="settingsPage_WebcamEditorPage_ActionBar" Height="50" VerticalAlignment="Top" Visibility="Visible">
@@ -1540,7 +1739,7 @@
                                 <Label Foreground="{DynamicResource res_accentForeground}" Content="Effects &amp; personalization"></Label>
                                 <Rectangle Height="2" Margin="3" Fill="{DynamicResource res_accentForeground}" />
 
-                                <!-- Blur effect toggle-->
+                                <!-- Image blur effect toggle -->
                                 <Button x:Name="settingsPage_UserInterfacePage_ImageBlurToggleButton" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_ImageBlurToggleButton_Click">
 
                                     <Grid>
@@ -1563,6 +1762,37 @@
                                         </StackPanel>
 
                                         <Controls:ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle" Grid.Column="2" BorderThickness="0" ThumbIndicatorBrush="{DynamicResource res_accentForeground}" OffSwitchBrush="#FFD7D7D7" OnSwitchBrush="{DynamicResource res_accentBackground}" Click="settingsPage_UserInterfacePage_ImageBlurToggleButton_Click"/>
+
+                                    </Grid>
+
+                                </Button>
+
+                                <!-- Menu blurbehind effect toggle -->
+                                <Button x:Name="settingsPage_UserInterfacePage_MenuBlurBehindButton" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_MenuBlurBehindButton_Click">
+
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="100"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Foreground="{Binding ElementName=settingsPage_UserInterfacePage_MenuBlurBehindButton, Path=Foreground}"
+                                           Grid.Column="0" FontFamily="Segoe MDL2 Assets" FontSize="10.5" Margin="-1,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">&#xE700;</Label>
+
+                                        <Label Foreground="{Binding ElementName=settingsPage_UserInterfacePage_MenuBlurBehindButton, Path=Foreground}"
+                                           Grid.Column="0" FontFamily="Segoe MDL2 Assets" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center">&#xE8FF;</Label>
+
+                                        <StackPanel Grid.Column="1">
+                                            <Label Foreground="{Binding ElementName=settingsPage_UserInterfacePage_MenuBlurBehindButton, Path=Foreground}"
+                                                   FontFamily="Segoe UI Semibold" FontSize="11">BLUR BEHIND MENU</Label>
+
+                                            <TextBlock Margin="5" TextWrapping="Wrap" Foreground="{Binding ElementName=settingsPage_UserInterfacePage_MenuBlurBehindButton, Path=Foreground}"
+                                                   FontSize="11">Make the webcam menu background blurred.</TextBlock>
+                                        </StackPanel>
+
+                                        <Controls:ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_MenuBlurBehindButton_Toggle" Grid.Column="2" BorderThickness="0" ThumbIndicatorBrush="{DynamicResource res_accentForeground}" OffSwitchBrush="#FFD7D7D7" OnSwitchBrush="{DynamicResource res_accentBackground}" Click="settingsPage_UserInterfacePage_MenuBlurBehindButton_Click"/>
 
                                     </Grid>
 
@@ -1609,10 +1839,10 @@
                                            Grid.Column="0" FontFamily="Segoe MDL2 Assets" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center">&#xE73F;</Label>
 
                                         <StackPanel Grid.Column="1">
-                                            <Label Foreground="{Binding ElementName=settingsPage_UserInterfacePage_ImageSizingEditorButton, Path=Foreground}"
+                                            <Label Foreground="{Binding ElementName=settingsPage_UserInterfacePage_ImageSizingButton, Path=Foreground}"
                                                    FontFamily="Segoe UI Semibold" FontSize="11">IMAGE SIZING MODE</Label>
 
-                                            <Label x:Name="settingsPage_UserInterfacePage_ImageSizingButton_DescriptionLabel" Foreground="{Binding ElementName=settingsPage_UserInterfacePage_ImageSizingEditorButton, Path=Foreground}"
+                                            <Label x:Name="settingsPage_UserInterfacePage_ImageSizingButton_DescriptionLabel" Foreground="{Binding ElementName=settingsPage_UserInterfacePage_ImageSizingButton, Path=Foreground}"
                                                    FontSize="11">Current mode: %s</Label>
                                         </StackPanel>
 
@@ -1646,6 +1876,37 @@
                                         </StackPanel>
 
                                         <Controls:ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_AutosizeToggleButton_Toggle" Grid.Column="2" BorderThickness="0" ThumbIndicatorBrush="{DynamicResource res_accentForeground}" OffSwitchBrush="#FFD7D7D7" OnSwitchBrush="{DynamicResource res_accentBackground}" Click="settingsPage_UserInterfacePage_AutosizeToggleButton_Toggle_Click"/>
+
+                                    </Grid>
+
+                                </Button>
+
+                                <Label Foreground="{DynamicResource res_accentForeground}" Content="Settings page"></Label>
+                                <Rectangle Height="2" Margin="3" Fill="{DynamicResource res_accentForeground}" />
+
+                                <!-- Show color on titlebar in Settings button-->
+                                <Button x:Name="settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton_Click">
+
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="100"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Foreground="{Binding ElementName=settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton, Path=Foreground}"
+                                           Grid.Column="0" FontFamily="Segoe MDL2 Assets" FontSize="10.5" Margin="-1,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">&#xE700;</Label>
+
+                                        <StackPanel Grid.Column="1">
+                                            <Label Foreground="{Binding ElementName=settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton, Path=Foreground}"
+                                                   FontFamily="Segoe UI Semibold" FontSize="11">SHOW ACCENT COLOR IN TITLEBAR</Label>
+
+                                            <TextBlock Margin="5" TextWrapping="Wrap" Foreground="{Binding ElementName=settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton, Path=Foreground}"
+                                                   FontSize="11">Makes the titlebar's color your accent color.</TextBlock>
+                                        </StackPanel>
+
+                                        <Controls:ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton_Toggle" Grid.Column="2" BorderThickness="0" ThumbIndicatorBrush="{DynamicResource res_accentForeground}" OffSwitchBrush="#FFD7D7D7" OnSwitchBrush="{DynamicResource res_accentBackground}" Click="settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton_Click"/>
 
                                     </Grid>
 
@@ -1742,6 +2003,19 @@
 
                 </Grid>
 
+                <Grid x:Name="settingsPage_DebugFeedPage" Grid.Column="1" Background="White"
+                      Visibility="Collapsed">
+
+                    <!-- Content -->
+                    <Grid Margin="0,0,0,0">
+
+                        <Controls:ProgressRing Foreground="{DynamicResource res_Background2}" Width="60" Height="60" EllipseDiameterScale="0.85"/>
+
+                    </Grid>
+                    
+                </Grid>
+                
+
                 <!-- Accent color dialog -->
                 <Grid x:Name="settingsPage_UserInterfacePage_AccentColorGrid" Background="#50000000" RenderTransformOrigin="0.5, 0.5" Grid.ColumnSpan="2"
                           Visibility="Collapsed">
@@ -1765,34 +2039,16 @@
                                     <TextBlock TextWrapping="Wrap">Choose an accent color that'll be used through the user interface of Webcam Viewer.</TextBlock>
                                 </Label>
 
-                                <Grid Margin="0,20,0,0" HorizontalAlignment="Center">
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="50"/>
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50" />
-                                        <ColumnDefinition Width="20" />
-                                        <ColumnDefinition Width="50" />
-                                        <ColumnDefinition Width="20" />
-                                        <ColumnDefinition Width="50" />
-                                        <ColumnDefinition Width="20" />
-                                        <ColumnDefinition Width="50" />
-                                        <ColumnDefinition Width="20" />
-                                        <ColumnDefinition Width="50" />
-                                        <ColumnDefinition Width="20" />
-                                        <ColumnDefinition Width="50" />
-                                    </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal" Margin="0,20,0,0" Height="50" HorizontalAlignment="Center">
 
                                     <Button x:Name="AccentColorButton_0" Style="{DynamicResource ActionBarButtonStyle}" Background="{StaticResource res_Background0}" Grid.Column="0" Click="settingsPage_UserInterfacePage_AccentColorButtonClick"/>
-                                    <Button x:Name="AccentColorButton_1" Style="{DynamicResource ActionBarButtonStyle}" Background="{StaticResource res_Background1}" Grid.Column="2" Click="settingsPage_UserInterfacePage_AccentColorButtonClick"/>
-                                    <Button x:Name="AccentColorButton_2" Style="{DynamicResource ActionBarButtonStyle}" Background="{StaticResource res_Background2}" Grid.Column="4" Click="settingsPage_UserInterfacePage_AccentColorButtonClick"/>
-                                    <Button x:Name="AccentColorButton_3" Style="{DynamicResource ActionBarButtonStyle}" Background="{StaticResource res_Background3}" Grid.Column="6" Click="settingsPage_UserInterfacePage_AccentColorButtonClick"/>
-                                    <Button x:Name="AccentColorButton_4" Style="{DynamicResource ActionBarButtonStyle}" Background="{StaticResource res_Background4}" Grid.Column="8" Click="settingsPage_UserInterfacePage_AccentColorButtonClick"/>
-                                    <Button x:Name="AccentColorButton_5" Style="{DynamicResource ActionBarButtonStyle}" Background="{StaticResource res_Background5}" Grid.Column="10" Click="settingsPage_UserInterfacePage_AccentColorButtonClick" ToolTip="System accent color"/>
+                                    <Button x:Name="AccentColorButton_1" Style="{DynamicResource ActionBarButtonStyle}" Margin="20,0,0,0" Background="{StaticResource res_Background1}" Grid.Column="2" Click="settingsPage_UserInterfacePage_AccentColorButtonClick"/>
+                                    <Button x:Name="AccentColorButton_2" Style="{DynamicResource ActionBarButtonStyle}" Margin="20,0,0,0" Background="{StaticResource res_Background2}" Grid.Column="4" Click="settingsPage_UserInterfacePage_AccentColorButtonClick"/>
+                                    <Button x:Name="AccentColorButton_3" Style="{DynamicResource ActionBarButtonStyle}" Margin="20,0,0,0" Background="{StaticResource res_Background3}" Grid.Column="6" Click="settingsPage_UserInterfacePage_AccentColorButtonClick"/>
+                                    <Button x:Name="AccentColorButton_4" Style="{DynamicResource ActionBarButtonStyle}" Margin="20,0,0,0" Background="{StaticResource res_Background4}" Grid.Column="8" Click="settingsPage_UserInterfacePage_AccentColorButtonClick"/>
+                                    <Button x:Name="AccentColorButton_5" Style="{DynamicResource ActionBarButtonStyle}" Margin="20,0,0,0" Background="{StaticResource res_Background5}" Grid.Column="10" Click="settingsPage_UserInterfacePage_AccentColorButtonClick" ToolTip="System accent color"/>
 
-                                </Grid>
+                                </StackPanel>
 
                                 <CheckBox x:Name="settingsPage_UserInterfacePage_AccentColorUseAeroBorder_CheckBox" Margin="5,25,0,0" Style="{DynamicResource CheckBoxStyle}" Click="settingsPage_UserInterfacePage_AccentColorUseAeroBorder_CheckBox_Click">Use system color for window border</CheckBox>
 
@@ -1874,8 +2130,8 @@
 
             </Grid>
 
-            <Rectangle x:Name="rectangle" Fill="{DynamicResource res_accentBackground}" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top" />
-            <Rectangle x:Name="rectangle_dim" Fill="#0A000000" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top" />
+            <Rectangle x:Name="settings_rectangle" Fill="#ffd17a00" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top" />
+            <Rectangle x:Name="settings_rectangle_dim" Fill="#00000000" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top" />
 
             <!-- Dim -->
             <Grid x:Name="settingsPage_dimGrid" Background="#7F000000"
@@ -1929,7 +2185,7 @@
 
                         <Button x:Name="debugmenu_editconfigButton" Style="{DynamicResource DebugmenuButtonStyle}" Click="debugmenu_editconfigButton_Click">Edit configuration</Button>
                         <Button x:Name="debugmenu_resetconfigButton" Style="{DynamicResource DebugmenuButtonStyle}" Click="debugmenu_resetconfigButton_Click">Reset configuration</Button>
-                        <Button x:Name="debugmenu_changefeedconfigurationButton" IsEnabled="False" Style="{DynamicResource DebugmenuButtonStyle}" Click="debugmenu_changefeedconfigurationButton_Click">Change feed configuration</Button>
+                        <Button x:Name="debugmenu_changefeedconfigurationButton" Style="{DynamicResource DebugmenuButtonStyle}" Click="debugmenu_changefeedconfigurationButton_Click">Change feed configuration</Button>
 
                         <!-- Prerelease features -->
                         <Label Foreground="#5FFFFFFF" Margin="20,5,0,5">Prerelease features</Label>
@@ -1949,6 +2205,22 @@
 
         </Grid>
 
+        <Grid x:Name="updatingPage" Background="#FF333333"
+              Visibility="Collapsed">
+
+            <Rectangle Fill="#20000000" VerticalAlignment="Top" Height="{Binding ElementName=titlebarGrid, Path=Height}" />
+
+            <StackPanel Margin="0,30,0,0">
+
+                <Label Foreground="White" FontFamily="Segoe UI Semilight" FontSize="28" Margin="20,40,0,0" HorizontalAlignment="Left">Updating Webcam Viewer...</Label>
+                <Label Foreground="White" Margin="23,5,0,0" HorizontalAlignment="Left">This should only take a few seconds...</Label>
+
+                <Controls:MetroProgressBar Foreground="White" Background="#1FFFFFFF" Margin="28,20,0,0" HorizontalAlignment="Left" Width="350" IsIndeterminate="True" />
+
+            </StackPanel>
+
+        </Grid>
+
         <Grid x:Name="logviewerGrid" Width="500" Height="400" Background="#7F000000" SnapsToDevicePixels="True"
               Visibility="Collapsed">
 
@@ -1957,7 +2229,7 @@
             <TextBox x:Name="logviewerGrid_textbox" Background="#3F000000" Foreground="White" BorderThickness="0" Margin="5,35,5,5" IsReadOnly="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
         </Grid>
 
-        <Grid x:Name="titlebarGrid" VerticalAlignment="Top" Height="30" Background="#00000000" MouseDown="titlebarGrid_PreviewMouseDown" SizeChanged="titlebarGrid_SizeChanged">
+        <Grid x:Name="titlebarGrid" VerticalAlignment="Top" Background="Transparent" Height="30" MouseDown="titlebarGrid_PreviewMouseDown" SizeChanged="titlebarGrid_SizeChanged">
             <Grid.ContextMenu>
                 <ContextMenu>
                     <MenuItem x:Name="titlebarGrid_contextmenu_ResetWindowSize" Header="Reset window size" Click="titlebarGrid_contextmenu_ResetWindowSize_Click"/>
@@ -1967,8 +2239,8 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30">
                 <Button x:Name="titlebar_backButton" Style="{DynamicResource titlebarButtonStyle}" FontFamily="Segoe MDL2 Assets" FontSize="14" Click="titlebar_backButton_Click" Visibility="Collapsed">&#xE830;</Button>
-                <Image Source="pack://application:,,,/Resources/icon_white.ico" Width="16" Margin="12,0,0,0" Height="16" SnapsToDevicePixels="True" />
-                <Label x:Name="window_titleLabel" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">Webcam Viewer</Label>
+                <Image x:Name="titlebarGrid_appicon" Source="pack://application:,,,/Resources/icon_white.ico" Width="16" Margin="12,0,0,0" Height="16" SnapsToDevicePixels="True" />
+                <Label x:Name="titlebarGrid_titleLabel" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">Webcam Viewer</Label>
             </StackPanel>
 
             <!-- Height: 30 -->
@@ -1977,8 +2249,8 @@
 
                 <StackPanel>
 
-                    <Controls:MetroProgressBar Foreground="White" IsIndeterminate="True" EllipseDiameter="3"/>
-                    <TextBlock Margin="5,0,0,0" Foreground="White" FontSize="10">Updating feed...</TextBlock>
+                    <Controls:MetroProgressBar x:Name="metroProgressBar" Foreground="White" IsIndeterminate="True" EllipseDiameter="3"/>
+                    <TextBlock x:Name="textBlock" Margin="5,0,0,0" Foreground="White" FontSize="10">Updating feed...</TextBlock>
 
                 </StackPanel>
 

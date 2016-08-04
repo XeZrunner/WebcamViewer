@@ -65,7 +65,8 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20160729-00@webcamviewer_rel/update2/prerelease/beta")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20160802-01@webcamviewer_internal/update2/prerelease/beta/compiled/Debug/webcamed" +
+            "itorv2_preview/")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -77,7 +78,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(" (Update 2 Beta)")]
+        [global::System.Configuration.DefaultSettingValueAttribute(" (Update 2 Beta - Internal Preview)")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
@@ -99,7 +100,7 @@ namespace WebcamViewer.Properties {
 
 Changes for Update 2 Beta:
 
-Soon(tm).
+This is an Internal Preview build. This build is only meant for internal testing, do not publish to public.
 ")]
         public string changelog {
             get {
@@ -226,6 +227,30 @@ Soon(tm).
             }
             set {
                 this["imagesizing"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool home_menu_blurbehind {
+            get {
+                return ((bool)(this["home_menu_blurbehind"]));
+            }
+            set {
+                this["home_menu_blurbehind"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool settings_showaccentcolor {
+            get {
+                return ((bool)(this["settings_showaccentcolor"]));
+            }
+            set {
+                this["settings_showaccentcolor"] = value;
             }
         }
     }

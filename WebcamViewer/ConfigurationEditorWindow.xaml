@@ -1,4 +1,4 @@
-﻿<Controls:MetroWindow x:Name="metroWindow" x:Class="WebcamViewer.MessagedialogWindow"
+﻿<Controls:MetroWindow x:Name="metroWindow" x:Class="WebcamViewer.ConfigurationEditorWindow"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebcamViewer"
         mc:Ignorable="d"
-        Title="" MinHeight="210" MinWidth="300" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" SizeToContent="WidthAndHeight" ShowTitleBar="False"
+        Title="" Height="500" Width="750" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowTitleBar="False"
         ShowInTaskbar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False"
         BorderBrush="{DynamicResource res_accentBackground}" BorderThickness="1" SnapsToDevicePixels="True" Background="#FFF2F2F2">
 
@@ -222,22 +222,91 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="#1FFFFFFF"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="BorderBrush" Value="#1FFFFFFF"/>
+        </Style>
+
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Margin" Value="3,5,0,0"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
         <SolidColorBrush x:Key="res_accentBackground" Color="#fff39c12"/>
         <SolidColorBrush x:Key="res_accentForeground" Color="#ffe28b01"/>
 
     </Controls:MetroWindow.Resources>
 
-    <Grid x:Name="grid" Background="#FFF6F6F6">
+    <Grid x:Name="grid" Background="#FF383838">
 
-        <StackPanel Margin="25,25,25,65">
-            <Label x:Name="titleLabel" HorizontalAlignment="Left" Margin="0,0,25,0" FontSize="20" Foreground="Black">Title</Label>
-            <Label x:Name="messageLabel" Margin="0,5,0,0" FontSize="14" Foreground="Black">Lorem ipsum should be here, but I'm too lazy to get it...</Label>
-        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Margin="15,15,15,15">
 
-        <Button x:Name="closeButton" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="25,30,25,20" Height="32" Width="180" Click="closeButton_Click" Style="{DynamicResource UWPButtonStyle}">OK</Button>
+                <Label>Configuration editor</Label>
+                <TextBlock Margin="5,0,0,0" Foreground="Gray">Be careful while editing! Incorrect values can crash the program on startup!</TextBlock>
+
+                <Label Margin="0,10,0,0">Webcams</Label>
+                <TextBlock Margin="5,0,0,0" Foreground="LightGray">Edit from settings</TextBlock>
+
+                <Label Margin="0,10,0,0">Build ID</Label>
+                <TextBox />
+
+                <Label Margin="0,10,0,0">Version ID</Label>
+                <TextBox />
+
+                <Label Margin="0,10,0,0">Changelog</Label>
+                <TextBox />
+
+                <Label Margin="0,10,0,0">birthday_notice</Label>
+                <TextBox />
+
+                <Label Margin="0,10,0,0">blur_image</Label>
+                <CheckBox />
+
+                <Label Margin="0,10,0,0">accentcolor</Label>
+                <TextBox />
+
+                <Label Margin="0,10,0,0">savelocations</Label>
+                <TextBox />
+
+                <Label Margin="0,10,0,0">home_dynamiccoloring</Label>
+                <CheckBox />
+
+                <Label Margin="0,10,0,0">home_weather</Label>
+                <CheckBox />
+
+                <Label Margin="0,10,0,0">weather_units</Label>
+                <TextBox />
+
+                <Label Margin="0,10,0,0">window_autosize</Label>
+                <CheckBox />
+
+                <Label Margin="0,10,0,0">window_aeroborder</Label>
+                <CheckBox />
+
+                <Label Margin="0,10,0,0">imagesizing</Label>
+                <TextBox />
+
+                <Label Margin="0,10,0,0">home_menu_blurbehind</Label>
+                <CheckBox />
+
+                <Label Margin="0,10,0,0">settings_showaccentcolor</Label>
+                <CheckBox />
+
+                <Button x:Name="closeButton" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="25,30,25,20" Height="32" Width="180" Click="closeButton_Click" Style="{DynamicResource UWPButtonStyle_Dark}">Cancel</Button>
+
+            </StackPanel>
+        </ScrollViewer>
 
         <Grid x:Name="titlebarGrid" Height="35" VerticalAlignment="Top" MouseDown="titlebarGrid_MouseDown">
-            <Button x:Name="windowCloseButton" FontFamily="Segoe MDL2 Assets" FontSize="10.5" Content="&#xE894;" Style="{DynamicResource DialogWindowControlButtonStyle}" Click="closeButton_Click"/>
+            <Button x:Name="windowCloseButton" FontFamily="Segoe MDL2 Assets" FontSize="10.5" Content="&#xE894;" Style="{DynamicResource DialogWindowControlButtonStyle}" Foreground="White" Click="closeButton_Click" Visibility="Collapsed"/>
         </Grid>
 
     </Grid>
