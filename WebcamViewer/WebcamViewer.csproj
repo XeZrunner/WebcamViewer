@@ -72,7 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AccentColors.cs" />
+    <Compile Include="win10_AccentColors.cs" />
     <Compile Include="ConfigurationEditorWindow.xaml.cs">
       <DependentUpon>ConfigurationEditorWindow.xaml</DependentUpon>
     </Compile>
