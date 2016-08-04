@@ -1,22 +1,23 @@
 # Webcam Viewer Configuration File
 # Configuration name: DefaultConfiguration
 # Description: This is the official default Webcam Viewer configuration file that the app will load on first launch/reset. (except local mode)
-<Configuration>
-  
-  <CameraCustomizations Type="Names">
-    |Testing 1
-    |Testing 2
-    |Testing 3
-  </Cameracustomizations>
-  
-  <CameraCustomizations Type="Urls">
-    |http://petsfans.com/wp-content/uploads/2014/11/edfsaf.jpg
-    |https://i.ytimg.com/vi/It289-YZbl4/maxresdefault.jpg
-    |http://a1.files.blazepress.com/image/upload/c_fit,cs_srgb,dpr_1.0,h_1200,q_80,w_1200/MTI4OTkwOTk4Njg3NjgzODU4.jpg
-  </CameraCustomizations>
-  
-  <SettingProperty Name="accentcolor"> # 0 = summer | 1 = autumn | 2 = fall | 3 = winter | 4 = christmas night
-    |0
-  </SettingProperty>
-  
-</Configuration
+
+"camera_names"
+{
+Testing 0
+Testing 1
+Testing 2
+}
+
+"camera_urls"
+{
+http://petsfans.com/wp-content/uploads/2014/11/edfsaf.jpg
+https://i.ytimg.com/vi/It289-YZbl4/maxresdefault.jpg
+http://a1.files.blazepress.com/image/upload/c_fit,cs_srgb,dpr_1.0,h_1200,q_80,w_1200/MTI4OTkwOTk4Njg3NjgzODU4.jpg
+}
+
+
+"accentcolor"
+{
+0; | 0 = Summer ; 1 = Autumn ; 2 = Fall ; 3 = Winter ; 4 = Christmas
+}
