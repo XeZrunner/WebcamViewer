@@ -2003,7 +2003,7 @@
 
                 </Grid>
 
-                <Grid x:Name="settingsPage_DebugFeedPage" Grid.Column="1" Background="White"
+                <Grid x:Name="settingsPage_DefaultConfigurationDebugPage" Grid.Column="1" Background="White"
                       Visibility="Collapsed">
 
                     <!-- Content -->
@@ -2012,9 +2012,8 @@
                         <Controls:ProgressRing Foreground="{DynamicResource res_Background2}" Width="60" Height="60" EllipseDiameterScale="0.85"/>
 
                     </Grid>
-                    
+
                 </Grid>
-                
 
                 <!-- Accent color dialog -->
                 <Grid x:Name="settingsPage_UserInterfacePage_AccentColorGrid" Background="#50000000" RenderTransformOrigin="0.5, 0.5" Grid.ColumnSpan="2"

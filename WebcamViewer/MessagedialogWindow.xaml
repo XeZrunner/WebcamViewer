@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebcamViewer"
         mc:Ignorable="d"
-        Title="" MinHeight="210" MinWidth="300" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" SizeToContent="WidthAndHeight" ShowTitleBar="False"
+        Title="" MinHeight="220" MinWidth="500" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" SizeToContent="WidthAndHeight" ShowTitleBar="False"
         ShowInTaskbar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False"
         BorderBrush="{DynamicResource res_accentBackground}" BorderThickness="1" SnapsToDevicePixels="True" Background="#FFF2F2F2">
 
@@ -150,10 +150,12 @@
             <Setter Property="Padding" Value="10,5"/>
             <Setter Property="Height" Value="32"/>
             <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="MinWidth" Value="180"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RenderTransformOrigin="0.5, 0.5">
                             <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5, 0.5"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -164,7 +166,7 @@
                                 <Setter Property="Background" Value="#FF919191"/>
                                 <Setter Property="BorderBrush" Value="#FF919191"/>
                                 <Setter Property="BorderThickness" Value="1"/>
-                                <Setter Property="RenderTransform">
+                                <Setter Property="RenderTransform" TargetName="Border">
                                     <Setter.Value>
                                         <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
                                     </Setter.Value>
@@ -189,11 +191,12 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Padding" Value="10,5"/>
             <Setter Property="Height" Value="32"/>
+            <Setter Property="MinWidth" Value="180"/>
             <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RenderTransformOrigin="0.5, 0.5">
                             <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5, 0.5"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -204,7 +207,7 @@
                                 <Setter Property="Background" Value="#FF878787"/>
                                 <Setter Property="BorderBrush" Value="#FF6B6B6B"/>
                                 <Setter Property="BorderThickness" Value="1"/>
-                                <Setter Property="RenderTransform">
+                                <Setter Property="RenderTransform" TargetName="Border">
                                     <Setter.Value>
                                         <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
                                     </Setter.Value>
@@ -229,15 +232,37 @@
 
     <Grid x:Name="grid" Background="#FFF6F6F6">
 
-        <StackPanel Margin="25,25,25,65">
-            <Label x:Name="titleLabel" HorizontalAlignment="Left" Margin="0,0,25,0" FontSize="20" Foreground="Black">Title</Label>
-            <Label x:Name="messageLabel" Margin="0,5,0,0" FontSize="14" Foreground="Black">Lorem ipsum should be here, but I'm too lazy to get it...</Label>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition />
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
 
-        <Button x:Name="closeButton" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="25,30,25,20" Height="32" Width="180" Click="closeButton_Click" Style="{DynamicResource UWPButtonStyle}">OK</Button>
+        <Label x:Name="titleLabel" Grid.Row="1" HorizontalAlignment="Left" Margin="25,0,25,0" FontSize="20" Foreground="Black">Title</Label>
 
-        <Grid x:Name="titlebarGrid" Height="35" VerticalAlignment="Top" MouseDown="titlebarGrid_MouseDown">
-            <Button x:Name="windowCloseButton" FontFamily="Segoe MDL2 Assets" FontSize="10.5" Content="&#xE894;" Style="{DynamicResource DialogWindowControlButtonStyle}" Click="closeButton_Click"/>
+        <Grid x:Name="main_contentGrid" Grid.Row="2" Margin="25,5,20,0">
+        </Grid>
+
+        <Grid x:Name="buttonsGrid" Grid.Row="3" Margin="20,0,20,0">
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition x:Name="ThirdButtonColumn" Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="thirdButton" Grid.Column="0" Margin="0,0,5,0" Visibility="Collapsed" Style="{DynamicResource UWPButtonStyle}"></Button>
+            <Button x:Name="secondButton" Grid.Column="1" Visibility="Collapsed" Style="{DynamicResource UWPButtonStyle}"></Button>
+            <Button x:Name="firstButton" Grid.Column="2" Margin="5,0,0,0" Style="{DynamicResource UWPButtonStyle}">OK</Button>
+
+        </Grid>
+
+        <Grid x:Name="titlebarGrid" Grid.Row="0" VerticalAlignment="Top" PreviewMouseDown="titlebarGrid_MouseDown">
+            <Label x:Name="titlebarGrid_titleLabel" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Visibility="Hidden">Title</Label>
+            <Button x:Name="windowCloseButton" FontFamily="Segoe MDL2 Assets" FontSize="10.5" Content="&#xE894;" Style="{DynamicResource DialogWindowControlButtonStyle}" Height="30" Click="closeButton_Click"/>
         </Grid>
 
     </Grid>

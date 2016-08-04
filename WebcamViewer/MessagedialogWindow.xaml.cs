@@ -18,25 +18,25 @@ namespace WebcamViewer
 {
     public partial class MessagedialogWindow : MetroWindow
     {
-        public MessagedialogWindow(string Title, string Message, bool darkmode = false)
+        public MessagedialogWindow()
         {
             InitializeComponent();
 
-            if (Title != "")
-                titleLabel.Content = Title;
-            else
-                titleLabel.Visibility = Visibility.Collapsed;
+            //if (Title != "")
+            //    titleLabel.Content = Title;
+            //else
+            //    titleLabel.Visibility = Visibility.Collapsed;
 
-            if (Message != "")
-                messageLabel.Content = Message;
-            else
-                messageLabel.Visibility = Visibility.Collapsed;
+            //if (Message != "")
+            //    messageLabel.Content = Message;
+            //else
+            //    messageLabel.Visibility = Visibility.Collapsed;
 
-            if (darkmode == true)
-            {
-                grid.Background = new SolidColorBrush(Color.FromArgb(255, 56, 56, 56));
-                titleLabel.Foreground = new SolidColorBrush(Colors.White); messageLabel.Foreground = new SolidColorBrush(Colors.White); closeButton.Style = this.Resources["UWPButtonStyle_Dark"] as Style; windowCloseButton.Foreground = new SolidColorBrush(Colors.White);
-            }
+            //if (darkmode == true)
+            //{
+            //    grid.Background = new SolidColorBrush(Color.FromArgb(255, 56, 56, 56));
+            //    titleLabel.Foreground = new SolidColorBrush(Colors.White); messageLabel.Foreground = new SolidColorBrush(Colors.White); closeButton.Style = this.Resources["UWPButtonStyle_Dark"] as Style; windowCloseButton.Foreground = new SolidColorBrush(Colors.White);
+            //}
 
             // get accent color from parent
             Window mainwindow = Application.Current.MainWindow;
@@ -45,6 +45,69 @@ namespace WebcamViewer
 
             this.Resources["res_accentBackground"] = background;
             this.Resources["res_accentForeground"] = foreground;
+        }
+
+        public void SetupDialog(string Title, object Content, bool darkmode, string FirstButtonContent, string SecondButtonContent, string ThirdButtonContent, bool FirstButtonEnabled, bool SecondButtonEnabled, bool ThirdButtonEnabled, RoutedEventHandler FirstButtonClick, RoutedEventHandler SecondButtonClick, RoutedEventHandler ThirdButtonClick)
+        {
+            // Content
+            titleLabel.Content = Title;
+            titlebarGrid_titleLabel.Content = Title;
+
+            if (!(Content is string))
+                main_contentGrid.Children.Add((UIElement)Content);
+            else
+            {
+                Label textLabel = new Label(); textLabel.Content = Content;
+                main_contentGrid.Children.Add((UIElement)textLabel);
+            }
+
+            // Dark mode
+            if (darkmode)
+            {
+                // dark dialog
+            }
+
+            // Button visiblity
+            if (FirstButtonContent == "")
+                firstButton.Visibility = Visibility.Collapsed;
+
+            if (SecondButtonContent != "")
+                secondButton.Visibility = Visibility.Visible;
+            else
+                secondButton.Visibility = Visibility.Collapsed;
+
+            if (ThirdButtonContent != "")
+            {
+                thirdButton.Visibility = Visibility.Visible;
+                ThirdButtonColumn.Width = new GridLength(0, GridUnitType.Star);
+            }
+            else
+            {
+                thirdButton.Visibility = Visibility.Collapsed;
+                ThirdButtonColumn.Width = new GridLength(0, GridUnitType.Auto);
+            }
+
+            // Button text
+            firstButton.Content = FirstButtonContent;
+            secondButton.Content = SecondButtonContent;
+            thirdButton.Content = ThirdButtonContent;
+
+            // Button enabled state
+            firstButton.IsEnabled = FirstButtonEnabled;
+            secondButton.IsEnabled = SecondButtonEnabled;
+            thirdButton.IsEnabled = ThirdButtonEnabled;
+
+            // Button click events
+            if (FirstButtonClick == null)
+                firstButton.Click += (s, ev) => { this.Close(); };
+            else
+                firstButton.Click += FirstButtonClick;
+
+            if (SecondButtonClick != null)
+                secondButton.Click += SecondButtonClick;
+
+            if (ThirdButtonClick != null)
+                thirdButton.Click += ThirdButtonClick;
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
