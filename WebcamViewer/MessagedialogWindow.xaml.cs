@@ -79,12 +79,12 @@ namespace WebcamViewer
             if (ThirdButtonContent != "")
             {
                 thirdButton.Visibility = Visibility.Visible;
-                ThirdButtonColumn.Width = new GridLength(0, GridUnitType.Star);
+                ThirdButtonColumn.Width = new GridLength(1, GridUnitType.Star);
             }
             else
             {
                 thirdButton.Visibility = Visibility.Collapsed;
-                ThirdButtonColumn.Width = new GridLength(0, GridUnitType.Auto);
+                ThirdButtonColumn.Width = new GridLength(1, GridUnitType.Auto);
             }
 
             // Button text

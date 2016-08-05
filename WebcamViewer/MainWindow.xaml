@@ -2332,7 +2332,7 @@
 
                         <Button x:Name="debugmenu_editconfigButton" Style="{DynamicResource DebugmenuButtonStyle}" Click="debugmenu_editconfigButton_Click">Edit configuration</Button>
                         <Button x:Name="debugmenu_resetconfigButton" Style="{DynamicResource DebugmenuButtonStyle}" Click="debugmenu_resetconfigButton_Click">Reset configuration</Button>
-                        <Button x:Name="debugmenu_changefeedconfigurationButton" Style="{DynamicResource DebugmenuButtonStyle}" Click="debugmenu_changefeedconfigurationButton_Click">Change feed configuration</Button>
+                        <Button x:Name="debugmenu_changefeedconfigurationButton" Style="{DynamicResource DebugmenuButtonStyle}" Click="debugmenu_changefeedconfigurationButton_Click">Apply default configuration from GitHub</Button>
 
                         <!-- Prerelease features -->
                         <Label Foreground="#5FFFFFFF" Margin="20,5,0,5">Prerelease features</Label>

@@ -73,9 +73,6 @@ namespace WebcamViewer
             settingsPage_MainPage_DefaultConfigDebugButton.Visibility = Visibility.Collapsed;
 #endif
 
-            if (UPDATE_AVAIL_FEED)
-                infoButton.Visibility = Visibility.Visible;
-
         }
 
         private void window_Loaded(object sender, RoutedEventArgs e)
@@ -126,6 +123,12 @@ namespace WebcamViewer
                 this.Height = 320;
             }
 
+            SetAeroBorder();
+
+            CenterWindowOnScreen();
+
+            int countOfInfoButtonInformations = 0;
+
             // disable stuff
             if (READONLY_MODE)
             {
@@ -155,13 +158,48 @@ namespace WebcamViewer
                 infoButton.Visibility = Visibility.Visible;
             }
 
+            if (READONLY_MODE || DISABLE_ARCHIVEORG || DISABLE_LOCALSAVE || DISABLE_WEBCAMEDITOR)
+            {
+                countOfInfoButtonInformations++;
+            }
+
+            // Default configuration file heartbeat
             if (Properties.Settings.Default.defaultconfig_heartbeat)
-                Configuration.DefaultConfig_Heartbeat();
+            {
+                if (Configuration.DefaultConfig_Heartbeat())
+                {
+                    HEARTBEAT_CONFIGCHANGED = true;
+                    infoButton.Visibility = Visibility.Visible;
 
-            SetAeroBorder();
+                    countOfInfoButtonInformations++;
+                }
+                else
+                {
+                    HEARTBEAT_CONFIGCHANGED = false;
+                    infoButton.Visibility = Visibility.Collapsed;
 
-            CenterWindowOnScreen();
+                    countOfInfoButtonInformations--;
+                }
+            }
+
+            // infoButton Tooltip
+            if (countOfInfoButtonInformations > 0)
+            {
+                infoButton.ToolTip = String.Format("You have {0} notifications...", countOfInfoButtonInformations);
+            }
+            else
+            {
+                infoButton.ToolTip = null;
+            }
         }
+
+        /// <summary>
+        ///  TODO:
+        ///  
+        /// - Cleanup things and implement ResetOfficialCameraCustomizations() in Configuration.cs
+        /// - infoButton function, or basically Notification management
+        /// - Start implementing the configuration menu in webcameditor, also start implementing reading configuration files from custom specified URL or file etc...
+        /// </summary>
 
         #region Variables & class declarations
 
@@ -175,7 +213,8 @@ namespace WebcamViewer
         bool DISABLE_LOCALSAVE = false;
         bool DISABLE_WEBCAMEDITOR = false;
 
-        bool UPDATE_AVAIL_FEED = false;
+        bool UPDATE_AVAIL = false;
+        bool HEARTBEAT_CONFIGCHANGED = true;
 
         bool UI_SETTINGSPAGE_SHOWACCENTCOLOR = false;
 
@@ -537,9 +576,33 @@ namespace WebcamViewer
                     "DISABLE_ARCHIVEORG: " + DISABLE_ARCHIVEORG + "\n" +
                     "DISABLE_LOCALSAVE: " + DISABLE_LOCALSAVE + "\n" +
                     "DISABLE_WEBCAMEDITOR: " + DISABLE_WEBCAMEDITOR);
-            if (UPDATE_AVAIL_FEED)
+
+            if (HEARTBEAT_CONFIGCHANGED)
             {
-                TextMessageDialog("UPDATE_AVAIL_FEED", "");
+                Popups.MessageDialog dlg = new Popups.MessageDialog();
+                dlg.Title = "An update was made to the default configuration";
+                dlg.Content = "You're using the default configuration, meaning you haven't changed the default settings of Webcam Viewer.\nWould you like to update to the latest configuration?";
+
+                dlg.FirstButtonContent = "Sure, update!";
+                dlg.SecondButtonContent = "No, thanks";
+                dlg.ThirdButtonContent = "Don't show this again";
+
+                int dlg_result = dlg.ShowDialogWithResult();
+
+                if (dlg_result == 0)
+                {
+                    SwitchToPage(3);
+
+                    DispatcherTimer faketimer = new DispatcherTimer();
+                    faketimer.Interval = new TimeSpan(0, 0, 8);
+                    faketimer.Tick += (s, ev) => { SwitchToPage(0); TextMessageDialog("Update failed", "Could not update the local configuration."); faketimer.Stop(); };
+                    faketimer.Start();
+                }
+                else if (dlg_result == 2)
+                {
+                    Properties.Settings.Default.defaultconfig_heartbeat = false;
+                    Properties.Settings.Default.Save();
+                }
             }
         }
 
@@ -613,7 +676,7 @@ namespace WebcamViewer
             /// 0: Webcam image
             /// 1: Settings
             /// 2: Debug menu
-            /// 3: Feedback
+            /// 3: Updating page
 
             switch (page)
             {
@@ -659,6 +722,20 @@ namespace WebcamViewer
 
                         CURRENT_PAGE = 2;
                         titlebar_backButton.Visibility = Visibility.Visible;
+
+                        break;
+                    }
+                case 3:
+                    {
+                        if (updatingPage.Visibility == Visibility.Collapsed)
+                        {
+                            var animation = (Storyboard)FindResource("updatingPage_In");
+                            if (UI_SLOW_MOTION) animation.SpeedRatio = 0.15;
+                            animation.Begin();
+                        }
+
+                        CURRENT_PAGE = 3;
+                        titlebar_backButton.Visibility = Visibility.Collapsed;
 
                         break;
                     }
@@ -2107,6 +2184,8 @@ namespace WebcamViewer
         private void debugmenu_changefeedconfigurationButton_Click(object sender, RoutedEventArgs e)
         {
             Configuration.ApplyDefaultConfigurationFile();
+            GetUserCameras();
+            GetUserSettings();
         }
 
         // ----- Prerelease features ----- //

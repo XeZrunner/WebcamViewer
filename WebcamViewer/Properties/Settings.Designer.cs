@@ -65,8 +65,8 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20160802-01@webcamviewer_internal/update2/prerelease/beta/compiled/Debug/webcamed" +
-            "itorv2_preview/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20160805-03@webcamviewer_internal/update2/beta/featureimpl/builds/configurationfi" +
+            "lereading_early/Debug")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -78,7 +78,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(" (Update 2 Beta - Internal Preview)")]
+        [global::System.Configuration.DefaultSettingValueAttribute(" (Update 2 Beta)")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
@@ -100,8 +100,7 @@ namespace WebcamViewer.Properties {
 
 Changes for Update 2 Beta:
 
-This is an Internal Preview build. This build is only meant for internal testing, do not publish to public.
-")]
+Implemented configuration file reading functions, as well as reset default options from GitHub configuration file, in the debug menu.")]
         public string changelog {
             get {
                 return ((string)(this["changelog"]));

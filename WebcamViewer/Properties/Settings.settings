@@ -25,10 +25,10 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20160802-01@webcamviewer_internal/update2/prerelease/beta/compiled/Debug/webcameditorv2_preview/</Value>
+      <Value Profile="(Default)">20160805-03@webcamviewer_internal/update2/beta/featureimpl/builds/configurationfilereading_early/Debug</Value>
     </Setting>
     <Setting Name="versionid" Type="System.String" Scope="User">
-      <Value Profile="(Default)"> (Update 2 Beta - Internal Preview)</Value>
+      <Value Profile="(Default)"> (Update 2 Beta)</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="User">
       <Value Profile="(Default)">Update pre-release builds
@@ -41,8 +41,7 @@
 
 Changes for Update 2 Beta:
 
-This is an Internal Preview build. This build is only meant for internal testing, do not publish to public.
-</Value>
+Implemented configuration file reading functions, as well as reset default options from GitHub configuration file, in the debug menu.</Value>
     </Setting>
     <Setting Name="birthday_notice" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
