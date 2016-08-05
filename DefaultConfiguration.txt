@@ -19,5 +19,5 @@
 
 "accentcolor"
 {
-  0; | 0 = Summer ; 1 = Autumn ; 2 = Fall ; 3 = Winter ; 4 = Christmas
+  0; | 0 = Summer ; 1 = Autumn ; 2 = Fall ; 3 = Winter ; 4 = Christmas;
 }
