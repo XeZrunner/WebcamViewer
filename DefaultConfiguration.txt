@@ -2,7 +2,7 @@
 # Configuration name: DefaultConfiguration
 # Description: This is the official default Webcam Viewer configuration file that the app will load on first launch/reset. (except local mode)
 
-"camera\_\names"
+"camera_names"
 {
   Testing 0
   Testing 1
