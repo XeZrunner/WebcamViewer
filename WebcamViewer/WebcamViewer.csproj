@@ -72,6 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Configuration.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="Popups.cs" />
     <Compile Include="win10_AccentColors.cs" />

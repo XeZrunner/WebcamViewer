@@ -80,5 +80,8 @@ This is an Internal Preview build. This build is only meant for internal testing
     <Setting Name="settings_showaccentcolor" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="defaultconfig_heartbeat" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

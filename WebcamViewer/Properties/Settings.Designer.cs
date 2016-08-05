@@ -253,5 +253,17 @@ This is an Internal Preview build. This build is only meant for internal testing
                 this["settings_showaccentcolor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool defaultconfig_heartbeat {
+            get {
+                return ((bool)(this["defaultconfig_heartbeat"]));
+            }
+            set {
+                this["defaultconfig_heartbeat"] = value;
+            }
+        }
     }
 }

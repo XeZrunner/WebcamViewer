@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebcamViewer"
         mc:Ignorable="d"
-        Title="" MinHeight="220" MinWidth="500" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" SizeToContent="WidthAndHeight" ShowTitleBar="False"
+        Title="" MinHeight="235" MinWidth="500" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" SizeToContent="WidthAndHeight" ShowTitleBar="False"
         ShowInTaskbar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False"
         BorderBrush="{DynamicResource res_accentBackground}" BorderThickness="1" SnapsToDevicePixels="True" Background="#FFF2F2F2">
 
@@ -234,7 +234,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="35"/>
+            <RowDefinition Height="40"/>
             <RowDefinition />
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>

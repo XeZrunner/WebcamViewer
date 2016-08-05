@@ -70,6 +70,7 @@ namespace WebcamViewer
 
 #if !DEBUG
             webcamPage_menu_debugmenuButton.Visibility = Visibility.Collapsed;
+            settingsPage_MainPage_DefaultConfigDebugButton.Visibility = Visibility.Collapsed;
 #endif
 
             if (UPDATE_AVAIL_FEED)
@@ -154,12 +155,15 @@ namespace WebcamViewer
                 infoButton.Visibility = Visibility.Visible;
             }
 
+            if (Properties.Settings.Default.defaultconfig_heartbeat)
+                Configuration.DefaultConfig_Heartbeat();
+
             SetAeroBorder();
 
             CenterWindowOnScreen();
         }
 
-        #region Variables
+        #region Variables & class declarations
 
         bool UI_SLOW_MOTION = false;
         bool UI_HOME_BLURIMAGE = true;
@@ -178,6 +182,10 @@ namespace WebcamViewer
         int SETTINGS_LAST_CAMERA = 0;
 
         int CURRENT_PAGE = 0;
+
+        Configuration Configuration = new Configuration();
+
+        Properties.Settings Settings = Properties.Settings.Default;
 
         #endregion
 
@@ -314,6 +322,7 @@ namespace WebcamViewer
             if (settingsPage_WebcamEditorPage.Visibility == Visibility.Visible) lastSettingsPage = 0;
             if (settingsPage_UserInterfacePage.Visibility == Visibility.Visible) lastSettingsPage = 1;
             if (settingsPage_AboutPage.Visibility == Visibility.Visible) lastSettingsPage = 2;
+            if (settingsPage_DefaultConfigurationDebugPage.Visibility == Visibility.Visible) lastSettingsPage = 3;
 
             settingsPage_SetActiveButton(lastSettingsPage);
 
@@ -421,6 +430,45 @@ namespace WebcamViewer
 
         int debugmenuPage_PreviousPage = 0;
 
+        private void titlebar_backButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (CURRENT_PAGE == 0)
+            {
+                if (webcamPage_menu.Opacity == 1d)
+                {
+                    var animation = (Storyboard)FindResource("webcamPage_MenuClose");
+                    if (UI_SLOW_MOTION) animation.SpeedRatio = 0.15;
+                    animation.Begin();
+
+                    titlebar_backButton.Visibility = Visibility.Collapsed;
+                }
+            }
+
+            if (CURRENT_PAGE == 1)
+            {
+                SwitchToPage(0);
+
+                GetUserCameras();
+                GetUserSettings();
+
+                //if (webcamPage_menu.Visibility != Visibility.Visible)
+                //    titlebar_backButton.Visibility = Visibility.Collapsed;
+            }
+
+            if (CURRENT_PAGE == 2)
+            {
+                SwitchToPage(debugmenuPage_PreviousPage);
+
+                //if (debugmenuPage_PreviousPage == 0)
+                //{
+                //    if (webcamPage_menu.Visibility != Visibility.Visible)
+                //        titlebar_backButton.Visibility = Visibility.Collapsed;
+                //}
+                //else
+                //    titlebar_backButton.Visibility = Visibility.Visible;
+            }
+        }
+
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -479,45 +527,6 @@ namespace WebcamViewer
             }
 
             this.WindowState = WindowState.Minimized;
-        }
-
-        private void titlebar_backButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (CURRENT_PAGE == 0)
-            {
-                if (webcamPage_menu.Opacity == 1d)
-                {
-                    var animation = (Storyboard)FindResource("webcamPage_MenuClose");
-                    if (UI_SLOW_MOTION) animation.SpeedRatio = 0.15;
-                    animation.Begin();
-
-                    titlebar_backButton.Visibility = Visibility.Collapsed;
-                }
-            }
-
-            if (CURRENT_PAGE == 1)
-            {
-                SwitchToPage(0);
-
-                GetUserCameras();
-                GetUserSettings();
-
-                //if (webcamPage_menu.Visibility != Visibility.Visible)
-                //    titlebar_backButton.Visibility = Visibility.Collapsed;
-            }
-
-            if (CURRENT_PAGE == 2)
-            {
-                SwitchToPage(debugmenuPage_PreviousPage);
-
-                //if (debugmenuPage_PreviousPage == 0)
-                //{
-                //    if (webcamPage_menu.Visibility != Visibility.Visible)
-                //        titlebar_backButton.Visibility = Visibility.Collapsed;
-                //}
-                //else
-                //    titlebar_backButton.Visibility = Visibility.Visible;
-            }
         }
 
         private void infoButton_Click(object sender, RoutedEventArgs e)
@@ -993,6 +1002,7 @@ namespace WebcamViewer
             // Close other pages
             settingsPage_AboutPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
             settingsPage_UserInterfacePage_ActionBar_backButton_Click(this, new RoutedEventArgs());
+            settingsPage_DefaultConfigurationDebugPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
 
             // Set button look to active
             settingsPage_SetActiveButton(0);
@@ -1402,6 +1412,7 @@ namespace WebcamViewer
 
             settingsPage_WebcamEditorPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
             settingsPage_AboutPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
+            settingsPage_DefaultConfigurationDebugPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
 
             // Set button look to active
             settingsPage_SetActiveButton(1);
@@ -1743,6 +1754,7 @@ namespace WebcamViewer
 
             settingsPage_WebcamEditorPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
             settingsPage_UserInterfacePage_ActionBar_backButton_Click(this, new RoutedEventArgs());
+            settingsPage_DefaultConfigurationDebugPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
 
             // Set button look to active
             settingsPage_SetActiveButton(2);
@@ -1793,7 +1805,7 @@ namespace WebcamViewer
             timer.Interval = new TimeSpan(0, 0, 0, 0, 300);
             timer.Tick += (s2, ev2) => { timer.Stop(); settingsPage_AboutPage.Visibility = Visibility.Collapsed; };
             timer.Start();
-        } // legacy
+        }
 
         private void settingsPage_AboutPage_ActionBar_moreButton_Click(object sender, RoutedEventArgs e)
         {
@@ -1816,6 +1828,94 @@ namespace WebcamViewer
         private void aboutPage_officialpageLinkLabel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Process.Start("https://xezrunner.github.io/WebcamViewer");
+        }
+
+        #endregion
+
+        #region Default configuration file debug page
+
+        private void settingsPage_MainPage_DefaultConfigDebugButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Close other pages
+
+            settingsPage_WebcamEditorPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
+            settingsPage_UserInterfacePage_ActionBar_backButton_Click(this, new RoutedEventArgs());
+            settingsPage_AboutPage_ActionBar_backButton_Click(this, new RoutedEventArgs());
+
+            // Set button look to active
+            settingsPage_SetActiveButton(3);
+
+            settingsPage_DefaultConfigurationDebugPage.Opacity = 0;
+            settingsPage_DefaultConfigurationDebugPage.Visibility = Visibility.Visible;
+
+            DoubleAnimation opacityanimation = new DoubleAnimation(1.0, new TimeSpan(0, 0, 0, 0, 300));
+            settingsPage_DefaultConfigurationDebugPage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
+
+            // prevent visually unloading the page (glitch)
+            settingsPage_MainPage_WebcamEditorButton.IsEnabled = false;
+            settingsPage_MainPage_UserInterfaceButton.IsEnabled = false;
+            settingsPage_MainPage_AboutButton.IsEnabled = false;
+            settingsPage_MainPage_DefaultConfigDebugButton.IsEnabled = false;
+
+            DispatcherTimer enableTimer = new DispatcherTimer();
+            enableTimer.Interval = opacityanimation.Duration.TimeSpan;
+            enableTimer.Tick += (s, ev) =>
+            {
+                enableTimer.Stop();
+                settingsPage_MainPage_WebcamEditorButton.IsEnabled = true;
+                settingsPage_MainPage_UserInterfaceButton.IsEnabled = true;
+                settingsPage_MainPage_AboutButton.IsEnabled = true;
+                settingsPage_MainPage_DefaultConfigDebugButton.IsEnabled = true;
+            };
+            enableTimer.Start();
+
+            // Do some stuff
+
+            settingsPage_DefaultConfigurationDebugPage_ReadFileFromUri(Configuration.defaultconfig_file_URL);
+
+        }
+
+        private void settingsPage_DefaultConfigurationDebugPage_ActionBar_backButton_Click(object sender, RoutedEventArgs e)
+        {
+            DoubleAnimation opacityanimation = new DoubleAnimation(0, new TimeSpan(0, 0, 0, 0, 300));
+            settingsPage_DefaultConfigurationDebugPage.BeginAnimation(Grid.OpacityProperty, opacityanimation);
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 300);
+            timer.Tick += (s, ev) => { timer.Stop(); settingsPage_DefaultConfigurationDebugPage.Visibility = Visibility.Collapsed; };
+            timer.Start();
+        }
+
+        async void settingsPage_DefaultConfigurationDebugPage_ReadFileFromUri(string uri)
+        {
+            settingsPage_DefaultConfigurationDebugPage_progressring.Visibility = Visibility.Visible;
+            settingsPage_DefaultConfigurationDebugPage_MainLabel.Visibility = Visibility.Collapsed;
+
+            WebClient client = new WebClient();
+            Stream stream = null;
+
+            try
+            {
+                stream = await client.OpenReadTaskAsync(new Uri(uri));
+            }
+            catch (Exception ex)
+            {
+                TextMessageDialog("Could not grab configuration file", "Check your internet connection and try again.\nError: " + ex.Message);
+
+                settingsPage_DefaultConfigurationDebugPage_MainLabel.Content = "Could not grab configuration file\n\n" + ex.Message;
+
+                settingsPage_DefaultConfigurationDebugPage_progressring.Visibility = Visibility.Collapsed;
+
+                return;
+            }
+
+            StreamReader reader = new StreamReader(stream);
+
+            settingsPage_DefaultConfigurationDebugPage_MainLabel.Content = "";
+            settingsPage_DefaultConfigurationDebugPage_MainLabel.Content = await reader.ReadToEndAsync();
+
+            settingsPage_DefaultConfigurationDebugPage_progressring.Visibility = Visibility.Collapsed;
+            settingsPage_DefaultConfigurationDebugPage_MainLabel.Visibility = Visibility.Visible;
         }
 
         #endregion
@@ -1853,6 +1953,9 @@ namespace WebcamViewer
             settingsPage_MainPage_AboutButton_rectangle.Visibility = Visibility.Hidden;
             settingsPage_MainPage_AboutButton.Foreground = new SolidColorBrush(Colors.Black);
 
+            settingsPage_MainPage_DefaultConfigDebugButton_rectangle.Visibility = Visibility.Hidden;
+            settingsPage_MainPage_DefaultConfigDebugButton.Foreground = new SolidColorBrush(Colors.Black);
+
             switch (button)
             {
                 case 0:
@@ -1873,6 +1976,13 @@ namespace WebcamViewer
                     {
                         settingsPage_MainPage_AboutButton_rectangle.Visibility = Visibility.Visible;
                         settingsPage_MainPage_AboutButton.Foreground = (SolidColorBrush)this.Resources["res_accentForeground"];
+
+                        break;
+                    }
+                case 3:
+                    {
+                        settingsPage_MainPage_DefaultConfigDebugButton_rectangle.Visibility = Visibility.Visible;
+                        settingsPage_MainPage_DefaultConfigDebugButton.Foreground = (SolidColorBrush)this.Resources["res_accentForeground"];
 
                         break;
                     }
@@ -1996,7 +2106,7 @@ namespace WebcamViewer
 
         private void debugmenu_changefeedconfigurationButton_Click(object sender, RoutedEventArgs e)
         {
-            // soon(tm)
+            Configuration.ApplyDefaultConfigurationFile();
         }
 
         // ----- Prerelease features ----- //

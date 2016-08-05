@@ -57,7 +57,7 @@ namespace WebcamViewer
                 main_contentGrid.Children.Add((UIElement)Content);
             else
             {
-                Label textLabel = new Label(); textLabel.Content = Content;
+                Label textLabel = new Label(); textLabel.Content = Content; textLabel.FontSize = 14;
                 main_contentGrid.Children.Add((UIElement)textLabel);
             }
 

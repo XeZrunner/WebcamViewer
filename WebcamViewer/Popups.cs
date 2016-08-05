@@ -106,6 +106,35 @@ namespace WebcamViewer
                 return ResultDialog_result;
             }
 
+            public void Show()
+            {
+                dialogWindow.SetupDialog(
+                    Title,
+                    Content,
+
+                    IsDarkTheme,
+
+                    FirstButtonContent,
+                    SecondButtonContent,
+                    ThirdButtonContent,
+
+                    IsFirstButtonEnabled,
+                    IsSecondButtonEnabled,
+                    IsThirdButtonEnabled,
+
+                    FirstButtonClickEvent,
+                    SecondButtonClickEvent,
+                    ThirdButtonClickEvent
+                    );
+
+                dialogWindow.Owner = Application.Current.MainWindow;
+                dialogWindow.Show();
+            }
+
+            public void Close()
+            {
+                dialogWindow.Close();
+            }
         }
 
     }
