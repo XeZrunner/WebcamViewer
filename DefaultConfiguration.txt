@@ -16,7 +16,6 @@
   http://a1.files.blazepress.com/image/upload/c_fit,cs_srgb,dpr_1.0,h_1200,q_80,w_1200/MTI4OTkwOTk4Njg3NjgzODU4.jpg
 }
 
-
 "accentcolor"
 {
   0; | 0 = Summer ; 1 = Autumn ; 2 = Fall ; 3 = Winter ; 4 = Christmas;
