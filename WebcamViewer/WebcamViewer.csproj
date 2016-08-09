@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebcamViewer</RootNamespace>
     <AssemblyName>WebcamViewer</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -72,8 +72,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="Debug.cs" />
+    <Compile Include="Popups.cs" />
+    <Compile Include="win10_AccentColors.cs" />
+    <Compile Include="ConfigurationEditorWindow.xaml.cs">
+      <DependentUpon>ConfigurationEditorWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResetSettingsWindow.xaml.cs">
       <DependentUpon>ResetSettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Test_RippleButtonUserControl.xaml.cs">
+      <DependentUpon>Test_RippleButtonUserControl.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -87,11 +97,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ConfigurationEditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MessagedialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResetSettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Test_RippleButtonUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

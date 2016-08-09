@@ -65,7 +65,8 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20160720-00@webcamviewer_rel/update2/prerelease/alpha")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20160805-03@webcamviewer_internal/update2/beta/featureimpl/builds/configurationfi" +
+            "lereading_early/Debug")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -77,7 +78,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(" (Update 2 Alpha)")]
+        [global::System.Configuration.DefaultSettingValueAttribute(" (Update 2 Beta)")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
@@ -97,23 +98,9 @@ namespace WebcamViewer.Properties {
   bugs and instabilities or other non-working functions of the update.
 | Release - the final version
 
-Changes for Update 2 Alpha:
+Changes for Update 2 Beta:
 
-  Improvements
-- Redesigned Settings
-  The Settings page is now more intuitive, it's easier and faster to navigate through settings pages.
-
-  New features:
-- Accent colors
-  You can now change the accent color of Webcam Viewer. Simply go to Settings -> User Interface -> Accent color.
-There are 5 colors you can choose from:
-| Orange (Summer)
-| Red (Autumn)
-| Green
-| Blue (Winter)
-| Dark blue/Purple
-New accent colors might be added in future releases.
-")]
+Implemented configuration file reading functions, as well as reset default options from GitHub configuration file, in the debug menu.")]
         public string changelog {
             get {
                 return ((string)(this["changelog"]));
@@ -203,6 +190,78 @@ New accent colors might be added in future releases.
             }
             set {
                 this["weather_units"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool window_autosize {
+            get {
+                return ((bool)(this["window_autosize"]));
+            }
+            set {
+                this["window_autosize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool window_aeroborder {
+            get {
+                return ((bool)(this["window_aeroborder"]));
+            }
+            set {
+                this["window_aeroborder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int imagesizing {
+            get {
+                return ((int)(this["imagesizing"]));
+            }
+            set {
+                this["imagesizing"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool home_menu_blurbehind {
+            get {
+                return ((bool)(this["home_menu_blurbehind"]));
+            }
+            set {
+                this["home_menu_blurbehind"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool settings_showaccentcolor {
+            get {
+                return ((bool)(this["settings_showaccentcolor"]));
+            }
+            set {
+                this["settings_showaccentcolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool defaultconfig_heartbeat {
+            get {
+                return ((bool)(this["defaultconfig_heartbeat"]));
+            }
+            set {
+                this["defaultconfig_heartbeat"] = value;
             }
         }
     }
