@@ -7,39 +7,51 @@
         xmlns:local="clr-namespace:WebcamViewer"
         mc:Ignorable="d"
         Title="Webcam Viewer" Height="675" Width="800" ShowTitleBar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False" WindowStartupLocation="CenterScreen" WindowStyle="None"
-        BorderBrush="{DynamicResource res_accentBackground}" BorderThickness="1" GlowBrush="{DynamicResource res_accentBackground}"  NonActiveBorderBrush="#7F5A5A5A" NonActiveGlowBrush="#7F5A5A5A" NonActiveWindowTitleBrush="#7F5A5A5A" Loaded="window_Loaded" SizeChanged="window_SizeChanged" MinWidth="320" MinHeight="320"
+        BorderBrush="{DynamicResource res_accentBackground}" BorderThickness="1" GlowBrush="{DynamicResource res_accentBackground}" NonActiveBorderBrush="#7F5A5A5A" NonActiveGlowBrush="#7F5A5A5A" NonActiveWindowTitleBrush="#7F5A5A5A" Loaded="window_Loaded" SizeChanged="window_SizeChanged" MinWidth="320" MinHeight="320"
         Icon="/Resources/icon_white.ico">
 
     <Controls:MetroWindow.Resources>
 
         <!--#region Colors-->
 
+        <SolidColorBrush x:Key="res_SettingsPageTextForeground" Color="Black"/>
+        <SolidColorBrush x:Key="res_SettingsPageTextForeground_Secondary" Color="Gray"/>
+
+        <SolidColorBrush x:Key="res_SettingsPageBackground" Color="White"/>
+
         <!-- orange -->
         <SolidColorBrush x:Key="res_Background0" Color="#fff39c12"/>
         <SolidColorBrush x:Key="res_Foreground0" Color="#ffd17a00"/>
+        <SolidColorBrush x:Key="res_Foreground0_Secondary" Color="#fff49d23"/>
 
         <!-- red -->
         <SolidColorBrush x:Key="res_Background1" Color="#ffe74c3c"/>
         <SolidColorBrush x:Key="res_Foreground1" Color="#ffd52a1a"/>
+        <SolidColorBrush x:Key="res_Foreground1_Secondary" Color="#fff85d4d"/>
 
         <!-- green -->
         <SolidColorBrush x:Key="res_Background2" Color="#ff27ae60"/>
         <SolidColorBrush x:Key="res_Foreground2" Color="#ff05ac40"/>
+        <SolidColorBrush x:Key="res_Foreground2_Secondary" Color="#ff38bf71"/>
 
         <!-- blue -->
         <SolidColorBrush x:Key="res_Background3" Color="#ff2980b9"/>
         <SolidColorBrush x:Key="res_Foreground3" Color="#ff0760a7"/>
+        <SolidColorBrush x:Key="res_Foreground3_Secondary" Color="#ff3991c9"/>
 
         <!-- gray -->
         <SolidColorBrush x:Key="res_Background4" Color="#ff3A3A3A"/>
         <SolidColorBrush x:Key="res_Foreground4" Color="#ff4A4A4A"/>
+        <SolidColorBrush x:Key="res_Foreground4_Secondary" Color="#ff5B5B5B"/>
 
         <!-- system -->
         <SolidColorBrush x:Key="res_Background5" Color="DarkRed"/>
         <SolidColorBrush x:Key="res_Foreground5" Color="Red"/>
+        <SolidColorBrush x:Key="res_Foreground5_Secondary" Color="Red"/>
 
         <SolidColorBrush x:Key="res_accentBackground" Color="#fff39c12"/>
         <SolidColorBrush x:Key="res_accentForeground" Color="#ffd17a00"/>
+        <SolidColorBrush x:Key="res_accentForeground_Secondary" Color="#ffc28b11"/>
 
         <!--#endregion-->
 
@@ -621,6 +633,73 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+        <Style x:Key="menubarButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="{DynamicResource FlatButtonFontSize}"/>
+            <Setter Property="Padding" Value="10,5,10,5"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="MinWidth" Value="40"/>
+            <Setter Property="ClickMode" Value="Press"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FF232323"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="{DynamicResource res_accentForeground}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="{DynamicResource GrayBrush2}"/>
+                </Trigger>
+
+                <Trigger Property="Tag" Value="Pressed">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="{DynamicResource res_accentForeground}"/>
+                </Trigger>
+
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="menubar_menuButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FF232323"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="{DynamicResource res_accentForeground_Secondary}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="{DynamicResource GrayBrush2}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <!--#endregion-->
 
@@ -1376,7 +1455,7 @@
     <!-- Content & pages -->
     <Grid Background="#FF252525">
 
-        <Grid x:Name="webcamimagePage" Margin="0,0,0,0" Background="Black" RenderTransformOrigin="0.5,0.5"
+        <Grid x:Name="webcamimagePage" Background="Black" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5"
               Visibility="Visible">
             <Grid.RenderTransform>
                 <TransformGroup>
@@ -1387,10 +1466,10 @@
                 </TransformGroup>
             </Grid.RenderTransform>
 
-            <Rectangle Fill="#FF101010" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top"/>
+            <Rectangle Fill="#FF000000" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top"/>
 
             <!-- Content -->
-            <Grid x:Name="webcamimagePage_ContentGrid" RenderTransformOrigin="0.5,0.5" Margin="0,30,0,0">
+            <Grid x:Name="webcamimagePage_ContentGrid" RenderTransformOrigin="0.5,0.5" Margin="0,30,0,0" Background="Black">
                 <Grid.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -1401,7 +1480,7 @@
                 </Grid.RenderTransform>
 
                 <!-- Action bar -->
-                <Grid x:Name="webcamPage_ActionBar" Height="45" VerticalAlignment="Top" Background="#FF0B0B0B">
+                <Grid x:Name="webcamPage_ActionBar" Height="45" VerticalAlignment="Top" Background="Black">
 
                     <StackPanel Orientation="Horizontal" Margin="0,0,5,0">
                         <Button x:Name="webcamPage_ActionBar_menuButton" FontFamily="Segoe MDL2 Assets" FontSize="16" Style="{DynamicResource ActionBarButtonStyle}" Click="webcamPage_ActionBar_menuButton_Click">&#xE700;</Button>
@@ -1655,7 +1734,7 @@
 
         </Grid>
 
-        <Grid x:Name="settingsPage" Background="White" RenderTransformOrigin="0.5,0.5"
+        <Grid x:Name="settingsPage" Background="{DynamicResource res_SettingsPageBackground}" RenderTransformOrigin="0.5,0.5"
               Visibility="Collapsed">
             <Grid.RenderTransform>
                 <TransformGroup>
@@ -1679,11 +1758,11 @@
                 <Grid x:Name="settingsPage_ActionBar" Height="50" VerticalAlignment="Top" Background="#fff39c12" Visibility="Collapsed">
                 </Grid>
 
-                <!-- New Action bar -->
-                <Grid x:Name="settingsPage_newActionBar" Height="50" VerticalAlignment="Top" Background="White" Visibility="Visible">
+                <!-- New "Action bar" -->
+                <Grid x:Name="settingsPage_newActionBar" Height="50" VerticalAlignment="Top" Background="{DynamicResource res_SettingsPageBackground}" Visibility="Visible">
                     <StackPanel Orientation="Horizontal">
-                        <Button x:Name="settingsPage_ActionBar_backButton" Foreground="Black" FontFamily="Segoe MDL2 Assets" FontSize="16" Style="{DynamicResource ActionBarButtonStyle_Light}" Click="settingsPage_ActionBar_backButton_Click" Visibility="Collapsed">&#xE0A6;</Button>
-                        <Label HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontWeight="SemiBold" FontSize="14" Margin="15,5,0,0">SETTINGS</Label>
+                        <Button x:Name="settingsPage_ActionBar_backButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" FontFamily="Segoe MDL2 Assets" FontSize="16" Style="{DynamicResource ActionBarButtonStyle_Light}" Click="settingsPage_ActionBar_backButton_Click" Visibility="Collapsed">&#xE0A6;</Button>
+                        <Label HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{DynamicResource res_SettingsPageTextForeground}" FontWeight="SemiBold" FontSize="14" Margin="15,5,0,0">SETTINGS</Label>
                     </StackPanel>
                 </Grid>
 
@@ -1695,7 +1774,7 @@
                     <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
                         <StackPanel Orientation="Vertical">
 
-                            <Button x:Name="settingsPage_MainPage_WebcamEditorButton" Foreground="Black" Margin="0,5,0,5" Width="250" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_WebcamEditorButton_Click">
+                            <Button x:Name="settingsPage_MainPage_WebcamEditorButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" Margin="0,5,0,5" Width="250" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_WebcamEditorButton_Click">
                                 <Grid>
 
                                     <Grid.ColumnDefinitions>
@@ -1715,7 +1794,8 @@
                                 </Grid>
                             </Button>
 
-                            <Button x:Name="settingsPage_MainPage_UserInterfaceButton" Foreground="Black" Margin="0,0,0,5" Width="250" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_UserInterfaceButton_Click">
+                            <Button x:Name="settingsPage_MainPage_UserInterfaceButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" Margin="0,0,0,5" Width="250" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_UserInterfaceButton_Click">
+
                                 <Grid>
 
                                     <Grid.ColumnDefinitions>
@@ -1738,7 +1818,7 @@
 
                             </Button>
 
-                            <Button x:Name="settingsPage_MainPage_AboutButton" Foreground="Black" Margin="0,0,0,5" Width="250" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_AboutButton_Click">
+                            <Button x:Name="settingsPage_MainPage_AboutButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" Margin="0,0,0,5" Width="250" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_AboutButton_Click">
                                 <Grid>
 
                                     <Grid.ColumnDefinitions>
@@ -1760,7 +1840,7 @@
                                 </Grid>
                             </Button>
 
-                            <Button x:Name="settingsPage_MainPage_DefaultConfigDebugButton" Foreground="Black" Margin="0,0,0,5" HorizontalContentAlignment="Center" Width="250" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_DefaultConfigDebugButton_Click">
+                            <Button x:Name="settingsPage_MainPage_DefaultConfigDebugButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" Margin="0,0,0,5" HorizontalContentAlignment="Center" Width="250" Style="{DynamicResource SettingsPage_MainPageButton}" Click="settingsPage_MainPage_DefaultConfigDebugButton_Click">
                                 <Grid>
 
                                     <Grid.ColumnDefinitions>
@@ -1788,27 +1868,27 @@
                 </Grid>
 
 
-                <Grid x:Name="settingsPage_WebcamEditorPage" Margin="0,0,0,0" Grid.Column="1"
+                <Grid x:Name="settingsPage_WebcamEditorPage" Margin="0,0,0,0" Grid.Column="1" Background="{DynamicResource res_SettingsPageBackground}"
                       Visibility="Collapsed">
 
                     <!-- Content -->
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                        <Grid Margin="10,10,10,10">
+                        <Grid x:Name="settingsPage_WebcamEditorPage_ContentGrid" Margin="10,40,10,10" Background="{DynamicResource res_SettingsPageBackground}">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="25"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <Label FontFamily="Segoe UI Light" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2">Webcams</Label>
+                            <Label FontFamily="Segoe UI Light" Foreground="{DynamicResource res_SettingsPageTextForeground}" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2">Webcams</Label>
 
                             <StackPanel x:Name="WebcamEditor_EditorGrid" Margin="0,40,0,0" Grid.Column="1">
 
-                                <Label FontWeight="Normal" HorizontalAlignment="Center">Webcam names</Label>
-                                <TextBox x:Name="WebcamEditor_NamesBox" MaxWidth="600" AcceptsReturn="True" FontSize="16" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="WebcamEditor_Boxes_TextChanged"/>
+                                <Label FontWeight="Normal" Foreground="{DynamicResource res_SettingsPageTextForeground}" HorizontalAlignment="Center">Webcam names</Label>
+                                <TextBox x:Name="WebcamEditor_NamesBox" Background="{DynamicResource res_SettingsPageBackground}" Foreground="{DynamicResource res_SettingsPageTextForeground}" MaxWidth="600" AcceptsReturn="True" FontSize="16" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="WebcamEditor_Boxes_TextChanged"/>
 
-                                <Label FontWeight="Normal" HorizontalAlignment="Center">Webcam URLs</Label>
-                                <TextBox x:Name="WebcamEditor_UrlsBox" MaxWidth="600" AcceptsReturn="True" FontSize="16" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="WebcamEditor_Boxes_TextChanged"/>
+                                <Label FontWeight="Normal" Foreground="{DynamicResource res_SettingsPageTextForeground}" HorizontalAlignment="Center">Webcam URLs</Label>
+                                <TextBox x:Name="WebcamEditor_UrlsBox" Background="{DynamicResource res_SettingsPageBackground}" Foreground="{DynamicResource res_SettingsPageTextForeground}" MaxWidth="600" AcceptsReturn="True" FontSize="16" ScrollViewer.VerticalScrollBarVisibility="Auto" TextChanged="WebcamEditor_Boxes_TextChanged"/>
 
                                 <Button x:Name="WebcamEditor_SaveButton" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,22,20,0" Width="150" Height="35" Click="WebcamEditor_SaveButton_Click" Style="{DynamicResource UWPButtonStyle}">Save changes</Button>
 
@@ -1830,10 +1910,10 @@
                     </ScrollViewer>
 
                     <!-- Action bar -->
-                    <Grid x:Name="settingsPage_WebcamEditorPage_ActionBar" Height="50" VerticalAlignment="Top" Visibility="Visible">
+                    <Grid x:Name="settingsPage_WebcamEditorPage_ActionBar" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Visible">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button x:Name="settingsPage_WebcamEditorPage_ActionBar_resetconfigurationButton" Foreground="Black" Style="{StaticResource ActionBarButtonStyle_Light}" FontFamily="Segoe MDL2 Assets" FontSize="16" ToolTip="Reset configuration" Click="settingsPage_WebcamEditorPage_ActionBar_resetconfigurationButton_Click" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">&#xE777;</Button>
-                            <Button x:Name="settingsPage_WebcamEditorPage_ActionBar_moreButton" Foreground="Black" Style="{DynamicResource ActionBarButtonStyle_Light}" ToolTip="More..." FontFamily="Segoe MDL2 Assets" FontSize="16" Click="settingsPage_WebcamEditorPage_ActionBar_moreButton_Click">&#xE10C;
+                            <Button x:Name="settingsPage_WebcamEditorPage_ActionBar_resetconfigurationButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" Style="{StaticResource ActionBarButtonStyle_Light}" FontFamily="Segoe MDL2 Assets" FontSize="16" ToolTip="Reset configuration" Click="settingsPage_WebcamEditorPage_ActionBar_resetconfigurationButton_Click" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">&#xE777;</Button>
+                            <Button x:Name="settingsPage_WebcamEditorPage_ActionBar_moreButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" Style="{DynamicResource ActionBarButtonStyle_Light}" ToolTip="More..." FontFamily="Segoe MDL2 Assets" FontSize="16" Click="settingsPage_WebcamEditorPage_ActionBar_moreButton_Click">&#xE10C;
                             </Button>
                         </StackPanel>
                     </Grid>
@@ -1867,9 +1947,89 @@
 
                     </Grid>
 
+                    <!-- UI blocking -->
+                    <Rectangle x:Name="settingsPage_WebcamEditorPage_UIBlocking" Fill="#00000000" Visibility="Collapsed">
+
+                    </Rectangle>
+
+                    <!-- Menu bar -->
+                    <Grid x:Name="settingsPage_WebcamEditorPage_menuBarGrid" Grid.ColumnSpan="2" Height="30" VerticalAlignment="Top">
+
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="settingsPage_WebcamEditorPage_menubarGrid_ConfigurationMenuBarItem" Click="settingsPage_WebcamEditorPage_menubarGrid_ConfigurationMenuBarItem_Click" Style="{DynamicResource menubarButtonStyle}">Configuration</Button>
+                            <Button x:Name="settingsPage_WebcamEditorPage_menubarGrid_HelpMenuBarItem" Style="{DynamicResource menubarButtonStyle}" Click="settingsPage_WebcamEditorPage_menubarGrid_HelpMenuBarItem_Click">Help</Button>
+                        </StackPanel>
+
+                    </Grid>
+
+                    <!-- Menu bar menus -->
+                    <Grid x:Name="settingsPage_WebcamEditorPage_menuBar_ConfigurationMenu" Width="300" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,30,0,0"
+                          Visibility="Collapsed">
+
+                        <Border>
+                            <Border.Effect>
+                                <BlurEffect Radius="10"/>
+                            </Border.Effect>
+                            <Border.Background>
+                                <VisualBrush Visual="{Binding ElementName=settingsPage_WebcamEditorPage_ContentGrid}" AlignmentX="Left" AlignmentY="Top" Stretch="None" Viewbox="-0.0195,-0.0171,1,1"/>
+                            </Border.Background>
+                        </Border>
+
+                        <Rectangle Fill="#70FFFFFF" />
+
+                        <Border BorderBrush="#3F000000" BorderThickness="1"/>
+
+                        <StackPanel>
+                            <Button Style="{DynamicResource menubar_menuButtonStyle}">Reset configuration</Button>
+
+                            <Rectangle Height="2" Fill="#2F000000" />
+
+                            <Button Style="{DynamicResource menubar_menuButtonStyle}">Load a configuration file...</Button>
+                            <Button Style="{DynamicResource menubar_menuButtonStyle}">Export current configuration to a file...</Button>
+
+                            <Rectangle Height="2" Fill="#2F000000" />
+
+                            <Button Style="{DynamicResource menubar_menuButtonStyle}">Reset default customizations</Button>
+
+                            <Rectangle Height="2" Fill="#2F000000" />
+
+                            <Button Style="{DynamicResource menubar_menuButtonStyle}">Debug - View configuration</Button>
+
+                        </StackPanel>
+
+                    </Grid>
+
+                    <Grid x:Name="settingsPage_WebcamEditorPage_menuBar_HelpMenu" Width="300" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="105,30,0,0"
+                          Visibility="Collapsed">
+
+                        <Border>
+                            <Border.Effect>
+                                <BlurEffect Radius="10"/>
+                            </Border.Effect>
+                            <Border.Background>
+                                <VisualBrush Visual="{Binding ElementName=settingsPage_WebcamEditorPage_ContentGrid}" AlignmentX="Left" AlignmentY="Top" Stretch="None" Viewbox="-0.0195,-0.0171,1,1"/>
+                            </Border.Background>
+                        </Border>
+
+                        <Rectangle Fill="#70FFFFFF" />
+
+                        <Border BorderBrush="#3F000000" BorderThickness="1"/>
+
+                        <StackPanel>
+
+                            <Button Style="{DynamicResource menubar_menuButtonStyle}">Webcam editor help</Button>
+
+                            <Rectangle Height="2" Fill="#2F000000" />
+
+                            <Button Style="{DynamicResource menubar_menuButtonStyle}">Show the introduction to Webcam Viewer</Button>
+
+                        </StackPanel>
+
+                    </Grid>
+
                 </Grid>
 
-                <Grid x:Name="settingsPage_UserInterfacePage" Margin="0,0,0,0" Background="White" Grid.Column="1"
+                <Grid x:Name="settingsPage_UserInterfacePage" Margin="0,0,0,0" Background="{DynamicResource res_SettingsPageBackground}" Grid.Column="1"
                       Visibility="Collapsed">
 
                     <!-- Content -->
@@ -1878,13 +2038,13 @@
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <StackPanel>
 
-                                <Label FontFamily="Segoe UI Light" FontSize="20">User interface</Label>
+                                <Label FontFamily="Segoe UI Light" Foreground="{DynamicResource res_SettingsPageTextForeground}" FontSize="20">User interface</Label>
 
                                 <Label Foreground="{DynamicResource res_accentForeground}" Content="Effects &amp; personalization"></Label>
                                 <Rectangle Height="2" Margin="3" Fill="{DynamicResource res_accentForeground}" />
 
                                 <!-- Image blur effect toggle -->
-                                <Button x:Name="settingsPage_UserInterfacePage_ImageBlurToggleButton" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_ImageBlurToggleButton_Click">
+                                <Button x:Name="settingsPage_UserInterfacePage_ImageBlurToggleButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_ImageBlurToggleButton_Click">
 
                                     <Grid>
 
@@ -1912,7 +2072,7 @@
                                 </Button>
 
                                 <!-- Menu blurbehind effect toggle -->
-                                <Button x:Name="settingsPage_UserInterfacePage_MenuBlurBehindButton" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_MenuBlurBehindButton_Click">
+                                <Button x:Name="settingsPage_UserInterfacePage_MenuBlurBehindButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_MenuBlurBehindButton_Click">
 
                                     <Grid>
 
@@ -1943,7 +2103,7 @@
                                 </Button>
 
                                 <!-- Accent color button -->
-                                <Button x:Name="settingsPage_UserInterfacePage_AccentColorEditorButton" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_ActionBar_moreButton_Click">
+                                <Button x:Name="settingsPage_UserInterfacePage_AccentColorEditorButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_ActionBar_moreButton_Click">
 
                                     <Grid>
 
@@ -1969,7 +2129,7 @@
                                 </Button>
 
                                 <!-- Image sizing mode button -->
-                                <Button x:Name="settingsPage_UserInterfacePage_ImageSizingButton" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_ImageSizingButton_Click">
+                                <Button x:Name="settingsPage_UserInterfacePage_ImageSizingButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_ImageSizingButton_Click">
 
                                     <Grid>
 
@@ -1998,7 +2158,7 @@
                                 <Rectangle Height="2" Margin="3" Fill="{DynamicResource res_accentForeground}" />
 
                                 <!-- Autosize window toggle-->
-                                <Button x:Name="settingsPage_UserInterfacePage_AutosizeToggleButton" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_AutosizeToggleButton_Toggle_Click">
+                                <Button x:Name="settingsPage_UserInterfacePage_AutosizeToggleButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_AutosizeToggleButton_Toggle_Click">
 
                                     <Grid>
 
@@ -2029,7 +2189,7 @@
                                 <Rectangle Height="2" Margin="3" Fill="{DynamicResource res_accentForeground}" />
 
                                 <!-- Show color on titlebar in Settings button-->
-                                <Button x:Name="settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton_Click">
+                                <Button x:Name="settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton" Foreground="{DynamicResource res_SettingsPageTextForeground}" Margin="5,12,5,0" HorizontalContentAlignment="Stretch" Padding="0,10,0,10" Style="{DynamicResource DebugmenuButtonStyle_Light}" Height="Auto" Click="settingsPage_UserInterfacePage_SettingsShowColorOnTitlebarButton_Click">
 
                                     <Grid>
 
@@ -2063,7 +2223,7 @@
 
                 </Grid>
 
-                <Grid x:Name="settingsPage_AboutPage" Margin="0,0,0,0" Grid.Column="1" Background="White"
+                <Grid x:Name="settingsPage_AboutPage" Margin="0,0,0,0" Grid.Column="1" Background="{DynamicResource res_SettingsPageBackground}"
                       Visibility="Collapsed">
 
                     <!--
@@ -2105,14 +2265,14 @@
 
                         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
 
-                            <Label Foreground="Black" FontSize="42">
+                            <Label Foreground="{DynamicResource res_SettingsPageTextForeground}" FontSize="42">
                                 <TextBlock Text="Webcam Viewer">
                                     <!-- <TextBlock.Effect>
                                         <DropShadowEffect Direction="320" BlurRadius="15" ShadowDepth="10" Opacity="0.3"/>
                                     </TextBlock.Effect> -->
                                 </TextBlock>
                             </Label>
-                            <Label Foreground="Black" FontSize="16">
+                            <Label Foreground="{DynamicResource res_SettingsPageTextForeground}" FontSize="16">
                                 <TextBlock Text="A simple application designed to look at online cameras.">
                                     <!-- <TextBlock.Effect>
                                         <DropShadowEffect Direction="320" BlurRadius="23" ShadowDepth="12"/>
@@ -2120,7 +2280,7 @@
                                 </TextBlock>
                             </Label>
 
-                            <Label Margin="0,50,0,0" Background="#00000000" Foreground="#FF666666">
+                            <Label Margin="0,50,0,0" Background="#00000000" Foreground="{DynamicResource res_SettingsPageTextForeground_Secondary}">
                                 <TextBlock>
                                     Technical information:
                                     <LineBreak/>
@@ -2147,14 +2307,14 @@
 
                 </Grid>
 
-                <Grid x:Name="settingsPage_DefaultConfigurationDebugPage" Grid.Column="1" Background="White"
+                <Grid x:Name="settingsPage_DefaultConfigurationDebugPage" Grid.Column="1" Background="{DynamicResource res_SettingsPageBackground}"
                       Visibility="Collapsed">
 
                     <!-- Content -->
                     <Grid Margin="0,0,0,0">
 
                         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
-                            <Label x:Name="settingsPage_DefaultConfigurationDebugPage_MainLabel" FontFamily="Consolas" FontSize="14" Visibility="Collapsed" />
+                            <Label x:Name="settingsPage_DefaultConfigurationDebugPage_MainLabel" Foreground="{DynamicResource res_SettingsPageTextForeground}" FontFamily="Consolas" FontSize="14" Visibility="Collapsed" />
                         </ScrollViewer>
 
                         <Controls:ProgressRing x:Name="settingsPage_DefaultConfigurationDebugPage_progressring" Foreground="{DynamicResource res_accentForeground}" Width="60" Height="60" EllipseDiameterScale="0.80" Visibility="Collapsed"/>
@@ -2277,7 +2437,7 @@
 
             </Grid>
 
-            <Rectangle x:Name="settings_rectangle" Fill="#ffd17a00" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top" />
+            <Rectangle x:Name="settings_rectangle" Fill="{DynamicResource res_SettingsPageBackground}" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top" />
             <Rectangle x:Name="settings_rectangle_dim" Fill="#00000000" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top" />
 
             <!-- Dim -->
@@ -2352,8 +2512,8 @@
 
         </Grid>
 
-        <Grid x:Name="updatingPage" Background="#FF333333"
-              Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="updatingPage" Background="Black" RenderTransformOrigin="0.5,0.5"
+              Visibility="Collapsed">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -2363,16 +2523,21 @@
                 </TransformGroup>
             </Grid.RenderTransform>
 
-            <Rectangle Fill="#20000000" VerticalAlignment="Top" Height="{Binding ElementName=titlebarGrid, Path=Height}" />
+            <!-- Content -->
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,200,0,0">
 
-            <StackPanel Margin="0,30,0,0">
+                <StackPanel>
 
-                <Label Foreground="White" FontFamily="Segoe UI Semilight" FontSize="28" Margin="20,40,0,0" HorizontalAlignment="Left">Updating Webcam Viewer...</Label>
-                <Label Foreground="White" Margin="23,5,0,0" HorizontalAlignment="Left">This should only take a few seconds...</Label>
+                    <Label Foreground="{DynamicResource res_accentBackground}" FontFamily="Segoe UI Semilight" FontSize="28" HorizontalAlignment="Center">Webcam Viewer is updating...</Label>
+                    <Label Foreground="{DynamicResource res_accentForeground_Secondary}" Margin="0,5,0,0" HorizontalAlignment="Center">This should only take a few seconds...</Label>
 
-                <Controls:MetroProgressBar Foreground="White" Background="#1FFFFFFF" Margin="28,20,0,0" HorizontalAlignment="Left" Width="350" IsIndeterminate="True" />
+                    <Controls:MetroProgressBar Foreground="{DynamicResource res_accentForeground_Secondary}" Background="#1FFFFFFF" Margin="0,20,0,0" HorizontalAlignment="Center" Width="350" IsIndeterminate="True" />
 
-            </StackPanel>
+                </StackPanel>
+
+            </Grid>
+
+            <Rectangle Fill="Black" VerticalAlignment="Top" Height="{Binding ElementName=titlebarGrid, Path=Height}" />
 
         </Grid>
 
@@ -2428,5 +2593,5 @@
         </StackPanel>
 
     </Grid>
-
+    
 </Controls:MetroWindow>

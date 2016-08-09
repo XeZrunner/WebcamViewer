@@ -33,11 +33,6 @@ namespace WebcamViewer
 
             settingsPage_UserInterfacePage_ImageBlurToggleButton_Toggle.OnSwitchBrush.Opacity = 0.7;
 
-            if (!DISABLE_WEBCAMEDITOR)
-                settingsPage_MainPage_WebcamEditorButton_Click(this, new RoutedEventArgs());
-            else
-                settingsPage_MainPage_UserInterfaceButton_Click(this, new RoutedEventArgs());
-
             archivebrowser.ProgressChanged += archivebrowser_ProgressChanged;
             archivebrowser.DocumentCompleted += Archivebrowser_DocumentCompleted;
 
@@ -191,6 +186,16 @@ namespace WebcamViewer
             {
                 infoButton.ToolTip = null;
             }
+
+
+            if (UI_SETTINGSPAGE_THEME == 1)
+            {
+                this.Resources["res_SettingsPageBackground"] = new SolidColorBrush(Color.FromRgb(45, 45, 45));
+                this.Resources["res_SettingsPageTextForeground"] = new SolidColorBrush(Colors.White);
+                this.Resources["res_SettingsPageTextForeground_Secondary"] = new SolidColorBrush(Colors.LightGray);
+            }
+
+
         }
 
         /// <summary>
@@ -217,6 +222,7 @@ namespace WebcamViewer
         bool HEARTBEAT_CONFIGCHANGED = true;
 
         bool UI_SETTINGSPAGE_SHOWACCENTCOLOR = false;
+        int UI_SETTINGSPAGE_THEME = 0; // 0 = Light | 1 = Dark
 
         int SETTINGS_LAST_CAMERA = 0;
 
@@ -346,6 +352,7 @@ namespace WebcamViewer
         {
             SolidColorBrush backgroundcolor = (SolidColorBrush)FindResource("res_Background" + accentcolor.ToString());
             SolidColorBrush foregroundcolor = (SolidColorBrush)FindResource("res_Foreground" + accentcolor.ToString());
+            SolidColorBrush foregroundcolor_secondary = (SolidColorBrush)FindResource("res_Foreground" + accentcolor.ToString() + "_Secondary");
 
             if (accentcolor == 5)
             {
@@ -355,6 +362,7 @@ namespace WebcamViewer
 
             this.Resources["res_accentBackground"] = new SolidColorBrush(backgroundcolor.Color);
             this.Resources["res_accentForeground"] = new SolidColorBrush(foregroundcolor.Color);
+            this.Resources["res_accentForeground_Secondary"] = new SolidColorBrush(foregroundcolor_secondary.Color);
 
             int lastSettingsPage = 0;
 
@@ -967,11 +975,28 @@ namespace WebcamViewer
             titlebar_backButton.Visibility = Visibility.Collapsed;
         }
 
+        private void webcamPage_menu_debugmenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            SwitchToPage(2);
+        }
+
+        bool launch_firstPageButtonClicked = false;
         private void webcamPage_menu_settingsButton_Click(object sender, RoutedEventArgs e)
         {
             SwitchToPage(1);
 
+            if (launch_firstPageButtonClicked == false)
+            {
+                launch_firstPageButtonClicked = true;
+
+                if (!DISABLE_WEBCAMEDITOR)
+                    settingsPage_MainPage_WebcamEditorButton_Click(this, new RoutedEventArgs());
+                else
+                    settingsPage_MainPage_UserInterfaceButton_Click(this, new RoutedEventArgs());
+            }
+
             settingsPage_UserInterfacePage_AccentColorCancelButton_Click(this, new RoutedEventArgs());
+            settingsPage_UserInterfacePage_ImageSizingCancelButton_Click(this, new RoutedEventArgs());
 
             int settingsPage_lastcameraCounter = 0;
 
@@ -982,11 +1007,6 @@ namespace WebcamViewer
                 else
                     settingsPage_lastcameraCounter++;
             }
-        }
-
-        private void webcamPage_menu_debugmenuButton_Click(object sender, RoutedEventArgs e)
-        {
-            SwitchToPage(2);
         }
 
         #endregion
@@ -2003,11 +2023,25 @@ namespace WebcamViewer
         {
             if (Properties.Settings.Default.settings_showaccentcolor == false)
             {
-                settings_rectangle.Fill = new SolidColorBrush(Colors.White);
+                //settings_rectangle.Fill = new SolidColorBrush(Colors.White);
+                //settings_rectangle_dim.Visibility = Visibility.Collapsed;
+
+                //Storyboard foregroundboard = (Storyboard)FindResource("titlebarToBlack");
+                //foregroundboard.Begin();
+
+                settings_rectangle.Fill = this.Resources["res_SettingsPageBackground"] as SolidColorBrush;
                 settings_rectangle_dim.Visibility = Visibility.Collapsed;
 
-                Storyboard foregroundboard = (Storyboard)FindResource("titlebarToBlack");
-                foregroundboard.Begin();
+                if (UI_SETTINGSPAGE_THEME == 1)
+                {
+                    Storyboard foregroundboard = (Storyboard)FindResource("titlebarToWhite");
+                    foregroundboard.Begin();
+                }
+                else
+                {
+                    Storyboard foregroundboard = (Storyboard)FindResource("titlebarToBlack");
+                    foregroundboard.Begin();
+                }
             }
             else
             {
@@ -2022,16 +2056,16 @@ namespace WebcamViewer
         void settingsPage_SetActiveButton(int button)
         {
             settingsPage_MainPage_WebcamEditorButton_rectangle.Visibility = Visibility.Hidden;
-            settingsPage_MainPage_WebcamEditorButton.Foreground = new SolidColorBrush(Colors.Black);
+            settingsPage_MainPage_WebcamEditorButton.Foreground = this.Resources["res_SettingsPageTextForeground"] as SolidColorBrush;
 
             settingsPage_MainPage_UserInterfaceButton_rectangle.Visibility = Visibility.Hidden;
-            settingsPage_MainPage_UserInterfaceButton.Foreground = new SolidColorBrush(Colors.Black);
+            settingsPage_MainPage_UserInterfaceButton.Foreground = this.Resources["res_SettingsPageTextForeground"] as SolidColorBrush;
 
             settingsPage_MainPage_AboutButton_rectangle.Visibility = Visibility.Hidden;
-            settingsPage_MainPage_AboutButton.Foreground = new SolidColorBrush(Colors.Black);
+            settingsPage_MainPage_AboutButton.Foreground = this.Resources["res_SettingsPageTextForeground"] as SolidColorBrush;
 
             settingsPage_MainPage_DefaultConfigDebugButton_rectangle.Visibility = Visibility.Hidden;
-            settingsPage_MainPage_DefaultConfigDebugButton.Foreground = new SolidColorBrush(Colors.Black);
+            settingsPage_MainPage_DefaultConfigDebugButton.Foreground = this.Resources["res_SettingsPageTextForeground"] as SolidColorBrush;
 
             switch (button)
             {
@@ -2271,5 +2305,43 @@ namespace WebcamViewer
         }
 
         #endregion
+
+        private void settingsPage_WebcamEditorPage_menubarGrid_ConfigurationMenuBarItem_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            if ( btn.Tag == null )
+            {
+                btn.Tag = "Pressed";
+                settingsPage_WebcamEditorPage_UIBlocking.Visibility = Visibility.Visible;
+
+                settingsPage_WebcamEditorPage_menuBar_ConfigurationMenu.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btn.Tag = null;
+                settingsPage_WebcamEditorPage_UIBlocking.Visibility = Visibility.Collapsed;
+
+                settingsPage_WebcamEditorPage_menuBar_ConfigurationMenu.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void settingsPage_WebcamEditorPage_menubarGrid_HelpMenuBarItem_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn.Tag == null)
+            {
+                btn.Tag = "Pressed";
+                settingsPage_WebcamEditorPage_UIBlocking.Visibility = Visibility.Visible;
+
+                settingsPage_WebcamEditorPage_menuBar_HelpMenu.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btn.Tag = null;
+                settingsPage_WebcamEditorPage_UIBlocking.Visibility = Visibility.Collapsed;
+
+                settingsPage_WebcamEditorPage_menuBar_HelpMenu.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }
