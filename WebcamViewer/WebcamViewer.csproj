@@ -42,8 +42,8 @@
     <ApplicationIcon>Resources\icon_white.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MahApps.Metro, Version=1.3.0.134, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.1.3.0-ALPHA134\lib\net45\MahApps.Metro.dll</HintPath>
+    <Reference Include="MahApps.Metro, Version=1.3.0.186, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.3.0-ALPHA186\lib\net45\MahApps.Metro.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -51,7 +51,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.1.3.0-ALPHA134\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.1.3.0-ALPHA186\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
@@ -74,17 +74,29 @@
     </ApplicationDefinition>
     <Compile Include="Configuration.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="ListViewDragDrop\DragAdorner.cs" />
+    <Compile Include="ListViewDragDrop\ListViewDragDropManager.cs" />
+    <Compile Include="ListViewDragDrop\MouseUtilities.cs" />
     <Compile Include="Popups.cs" />
-    <Compile Include="win10_AccentColors.cs" />
-    <Compile Include="ConfigurationEditorWindow.xaml.cs">
-      <DependentUpon>ConfigurationEditorWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ResetSettingsWindow.xaml.cs">
-      <DependentUpon>ResetSettingsWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Test_RippleButtonUserControl.xaml.cs">
       <DependentUpon>Test_RippleButtonUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User controls\settingsPage_NormalButton.xaml.cs">
+      <DependentUpon>settingsPage_NormalButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User controls\settingsPage_TabButton.xaml.cs">
+      <DependentUpon>settingsPage_TabButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User controls\webcamPage_menuGrid_CameraButton.xaml.cs">
+      <DependentUpon>webcamPage_menuGrid_CameraButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User controls\webcamPage_menuGrid_ShortcutButton.xaml.cs">
+      <DependentUpon>webcamPage_menuGrid_ShortcutButton.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ControlStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -97,19 +109,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ConfigurationEditorWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MessagedialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ResetSettingsWindow.xaml">
+    <Page Include="Test_RippleButtonUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Test_RippleButtonUserControl.xaml">
+    <Page Include="User controls\settingsPage_NormalButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\settingsPage_TabButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\webcamPage_menuGrid_CameraButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\webcamPage_menuGrid_ShortcutButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

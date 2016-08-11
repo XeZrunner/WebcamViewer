@@ -1,0 +1,140 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WebcamViewer" xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls">
+
+    <Style x:Key="titlebarButton" TargetType="{x:Type Button}">
+
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Width" Value="45"/>
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="Tag" Value=""/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Custom:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Custom:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+
+            <MultiTrigger>
+                <!-- Mouse over, closeButton -->
+
+                <MultiTrigger.Conditions>
+
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="Tag" Value="closeButton"/>
+
+                </MultiTrigger.Conditions>
+
+                <Setter Property="Background" Value="#E81123"/>
+
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <!-- Mouse over, normal -->
+
+                <MultiTrigger.Conditions>
+
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="Tag" Value=""/>
+
+                </MultiTrigger.Conditions>
+
+                <Setter Property="Background" Value="#1FFFFFFF"/>
+
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <!-- Mouse pressed, closeButton -->
+
+                <MultiTrigger.Conditions>
+
+                    <Condition Property="IsPressed" Value="True"/>
+                    <Condition Property="Tag" Value="closeButton"/>
+
+                </MultiTrigger.Conditions>
+
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="Background" Value="#FA3345"/>
+
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <!-- Mouse pressed, normal -->
+
+                <MultiTrigger.Conditions>
+
+                    <Condition Property="IsPressed" Value="True"/>
+                    <Condition Property="Tag" Value=""/>
+
+                </MultiTrigger.Conditions>
+
+                <Setter Property="Background" Value="#2FFFFFFF"/>
+
+            </MultiTrigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource GrayBrush2}"/>
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="webcamPage_menuGrid_CameraActionButtonStyle" TargetType="{x:Type Button}">
+
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="MinWidth" Value="10"/>
+        <Setter Property="Height" Value="32"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+
+                <ControlTemplate TargetType="{x:Type Button}">
+
+                    <Grid>
+                        <Border x:Name="Background" Background="{TemplateBinding Background}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{x:Null}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        <Border x:Name="DisabledVisualElement" Background="{DynamicResource ControlsDisabledBrush}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" Opacity="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <Rectangle x:Name="Rectangle" VerticalAlignment="Bottom" Fill="{DynamicResource accentcolor_light}" Height="2" Visibility="Hidden"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource accentcolor_light}"/>
+                            <Setter Property="Visibility" TargetName="Rectangle" Value="Visible"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource accentcolor_dark}"/>
+                            <Setter Property="Fill" TargetName="Rectangle" Value="{DynamicResource accentcolor_dark}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="DisabledVisualElement" Value="0.7"/>
+                            <Setter Property="Opacity" TargetName="PART_ContentPresenter" Value="0.3"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

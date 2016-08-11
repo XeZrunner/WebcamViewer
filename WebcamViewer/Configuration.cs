@@ -13,6 +13,7 @@ namespace WebcamViewer
 
     public class Configuration
     {
+        /*
         public string defaultconfig_file_URL = "https://raw.githubusercontent.com/XeZrunner/WebcamViewer/gh-pages/DefaultConfiguration.txt?dummy=" + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second + DateTime.Now.Millisecond;
 
         Properties.Settings Settings = Properties.Settings.Default;
@@ -325,5 +326,6 @@ namespace WebcamViewer
 
             return valueToReturn;
         }
+        */
     }
 }

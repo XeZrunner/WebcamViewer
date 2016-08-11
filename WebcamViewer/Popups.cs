@@ -14,6 +14,7 @@ namespace WebcamViewer
 
         public class MessageDialog
         {
+            
             MessagedialogWindow dialogWindow = new MessagedialogWindow();
 
             public string Title = "";
@@ -35,27 +36,27 @@ namespace WebcamViewer
 
             public void ShowDialog()
             {
-                dialogWindow.SetupDialog(
-                    Title,
-                    Content,
+                //dialogWindow.SetupDialog(
+                //    Title,
+                //    Content,
 
-                    IsDarkTheme,
+                //    IsDarkTheme,
 
-                    FirstButtonContent,
-                    SecondButtonContent,
-                    ThirdButtonContent,
+                //    FirstButtonContent,
+                //    SecondButtonContent,
+                //    ThirdButtonContent,
 
-                    IsFirstButtonEnabled,
-                    IsSecondButtonEnabled,
-                    IsThirdButtonEnabled,
+                //    IsFirstButtonEnabled,
+                //    IsSecondButtonEnabled,
+                //    IsThirdButtonEnabled,
 
-                    FirstButtonClickEvent,
-                    SecondButtonClickEvent,
-                    ThirdButtonClickEvent
-                    );
+                //    FirstButtonClickEvent,
+                //    SecondButtonClickEvent,
+                //    ThirdButtonClickEvent
+                //    );
 
-                dialogWindow.Owner = Application.Current.MainWindow;
-                dialogWindow.ShowDialog();
+                //dialogWindow.Owner = Application.Current.MainWindow;
+                //dialogWindow.ShowDialog();
 
             }
 
@@ -79,57 +80,57 @@ namespace WebcamViewer
                 dialogWindow.Close();
             }
 
-            public int ShowDialogWithResult()
-            {
-                dialogWindow.SetupDialog(
-                    Title,
-                    Content,
+            //public int ShowDialogWithResult()
+            //{
+            //    dialogWindow.SetupDialog(
+            //        Title,
+            //        Content,
 
-                    IsDarkTheme,
+            //        IsDarkTheme,
 
-                    FirstButtonContent,
-                    SecondButtonContent,
-                    ThirdButtonContent,
+            //        FirstButtonContent,
+            //        SecondButtonContent,
+            //        ThirdButtonContent,
 
-                    IsFirstButtonEnabled,
-                    IsSecondButtonEnabled,
-                    IsThirdButtonEnabled,
+            //        IsFirstButtonEnabled,
+            //        IsSecondButtonEnabled,
+            //        IsThirdButtonEnabled,
 
-                    ResultDialog_FirstButtonClickEvent,
-                    ResultDialog_SecondButtonClickEvent,
-                    ResultDialog_ThirdButtonClickEvent
-                    );
+            //        ResultDialog_FirstButtonClickEvent,
+            //        ResultDialog_SecondButtonClickEvent,
+            //        ResultDialog_ThirdButtonClickEvent
+            //        );
 
-                dialogWindow.Owner = Application.Current.MainWindow;
-                dialogWindow.ShowDialog();
+            //    dialogWindow.Owner = Application.Current.MainWindow;
+            //    dialogWindow.ShowDialog();
 
-                return ResultDialog_result;
-            }
+            //    return ResultDialog_result;
+            //}
 
-            public void Show()
-            {
-                dialogWindow.SetupDialog(
-                    Title,
-                    Content,
+            //public void Show()
+            //{
+            //    dialogWindow.SetupDialog(
+            //        Title,
+            //        Content,
 
-                    IsDarkTheme,
+            //        IsDarkTheme,
 
-                    FirstButtonContent,
-                    SecondButtonContent,
-                    ThirdButtonContent,
+            //        FirstButtonContent,
+            //        SecondButtonContent,
+            //        ThirdButtonContent,
 
-                    IsFirstButtonEnabled,
-                    IsSecondButtonEnabled,
-                    IsThirdButtonEnabled,
+            //        IsFirstButtonEnabled,
+            //        IsSecondButtonEnabled,
+            //        IsThirdButtonEnabled,
 
-                    FirstButtonClickEvent,
-                    SecondButtonClickEvent,
-                    ThirdButtonClickEvent
-                    );
+            //        FirstButtonClickEvent,
+            //        SecondButtonClickEvent,
+            //        ThirdButtonClickEvent
+            //        );
 
-                dialogWindow.Owner = Application.Current.MainWindow;
-                dialogWindow.Show();
-            }
+            //    dialogWindow.Owner = Application.Current.MainWindow;
+            //    dialogWindow.Show();
+            //}
 
             public void Close()
             {

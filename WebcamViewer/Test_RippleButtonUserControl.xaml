@@ -43,9 +43,6 @@
             <Ellipse.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
                 </TransformGroup>
             </Ellipse.RenderTransform>
         </Ellipse>
