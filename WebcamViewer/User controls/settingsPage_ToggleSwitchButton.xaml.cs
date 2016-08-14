@@ -18,28 +18,101 @@ using System.Windows.Threading;
 
 namespace WebcamViewer.User_controls
 {
-    public partial class settingsPage_NormalButton : UserControl
+    public partial class settingsPage_ToggleSwitchButton : UserControl
     {
-        public settingsPage_NormalButton()
+        public settingsPage_ToggleSwitchButton()
         {
             InitializeComponent();
 
             s = (Storyboard)FindResource("longMouseDownAnimation");
         }
 
-        private void usercontrol_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             grid.Width = this.ActualWidth * 2;
+
+            var s_WidthHeight = (EasingDoubleKeyFrame)this.Resources["s_WidthHeightKeyFrame"];
+            var s_Margin = (EasingThicknessKeyFrame)this.Resources["s_MarginKeyFrame"];
+
+            s_WidthHeight.Value = this.ActualWidth * 2;
+            s_Margin.Value = new Thickness(-this.ActualWidth);
         }
+
+        bool _IsToggleButton;
 
         public event RoutedEventHandler Click;
 
-        [Description("Text of the button"), Category("Appearance")]
-        public string Text
+        [Description("Title of the button"), Category("Common")]
+        public string Title
         {
-            get { return textTextBlock.Text; }
-            set { textTextBlock.Text = value; }
+            get { return titleTextBlock.Text; }
+            set { titleTextBlock.Text = value.ToUpper(); }
         }
+
+        [Description("Description of the button"), Category("Common")]
+        public string Description
+        {
+            get { return descriptionTextBlock.Text; }
+            set { descriptionTextBlock.Text = value; }
+        }
+
+        [Description("Active state of the toggle"), Category("Common")]
+        public bool IsActive
+        {
+            get { return toggle.IsActive; }
+            set { toggle.IsActive = value; }
+        }
+
+        [Description("Determines whether to display the toggle"), Category("Common")]
+        public bool IsToggleButton
+        {
+            get { return _IsToggleButton; }
+            set
+            {
+                _IsToggleButton = value;
+
+                if (_IsToggleButton == true)
+                {
+                    toggle.Visibility = Visibility.Visible;
+                    contentGrid_columnDefinition1.Width = new GridLength(100);
+                }
+                else
+                {
+                    toggle.Visibility = Visibility.Collapsed;
+                    contentGrid_columnDefinition1.Width = new GridLength(0);
+                }
+            }
+        }
+
+        [Description("The grid on the right side (only works with IsToggleButton being false, and only with one Grid)"), Category("Common")]
+        public Grid RightSideGrid
+        {
+            get { return (Grid)rightSide_GridContainer.Children[0]; }
+            set
+            {
+                if (_IsToggleButton == false)
+                {
+                    if (value != null)
+                    {
+                        rightSide_GridContainer.Visibility = Visibility.Visible;
+
+                        rightSide_GridContainer.Children.Clear();
+                        rightSide_GridContainer.Children.Add(value);
+
+                        contentGrid_columnDefinition1.Width = new GridLength(100);
+                    }
+                    else
+                    {
+                        rightSide_GridContainer.Visibility = Visibility.Collapsed;
+
+                        rightSide_GridContainer.Children.Clear();
+
+                        contentGrid_columnDefinition1.Width = new GridLength(0);
+                    }
+                }
+            }
+        }
+
 
         [Description("Ripple brush"), Category("Appearance")]
         public Brush RippleBrush
@@ -66,7 +139,7 @@ namespace WebcamViewer.User_controls
                 LongDowntimer.Stop();
 
                 translateX = e.MouseDevice.GetPosition(button).X - this.ActualWidth / 2;
-                translateY = e.MouseDevice.GetPosition(button).Y - 16 ;
+                translateY = e.MouseDevice.GetPosition(button).Y - this.ActualHeight / 2;
 
                 TranslateTransform myTranslate = new TranslateTransform();
                 myTranslate.X = translateX;
@@ -104,13 +177,16 @@ namespace WebcamViewer.User_controls
             {
                 TranslateTransform myTranslate = new TranslateTransform();
                 myTranslate.X = Mouse.GetPosition(button).X - this.ActualWidth / 2;
-                myTranslate.Y = Mouse.GetPosition(button).Y - 16;
+                myTranslate.Y = Mouse.GetPosition(button).Y - this.ActualHeight / 2;
 
                 ellipse.RenderTransform = myTranslate;
 
                 s.SpeedRatio = 3;
                 s.Begin();
             }
+
+            if (_IsToggleButton)
+                this.IsActive = !this.IsActive;
 
             //bubble the event up to the parent
             if (this.Click != null)
@@ -123,9 +199,9 @@ namespace WebcamViewer.User_controls
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 translateX = e.MouseDevice.GetPosition(button).X - this.ActualWidth / 2;
-                translateY = e.MouseDevice.GetPosition(button).Y - 16;
+                translateY = e.MouseDevice.GetPosition(button).Y - this.ActualHeight / 2;
 
-                if ((translateX >= (this.ActualWidth / 2) || translateX <= -(this.ActualWidth / 2)) || (translateY >= 16 || translateY <= -16))
+                if ((translateX >= this.ActualWidth / 2 || translateX <= -this.ActualWidth / 2) || (translateY >= this.ActualHeight / 2 || translateY <= -this.ActualHeight / 2))
                 {
                     s.SetSpeedRatio(4); return;
                 }

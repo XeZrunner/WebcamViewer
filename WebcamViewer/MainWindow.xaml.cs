@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -27,6 +28,7 @@ namespace WebcamViewer
         {
             InitializeComponent();
 
+            archivebrowser.ScriptErrorsSuppressed = true;
             archivebrowser.ProgressChanged += archivebrowser_ProgressChanged;
             archivebrowser.DocumentCompleted += Archivebrowser_DocumentCompleted;
         }
@@ -304,7 +306,10 @@ namespace WebcamViewer
 
             currentImageUri = new Uri(Properties.Settings.Default.camera_urls[Properties.Settings.Default.camera_urls.IndexOf(Url)]);
             webcamPage_menuGrid_cameraNameLabel.Text = Properties.Settings.Default.camera_names[(Properties.Settings.Default.camera_urls.IndexOf(Url))].ToUpper();
-            webcamPage_menuGrid_cameraNameLabel.Text = currentImageUri.ToString();
+            webcamPage_menuGrid_cameraUrlLabel.Text = currentImageUri.ToString();
+
+            webcamPage_menuGrid_cameraNameLabel.ToolTip = Properties.Settings.Default.camera_names[(Properties.Settings.Default.camera_urls.IndexOf(Url))];
+            webcamPage_menuGrid_cameraUrlLabel.ToolTip = webcamPage_menuGrid_cameraNameLabel.Text;
         }
 
         BitmapImage BitmapToImageSource(Bitmap bitmap)
@@ -324,6 +329,7 @@ namespace WebcamViewer
         }
 
         // image saving //
+
         #region Image saving
 
         WebClient Client = new WebClient();
@@ -482,6 +488,10 @@ namespace WebcamViewer
 
         #region Webcam editor page
 
+        ListViewDragDropManager<settingsPage_WebcamEditorPage_Camera> dragdropManager = new ListViewDragDropManager<settingsPage_WebcamEditorPage_Camera>();
+
+        bool settingsPage_WebcamEditorPage_createdDragDropManager = false;
+
         private void settingsPage_WebcamEditorPage_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (settingsPage_WebcamEditorPage_ListView_handleSelectionChange)
@@ -531,12 +541,10 @@ namespace WebcamViewer
                 settingsPage_WebcamEditorPage_ItemEditorGrid_Disabled.Visibility = Visibility.Collapsed;
             }
         }
-
         #endregion
 
         #endregion
 
-        /// <summary>
         /// Tab button Tags
         /// 0: Webcams
         /// 1: User interface
@@ -544,8 +552,6 @@ namespace WebcamViewer
         /// 3: Debug menu
         /// 4: Beta program settings
         /// 5: Default customizations debug
-        /// </summary>
-        /// 
 
         void settingsPage_leftGrid_TabButtonClick(object sender, RoutedEventArgs e)
         {
@@ -577,9 +583,13 @@ namespace WebcamViewer
             foreach (Grid page in settingsPage_PagesGrid.Children)
             {
                 if ((string)page.Tag == PageID.ToString())
+                {
                     page.Visibility = Visibility.Visible;
+                }
                 else
+                {
                     page.Visibility = Visibility.Collapsed;
+                }
             }
 
             // Page events
@@ -587,17 +597,22 @@ namespace WebcamViewer
         }
 
         /// <summary>
-        /// This function will (re)load the appropiate settings for the pages once they open or when a change was made by a function inside the page
+        /// This function (re)loads the appropiate settings for a page once it opens or when a change was made by a function inside the page.
         /// </summary>
         void settingsPage_DoPageEvents(int page)
         {
             switch (page)
             {
-                case 0:
+                case 0: // Webcam Editor
                     {
-                        var dragdropManager = new ListViewDragDropManager<settingsPage_WebcamEditorPage_Camera>(settingsPage_WebcamEditorPage_ListView);
+                        if (!settingsPage_WebcamEditorPage_createdDragDropManager)
+                        {
+                            dragdropManager = new ListViewDragDropManager<settingsPage_WebcamEditorPage_Camera>(settingsPage_WebcamEditorPage_ListView);
 
-                        dragdropManager.ProcessDrop += settingsPage_WebcamEditorPage_ListView_dragdropManager_ProcessDrop;
+                            dragdropManager.ProcessDrop += settingsPage_WebcamEditorPage_ListView_dragdropManager_ProcessDrop;
+
+                            settingsPage_WebcamEditorPage_createdDragDropManager = true;
+                        }
 
                         ObservableCollection<settingsPage_WebcamEditorPage_Camera> items = new ObservableCollection<settingsPage_WebcamEditorPage_Camera>();
 
@@ -606,10 +621,44 @@ namespace WebcamViewer
                             items.Add(new settingsPage_WebcamEditorPage_Camera() { Name = cameraname, Url = Properties.Settings.Default.camera_urls[Properties.Settings.Default.camera_names.IndexOf(cameraname)], SaveLocation = "null", RefreshRate = 0 });
                         }
 
+                        settingsPage_WebcamEditorPage_ListView_handleSelectionChange = false;
+
                         settingsPage_WebcamEditorPage_ListView.ItemsSource = items;
+
+                        settingsPage_WebcamEditorPage_ListView_handleSelectionChange = true;
 
                         // disable some stuff
                         settingsPage_WebcamEditorPage_ItemEditorGrid.Visibility = Visibility.Collapsed;
+
+                        break;
+                    }
+                case 1:
+                    {
+
+
+                        break;
+                    }
+                case 2:
+                    {
+
+
+                        break;
+                    }
+                case 3:
+                    {
+
+
+                        break;
+                    }
+                case 4:
+                    {
+
+
+                        break;
+                    }
+                case 5:
+                    {
+
 
                         break;
                     }
@@ -622,12 +671,12 @@ namespace WebcamViewer
 
         int current_page;
 
+        /// <summary>
+        /// Transition to a page with it's respective animation.
+        /// </summary>
+        /// <param name="page">0 = Home, 1 = Settings</param>
         void SwitchToPage(int page)
         {
-            /// Pages
-            /// 0: Webcam page
-            /// 1: Settings
-
             switch (page)
             {
                 case 0: // Webcam page
@@ -648,6 +697,8 @@ namespace WebcamViewer
                             backButton.Visibility = Visibility.Collapsed;
                         }
 
+                        SetTitlebarButtonsStyle(0);
+
                         break;
                     }
                 case 1: // Settings page
@@ -660,9 +711,48 @@ namespace WebcamViewer
                         webcamPage_menuButton.Visibility = Visibility.Collapsed;
                         backButton.Visibility = Visibility.Visible;
 
+                        SetTitlebarButtonsStyle(1);
+
                         break;
                     }
             }
+        }
+
+        /// <summary>
+        /// Sets the style of the titlebar buttons to a theme. Use when the theme changes.
+        /// </summary>
+        /// <param name="style">The theme to change the buttons to. 1 = Dark, 2 = Light</param>
+        void SetTitlebarButtonsStyle(int style)
+        {
+            // 0: Dark
+            // 1: Light
+
+            Style darkStyle = Application.Current.Resources["titlebarButton"] as Style;
+            Style lightStyle = Application.Current.Resources["titlebarButton_Light"] as Style;
+
+            Style styleToApply = null;
+
+            switch (style)
+            {
+                case 0:
+                    {
+                        styleToApply = darkStyle;
+                        break;
+                    }
+                case 1:
+                    {
+                        styleToApply = lightStyle;
+                        break;
+                    }
+            }
+
+            // Apply the style to the buttons
+            closeButton.Style = styleToApply;
+            maximizeButton.Style = styleToApply;
+            minimizeButton.Style = styleToApply;
+
+            backButton.Style = styleToApply;
+            webcamPage_menuButton.Style = styleToApply;
         }
 
         #endregion

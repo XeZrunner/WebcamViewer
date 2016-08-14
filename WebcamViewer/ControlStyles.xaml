@@ -65,8 +65,7 @@
 
                 </MultiTrigger.Conditions>
 
-                <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="Background" Value="#FA3345"/>
+                <Setter Property="Background" Value="#A40000"/>
 
             </MultiTrigger>
 
@@ -91,50 +90,178 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="webcamPage_menuGrid_CameraActionButtonStyle" TargetType="{x:Type Button}">
+    <Style x:Key="titlebarButton_Light" TargetType="{x:Type Button}">
 
         <Setter Property="Foreground" Value="White"/>
+        <!-- for the transitions -->
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontSize" Value="12"/>
-        <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
         <Setter Property="Padding" Value="10,5"/>
-        <Setter Property="MinWidth" Value="10"/>
-        <Setter Property="Height" Value="32"/>
+        <Setter Property="Width" Value="45"/>
+        <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+        <Setter Property="Tag" Value=""/>
 
         <Setter Property="Template">
             <Setter.Value>
-
                 <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Custom:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Custom:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
 
-                    <Grid>
-                        <Border x:Name="Background" Background="{TemplateBinding Background}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"/>
-                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{x:Null}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        <Border x:Name="DisabledVisualElement" Background="{DynamicResource ControlsDisabledBrush}" CornerRadius="{Binding (Controls:ControlsHelper.CornerRadius), Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" Opacity="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Rectangle x:Name="Rectangle" VerticalAlignment="Bottom" Fill="{DynamicResource accentcolor_light}" Height="2" Visibility="Hidden"/>
-                    </Grid>
+        <Style.Triggers>
 
+            <MultiTrigger>
+                <!-- Mouse over, closeButton -->
+
+                <MultiTrigger.Conditions>
+
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="Tag" Value="closeButton"/>
+
+                </MultiTrigger.Conditions>
+
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="#E81123"/>
+
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <!-- Mouse over, normal -->
+
+                <MultiTrigger.Conditions>
+
+                    <Condition Property="IsMouseOver" Value="True"/>
+                    <Condition Property="Tag" Value=""/>
+
+                </MultiTrigger.Conditions>
+
+                <Setter Property="Background" Value="#1F000000"/>
+
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <!-- Mouse pressed, closeButton -->
+
+                <MultiTrigger.Conditions>
+
+                    <Condition Property="IsPressed" Value="True"/>
+                    <Condition Property="Tag" Value="closeButton"/>
+
+                </MultiTrigger.Conditions>
+
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="#A40000"/>
+
+            </MultiTrigger>
+
+            <MultiTrigger>
+                <!-- Mouse pressed, normal -->
+
+                <MultiTrigger.Conditions>
+
+                    <Condition Property="IsPressed" Value="True"/>
+                    <Condition Property="Tag" Value=""/>
+
+                </MultiTrigger.Conditions>
+
+                <Setter Property="Background" Value="#2F000000"/>
+
+            </MultiTrigger>
+
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource GrayBrush2}"/>
+            </Trigger>
+
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="UWPButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="#FFC2C2C2"/>
+        <Setter Property="BorderBrush" Value="#FFC2C2C2"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="MinWidth" Value="180"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RenderTransformOrigin="0.5, 0.5">
+                        <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5, 0.5"/>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource accentcolor_light}"/>
-                            <Setter Property="Visibility" TargetName="Rectangle" Value="Visible"/>
+                            <Setter Property="BorderBrush" Value="#FF757575"/>
                         </Trigger>
-
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource accentcolor_dark}"/>
-                            <Setter Property="Fill" TargetName="Rectangle" Value="{DynamicResource accentcolor_dark}"/>
+                            <Setter Property="Background" Value="#FF919191"/>
+                            <Setter Property="BorderBrush" Value="#FF919191"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="RenderTransform" TargetName="Border">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
-
                         <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Opacity" TargetName="DisabledVisualElement" Value="0.7"/>
-                            <Setter Property="Opacity" TargetName="PART_ContentPresenter" Value="0.3"/>
+                            <Setter Property="Foreground" Value="{DynamicResource GrayBrush2}"/>
                         </Trigger>
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="UWPButtonStyle_Dark" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#FF606060"/>
+        <Setter Property="BorderBrush" Value="#FF606060"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="10,5"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="MinWidth" Value="180"/>
+        <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RenderTransformOrigin="0.5, 0.5">
+                        <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5, 0.5"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#FFA0A0A0"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#FF878787"/>
+                            <Setter Property="BorderBrush" Value="#FF6B6B6B"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="RenderTransform" TargetName="Border">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource GrayBrush2}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+
+        </Style.Triggers>
     </Style>
 
 </ResourceDictionary>

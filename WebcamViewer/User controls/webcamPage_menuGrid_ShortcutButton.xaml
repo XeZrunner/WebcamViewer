@@ -64,7 +64,7 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" PreviewMouseDown="Button_MouseDown" PreviewMouseUp="button_PreviewMouseUp" Click="button_Click" PreviewMouseMove="button_PreviewMouseMove" >
+    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" PreviewMouseDown="Button_MouseDown" PreviewMouseUp="button_PreviewMouseUp" Click="button_Click" PreviewMouseMove="button_PreviewMouseMove">
         <Grid>
 
             <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Height="40" Width="640" Margin="-320,0">

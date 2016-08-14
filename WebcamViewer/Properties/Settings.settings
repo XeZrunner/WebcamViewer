@@ -6,6 +6,7 @@
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;Michalovce - Námestie osloboditeľov 01 [SK]&lt;/string&gt;
+  &lt;string&gt;Michalovce - Námestie osloboditeľov 01 [raw] [SK]&lt;/string&gt;
   &lt;string&gt;Nowy Targ - Ugazdy - Kamera na Tatry [PL]&lt;/string&gt;
   &lt;string&gt;Glavmore (Camera 2) [RU]&lt;/string&gt;
   &lt;string&gt;Poprad - Funsat Meteo [SK]&lt;/string&gt;
@@ -17,6 +18,7 @@
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;http://www.michalovce.sk/webcam/michalovce.sk-camera-001.jpg&lt;/string&gt;
+  &lt;string&gt;http://46.150.192.118:8001/jpg/1/image.jpg&lt;/string&gt;
   &lt;string&gt;http://www.ugazdy.pl/kamerka/obrazek.jpg&lt;/string&gt;
   &lt;string&gt;http://static.glavmore.ru/cam/cam-1.jpg&lt;/string&gt;
   &lt;string&gt;http://funsat.sk.d.websupport.sk/webcam/funsat.jpg&lt;/string&gt;

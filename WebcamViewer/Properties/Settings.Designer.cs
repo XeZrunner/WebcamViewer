@@ -28,6 +28,7 @@ namespace WebcamViewer.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
   <string>Michalovce - Námestie osloboditeľov 01 [SK]</string>
+  <string>Michalovce - Námestie osloboditeľov 01 [raw] [SK]</string>
   <string>Nowy Targ - Ugazdy - Kamera na Tatry [PL]</string>
   <string>Glavmore (Camera 2) [RU]</string>
   <string>Poprad - Funsat Meteo [SK]</string>
@@ -48,6 +49,7 @@ namespace WebcamViewer.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
   <string>http://www.michalovce.sk/webcam/michalovce.sk-camera-001.jpg</string>
+  <string>http://46.150.192.118:8001/jpg/1/image.jpg</string>
   <string>http://www.ugazdy.pl/kamerka/obrazek.jpg</string>
   <string>http://static.glavmore.ru/cam/cam-1.jpg</string>
   <string>http://funsat.sk.d.websupport.sk/webcam/funsat.jpg</string>

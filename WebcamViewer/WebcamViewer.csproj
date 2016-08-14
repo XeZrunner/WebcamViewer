@@ -87,6 +87,15 @@
     <Compile Include="User controls\settingsPage_TabButton.xaml.cs">
       <DependentUpon>settingsPage_TabButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User controls\settingsPage_Toggle.xaml.cs">
+      <DependentUpon>settingsPage_Toggle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User controls\settingsPage_ToggleSwitchButton.xaml.cs">
+      <DependentUpon>settingsPage_ToggleSwitchButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User controls\webcamPage_menuGrid_CameraActionButton.xaml.cs">
+      <DependentUpon>webcamPage_menuGrid_CameraActionButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User controls\webcamPage_menuGrid_CameraButton.xaml.cs">
       <DependentUpon>webcamPage_menuGrid_CameraButton.xaml</DependentUpon>
     </Compile>
@@ -122,6 +131,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User controls\settingsPage_TabButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\settingsPage_Toggle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\settingsPage_ToggleSwitchButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\webcamPage_menuGrid_CameraActionButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

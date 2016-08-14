@@ -18,13 +18,18 @@ using System.Windows.Threading;
 
 namespace WebcamViewer.User_controls
 {
-    public partial class webcamPage_menuGrid_CameraButton : UserControl
+    public partial class webcamPage_menuGrid_CameraActionButton : UserControl
     {
-        public webcamPage_menuGrid_CameraButton()
+        public webcamPage_menuGrid_CameraActionButton()
         {
             InitializeComponent();
 
             s = (Storyboard)FindResource("longMouseDownAnimation");
+        }
+
+        private void usercontrol_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            grid.Width = this.ActualWidth * 2;
         }
 
         public event RoutedEventHandler Click;
@@ -33,7 +38,7 @@ namespace WebcamViewer.User_controls
         public string Text
         {
             get { return textTextBlock.Text; }
-            set { textTextBlock.Text = value; }
+            set { textTextBlock.Text = value.ToUpper(); }
         }
 
         [Description("Ripple brush"), Category("Appearance")]
@@ -60,8 +65,8 @@ namespace WebcamViewer.User_controls
             {
                 LongDowntimer.Stop();
 
-                translateX = e.MouseDevice.GetPosition(button).X - 160;
-                translateY = e.MouseDevice.GetPosition(button).Y - 15;
+                translateX = e.MouseDevice.GetPosition(button).X - this.ActualWidth / 2;
+                translateY = e.MouseDevice.GetPosition(button).Y - 16;
 
                 TranslateTransform myTranslate = new TranslateTransform();
                 myTranslate.X = translateX;
@@ -98,8 +103,8 @@ namespace WebcamViewer.User_controls
             if (!doneDownAnim)
             {
                 TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = Mouse.GetPosition(button).X - 160;
-                myTranslate.Y = Mouse.GetPosition(button).Y - 15;
+                myTranslate.X = Mouse.GetPosition(button).X - this.ActualWidth / 2;
+                myTranslate.Y = Mouse.GetPosition(button).Y - 16;
 
                 ellipse.RenderTransform = myTranslate;
 
@@ -117,10 +122,10 @@ namespace WebcamViewer.User_controls
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                translateX = e.MouseDevice.GetPosition(button).X - 160;
-                translateY = e.MouseDevice.GetPosition(button).Y - 15;
+                translateX = e.MouseDevice.GetPosition(button).X - this.ActualWidth / 2;
+                translateY = e.MouseDevice.GetPosition(button).Y - 16;
 
-                if ((translateX >= 160 || translateX <= -160) || (translateY >= 15 || translateY <= -15))
+                if ((translateX >= this.ActualWidth / 2 || translateX <= -this.ActualWidth / 2) || (translateY >= 16 || translateY <= -16))
                 {
                     s.SetSpeedRatio(4); return;
                 }
@@ -132,6 +137,5 @@ namespace WebcamViewer.User_controls
                 ellipse.RenderTransform = myTranslate;
             }
         }
-
     }
 }

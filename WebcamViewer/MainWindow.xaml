@@ -38,15 +38,15 @@
             </DoubleAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="closeButton">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
-                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="#FF2F2F2F"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="Black"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="maximizeButton">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
-                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="#FF2F2F2F"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="Black"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="minimizeButton">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
-                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="#FF2F2F2F"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="Black"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="titleLabel">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
@@ -54,11 +54,11 @@
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="webcamPage_menuButton">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
-                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="#FF2F2F2F"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="Black"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="backButton">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
-                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="#FF2F2F2F"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.6" Value="Black"/>
             </ColorAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="settingsPage">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
@@ -131,7 +131,7 @@
         <!-- Pages -->
 
         <Grid x:Name="webcamPage" Background="Black"
-              Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+              Visibility="Visible" RenderTransformOrigin="0.5,0.5">
             <Grid.Resources>
                 <Style TargetType="Label">
                     <Setter Property="Foreground" Value="White"/>
@@ -179,7 +179,7 @@
 
             <!-- Menu grid -->
             <Grid x:Name="webcamPage_menuGrid" Background="#00FFFFFF" HorizontalAlignment="Left" Width="320" ClipToBounds="True" RenderTransformOrigin="0.5, 0.5"
-                  Visibility="Hidden">
+                  Visibility="Collapsed">
 
                 <!-- Blurbehind -->
                 <Border x:Name="webcamPage_menuGrid_blurbehindBorder">
@@ -204,13 +204,14 @@
 
                     <StackPanel Grid.Row="0">
 
-                        <Grid x:Name="webcamPage_menuGrid_infoGrid" Height="112" Width="300" Margin="0,10,0,0" VerticalAlignment="Top">
+                        <Grid x:Name="webcamPage_menuGrid_infoGrid" Height="112" Width="300" Margin="0,10,0,0" VerticalAlignment="Top"> <!-- height with progresspanel is 157 -->
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="25"/>
                                 <RowDefinition Height="25"/>
                                 <RowDefinition Height="20"/>
                                 <RowDefinition Height="42"/>
+                                <RowDefinition Height="0"/> <!-- 45 -->
                             </Grid.RowDefinitions>
 
                             <TextBlock x:Name="webcamPage_menuGrid_cameraNameLabel" Grid.Row="0" VerticalAlignment="Center" FontFamily="Segoe UI Semibold">CAMERA NAME</TextBlock>
@@ -220,15 +221,20 @@
 
                             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                                <Button x:Name="webcamPage_menuGrid_localSaveButton" Style="{DynamicResource webcamPage_menuGrid_CameraActionButtonStyle}" Margin="0,0,5,0" Click="webcamPage_menuGrid_localSaveButton_Click">SAVE IMAGE</Button>
-                                <Button x:Name="webcamPage_menuGrid_BothSaveButton" Style="{DynamicResource webcamPage_menuGrid_CameraActionButtonStyle}" Margin="0,0,5,0" Width="10" Click="webcamPage_menuGrid_BothSaveButton_Click"></Button>
-                                <Button x:Name="webcampage_menuGrid_archiveorgSaveButton" Style="{DynamicResource webcamPage_menuGrid_CameraActionButtonStyle}" Click="webcampage_menuGrid_archiveorgSaveButton_Click">SAVE ON ARCHIVE.ORG</Button>
+                                <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="webcamPage_menuGrid_localSaveButton" Margin="0,0,5,0" Text="SAVE IMAGE" Click="webcamPage_menuGrid_localSaveButton_Click"/>
+                                <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="webcamPage_menuGrid_BothSaveButton" Margin="0,0,5,0" Width="10" Text="" Click="webcamPage_menuGrid_BothSaveButton_Click"/>
+                                <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="webcampage_menuGrid_archiveorgSaveButton" Text="SAVE ON ARCHIVE.ORG" Click="webcampage_menuGrid_archiveorgSaveButton_Click"/>
 
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Visibility="Collapsed">
+                                <Controls:ProgressRing Foreground="White" Width="30" Height="30" IsLarge="False" />
+                                <TextBlock VerticalAlignment="Center" Margin="15,0,0,0" FontSize="13.5">Downloading image...</TextBlock>
                             </StackPanel>
 
                         </Grid>
 
-                        <Rectangle Fill="#FF2C2C2C" Height="2" Margin="0,15,0,15" />
+                        <Rectangle Fill="#FF2C2C2C" Height="2" Margin="0,10,0,15" />
 
                         <!-- camera list -->
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
@@ -324,51 +330,131 @@
                                 <!-- Content -->
                                 <Grid x:Name="settingsPage_WebcamEditorPage_Content">
 
-                                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                                        <StackPanel Margin="10">
+                                    <Grid Margin="10">
 
-                                            <Label>Add, edit, remove and re-arrange cameras below</Label>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="53"/>
+                                        </Grid.RowDefinitions>
 
-                                            <ListView x:Name="settingsPage_WebcamEditorPage_ListView" Margin="0,10,0,0" SelectionChanged="settingsPage_WebcamEditorPage_ListView_SelectionChanged">
-                                                <ListView.View>
-                                                    <GridView>
-                                                        <GridViewColumn Header="Camera name" DisplayMemberBinding="{Binding Name}" />
-                                                        <GridViewColumn Header="Camera URL" DisplayMemberBinding="{Binding Url}" />
-                                                        <GridViewColumn Header="Save location" DisplayMemberBinding="{Binding SaveLocation}"/>
-                                                        <GridViewColumn Header="Refresh rate (seconds)" DisplayMemberBinding="{Binding RefreshRate}"/>
-                                                    </GridView>
-                                                </ListView.View>
-                                            </ListView>
-                                            
-                                            <!-- Item editor -->
-                                            <Grid x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid" Background="{DynamicResource settingsPage_backgroundSecondary3}" Margin="10,20,10,10">
+                                        <Label Grid.Row="0">Add, edit, remove and re-arrange cameras below</Label>
 
-                                                <Label x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid_Disabled" HorizontalAlignment="Center" Visibility="Collapsed">Save your changes to edit the cameras.</Label>
-                                                
-                                                <StackPanel x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid_Main">
+                                        <ListView Grid.Row="1" x:Name="settingsPage_WebcamEditorPage_ListView" Margin="0,10,0,0" SelectionChanged="settingsPage_WebcamEditorPage_ListView_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridViewColumn Header="Camera name" DisplayMemberBinding="{Binding Name}" />
+                                                    <GridViewColumn Header="Camera URL" DisplayMemberBinding="{Binding Url}" />
+                                                    <GridViewColumn Header="Save location" DisplayMemberBinding="{Binding SaveLocation}"/>
+                                                    <GridViewColumn Header="Refresh rate (seconds)" DisplayMemberBinding="{Binding RefreshRate}"/>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
 
-                                                    <Label>Camera name</Label>
-                                                    <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_NameTextBox"/>
+                                        <!-- Item editor -->
+                                        <Grid Grid.Row="2" x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid" Background="{DynamicResource settingsPage_backgroundSecondary3}" Margin="10,20,10,10"
+                                              Visibility="Visible">
 
-                                                    <Label Margin="0,5,0,0">Camera URL</Label>
-                                                    <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox"/>
+                                            <Label x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid_Disabled" HorizontalAlignment="Center" Visibility="Collapsed">Save your changes to edit the cameras.</Label>
 
-                                                    <Label Margin="0,5,0,0">Save location</Label>
-                                                    <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_SaveLocationTextBox"/>
+                                            <StackPanel x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid_Main">
 
-                                                    <Label Margin="0,5,0,0">Refresh rate (seconds)</Label>
-                                                    <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox"/>
+                                                <Label>Camera name</Label>
+                                                <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_NameTextBox"/>
 
-                                                </StackPanel>
-                                                
-                                            </Grid>
+                                                <Label Margin="0,5,0,0">Camera URL</Label>
+                                                <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox"/>
 
-                                            <usercontrols:settingsPage_NormalButton x:Name="settingsPage_WebcamEditorPage_SaveButton" Margin="0,10,20,0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="Save changes" Click="settingsPage_WebcamEditorPage_SaveButton_Click"/>
+                                                <Label Margin="0,5,0,0">Save location</Label>
+                                                <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_SaveLocationTextBox"/>
 
-                                        </StackPanel>
-                                    </ScrollViewer>
+                                                <Label Margin="0,5,0,0">Refresh rate (seconds)</Label>
+                                                <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox"/>
+
+                                            </StackPanel>
+
+                                        </Grid>
+
+                                        <usercontrols:settingsPage_NormalButton Grid.Row="3" x:Name="settingsPage_WebcamEditorPage_SaveButton" Margin="0,0,20,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Text="Save changes" Click="settingsPage_WebcamEditorPage_SaveButton_Click"/>
+
+                                    </Grid>
 
                                 </Grid>
+
+                            </Grid>
+
+                            <Grid x:Name="settingsPage_UserInterfacePage" Tag="1"
+                                  Visibility="Collapsed">
+
+                                <Controls:ProgressRing x:Name="settingsPage_UserInterfacePage_progressRing" Foreground="{DynamicResource accentcolor_dark}" EllipseDiameterScale="0.85" Visibility="Collapsed"/>
+
+                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                    <StackPanel Margin="10">
+
+                                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">USER INTERFACE</Label>
+
+                                        <!-- User interface -->
+                                        <StackPanel Margin="0,5,0,0">
+                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_UI_AccentColorButton" Title="Accent color" Description="The color to use throughout the user interface...&#x0a;Current color: %s" IsToggleButton="False">
+                                                <usercontrols:settingsPage_ToggleSwitchButton.RightSideGrid>
+                                                    <Grid>
+
+                                                        <StackPanel>
+                                                            <Rectangle Fill="{DynamicResource accentcolor_dark}" Width="30" Height="10" />
+                                                            <Rectangle Fill="{DynamicResource accentcolor_light}" Width="30" Height="20" />
+                                                        </StackPanel>
+
+                                                    </Grid>
+                                                </usercontrols:settingsPage_ToggleSwitchButton.RightSideGrid>
+                                            </usercontrols:settingsPage_ToggleSwitchButton>
+                                        </StackPanel>
+
+                                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">HOME</Label>
+
+                                        <!-- Home -->
+                                        <StackPanel Margin="0,5,0,0">
+                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_MenuBlurBehindToggleButton" Title="Menu blur behind" Description="Toggle the blurred background in the menu"/>
+                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_ArchiveOrgIntegrationToggleButton" Title="archive.org integration" Description="Allow saving the cameras to archive.org"/>
+                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_ImageSizingButton" Title="Image sizing" Description="Choose whether the image should stretch, fill or scale uniformly in the window...&#x0a;Current mode: %s" IsToggleButton="False"/>
+                                        </StackPanel>
+
+                                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">SETTINGS</Label>
+
+                                        <!-- Settings -->
+                                        <StackPanel Margin="0,5,0,0">
+                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_SettingsPage_ShowAccentColorOnTitlebarToggleButton" Title="Show accent color on titlebar (legacy)" Description="Shows the current accent color on the titlebar in the Settings"/>
+                                        </StackPanel>
+
+                                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">LEFTOVERS (WebcamViewer7-md)</Label>
+                                        <Label Foreground="Black" FontFamily="Segoe UI Semibold" FontSize="11" HorizontalAlignment="Left" Margin="10,0,0,0">No leftovers found. (0)</Label>
+
+                                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">DEVELOPMENT NOTES</Label>
+                                        <usercontrols:settingsPage_ToggleSwitchButton Title="Custom tabs for pages" Description="We'll put things like the archive.org integration of the Home page into it's own respective subpage on the left..." IsToggleButton="False"/>
+                                        <usercontrols:settingsPage_ToggleSwitchButton Title="Better settings pages (UNCERTAIN)" Description="Some kind of loading from a UI file or something for some of these..." IsToggleButton="False"/>
+
+                                    </StackPanel>
+                                </ScrollViewer>
+
+                            </Grid>
+
+                            <Grid x:Name="settingsPage_AboutPage" Tag="2"
+                                  Visibility="Collapsed">
+
+                            </Grid>
+
+                            <Grid x:Name="settingsPage_DebugMenuPage" Tag="3"
+                                  Visibility="Collapsed">
+
+                            </Grid>
+
+                            <Grid x:Name="settingsPage_BetaProgramSettingsPage" Tag="4"
+                                  Visibility="Collapsed">
+
+                            </Grid>
+
+                            <Grid x:Name="settingsPage_DefaultCustomizationsDebugPage" Tag="5"
+                                  Visibility="Collapsed">
 
                             </Grid>
 
@@ -392,7 +478,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Back button -->
-            <Button x:Name="backButton" Grid.Column="0" Style="{DynamicResource titlebarButton}" FontSize="13" Content="&#xe830;" Visibility="Collapsed" Click="backButton_Click"/>
+            <Button x:Name="backButton" Grid.Column="0" Style="{DynamicResource titlebarButton}" FontSize="13" Content="&#xe830;" Visibility="Collapsed" TextOptions.TextFormattingMode="Ideal" Click="backButton_Click"/>
 
             <!-- Menu button-->
             <Button x:Name="webcamPage_menuButton" Grid.Column="0" Style="{DynamicResource titlebarButton}" FontSize="13" Content="&#xe700;" Visibility="Collapsed" Click="webcamPage_menuButton_Click"/>
