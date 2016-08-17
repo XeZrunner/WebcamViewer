@@ -26,11 +26,15 @@ namespace WebcamViewer
     {
         public MainWindow()
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("hu-HU");
             InitializeComponent();
 
             archivebrowser.ScriptErrorsSuppressed = true;
             archivebrowser.ProgressChanged += archivebrowser_ProgressChanged;
             archivebrowser.DocumentCompleted += Archivebrowser_DocumentCompleted;
+
+            webcamPage_menuGrid_progressInStoryboard = (Storyboard)FindResource("webcamPage_menuGrid_progressIn");
+            webcamPage_menuGrid_progressOutStoryboard = (Storyboard)FindResource("webcamPage_menuGrid_progressOut");
         }
 
         private void window_Loaded(object sender, RoutedEventArgs e)
@@ -100,14 +104,22 @@ namespace WebcamViewer
 
         #region Dialogs
 
-        void TextMessageDialog(string Title, string Content, bool DarkMode = false)
+        void TextMessageDialog(string Title, string Content, bool? DarkMode = true)
         {
             Popups.MessageDialog dlg = new Popups.MessageDialog();
 
             dlg.Title = Title;
             dlg.Content = Content;
 
-            dlg.IsDarkTheme = DarkMode;
+            if (DarkMode == null)
+            {
+                if (current_page == 0)
+                    dlg.IsDarkTheme = true;
+                else
+                    dlg.IsDarkTheme = false;
+            }
+            else
+                dlg.IsDarkTheme = DarkMode.Value;
 
             dlg.ShowDialog();
         }
@@ -223,7 +235,7 @@ namespace WebcamViewer
 
                 whereToDownload = saveFileDialog.FileName;
 
-                webcamPage_CloseMenu();
+                //webcamPage_CloseMenu();
 
                 SaveImageFile();
             }
@@ -238,9 +250,10 @@ namespace WebcamViewer
         private void webcampage_menuGrid_archiveorgSaveButton_Click(object sender, RoutedEventArgs e)
         {
             archivebrowser.Url = new Uri("http://web.archive.org/save/" + currentImageUri);
-            webcamPage_ShowProgressUI(3); webcamPage_progressBar.IsIndeterminate = true; webcamPage_progressLabel.Content = "connecting to archive.org...";
+            //webcamPage_ShowProgressUI(3); webcamPage_progressBar.IsIndeterminate = true; webcamPage_progressLabel.Content = "connecting to archive.org...";
+            webcamPage_ShowProgressUI(4); webcamPage_menuGrid_SetProgressText("Preparing to save on archive.org...");
 
-            webcamPage_CloseMenu();
+            //webcamPage_CloseMenu();
         }
 
         void webcamPage_menuGrid_cameraButton_Click(object sender, RoutedEventArgs e)
@@ -267,9 +280,16 @@ namespace WebcamViewer
         Uri currentImageUri;
         BitmapImage bimage;
 
-        void LoadImage(string Url)
+        bool FirstCameraLoaded = false;
+
+        void LoadImage(string Url, bool UseOldProgressUI = false)
         {
-            webcamPage_ShowProgressUI(0);
+            if (FirstCameraLoaded == false)
+                webcamPage_ShowProgressUI(0);
+            else
+                webcamPage_ShowProgressUI(4);
+
+            FirstCameraLoaded = true;
 
             bimage = new BitmapImage(new Uri(Url + "?&dummy=" + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second));
             bimage.DownloadCompleted += (s, e) =>
@@ -280,12 +300,6 @@ namespace WebcamViewer
                 webcamPage_Image.Source = bimage;
 
                 webcamPage_HideProgressUI();
-
-                //if (InitialProgressRingDone == false)
-                //{
-                //    InitialProgressRingDone = true;
-                //    webcamPage_progressring.Visibility = Visibility.Collapsed;
-                //}
 
                 //if (UI_AUTOSIZE_WINDOW)
                 //    titlebarGrid_contextmenu_SetImageSizeForWindow_Click(this, new RoutedEventArgs());
@@ -309,23 +323,7 @@ namespace WebcamViewer
             webcamPage_menuGrid_cameraUrlLabel.Text = currentImageUri.ToString();
 
             webcamPage_menuGrid_cameraNameLabel.ToolTip = Properties.Settings.Default.camera_names[(Properties.Settings.Default.camera_urls.IndexOf(Url))];
-            webcamPage_menuGrid_cameraUrlLabel.ToolTip = webcamPage_menuGrid_cameraNameLabel.Text;
-        }
-
-        BitmapImage BitmapToImageSource(Bitmap bitmap)
-        {
-            using (MemoryStream memory = new MemoryStream())
-            {
-                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
-                memory.Position = 0;
-                BitmapImage bitmapimage = new BitmapImage();
-                bitmapimage.BeginInit();
-                bitmapimage.StreamSource = memory;
-                bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapimage.EndInit();
-
-                return bitmapimage;
-            }
+            webcamPage_menuGrid_cameraUrlLabel.ToolTip = currentImageUri;
         }
 
         // image saving //
@@ -341,7 +339,8 @@ namespace WebcamViewer
 
         void SaveImageFile()
         {
-            webcamPage_ShowProgressUI(3); webcamPage_progressBar.IsIndeterminate = true; webcamPage_progressLabel.Content = "preparing to download image...";
+            //webcamPage_ShowProgressUI(3); webcamPage_progressBar.IsIndeterminate = true; webcamPage_progressLabel.Content = "preparing to download image...";
+            webcamPage_ShowProgressUI(4); webcamPage_menuGrid_SetProgressText("Preparing to download image...");
 
             Thread thread = new Thread(() =>
             {
@@ -361,9 +360,14 @@ namespace WebcamViewer
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 if (Keyboard.IsKeyDown(Key.LeftShift))
+                {
                     webcamPage_progressLabel.Content = "downloading image: " + e.ProgressPercentage + "%";
+                }
                 else
+                {
                     webcamPage_progressLabel.Visibility = Visibility.Collapsed;
+                    webcamPage_menuGrid_SetProgressText("Downloading image: " + e.ProgressPercentage + "%...");
+                }
 
                 webcamPage_progressBar.IsIndeterminate = false;
                 webcamPage_progressBar.Maximum = e.TotalBytesToReceive;
@@ -398,6 +402,8 @@ namespace WebcamViewer
 
             webcamPage_progressLabel.Content = "saving to archive.org... (" + e.CurrentProgress + " / " + e.MaximumProgress + ")";
 
+            webcamPage_menuGrid_SetProgressText("Saving to archive.org - " + e.CurrentProgress + " / " + e.MaximumProgress);
+
             if (e.CurrentProgress >= 1000)
                 webcamPage_progressBar.IsIndeterminate = false;
 
@@ -408,6 +414,7 @@ namespace WebcamViewer
         private void Archivebrowser_DocumentCompleted(object sender, System.Windows.Forms.WebBrowserDocumentCompletedEventArgs e)
         {
             webcamPage_progressLabel.Content = "saved...";
+            webcamPage_menuGrid_SetProgressText("Saved to archive.org!");
             webcamPage_HideProgressUI();
         }
 
@@ -415,19 +422,32 @@ namespace WebcamViewer
 
         #endregion
 
+        Storyboard webcamPage_menuGrid_progressInStoryboard;
+        Storyboard webcamPage_menuGrid_progressOutStoryboard;
+
+        bool IsMenuProgressHappening = false;
+
+        /// <summary>
+        /// Shows the progress UI.
+        /// </summary>
+        /// <param name="mode">The kind of progress UI to show. 0 = ProgressRing only, 1 = ProgressRing + text, 2 = ProgressBar only, 3 = ProgressBar + text, 4 = sidemenu ProgressRing</param>
         void webcamPage_ShowProgressUI(int mode)
         {
-            /// Modes
-            /// 0: progressring only
-            /// 1: progressring + text
-            /// 2: progressbar only
-            /// 3: progressbar + text
+            if (mode <= 3)
+            {
+                webcamPage_Dim.Opacity = 0;
+                webcamPage_Dim.Visibility = Visibility.Visible;
 
-            webcamPage_Dim.Opacity = 0;
-            webcamPage_Dim.Visibility = Visibility.Visible;
+                DoubleAnimation webcamPage_Dim_OpacityAnimation = new DoubleAnimation(0, 1, new TimeSpan(0, 0, 0, 0, 300).Duration());
+                webcamPage_Dim.BeginAnimation(Grid.OpacityProperty, webcamPage_Dim_OpacityAnimation);
+            }
+            else
+            {
+                IsMenuProgressHappening = true;
 
-            DoubleAnimation webcamPage_Dim_OpacityAnimation = new DoubleAnimation(0, 1, new TimeSpan(0, 0, 0, 0, 300).Duration());
-            webcamPage_Dim.BeginAnimation(Grid.OpacityProperty, webcamPage_Dim_OpacityAnimation);
+                webcamPage_menuGrid_progressOutStoryboard.Stop();
+                webcamPage_menuGrid_progressInStoryboard.Begin();
+            }
 
             switch (mode)
             {
@@ -457,25 +477,50 @@ namespace WebcamViewer
 
                         break;
                     }
+                case 4:
+                    {
+                        // New in-menu progress UI
+                        // The storyboard handles the Visiblity and IsActive so no need to set it here :)
+                        webcamPage_menuGrid_SetProgressText("Please wait...");
+
+                        break;
+                    }
             }
         }
 
         void webcamPage_HideProgressUI()
         {
-            DoubleAnimation webcamPage_Dim_OpacityAnimation = new DoubleAnimation(1, 0, new TimeSpan(0, 0, 0, 0, 300).Duration());
-            webcamPage_Dim.BeginAnimation(Grid.OpacityProperty, webcamPage_Dim_OpacityAnimation);
-
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = webcamPage_Dim_OpacityAnimation.Duration.TimeSpan;
-            timer.Tick += (s, ev) =>
+            if (webcamPage_Dim.Visibility == Visibility.Visible)
             {
-                timer.Stop(); webcamPage_Dim.Visibility = Visibility.Collapsed;
+                DoubleAnimation webcamPage_Dim_OpacityAnimation = new DoubleAnimation(1, 0, new TimeSpan(0, 0, 0, 0, 300).Duration());
+                webcamPage_Dim.BeginAnimation(Grid.OpacityProperty, webcamPage_Dim_OpacityAnimation);
 
-                webcamPage_progressRing.Visibility = Visibility.Collapsed;
-                webcamPage_progressBar.Visibility = Visibility.Collapsed;
-                webcamPage_progressLabel.Visibility = Visibility.Collapsed;
-            };
-            timer.Start();
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = webcamPage_Dim_OpacityAnimation.Duration.TimeSpan;
+                timer.Tick += (s, ev) =>
+                {
+                    timer.Stop(); webcamPage_Dim.Visibility = Visibility.Collapsed;
+
+                    webcamPage_progressRing.Visibility = Visibility.Collapsed;
+                    webcamPage_progressBar.Visibility = Visibility.Collapsed;
+                    webcamPage_progressLabel.Visibility = Visibility.Collapsed;
+                };
+                timer.Start();
+            }
+            else if (IsMenuProgressHappening == true)
+            {
+                // The storyboard handles the Visiblity and IsActive so no need to set it here :)
+
+                webcamPage_menuGrid_progressInStoryboard.Stop();
+                webcamPage_menuGrid_progressOutStoryboard.Begin();
+
+                IsMenuProgressHappening = false;
+            }
+        }
+
+        void webcamPage_menuGrid_SetProgressText(string text)
+        {
+            webcamPage_menuGrid_progressPanel_progressTextBlock.Text = text;
         }
 
         // ------------ //
@@ -483,8 +528,6 @@ namespace WebcamViewer
         #endregion
 
         #region Settings page
-
-        #region Pages
 
         #region Webcam editor page
 
@@ -542,6 +585,123 @@ namespace WebcamViewer
             }
         }
         #endregion
+
+        #region User interface page
+
+        #endregion
+
+        #region Debug menu page
+
+        private void settingsPage_DebugMenuPage_Home_ProgressDebugButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Create progress UI debug dialog
+            Popups.MessageDialog dlg = new Popups.MessageDialog();
+            dlg.Title = "";
+
+            dlg.IsDarkTheme = true;
+
+            #region Create content
+            StackPanel stackpanel = new StackPanel();
+
+            Label lbl = new Label { Content = "Choose a progress type. It will automatically end after 10 seconds." };
+
+            StackPanel rbtn_stackpanel = new StackPanel { Margin = new Thickness(0, 5, 0, 10) };
+
+            RadioButton rbtn_0 = new RadioButton { Content = "Modal progressring", IsChecked = true };
+            RadioButton rbtn_1 = new RadioButton { Content = "Modal progressbar (indeterminate)" };
+            RadioButton rbtn_2 = new RadioButton { Content = "In-menu progressring" };
+
+            rbtn_stackpanel.Children.Add(rbtn_0);
+            rbtn_stackpanel.Children.Add(rbtn_1);
+            rbtn_stackpanel.Children.Add(rbtn_2);
+
+            TextBox textbox = new TextBox { Text = "Progress UI Debug", Margin = new Thickness(0, 0, 0, 10) };
+            CheckBox checkbox_countdown = new CheckBox { Content = "Show countdown", IsChecked = true, Margin = new Thickness(0, 0, 0, 5) };
+            #endregion
+
+            // Add stuff to the content stackpanel
+            stackpanel.Children.Add(lbl);
+
+            stackpanel.Children.Add(rbtn_stackpanel);
+
+            stackpanel.Children.Add(textbox);
+
+            stackpanel.Children.Add(checkbox_countdown);
+
+            //  Make the stackpanel the content
+            dlg.Content = stackpanel;
+
+            // Buttons
+            dlg.FirstButtonContent = "Accept";
+            dlg.SecondButtonContent = "Cancel";
+
+            if (dlg.ShowDialogWithResult() == 0)
+            {
+                SwitchToPage(0);
+
+                #region Timers
+                int ui_clocktimer_countdown = 10;
+
+                DispatcherTimer ui_clocktimer = new DispatcherTimer();
+                ui_clocktimer.Interval = new TimeSpan(0, 0, 1);
+                ui_clocktimer.Tick += (s, ev) =>
+                {
+                    if (checkbox_countdown.IsChecked == true)
+                    {
+                        if (webcamPage_progressLabel.Visibility == Visibility.Visible)
+                            webcamPage_progressLabel.Content = textbox.Text + " - " + ui_clocktimer_countdown;
+                        if (webcamPage_menuGrid_progressPanel_progressTextBlock.Visibility == Visibility.Visible)
+                            webcamPage_menuGrid_SetProgressText(textbox.Text + " - " + ui_clocktimer_countdown);
+                    }
+                    ui_clocktimer_countdown--;
+                };
+                ui_clocktimer.Start();
+
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = new TimeSpan(0, 0, 10);
+                timer.Tick += (s, ev) => { timer.Stop(); ui_clocktimer.Stop(); webcamPage_HideProgressUI(); };
+                timer.Start();
+                #endregion
+
+                if (webcamPage_progressLabel.Visibility == Visibility.Visible)
+                    webcamPage_progressLabel.Content = textbox.Text;
+                if (webcamPage_menuGrid_progressPanel_progressTextBlock.Visibility == Visibility.Visible)
+                    webcamPage_menuGrid_SetProgressText(textbox.Text);
+
+                int counter = 0;
+                foreach (RadioButton rbtn in rbtn_stackpanel.Children)
+                {
+                    if (rbtn.IsChecked == true)
+                    {
+                        #region Show appropriate progress UI
+                        switch (counter)
+                        {
+                            case 0:
+                                {
+                                    webcamPage_ShowProgressUI(1);
+                                    webcamPage_CloseMenu();
+                                    break;
+                                }
+                            case 1:
+                                {
+                                    webcamPage_ShowProgressUI(3);
+                                    webcamPage_CloseMenu();
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    webcamPage_ShowProgressUI(4);
+                                    webcamPage_OpenMenu();
+                                    break;
+                                }
+                        }
+                        #endregion
+                    }
+                    else
+                        counter++;
+                }
+            }
+        }
 
         #endregion
 
@@ -632,9 +792,20 @@ namespace WebcamViewer
 
                         break;
                     }
-                case 1:
+                case 1: // User interface
                     {
-
+                        // Set the toggles
+                        foreach (object item in settingsPage_UserInterfacePage_MainStackPanel.Children)
+                        {
+                            if (item.GetType() == (typeof(ToggleSwitchButton)))
+                            {
+                                settingsPage_ToggleSwitchButton btn = item as settingsPage_ToggleSwitchButton;
+                                if ((string)btn.Tag != "") // if it has a tag
+                                {
+                                    btn.IsActive = (bool)Properties.Settings.Default[(string)btn.Tag];
+                                }
+                            }
+                        }
 
                         break;
                     }
@@ -662,6 +833,27 @@ namespace WebcamViewer
 
                         break;
                     }
+            }
+        }
+
+        /// <summary>
+        /// Toggles the setting, which is set in the sender button's Tag property, in Properties.Settings.Default.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void settingsPage_ToggleButtonClick(object sender, RoutedEventArgs e)
+        {
+            settingsPage_ToggleSwitchButton sBtn = sender as settingsPage_ToggleSwitchButton;
+
+            try
+            {
+                Properties.Settings.Default[(string)sBtn.Tag] = sBtn.IsActive;
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception ex)
+            {
+                sBtn.IsActive = !sBtn.IsActive;
+                TextMessageDialog("Invalid property", "The setting " + sBtn.Tag.ToString() + " (probably) doesn't exist.\nCheck the button's Tag.\n\nExact error message : " + ex.Message);
             }
         }
 
@@ -711,7 +903,7 @@ namespace WebcamViewer
                         webcamPage_menuButton.Visibility = Visibility.Collapsed;
                         backButton.Visibility = Visibility.Visible;
 
-                        SetTitlebarButtonsStyle(1);
+                        //SetTitlebarButtonsStyle(1);
 
                         break;
                     }

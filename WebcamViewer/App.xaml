@@ -23,9 +23,20 @@
             <SolidColorBrush x:Key="accentcolor_dark" Color="#2980b9"/>
             <SolidColorBrush x:Key="accentcolor_light" Color="#3498db"/>
 
-            <SolidColorBrush x:Key="MessageDialog_ForegroundText" Color="Black"/>
-            <SolidColorBrush x:Key="MessageDialog_ForegroundSecondary" Color="DarkGray"/>
-            <SolidColorBrush x:Key="MessageDialog_Background" Color="#FFF5F5F5"/>
+
+            <SolidColorBrush x:Key="settingsPage_background" Color="#ff232323" />
+            <SolidColorBrush x:Key="settingsPage_backgroundSecondary" Color="#FF434343"/>
+            <SolidColorBrush x:Key="settingsPage_backgroundSecondary2" Color="#FF535353"/>
+            <SolidColorBrush x:Key="settingsPage_backgroundSecondary3" Color="#FF636363"/>
+
+            <SolidColorBrush x:Key="settingsPage_foregroundText" Color="White"/>
+            <SolidColorBrush x:Key="settingsPage_foregroundSecondary" Color="LightGray"/>
+            <SolidColorBrush x:Key="settingsPage_foregroundSecondary2" Color="#FFAAAAAA"/>
+            
+
+            <SolidColorBrush x:Key="MessageDialog_ForegroundText" Color="White"/>
+            <SolidColorBrush x:Key="MessageDialog_ForegroundSecondary" Color="LightGray"/>
+            <SolidColorBrush x:Key="MessageDialog_Background" Color="#FF232323"/>
 
             <!--#region Colors-->
 
@@ -43,15 +54,25 @@
 
             <!-- Settings page -->
 
-            <SolidColorBrush x:Key="settingsPage_background" Color="White"/>
-            <SolidColorBrush x:Key="settingsPage_backgroundSecondary" Color="#FFBBBBBB"/>
-            <SolidColorBrush x:Key="settingsPage_backgroundSecondary2" Color="#FFAAAAAA"/>
-            <SolidColorBrush x:Key="settingsPage_backgroundSecondary3" Color="#FFDDDDDD"/>
+            <SolidColorBrush x:Key="settingsPage_Light_background" Color="White"/>
+            <SolidColorBrush x:Key="settingsPage_Light_backgroundSecondary" Color="#FFBBBBBB"/>
+            <SolidColorBrush x:Key="settingsPage_Light_backgroundSecondary2" Color="#FFAAAAAA"/>
+            <SolidColorBrush x:Key="settingsPage_Light_backgroundSecondary3" Color="#FFDDDDDD"/>
 
-            <SolidColorBrush x:Key="settingsPage_foregroundText" Color="Black"/>
-            <SolidColorBrush x:Key="settingsPage_foregroundSecondary" Color="#FF3F3F3F"/>
-            <SolidColorBrush x:Key="settingsPage_foregroundSecondary2" Color="#FF4F4F4F"/>
+            <SolidColorBrush x:Key="settingsPage_Light_foregroundText" Color="Black"/>
+            <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary" Color="#FF3F3F3F"/>
+            <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary2" Color="#FF4F4F4F"/>
             
+
+            <SolidColorBrush x:Key="settingsPage_Dark_background" Color="#FF232323"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary" Color="#FF434343"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary2" Color="#FF535353"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary3" Color="#FF636363"/>
+
+            <SolidColorBrush x:Key="settingsPage_Dark_foregroundText" Color="White"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary" Color="LightGray"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary2" Color="#FFAAAAAA"/>
+
             <!-- Message dialog -->
 
             <SolidColorBrush x:Key="MessageDialog_Light_ForegroundText" Color="Black"/>
@@ -62,7 +83,7 @@
             <SolidColorBrush x:Key="MessageDialog_Dark_ForegroundText" Color="White"/>
             <SolidColorBrush x:Key="MessageDialog_Dark_ForegroundSecondary" Color="LightGray"/>
 
-            <SolidColorBrush x:Key="MessageDialog_Dark_Background" Color="#FF4F4F4F"/>
+            <SolidColorBrush x:Key="MessageDialog_Dark_Background" Color="#FF232323"/>
 
             <!--#endregion-->
 

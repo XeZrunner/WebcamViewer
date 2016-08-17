@@ -26,7 +26,13 @@ namespace WebcamViewer
         public void SetupDialog(string Title, object Content, bool DarkTheme, string FirstButtonContent, string SecondButtonContent, RoutedEventHandler FirstButtonClickEvent, RoutedEventHandler SecondButtonClickEvent)
         {
             // Title
-            titleLabel.Content = Title;
+            if (Title != "")
+                titleLabel.Content = Title;
+            else
+            {
+                titleLabel.Visibility = Visibility.Collapsed;
+                rowdefinition_0.Height = new GridLength(20);
+            }
 
             // Content
             if (!(Content is string))

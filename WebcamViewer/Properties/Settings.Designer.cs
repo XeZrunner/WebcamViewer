@@ -64,5 +64,29 @@ namespace WebcamViewer.Properties {
                 this["camera_urls"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool home_blurbehind {
+            get {
+                return ((bool)(this["home_blurbehind"]));
+            }
+            set {
+                this["home_blurbehind"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool settings_showtitlebarcolor {
+            get {
+                return ((bool)(this["settings_showtitlebarcolor"]));
+            }
+            set {
+                this["settings_showtitlebarcolor"] = value;
+            }
+        }
     }
 }
