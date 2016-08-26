@@ -32,5 +32,23 @@
     <Setting Name="settings_showtitlebarcolor" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="home_debugoverlay" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="home_archiveorg" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="versionid" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Update 2 Beta</Value>
+    </Setting>
+    <Setting Name="buildid" Type="System.String" Scope="User">
+      <Value Profile="(Default)">20160825-01@webcamviewer/internal/features/alpha/overview</Value>
+    </Setting>
+    <Setting Name="settings_experiment_UpdateUI" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="home_experiment_Overview" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

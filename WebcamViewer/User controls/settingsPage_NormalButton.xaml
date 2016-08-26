@@ -66,7 +66,7 @@
 
             <Grid>
 
-                <TextBlock x:Name="textTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20, 5" FontSize="14" Text="Button"/>
+                <TextBlock x:Name="textTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="24,5" Margin="0" FontSize="14" Text="Button"/>
 
             </Grid>
 

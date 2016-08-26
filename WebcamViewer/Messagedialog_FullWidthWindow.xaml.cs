@@ -10,15 +10,14 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace WebcamViewer
 {
-    public partial class MessagedialogWindow : MetroWindow
+    public partial class Messagedialog_FullWidthWindow : MetroWindow
     {
-        public MessagedialogWindow()
+        public Messagedialog_FullWidthWindow()
         {
             InitializeComponent();
         }
@@ -32,7 +31,7 @@ namespace WebcamViewer
             {
                 titleLabel.Visibility = Visibility.Collapsed;
                 if (Content_DisableMargin == false)
-                    rowdefinition_0.Height = new GridLength(20);
+                    rowdefinition_0.Height = new GridLength(32);
             }
 
             // Content
@@ -47,6 +46,7 @@ namespace WebcamViewer
             }
 
             // Dark theme
+            /*
             if (DarkTheme)
             {
                 Application.Current.Resources["MessageDialog_ForegroundText"] = Application.Current.Resources["MessageDialog_Dark_ForegroundText"];
@@ -65,12 +65,13 @@ namespace WebcamViewer
                 firstButton.Style = Application.Current.Resources["UWPButtonStyle"] as Style;
                 secondButton.Style = Application.Current.Resources["UWPButtonStyle"] as Style;
             }
+            */
 
             // Content_DisableMargin
             if (Content_DisableMargin)
                 contentGrid.Margin = new Thickness(0);
             else
-                contentGrid.Margin = new Thickness(24, 0, 24, 0);
+                contentGrid.Margin = new Thickness(0, 0, 0, 15);
 
             // Button text
             firstButton.Content = FirstButtonContent;
@@ -104,5 +105,17 @@ namespace WebcamViewer
                 secondButton.Click += SecondButtonClickEvent;
         }
 
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            // Size
+            this.Width = Owner.Width - 2;
+
+            double parentWidth = this.Owner.Width;
+            double parentHeight = this.Owner.Height;
+            double windowWidth = this.Width;
+            double windowHeight = this.Height;
+            this.Left = parentWidth / 2;
+            this.Top = (parentHeight / 2) - (windowHeight / 2);
+        }
     }
 }

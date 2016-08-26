@@ -43,6 +43,8 @@ namespace WebcamViewer.User_controls
 
         bool _IsToggleButton = true;
 
+        int? _Theme = null;
+
         public event RoutedEventHandler Click;
 
         [Description("Title of the button"), Category("Common")]
@@ -116,6 +118,36 @@ namespace WebcamViewer.User_controls
             }
         }
 
+        /// <summary>
+        /// Force the theme of the button.
+        /// 0 = light, 1 = dark
+        /// </summary>
+        [Description("Force the theme of the button"), Category("Appearance")]
+        public int Theme
+        {
+            get { return _Theme.Value; }
+            set
+            {
+                _Theme = value;
+
+                if (_Theme == 0)
+                {
+                    // light theme
+                    titleTextBlock.Foreground = Application.Current.Resources["settingsPage_Light_foregroundText"] as SolidColorBrush;
+                    descriptionTextBlock.Foreground = Application.Current.Resources["settingsPage_Light_foregroundSecondary2"] as SolidColorBrush;
+                    RippleBrush = Application.Current.Resources["settingsPage_Light_backgroundSecondary2"] as SolidColorBrush;
+                }
+                else
+                {
+                    // dark theme
+                    titleTextBlock.Foreground = Application.Current.Resources["settingsPage_Dark_foregroundText"] as SolidColorBrush;
+                    descriptionTextBlock.Foreground = Application.Current.Resources["settingsPage_Dark_foregroundSecondary2"] as SolidColorBrush;
+                    RippleBrush = Application.Current.Resources["settingsPage_Dark_backgroundSecondary2"] as SolidColorBrush;
+                }
+            }
+        }
+
+
 
         [Description("Ripple brush"), Category("Appearance")]
         public Brush RippleBrush
@@ -188,7 +220,10 @@ namespace WebcamViewer.User_controls
             }
 
             if (_IsToggleButton)
+            {
+                toggle.DoAnimation = true;
                 this.IsActive = !this.IsActive;
+            }
 
             //bubble the event up to the parent
             if (this.Click != null)

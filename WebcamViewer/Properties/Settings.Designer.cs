@@ -88,5 +88,77 @@ namespace WebcamViewer.Properties {
                 this["settings_showtitlebarcolor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool home_debugoverlay {
+            get {
+                return ((bool)(this["home_debugoverlay"]));
+            }
+            set {
+                this["home_debugoverlay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool home_archiveorg {
+            get {
+                return ((bool)(this["home_archiveorg"]));
+            }
+            set {
+                this["home_archiveorg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta")]
+        public string versionid {
+            get {
+                return ((string)(this["versionid"]));
+            }
+            set {
+                this["versionid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20160825-01@webcamviewer/internal/features/alpha/overview")]
+        public string buildid {
+            get {
+                return ((string)(this["buildid"]));
+            }
+            set {
+                this["buildid"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool settings_experiment_UpdateUI {
+            get {
+                return ((bool)(this["settings_experiment_UpdateUI"]));
+            }
+            set {
+                this["settings_experiment_UpdateUI"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool home_experiment_Overview {
+            get {
+                return ((bool)(this["home_experiment_Overview"]));
+            }
+            set {
+                this["home_experiment_Overview"] = value;
+            }
+        }
     }
 }

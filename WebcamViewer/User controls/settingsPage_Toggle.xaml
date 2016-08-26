@@ -49,16 +49,44 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Storyboard x:Key="Toggle_In">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="24">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <SineEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="Toggle_Out">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                <EasingDoubleKeyFrame KeyTime="0" Value="24"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuarticEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </UserControl.Resources>
     <Button x:Name="button" Style="{DynamicResource ButtonStyle}" Click="button_Click">
 
-        <Border x:Name="border" CornerRadius="10" BorderBrush="{DynamicResource settingsPage_foregroundSecondary}" Background="{DynamicResource settingsPage_background}" BorderThickness="2">
+        <Border x:Name="border" CornerRadius="10" BorderBrush="{DynamicResource settingsPage_foregroundSecondary}" Background="Transparent" BorderThickness="2">
 
             <Border CornerRadius="10" BorderBrush="{Binding BorderBrush, ElementName=border}" Background="{Binding Background, ElementName=border}" BorderThickness="1" Margin="-1">
 
                 <Grid HorizontalAlignment="Stretch" Margin="4,0,3,0">
 
-                    <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_foregroundSecondary}" Height="10" Width="10" HorizontalAlignment="Left"/>
+                    <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_foregroundSecondary}" Height="10" Width="10" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Ellipse.RenderTransform>
+                    </Ellipse>
 
                 </Grid>
 

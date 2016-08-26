@@ -4,18 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
-             xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.User_controls.settingsPage_TabButton"
+             xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.User_controls.AppBar_Button"
              mc:Ignorable="d" 
-             Height="60" Width="290">
+             Width="48" Height="48" Foreground="White" SizeChanged="usercontrol_SizeChanged" ClipToBounds="True">
+
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
-            <Setter Property="Background" Value="{DynamicResource settingsPage_background}"/>
+            <Setter Property="Foreground" Value="{Binding ElementName=usercontrol, Path=Foreground}"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="FontSize" Value="12"/>
             <Setter Property="Padding" Value="0"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -27,7 +25,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#1F000000"/>
+                    <Setter Property="Background" Value="#1FFFFFFF"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
                     
@@ -40,15 +38,15 @@
         <Storyboard x:Key="longMouseDownAnimation">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="ellipse">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="580"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="96"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="ellipse">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="580"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="96"/>
             </DoubleAnimationUsingKeyFrames>
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="ellipse">
                 <EasingThicknessKeyFrame KeyTime="0" Value="0"/>
-                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="-290"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="-48"/>
             </ThicknessAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ellipse">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
@@ -58,33 +56,15 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" SnapsToDevicePixels="True" PreviewMouseDown="Button_MouseDown" PreviewMouseUp="button_PreviewMouseUp" Click="button_Click" PreviewMouseMove="button_PreviewMouseMove">
+    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" PreviewMouseDown="Button_MouseDown" PreviewMouseUp="button_PreviewMouseUp" Click="button_Click" PreviewMouseMove="button_PreviewMouseMove">
 
         <Grid>
 
-            <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Height="60" Width="580" Margin="-145,0">
-                <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_backgroundSecondary}" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
+            <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Height="48" Width="0" Margin="-48, -24">
+                <Ellipse x:Name="ellipse" Fill="#1FFFFFFF" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
             </Grid>
 
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="54"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <Rectangle x:Name="activestateRectangle" Grid.ColumnSpan="2" Height="30" Width="8" HorizontalAlignment="Left" Margin="-4,0,0,0" Fill="{DynamicResource accentcolor_dark}" Visibility="Hidden" />
-
-                <TextBlock x:Name="iconTextBlock" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="21" Text="0"/>
-
-                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0">
-
-                    <TextBlock x:Name="titleTextBlock" FontSize="12" Text="TITLE" FontFamily="Segoe UI Semibold" />
-                    <TextBlock x:Name="descriptionTextBlock" Margin="0,5,0,0" Text="Description" TextWrapping="WrapWithOverflow" FontSize="11" Foreground="{DynamicResource settingsPage_foregroundSecondary}" />
-
-                </StackPanel>
-
-            </Grid>
+            <TextBlock x:Name="iconTextBlock" Text="&#xE700;" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         </Grid>
 

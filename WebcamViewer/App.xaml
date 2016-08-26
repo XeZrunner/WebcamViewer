@@ -18,27 +18,36 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
                 <!-- Custom controls -->
                 <ResourceDictionary Source="ControlStyles.xaml"/>
+                
             </ResourceDictionary.MergedDictionaries>
 
             <SolidColorBrush x:Key="accentcolor_dark" Color="#2980b9"/>
             <SolidColorBrush x:Key="accentcolor_light" Color="#3498db"/>
 
 
-            <SolidColorBrush x:Key="settingsPage_background" Color="#ff232323" />
-            <SolidColorBrush x:Key="settingsPage_backgroundSecondary" Color="#FF434343"/>
-            <SolidColorBrush x:Key="settingsPage_backgroundSecondary2" Color="#FF535353"/>
-            <SolidColorBrush x:Key="settingsPage_backgroundSecondary3" Color="#FF636363"/>
+            <SolidColorBrush x:Key="settingsPage_background" Color="White" />
+            <SolidColorBrush x:Key="settingsPage_backgroundSecondary" Color="#FFBBBBBB"/>
+            <SolidColorBrush x:Key="settingsPage_backgroundSecondary2" Color="#FFAAAAAA"/>
+            <SolidColorBrush x:Key="settingsPage_backgroundSecondary3" Color="#FFDDDDDD"/>
 
-            <SolidColorBrush x:Key="settingsPage_foregroundText" Color="White"/>
-            <SolidColorBrush x:Key="settingsPage_foregroundSecondary" Color="LightGray"/>
-            <SolidColorBrush x:Key="settingsPage_foregroundSecondary2" Color="#FFAAAAAA"/>
+            <SolidColorBrush x:Key="settingsPage_foregroundText" Color="Black"/>
+            <SolidColorBrush x:Key="settingsPage_foregroundSecondary" Color="#FF3f3f3f"/>
+            <SolidColorBrush x:Key="settingsPage_foregroundSecondary2" Color="#FF4f4f4f"/>
             
 
-            <SolidColorBrush x:Key="MessageDialog_ForegroundText" Color="White"/>
-            <SolidColorBrush x:Key="MessageDialog_ForegroundSecondary" Color="LightGray"/>
-            <SolidColorBrush x:Key="MessageDialog_Background" Color="#FF232323"/>
+            <SolidColorBrush x:Key="MessageDialog_ForegroundText" Color="Black"/>
+            <SolidColorBrush x:Key="MessageDialog_ForegroundSecondary" Color="DarkGray"/>
+            <SolidColorBrush x:Key="MessageDialog_Background" Color="#FFF2F2F2"/>
+
+            <!-- Windows 8.1-style MessageDialog-->
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_ForegroundText" Color="Black"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_ForegroundSecondary" Color="DarkGray"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Background" Color="#FFF2F2F2"/>
 
             <!--#region Colors-->
+
+            <SolidColorBrush x:Key="App_NonActiveBorderBrush" Color="DarkGray"/>
+            <SolidColorBrush x:Key="App_NonActiveGlowBrush" Color="DarkGray"/>
 
             <SolidColorBrush x:Key="accentcolor_dark1" Color="#d35400"/>
             <SolidColorBrush x:Key="accentcolor_dark2" Color="#c0392b"/>
@@ -78,12 +87,24 @@
             <SolidColorBrush x:Key="MessageDialog_Light_ForegroundText" Color="Black"/>
             <SolidColorBrush x:Key="MessageDialog_Light_ForegroundSecondary" Color="DarkGray"/>
 
-            <SolidColorBrush x:Key="MessageDialog_Light_Background" Color="#FFF5F5F5"/>
+            <SolidColorBrush x:Key="MessageDialog_Light_Background" Color="#FFF2F2F2"/>
 
             <SolidColorBrush x:Key="MessageDialog_Dark_ForegroundText" Color="White"/>
             <SolidColorBrush x:Key="MessageDialog_Dark_ForegroundSecondary" Color="LightGray"/>
 
             <SolidColorBrush x:Key="MessageDialog_Dark_Background" Color="#FF232323"/>
+
+            <!-- Message dialog (Windows 8.1 style) -->
+
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Light_ForegroundText" Color="Black"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Light_ForegroundSecondary" Color="DarkGray"/>
+
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Light_Background" Color="#FFF2F2F2"/>
+
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Dark_ForegroundText" Color="White"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Dark_ForegroundSecondary" Color="LightGray"/>
+
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Dark_Background" Color="#FF232323"/>
 
             <!--#endregion-->
 
