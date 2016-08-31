@@ -1,0 +1,49 @@
+﻿<UserControl x:Name="page" x:Class="WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings.Page"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings"
+             xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
+             mc:Ignorable="d" 
+             d:DesignWidth="500" d:DesignHeight="572" Background="{DynamicResource settingsPage_background}" Loaded="page_Loaded">
+    <Grid>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel x:Name="sectionsPanel" Margin="10">
+
+                <!-- Home -->
+                <StackPanel x:Name="settingsPage_DebugMenuPage_HomeSection" Margin="0,0,0,0">
+                    <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">HOME</Label>
+
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Home_ProgressDebugButton" IsToggleButton="False" Title="Progress UI Debug" Description="Progress UI Debug" Click="settingsPage_DebugMenuPage_Home_ProgressDebugButton_Click"/>
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Home_DebugOverlayToggleButton" Title="Debug overlay" Description="Show debug info about the image and the window on the Home page" Tag="home_debugoverlay" Click="settingsPage_ToggleButtonClick"/>
+                </StackPanel>
+
+                <!-- Global UI -->
+                <StackPanel x:Name="settingsPage_DebugMenuPage_GlobalUISection" Margin="0,5,0,0">
+                    <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">GLOBAL UI</Label>
+
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Home_MessageDialogDebugButton" IsToggleButton="False" Title="MessageDialog Debug" Description="MessageDialog Debug" Click="settingsPage_DebugMenuPage_Home_MessageDialogDebugButton_Click"/>
+                </StackPanel>
+
+                <!-- Experiments -->
+                <StackPanel x:Name="settingsPage_DebugMenuPage_ExperimentsSection" Margin="0,5,0,0">
+                    <Label x:Name="settingsPage_DebugMenuPage_Experiments_ExperimentsSectionLabel" Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">EXPERIMENTS</Label>
+
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Experiments_ExperimentsButton" IsToggleButton="False" Title="Toggle experiments" Description="Toggle experiments" Click="settingsPage_DebugMenuPage_Experiments_ExperimentsButton_Click"/>
+                </StackPanel>
+
+                <!-- Configuration -->
+                <StackPanel x:Name="settingsPage_DebugMenuPage_ConfigurationSection" Margin="0,5,0,0">
+                    <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">CONFIGURATION</Label>
+
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Configuration_ResetConfigurationButton" IsToggleButton="False" Title="Reset configuration" Description="Resets all user settings to defaults" Click="settingsPage_DebugMenuPage_Configuration_ResetConfigurationButton_Click"/>
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton" IsToggleButton="False" Margin="0,0,0,15" Title="Customizations delivery settings" Description="" Click="settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton_Click" />
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

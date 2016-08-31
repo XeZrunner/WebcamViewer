@@ -1,0 +1,100 @@
+﻿<UserControl x:Name="page" x:Class="WebcamViewer.Pages.Settings_page.Subpages._0_Webcams.Page"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._0_Webcams"
+             xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
+             mc:Ignorable="d" 
+             d:DesignWidth="500" d:DesignHeight="572" Background="{DynamicResource settingsPage_background}" Loaded="page_Loaded" IsVisibleChanged="page_IsVisibleChanged">
+
+    <Grid x:Name="settingsPage_WebcamEditorPage_Content">
+
+        <Grid Margin="10">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition Height="255"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+                </Style>
+            </Grid.Resources>
+
+            <Label Grid.Row="0" Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" Margin="5,0,0,0">WEBCAMS</Label>
+
+            <ListView Grid.Row="1" x:Name="settingsPage_WebcamEditorPage_ListView" Margin="0,5,0,10" SelectionChanged="settingsPage_WebcamEditorPage_ListView_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource WebcamEditor_ListViewStyle}" ItemContainerStyle="{DynamicResource WebcamEditor_ListView_ListViewItemStyle}">
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{DynamicResource WebcamEditor_ListView_GridViewColumnHeaderStyle}">
+                        <GridViewColumn Header="Camera name" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Camera URL" DisplayMemberBinding="{Binding Url}" />
+                        <GridViewColumn Header="Save location" DisplayMemberBinding="{Binding SaveLocation}"/>
+                        <GridViewColumn Header="Refresh rate (seconds)" DisplayMemberBinding="{Binding RefreshRate}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <!-- Item editor -->
+            <Grid Grid.Row="2" x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid" Background="{DynamicResource settingsPage_backgroundWebcamItemEditor}"
+                                              Visibility="Visible">
+
+                <StackPanel x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid_Disabled" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundSecondary}"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <TextBlock FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="26" Margin="0,0,0,15">&#xe105;</TextBlock>
+                    <TextBlock>Save your changes to edit the cameras.</TextBlock>
+
+                </StackPanel>
+
+                <StackPanel x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid_Main" Margin="5,-5,5,-50" Visibility="Visible">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+                            <Setter Property="Margin" Value="0,10,5,10"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <TextBlock>Camera name</TextBlock>
+                    <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_NameTextBox"/>
+
+                    <TextBlock>Camera URL</TextBlock>
+                    <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox"/>
+
+                    <StackPanel x:Name="ItemEditor_NotFinishedYet_StackPanel" Visibility="Collapsed">
+                        <TextBlock>Save location</TextBlock>
+                        <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_SaveLocationTextBox"/>
+
+                        <TextBlock>Refresh rate (seconds)</TextBlock>
+                        <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Grid>
+
+            <StackPanel x:Name="CameraEditingButtons" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <usercontrols:settingsPage_NormalButton x:Name="settingsPage_WebcamEditorPage_NewCameraButton" Background="Transparent" Text="New camera" Click="settingsPage_WebcamEditorPage_NewCameraButton_Click"/>
+                <usercontrols:settingsPage_NormalButton x:Name="settingsPage_WebcamEditorPage_DeleteCameraButton" Background="Transparent" Text="Delete camera" Click="settingsPage_WebcamEditorPage_DeleteCameraButton_Click"/>
+
+            </StackPanel>
+
+            <usercontrols:settingsPage_NormalButton Grid.Row="3" x:Name="settingsPage_WebcamEditorPage_SaveButton" Background="Transparent" Margin="0,0,20,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Text="Save changes" Click="settingsPage_WebcamEditorPage_SaveButton_Click"/>
+
+        </Grid>
+
+    </Grid>
+
+</UserControl>

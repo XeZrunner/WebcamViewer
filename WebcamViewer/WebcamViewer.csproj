@@ -75,11 +75,38 @@
     </ApplicationDefinition>
     <Compile Include="Configuration.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="Dialog controls\settingsPage_UserInterfacePage_ThemeControl.xaml.cs">
+      <DependentUpon>settingsPage_UserInterfacePage_ThemeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListViewDragDrop\DragAdorner.cs" />
     <Compile Include="ListViewDragDrop\ListViewDragDropManager.cs" />
     <Compile Include="ListViewDragDrop\MouseUtilities.cs" />
     <Compile Include="Messagedialog_FullWidthWindow.xaml.cs">
       <DependentUpon>Messagedialog_FullWidthWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\First run page\firstrunPage_Control.xaml.cs">
+      <DependentUpon>firstrunPage_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Subpages\0_Webcams\Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Subpages\1_Home\Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Subpages\2_User Interface\Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Subpages\3_About and updates\Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Subpages\3_About and updates\Controls\Updates_Control.xaml.cs">
+      <DependentUpon>Updates_Control.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Subpages\4_Debug settings\Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Subpages\5_Customizations Debug\Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Popups.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -96,7 +123,7 @@
     <Compile Include="User controls\ProgressRing.xaml.cs">
       <DependentUpon>ProgressRing.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User controls\settingsPage_AboutPage_CreditsControl.xaml.cs">
+    <Compile Include="Dialog controls\settingsPage_AboutPage_CreditsControl.xaml.cs">
       <DependentUpon>settingsPage_AboutPage_CreditsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Test_RippleButtonUserControl.xaml.cs">
@@ -130,6 +157,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialog controls\settingsPage_UserInterfacePage_ThemeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -150,6 +181,42 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\First run page\firstrunPage_ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\First run page\firstrunPage_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings page\Subpages\0_Webcams\Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings page\Subpages\1_Home\Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings page\Subpages\2_User Interface\Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings page\Subpages\3_About and updates\Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings page\Subpages\3_About and updates\Controls\Updates_Control.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings page\Subpages\4_Debug settings\Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings page\Subpages\5_Customizations Debug\Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="User controls\AppBar_Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,7 +229,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User controls\settingsPage_AboutPage_CreditsControl.xaml">
+    <Page Include="Dialog controls\settingsPage_AboutPage_CreditsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,6 +304,7 @@
   <ItemGroup>
     <Resource Include="Resources\AboutBackground.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

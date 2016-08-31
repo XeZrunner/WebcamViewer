@@ -5,13 +5,13 @@
     <Setting Name="camera_names" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;Michalovce - Námestie osloboditeľov 01 [SK]&lt;/string&gt;
-  &lt;string&gt;Michalovce - Námestie osloboditeľov 01 [raw] [SK]&lt;/string&gt;
-  &lt;string&gt;Nowy Targ - Ugazdy - Kamera na Tatry [PL]&lt;/string&gt;
-  &lt;string&gt;Glavmore (Camera 2) [RU]&lt;/string&gt;
-  &lt;string&gt;Poprad - Funsat Meteo [SK]&lt;/string&gt;
-  &lt;string&gt;Michalovce - Busová stanica (gecom.sk) [SK]&lt;/string&gt;
-  &lt;string&gt;Zywiec - Zywiec Lake (megasurf.pl) [PL]&lt;/string&gt;
+  &lt;string&gt;Michalovce, Slovakia - Námestie osloboditeľov 01&lt;/string&gt;
+  &lt;string&gt;Michalovce, Slovakia - Námestie osloboditeľov 01 [raw]&lt;/string&gt;
+  &lt;string&gt;Nowy Targ, Poland - Restaurant "U gazdy" (Kamera na Tatry)&lt;/string&gt;
+  &lt;string&gt;Gelendzhik, Russia - Glavmore (Camera 2)&lt;/string&gt;
+  &lt;string&gt;Poprad, Slovakia - Weather station "Funsat"&lt;/string&gt;
+  &lt;string&gt;Michalovce, Slovakia - Busová stanica&lt;/string&gt;
+  &lt;string&gt;Żywiec, Poland - Żywiec lake&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="camera_urls" Type="System.Collections.Specialized.StringCollection" Scope="User">
@@ -36,19 +36,29 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="home_archiveorg" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="versionid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Update 2 Beta</Value>
+      <Value Profile="(Default)">Update 2 Beta - Internal development build
+NOT FOR PUBLIC TESTING</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20160825-01@webcamviewer/internal/features/alpha/overview</Value>
+      <Value Profile="(Default)">20160831-01@webcamviewer/internal/features/alpha/modularpages</Value>
     </Setting>
     <Setting Name="settings_experiment_UpdateUI" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="home_experiment_Overview" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ui_theme" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="app_debugmode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">developer</Value>
+    </Setting>
+    <Setting Name="app_firstrun" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

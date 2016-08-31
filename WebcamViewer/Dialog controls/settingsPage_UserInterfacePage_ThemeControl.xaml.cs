@@ -13,11 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WebcamViewer.User_controls
+namespace WebcamViewer.Dialog_controls
 {
-    public partial class settingsPage_AboutPage_CreditsControl : UserControl
+    public partial class settingsPage_UserInterfacePage_ThemeControl : UserControl
     {
-        public settingsPage_AboutPage_CreditsControl()
+        public settingsPage_UserInterfacePage_ThemeControl()
         {
             InitializeComponent();
         }

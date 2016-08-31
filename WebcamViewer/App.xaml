@@ -18,31 +18,39 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
                 <!-- Custom controls -->
                 <ResourceDictionary Source="ControlStyles.xaml"/>
-                
+
             </ResourceDictionary.MergedDictionaries>
 
             <SolidColorBrush x:Key="accentcolor_dark" Color="#2980b9"/>
             <SolidColorBrush x:Key="accentcolor_light" Color="#3498db"/>
 
-
             <SolidColorBrush x:Key="settingsPage_background" Color="White" />
             <SolidColorBrush x:Key="settingsPage_backgroundSecondary" Color="#FFBBBBBB"/>
             <SolidColorBrush x:Key="settingsPage_backgroundSecondary2" Color="#FFAAAAAA"/>
-            <SolidColorBrush x:Key="settingsPage_backgroundSecondary3" Color="#FFDDDDDD"/>
+            <SolidColorBrush x:Key="settingsPage_backgroundSecondary3" Color="#FFDADADA"/>
+            <SolidColorBrush x:Key="settingsPage_backgroundWebcamItemEditor" Color="White"/>
 
             <SolidColorBrush x:Key="settingsPage_foregroundText" Color="Black"/>
             <SolidColorBrush x:Key="settingsPage_foregroundSecondary" Color="#FF3f3f3f"/>
             <SolidColorBrush x:Key="settingsPage_foregroundSecondary2" Color="#FF4f4f4f"/>
-            
+            <SolidColorBrush x:Key="settingsPage_foregroundSecondary3" Color="#1F000000"/>
 
+
+            <SolidColorBrush x:Key="MessageDialog_Background" Color="#FFF2F2F2"/>
             <SolidColorBrush x:Key="MessageDialog_ForegroundText" Color="Black"/>
             <SolidColorBrush x:Key="MessageDialog_ForegroundSecondary" Color="DarkGray"/>
-            <SolidColorBrush x:Key="MessageDialog_Background" Color="#FFF2F2F2"/>
 
             <!-- Windows 8.1-style MessageDialog-->
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Background" Color="#FFF2F2F2"/>
             <SolidColorBrush x:Key="MessageDialog_FullWidth_ForegroundText" Color="Black"/>
             <SolidColorBrush x:Key="MessageDialog_FullWidth_ForegroundSecondary" Color="DarkGray"/>
-            <SolidColorBrush x:Key="MessageDialog_FullWidth_Background" Color="#FFF2F2F2"/>
+
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_Background" Color="#B3B6B6B6"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_BorderBrush" Color="#B3B6B6B6"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_OverBackground" Color="#D1CDCDCD"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_OverBorderBrush" Color="#D1CDCDCD"/>
+
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_DarkButton_BorderBrush" Color="Red"/> <!-- Accent color -->
 
             <!--#region Colors-->
 
@@ -66,21 +74,25 @@
             <SolidColorBrush x:Key="settingsPage_Light_background" Color="White"/>
             <SolidColorBrush x:Key="settingsPage_Light_backgroundSecondary" Color="#FFBBBBBB"/>
             <SolidColorBrush x:Key="settingsPage_Light_backgroundSecondary2" Color="#FFAAAAAA"/>
-            <SolidColorBrush x:Key="settingsPage_Light_backgroundSecondary3" Color="#FFDDDDDD"/>
+            <SolidColorBrush x:Key="settingsPage_Light_backgroundSecondary3" Color="#FFDADADA"/> <!-- https://youtu.be/lNYcviXK4rg?t=51s xDD -->
+            <SolidColorBrush x:Key="settingsPage_Light_backgroundWebcamItemEditor" Color="White"/>
 
             <SolidColorBrush x:Key="settingsPage_Light_foregroundText" Color="Black"/>
             <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary" Color="#FF3F3F3F"/>
             <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary2" Color="#FF4F4F4F"/>
-            
+            <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary3" Color="#1F000000"/>
 
-            <SolidColorBrush x:Key="settingsPage_Dark_background" Color="#FF232323"/>
-            <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary" Color="#FF434343"/>
-            <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary2" Color="#FF535353"/>
-            <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary3" Color="#FF636363"/>
+
+            <SolidColorBrush x:Key="settingsPage_Dark_background" Color="#FF202020"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary" Color="#FF505050"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary2" Color="#FF606060"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary3" Color="#FF252525"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_backgroundWebcamItemEditor" Color="#FF252525"/>
 
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundText" Color="White"/>
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary" Color="LightGray"/>
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary2" Color="#FFAAAAAA"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary3" Color="#1FFFFFFF"/>
 
             <!-- Message dialog -->
 
@@ -101,10 +113,24 @@
 
             <SolidColorBrush x:Key="MessageDialog_FullWidth_Light_Background" Color="#FFF2F2F2"/>
 
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_Light_Background" Color="#B3B6B6B6"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_Light_BorderBrush" Color="#B3B6B6B6"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_Light_OverBackground" Color="#D1CDCDCD"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_Light_OverBorderBrush" Color="#D1CDCDCD"/>
+            
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_DarkButton_Light_BorderBrush" Color="Red"/> <!-- accentcolor dark -->
+
             <SolidColorBrush x:Key="MessageDialog_FullWidth_Dark_ForegroundText" Color="White"/>
             <SolidColorBrush x:Key="MessageDialog_FullWidth_Dark_ForegroundSecondary" Color="LightGray"/>
 
-            <SolidColorBrush x:Key="MessageDialog_FullWidth_Dark_Background" Color="#FF232323"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Dark_Background" Color="Black"/>
+
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_Dark_Background" Color="Transparent"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_Dark_BorderBrush" Color="White"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_Dark_OverBackground" Color="#21FFFFFF"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_Dark_OverBorderBrush" Color="White"/>
+
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_DarkButton_Dark_BorderBrush" Color="White"/>
 
             <!--#endregion-->
 

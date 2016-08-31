@@ -27,13 +27,13 @@ namespace WebcamViewer.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>Michalovce - Námestie osloboditeľov 01 [SK]</string>
-  <string>Michalovce - Námestie osloboditeľov 01 [raw] [SK]</string>
-  <string>Nowy Targ - Ugazdy - Kamera na Tatry [PL]</string>
-  <string>Glavmore (Camera 2) [RU]</string>
-  <string>Poprad - Funsat Meteo [SK]</string>
-  <string>Michalovce - Busová stanica (gecom.sk) [SK]</string>
-  <string>Zywiec - Zywiec Lake (megasurf.pl) [PL]</string>
+  <string>Michalovce, Slovakia - Námestie osloboditeľov 01</string>
+  <string>Michalovce, Slovakia - Námestie osloboditeľov 01 [raw]</string>
+  <string>Nowy Targ, Poland - Restaurant ""U gazdy"" (Kamera na Tatry)</string>
+  <string>Gelendzhik, Russia - Glavmore (Camera 2)</string>
+  <string>Poprad, Slovakia - Weather station ""Funsat""</string>
+  <string>Michalovce, Slovakia - Busová stanica</string>
+  <string>Żywiec, Poland - Żywiec lake</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection camera_names {
             get {
@@ -103,7 +103,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool home_archiveorg {
             get {
                 return ((bool)(this["home_archiveorg"]));
@@ -115,7 +115,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta - Internal development build\r\nNOT FOR PUBLIC TESTING")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
@@ -127,7 +127,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20160825-01@webcamviewer/internal/features/alpha/overview")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20160831-01@webcamviewer/internal/features/alpha/modularpages")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -139,7 +139,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool settings_experiment_UpdateUI {
             get {
                 return ((bool)(this["settings_experiment_UpdateUI"]));
@@ -151,13 +151,49 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool home_experiment_Overview {
             get {
                 return ((bool)(this["home_experiment_Overview"]));
             }
             set {
                 this["home_experiment_Overview"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ui_theme {
+            get {
+                return ((int)(this["ui_theme"]));
+            }
+            set {
+                this["ui_theme"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("developer")]
+        public string app_debugmode {
+            get {
+                return ((string)(this["app_debugmode"]));
+            }
+            set {
+                this["app_debugmode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool app_firstrun {
+            get {
+                return ((bool)(this["app_firstrun"]));
+            }
+            set {
+                this["app_firstrun"] = value;
             }
         }
     }

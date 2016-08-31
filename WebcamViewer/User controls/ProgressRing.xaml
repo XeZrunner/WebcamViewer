@@ -8,7 +8,7 @@
              Foreground="White" TextOptions.TextRenderingMode="Grayscale" IsVisibleChanged="usercontrol_IsVisibleChanged" Loaded="usercontrol_Loaded">
     <Grid x:Name="mainGrid">
 
-        <Label x:Name="ring" Foreground="{Binding ElementName=usercontrol, Path=Foreground}" Background="{Binding ElementName=usercontrol, Path=Background}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" TextOptions.TextFormattingMode="Display" FontFamily="/Fonts/#Setup" Content="&#xe087;" FontSize="23"/>
+        <Label x:Name="ring" Foreground="{Binding ElementName=usercontrol, Path=Foreground}" Background="{Binding ElementName=usercontrol, Path=Background}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" TextOptions.TextFormattingMode="Display" FontFamily="/Fonts/#Setup" FontSize="23"/>
 
     </Grid>
 </UserControl>

@@ -22,7 +22,7 @@ namespace WebcamViewer
             InitializeComponent();
         }
 
-        public void SetupDialog(string Title, object Content, bool DarkTheme, bool Content_DisableMargin, string FirstButtonContent, string SecondButtonContent, RoutedEventHandler FirstButtonClickEvent, RoutedEventHandler SecondButtonClickEvent)
+        public void SetupDialog(string Title, object Content, bool? DarkTheme, bool Content_DisableMargin, string FirstButtonContent, string SecondButtonContent, RoutedEventHandler FirstButtonClickEvent, RoutedEventHandler SecondButtonClickEvent)
         {
             // Title
             if (Title != "")
@@ -45,27 +45,57 @@ namespace WebcamViewer
                 contentGrid.Children.Add(textblock);
             }
 
-            // Dark theme
-            /*
-            if (DarkTheme)
-            {
-                Application.Current.Resources["MessageDialog_ForegroundText"] = Application.Current.Resources["MessageDialog_Dark_ForegroundText"];
-                Application.Current.Resources["MessageDialog_ForegroundSecondary"] = Application.Current.Resources["MessageDialog_Dark_ForegroundSecondary"];
-                Application.Current.Resources["MessageDialog_Background"] = Application.Current.Resources["MessageDialog_Dark_Background"];
+            // Theme
 
-                firstButton.Style = Application.Current.Resources["UWPButtonStyle_Dark"] as Style;
-                secondButton.Style = Application.Current.Resources["UWPButtonStyle_Dark"] as Style;
+            Application.Current.Resources["MessageDialog_FullWidth_DarkButton_Light_BorderBrush"] = Application.Current.Resources["accentcolor_dark"]; // set the light darkbutton borderbrush color to accentcolor_dark
+
+            if (DarkTheme == true)
+            {
+                Application.Current.Resources["MessageDialog_FullWidth_ForegroundText"] = Application.Current.Resources["MessageDialog_FullWidth_Dark_ForegroundText"];
+                Application.Current.Resources["MessageDialog_FullWidth_ForegroundSecondary"] = Application.Current.Resources["MessageDialog_FullWidth_Dark_ForegroundSecondary"];
+                Application.Current.Resources["MessageDialog_FullWidth_Background"] = Application.Current.Resources["MessageDialog_FullWidth_Dark_Background"];
+
+                Application.Current.Resources["MessageDialog_FullWidth_Button_Background"] = Application.Current.Resources["MessageDialog_FullWidth_Button_Dark_Background"];
+                Application.Current.Resources["MessageDialog_FullWidth_Button_BorderBrush"] = Application.Current.Resources["MessageDialog_FullWidth_Button_Dark_BorderBrush"];
+                Application.Current.Resources["MessageDialog_FullWidth_Button_OverBackground"] = Application.Current.Resources["MessageDialog_FullWidth_DarkButton_Dark_OverBackground"];
+                Application.Current.Resources["MessageDialog_FullWidth_Button_OverBorderBrush"] = Application.Current.Resources["MessageDialog_FullWidth_Button_Dark_OverBorderBrush"];
+
+                Application.Current.Resources["MessageDialog_FullWidth_DarkButton_BorderBrush"] = Application.Current.Resources["MessageDialog_FullWidth_Button_Dark_BorderBrush"];
+            }
+            else if (DarkTheme == false)
+            {
+                Application.Current.Resources["MessageDialog_FullWidth_ForegroundText"] = Application.Current.Resources["MessageDialog_FullWidth_Light_ForegroundText"];
+                Application.Current.Resources["MessageDialog_FullWidth_ForegroundSecondary"] = Application.Current.Resources["MessageDialog_FullWidth_Light_ForegroundSecondary"];
+                Application.Current.Resources["MessageDialog_FullWidth_Background"] = Application.Current.Resources["MessageDialog_FullWidth_Light_Background"];
+
+                Application.Current.Resources["MessageDialog_FullWidth_Button_Background"] = Application.Current.Resources["MessageDialog_FullWidth_Button_Light_Background"];
+                Application.Current.Resources["MessageDialog_FullWidth_Button_BorderBrush"] = Application.Current.Resources["MessageDialog_FullWidth_Button_Light_BorderBrush"];
+                Application.Current.Resources["MessageDialog_FullWidth_Button_OverBackground"] = Application.Current.Resources["MessageDialog_FullWidth_Button_Light_OverBackground"];
+                Application.Current.Resources["MessageDialog_FullWidth_Button_OverBorderBrush"] = Application.Current.Resources["MessageDialog_FullWidth_Button_Light_OverBorderBrush"];
+
+                Application.Current.Resources["MessageDialog_FullWidth_DarkButton_BorderBrush"] = Application.Current.Resources["MessageDialog_FullWidth_DarkButton_Light_BorderBrush"];
             }
             else
             {
-                Application.Current.Resources["MessageDialog_ForegroundText"] = Application.Current.Resources["MessageDialog_Light_ForegroundText"];
-                Application.Current.Resources["MessageDialog_ForegroundSecondary"] = Application.Current.Resources["MessageDialog_Light_ForegroundSecondary"];
-                Application.Current.Resources["MessageDialog_Background"] = Application.Current.Resources["MessageDialog_Light_Background"];
+                string themeString;
 
-                firstButton.Style = Application.Current.Resources["UWPButtonStyle"] as Style;
-                secondButton.Style = Application.Current.Resources["UWPButtonStyle"] as Style;
+                if (Properties.Settings.Default.ui_theme == 0)
+                    themeString = "Light";
+                else
+                    themeString = "Dark";
+
+                Application.Current.Resources["MessageDialog_FullWidth_Background"] = Application.Current.Resources["MessageDialog_FullWidth_" + themeString + "_Background"];
+                Application.Current.Resources["MessageDialog_FullWidth_ForegroundText"] = Application.Current.Resources["MessageDialog_FullWidth_" + themeString + "_ForegroundText"];
+                Application.Current.Resources["MessageDialog_FullWidth_ForegroundSecondary"] = Application.Current.Resources["MessageDialog_FullWidth_" + themeString + "_ForegroundSecondary"];
+
+                Application.Current.Resources["MessageDialog_FullWidth_Button_Background"] = Application.Current.Resources["MessageDialog_FullWidth_Button_" + themeString + "_Background"];
+                Application.Current.Resources["MessageDialog_FullWidth_Button_BorderBrush"] = Application.Current.Resources["MessageDialog_FullWidth_Button_" + themeString + "_BorderBrush"];
+                Application.Current.Resources["MessageDialog_FullWidth_Button_OverBackground"] = Application.Current.Resources["MessageDialog_FullWidth_Button_" + themeString + "_OverBackground"];
+                Application.Current.Resources["MessageDialog_FullWidth_Button_OverBorderBrush"] = Application.Current.Resources["MessageDialog_FullWidth_Button_" + themeString + "_OverBorderBrush"];
+
+                Application.Current.Resources["MessageDialog_FullWidth_DarkButton_BorderBrush"] = Application.Current.Resources["MessageDialog_FullWidth_DarkButton_" + themeString + "_BorderBrush"];
             }
-            */
+
 
             // Content_DisableMargin
             if (Content_DisableMargin)
@@ -78,8 +108,8 @@ namespace WebcamViewer
             secondButton.Content = SecondButtonContent;
 
 
-            // ----- Button visibility ------ //
-
+            // Button visibility
+            //
             // First button
             if (FirstButtonContent != "")
                 firstButton.Visibility = Visibility.Visible;
@@ -92,8 +122,13 @@ namespace WebcamViewer
             else
                 secondButton.Visibility = Visibility.Collapsed;
 
-            // ----- Button visibility ----- //
-
+            // Button focus
+            if (firstButton.Visibility == Visibility.Visible & secondButton.Visibility == Visibility.Visible)
+                firstButton.Focus();
+            if (firstButton.Visibility == Visibility.Visible & secondButton.Visibility != Visibility.Visible)
+                firstButton.Focus();
+            if (firstButton.Visibility != Visibility.Visible & secondButton.Visibility == Visibility.Visible)
+                secondButton.Focus();
 
             // Button click events
             if (FirstButtonClickEvent == null)

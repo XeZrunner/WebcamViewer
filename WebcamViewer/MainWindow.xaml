@@ -9,7 +9,15 @@
         mc:Ignorable="d"
         Title="Webcam Viewer" Height="634" Width="802" Icon="/Resources/icon_white.ico" WindowStyle="None" WindowStartupLocation="CenterScreen" TextOptions.TextRenderingMode="Grayscale" SizeChanged="window_SizeChanged" Loaded="window_Loaded"
         ShowTitleBar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False"
-        BorderThickness="1" BorderBrush="{DynamicResource accentcolor_dark}" GlowBrush="{DynamicResource accentcolor_dark}" NonActiveBorderBrush="{DynamicResource App_NonActiveBorderBrush}" NonActiveGlowBrush="{DynamicResource App_NonActiveGlowBrush}">
+        Background="Black" BorderThickness="1" BorderBrush="{DynamicResource accentcolor_dark}" GlowBrush="{DynamicResource accentcolor_dark}" NonActiveBorderBrush="{DynamicResource App_NonActiveBorderBrush}" NonActiveGlowBrush="{DynamicResource App_NonActiveGlowBrush}"
+        
+        xmlns:Settings_Subpages_WebcamEditorPageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._0_Webcams"
+        xmlns:Settings_Subpages_HomePageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._1_Home"
+        xmlns:Settings_Subpages_UserInterfacePageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface"
+        xmlns:Settings_Subpages_AboutPageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates"
+        xmlns:Settings_Subpages_DebugSettingsPageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings"
+        xmlns:Settings_Subpages_CustomizationsDebugPageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._5_Customizations_Debug">
+    
     <Controls:MetroWindow.Resources>
         <Storyboard x:Key="settingsPage_In">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="webcamPage">
@@ -711,21 +719,16 @@
 
                                 <usercontrols:settingsPage_TabButton IconText="&#xE80F;" Title="HOME" Description="Main page" Tag="1" Click="settingsPage_leftGrid_TabButtonClick"/>
 
-                                <usercontrols:settingsPage_TabButton IconText="&#xE713;" Title="SETTINGS" Description="Settings page" Tag="2" Click="settingsPage_leftGrid_TabButtonClick"/>
+                                <usercontrols:settingsPage_TabButton IconText="&#xE2B1;" Title="USER INTERFACE" Description="Change the appearance" Tag="2" Click="settingsPage_leftGrid_TabButtonClick"/>
 
-                                <usercontrols:settingsPage_TabButton IconText="&#xE2B1;" Title="USER INTERFACE" Description="Change the appearance" Tag="3" Click="settingsPage_leftGrid_TabButtonClick"/>
+                                <usercontrols:settingsPage_TabButton IconText="&#xE946;" Title="ABOUT &amp; UPDATES" Description="Info about the app and available updates" Tag="3" Click="settingsPage_leftGrid_TabButtonClick"/>
 
-                                <usercontrols:settingsPage_TabButton IconText="&#xE946;" Title="ABOUT &amp; UPDATES" Description="Info about the app and available updates" Tag="4" Click="settingsPage_leftGrid_TabButtonClick"/>
+                                <usercontrols:settingsPage_TabButton x:Name="settingsPage_leftGrid_DebugSettingsTabButton" IconText="&#xE90F;" Title="DEBUG SETTINGS" Description="Debug mode: %s" Tag="4" Click="settingsPage_leftGrid_TabButtonClick"/>
 
-                                <usercontrols:settingsPage_TabButton IconText="&#xE90F;" Title="DEBUG MENU" Description="Debug mode: %s" Tag="5" Click="settingsPage_leftGrid_TabButtonClick"/>
-
-                                <usercontrols:settingsPage_TabButton IconText="&#xE822;" Title="PRERELEASE PROGRAM SETTINGS" Description="Current channel: %s at branch %s" Tag="6" Click="settingsPage_leftGrid_TabButtonClick"/>
-
-                                <usercontrols:settingsPage_TabButton IconText="&#xe71D;" Title="DEFAULT CUSTOMIZATIONS DEBUG" Description="In use: %s" Tag="7" Click="settingsPage_leftGrid_TabButtonClick"/>
+                                <usercontrols:settingsPage_TabButton x:Name="settingsPage_leftGrid_DefaultCustomizationsDebugTabButton" IconText="&#xe71D;" Title="DEFAULT CUSTOMIZATIONS DEBUG" Description="In use: %s" Tag="5" Click="settingsPage_leftGrid_TabButtonClick"/>
 
                             </StackPanel>
                         </ScrollViewer>
-
 
                     </Grid>
 
@@ -740,60 +743,7 @@
 
                                 <Controls:ProgressRing x:Name="settingsPage_WebcamEditorPage_progressRing" Foreground="{DynamicResource accentcolor_dark}" EllipseDiameterScale="0.85" Visibility="Collapsed"/>
 
-                                <!-- Content -->
-                                <Grid x:Name="settingsPage_WebcamEditorPage_Content">
-
-                                    <Grid Margin="10">
-
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition />
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="53"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Label Grid.Row="0">Add, edit, remove and re-arrange cameras below</Label>
-
-                                        <ListView Grid.Row="1" x:Name="settingsPage_WebcamEditorPage_ListView" Background="{DynamicResource settingsPage_background}" Foreground="{DynamicResource settingsPage_foregroundText}" Margin="0,10,0,0" SelectionChanged="settingsPage_WebcamEditorPage_ListView_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                                            <ListView.View>
-                                                <GridView >
-                                                    <GridViewColumn Header="Camera name"  DisplayMemberBinding="{Binding Name}" />
-                                                    <GridViewColumn Header="Camera URL" DisplayMemberBinding="{Binding Url}" />
-                                                    <GridViewColumn Header="Save location" DisplayMemberBinding="{Binding SaveLocation}"/>
-                                                    <GridViewColumn Header="Refresh rate (seconds)" DisplayMemberBinding="{Binding RefreshRate}"/>
-                                                </GridView>
-                                            </ListView.View>
-                                        </ListView>
-
-                                        <!-- Item editor -->
-                                        <Grid Grid.Row="2" x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid" Background="{DynamicResource settingsPage_backgroundSecondary}" Margin="10,20,10,10"
-                                              Visibility="Visible">
-
-                                            <Label x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid_Disabled" HorizontalAlignment="Center" Visibility="Collapsed">Save your changes to edit the cameras.</Label>
-
-                                            <StackPanel x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid_Main" Margin="10">
-
-                                                <Label>Camera name</Label>
-                                                <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_NameTextBox"/>
-
-                                                <Label Margin="0,5,0,0">Camera URL</Label>
-                                                <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox"/>
-
-                                                <Label Margin="0,5,0,0">Save location</Label>
-                                                <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_SaveLocationTextBox"/>
-
-                                                <Label Margin="0,5,0,0">Refresh rate (seconds)</Label>
-                                                <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox"/>
-
-                                            </StackPanel>
-
-                                        </Grid>
-
-                                        <usercontrols:settingsPage_NormalButton Grid.Row="3" x:Name="settingsPage_WebcamEditorPage_SaveButton" Margin="0,0,20,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="150" Text="Save changes" Click="settingsPage_WebcamEditorPage_SaveButton_Click"/>
-
-                                    </Grid>
-
-                                </Grid>
+                                <Settings_Subpages_WebcamEditorPageControls:Page x:Name="settingsPage_WebcamEditorPage_Control"/>
 
                             </Grid>
 
@@ -802,271 +752,39 @@
 
                                 <Controls:ProgressRing x:Name="settingsPage_HomeSettingsPage_progressRing" Foreground="{DynamicResource accentcolor_dark}" EllipseDiameterScale="0.85" Visibility="Collapsed"/>
 
-                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                                    <StackPanel x:Name="settingsPage_HomeSettingsPage_MainStackPanel" Margin="10">
-
-                                        <!-- <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">HOME</Label> -->
-
-                                        <!-- Home -->
-                                        <StackPanel Margin="0,5,0,0">
-                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_MenuBlurBehindToggleButton" Title="Menu blur behind" Description="Toggle the blurred background in the menu" Tag="home_blurbehind" Click="settingsPage_ToggleButtonClick"/>
-                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_ArchiveOrgIntegrationToggleButton" Title="archive.org integration" Description="Allow saving the cameras to archive.org" Tag="home_archiveorg" Click="settingsPage_ToggleButtonClick"/>
-                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_ImageSizingButton" Title="Image sizing" Description="Choose whether the image should stretch, fill or scale uniformly in the window...&#x0a;Current mode: %s" IsToggleButton="False"/>
-                                        </StackPanel>
-
-                                    </StackPanel>
-                                </ScrollViewer>
+                                <Settings_Subpages_HomePageControls:Page x:Name="settingsPage_HomeSettingsPage_Control" />
 
                             </Grid>
 
-                            <Grid x:Name="settingsPage_SettingsSettingsPage" Tag="2"
-                                  Visibility="Collapsed">
-
-                                <Controls:ProgressRing x:Name="settingsPage_SettingsSettingsPage_progressRing" Foreground="{DynamicResource accentcolor_dark}" EllipseDiameterScale="0.85" Visibility="Collapsed"/>
-
-                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                                    <StackPanel x:Name="settingsPage_SettingsSettingsPage_MainStackPanel" Margin="10">
-
-                                        <!-- <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">SETTINGS</Label> -->
-
-                                        <!-- Settings page (temporary) -->
-                                        <StackPanel Margin="0,5,0,0">
-                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_SettingsPage_ShowAccentColorOnTitlebarToggleButton" Title="Show accent color on titlebar (legacy)" Description="Shows the current accent color on the titlebar in the Settings" Tag="settings_showtitlebarcolor" Click="settingsPage_ToggleButtonClick"/>
-                                        </StackPanel>
-
-                                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Center" Margin="10,5,0,0">This page is unneccessary... TODO: move to better page</Label>
-
-                                    </StackPanel>
-                                </ScrollViewer>
-
-                            </Grid>
-
-                            <Grid x:Name="settingsPage_UserInterfacePage" Tag="3"
+                            <Grid x:Name="settingsPage_UserInterfacePage" Tag="2"
                                   Visibility="Collapsed">
 
                                 <Controls:ProgressRing x:Name="settingsPage_UserInterfacePage_progressRing" Foreground="{DynamicResource accentcolor_dark}" EllipseDiameterScale="0.85" Visibility="Collapsed"/>
 
-                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                                    <StackPanel x:Name="settingsPage_UserInterfacePage_MainStackPanel" Margin="10">
-
-                                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">COLORS</Label>
-
-                                        <!-- Colors -->
-                                        <StackPanel Margin="0,5,0,0">
-                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_UI_AccentColorButton" Title="Accent color" Description="The color to use throughout the user interface...&#x0a;Current color: %s" IsToggleButton="False">
-                                                <usercontrols:settingsPage_ToggleSwitchButton.RightSideGrid>
-                                                    <Grid>
-
-                                                        <Rectangle Fill="{DynamicResource accentcolor_dark}" Width="30" Height="30" />
-
-                                                    </Grid>
-                                                </usercontrols:settingsPage_ToggleSwitchButton.RightSideGrid>
-                                            </usercontrols:settingsPage_ToggleSwitchButton>
-                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_UI_ThemeButton" IsToggleButton="False" Title="Theme" Description="The theme to use throughout the user interface...&#x0a;Current theme: %s" Click="settingsPage_UserInterfacePage_UI_ThemeButton_Click"/>
-                                        </StackPanel>
-
-                                    </StackPanel>
-                                </ScrollViewer>
+                                <Settings_Subpages_UserInterfacePageControls:Page x:Name="settingsPage_UserInterfacePage_Control" />
 
                             </Grid>
 
-                            <Grid x:Name="settingsPage_AboutPage" Tag="4"
+                            <Grid x:Name="settingsPage_AboutPage" Tag="3"
                                   Visibility="Collapsed">
 
                                 <Controls:ProgressRing x:Name="settingsPage_AboutPage_progressRing" Foreground="{DynamicResource accentcolor_dark}" EllipseDiameterScale="0.85" Visibility="Collapsed"/>
 
                                 <!-- Content -->
-                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                                    <StackPanel Margin="10">
-                                        <StackPanel.Resources>
-                                            <Style TargetType="TextBlock">
-                                                <Setter Property="Margin" Value="0,5,0,0"/>
-                                                <Setter Property="HorizontalAlignment" Value="Left"/>
-                                                <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
-                                            </Style>
-                                        </StackPanel.Resources>
-
-                                        <TextBlock x:Name="settingsPage_AboutPage_ApplicationNameTextBlock" Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" FontSize="18" HorizontalAlignment="Left">Webcam Viewer</TextBlock>
-                                        <TextBlock x:Name="settingsPage_AboutPage_VersionNumberTextBlock" Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" FontSize="14" HorizontalAlignment="Left">4.2.0</TextBlock>
-
-                                        <TextBlock Margin="0,15,20,0" FontSize="13.5">
-                                            Webcam Viewer is a free program dedicated to viewing and saving online cameras using common image formats.
-                                            <LineBreak/>
-                                            <LineBreak/>
-                                            The program is completely free and open-source, go look at the source code at
-                                            <TextBlock x:Name="settingsPage_AboutPage_GithubLink" Foreground="{DynamicResource accentcolor_dark}" Margin="0" Cursor="Hand" MouseLeftButtonUp="settingsPage_AboutPage_GithubLink_Click">
-                                                <TextBlock.Resources>
-                                                    <Style TargetType="TextBlock">
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </TextBlock.Resources>
-                                                github.com/xezrunner/WebcamViewer
-                                            </TextBlock>
-                                        </TextBlock>
-
-                                        <usercontrols:settingsPage_NormalButton x:Name="settingsPage_AboutPage_CreditsButton" HorizontalAlignment="Right" Width="130" Margin="0,13,25,0" Text="Credits" Click="settingsPage_AboutPage_CreditsButton_Click"/>
-
-                                        <Grid x:Name="settingsPage_AboutPage_UpdatesGrid" Visibility="Visible">
-                                            <StackPanel>
-
-                                                <Rectangle Fill="{DynamicResource settingsPage_backgroundSecondary}" Margin="5,15,5,10" Height="2" />
-
-                                                <TextBlock Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold">UPDATES</TextBlock>
-
-                                                <Grid Margin="0,15,0,0" HorizontalAlignment="Left">
-
-                                                    <StackPanel x:Name="settingsPage_AboutPage_UpdatesGrid_progressPanel" Orientation="Horizontal" Visibility="Visible">
-
-                                                        <usercontrols:ProgressRing x:Name="settingsPage_AboutPage_UpdatesGrid_progressPanel_ProgressRing" Foreground="{DynamicResource accentcolor_dark}" Width="25" Height="25" RingFontSize="18" IsActive="True" />
-
-                                                        <TextBlock x:Name="settingsPage_AboutPage_UpdatesGrid_progressPanel_ProgressTextBlock" Foreground="{DynamicResource accentcolor_dark}" Margin="15,0,0,0" FontSize="14" VerticalAlignment="Center" Text="Please wait..."/>
-
-                                                    </StackPanel>
-
-                                                    <StackPanel x:Name="settingsPage_AboutPage_UpdatesGrid_updateoverviewPanel" Visibility="Collapsed">
-
-                                                        <Label x:Name="settingsPage_AboutPage_UpdatesGrid_updateoverviewPanel_UpdateNameLabel" Foreground="{DynamicResource accentcolor_dark}" FontSize="16">Webcam Viewer Update x (6.9.0)</Label>
-
-                                                        <Label>Update description will go here...</Label>
-
-                                                        <usercontrols:settingsPage_NormalButton x:Name="settingsPage_AboutPage_UpdatesGrid_updateoverviewPanel_InstallUpdateButton" Text="Download and install update" HorizontalAlignment="Right" Margin="0,15,15,15" />
-
-                                                    </StackPanel>
-
-                                                </Grid>
-
-                                            </StackPanel>
-                                        </Grid>
-
-                                        <Grid x:Name="settingsPage_AboutPage_DebugVersionInfoGrid">
-
-                                            <StackPanel>
-                                                <Rectangle Fill="{DynamicResource settingsPage_backgroundSecondary}" Margin="5,15,5,10" Height="2" />
-
-                                                <TextBlock Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold">VERSION INFO</TextBlock>
-
-                                                <Grid Margin="0,10,0,0">
-
-                                                    <StackPanel>
-                                                        <TextBlock x:Name="settingsPage_AboutPage_DebugVersionInfoGrid_VersionNumberTextBlock" Text="Version number: %s"/>
-                                                        <TextBlock x:Name="settingsPage_AboutPage_DebugVersionInfoGrid_VersionNameTextBlock" Text="Version name: %s"/>
-                                                        <TextBlock x:Name="settingsPage_AboutPage_DebugVersionInfoGrid_BuildIDTextBlock" Text="Build ID: %s"/>
-                                                    </StackPanel>
-
-                                                </Grid>
-                                            </StackPanel>
-
-                                        </Grid>
-
-                                    </StackPanel>
-                                </ScrollViewer>
+                                <Settings_Subpages_AboutPageControls:Page x:Name="settingsPage_AboutPage_Control" />
 
                             </Grid>
 
-                            <Grid x:Name="settingsPage_DebugMenuPage" Tag="5"
+                            <Grid x:Name="settingsPage_DebugMenuPage" Tag="4"
                                   Visibility="Collapsed">
 
                                 <Controls:ProgressRing x:Name="settingsPage_DebugMenuPage_progressRing" Foreground="{DynamicResource accentcolor_dark}" EllipseDiameterScale="0.85" Visibility="Collapsed"/>
 
-                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                                    <StackPanel Margin="10">
-
-                                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">HOME</Label>
-
-                                        <!-- Home -->
-                                        <StackPanel Margin="0,5,0,0">
-                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Home_ProgressDebugButton" IsToggleButton="False" Title="Progress UI Debug" Description="Progress UI Debug" Click="settingsPage_DebugMenuPage_Home_ProgressDebugButton_Click"/>
-                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Home_DebugOverlayToggleButton" Title="Debug overlay" Description="Show debug info about the image and the window on the Home page" Tag="home_debugoverlay" Click="settingsPage_ToggleButtonClick"/>
-                                        </StackPanel>
-
-                                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">GLOBAL UI</Label>
-
-                                        <!-- Global UI -->
-                                        <StackPanel Margin="0,5,0,0">
-                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Home_MessageDialogDebugButton" IsToggleButton="False" Title="MessageDialog Debug" Description="MessageDialog Debug" Click="settingsPage_DebugMenuPage_Home_MessageDialogDebugButton_Click"/>
-                                        </StackPanel>
-
-                                        <Label x:Name="settingsPage_DebugMenuPage_Experiments_ExperimentsSectionLabel" Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">EXPERIMENTS</Label>
-
-                                        <!-- Experiments -->
-                                        <StackPanel x:Name="settingsPage_DebugMenuPage_Experiments_ExperimentsSectionStackPanel" Margin="0,5,0,0">
-                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Experiments_ExperimentsButton" IsToggleButton="False" Title="Toggle experiments" Description="Toggle experiments" Click="settingsPage_DebugMenuPage_Experiments_ExperimentsButton_Click"/>
-                                        </StackPanel>
-
-                                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">CONFIGURATION</Label>
-
-                                        <!-- Configuration -->
-                                        <StackPanel Margin="0,5,0,0">
-                                            <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Configuration_ResetConfigurationButton" IsToggleButton="False" Title="Reset configuration" Description="Resets all user settings to defaults" Click="settingsPage_DebugMenuPage_Configuration_ResetConfigurationButton_Click"/>
-                                        </StackPanel>
-
-                                    </StackPanel>
-                                </ScrollViewer>
+                                <Settings_Subpages_DebugSettingsPageControls:Page x:Name="settingsPage_DebugMenuPage_Control" />
 
                             </Grid>
 
-                            <Grid x:Name="settingsPage_PrereleaseProgramSettingsPage" Tag="6" Margin="0,-32,0,0" IsVisibleChanged="settingsPage_PrereleaseProgramSettingsPage_IsVisibleChanged"
-                                  Visibility="Collapsed">
-
-                                <Grid x:Name="settingsPage_PrereleaseProgramSettingsPage_progressPanel" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
-                                    <Controls:ProgressRing x:Name="settingsPage_PrereleaseProgramPage_progressRing" Foreground="{DynamicResource accentcolor_dark}" EllipseDiameterScale="0.85" Visibility="Visible"/>
-                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI Semilight" FontSize="22" Margin="0,140,0,0">Getting some info...</TextBlock>
-                                </Grid>
-
-                                <!-- Forced dark theme -->
-                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="0,32,0,0" Background="{DynamicResource settingsPage_Dark_background}">
-                                    <StackPanel Margin="10">
-
-                                        <Label Foreground="{DynamicResource accentcolor_light}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="0,0,0,0">PRERELEASE PROGRAM</Label>
-
-                                        <Grid x:Name="settingsPage_PrereleaseProgramSettingsPage_IntroductionPanel">
-
-                                            <StackPanel>
-                                                <StackPanel.Resources>
-                                                    <Style TargetType="TextBlock">
-                                                        <Setter Property="Foreground" Value="{DynamicResource settingsPage_Dark_foregroundText}"/>
-                                                        <Setter Property="Margin" Value="10,5,0,0"/>
-                                                        <Setter Property="FontSize" Value="12"/>
-                                                        <Setter Property="TextWrapping" Value="Wrap"/>
-                                                    </Style>
-                                                </StackPanel.Resources>
-
-                                                <TextBlock Margin="10,10,0,0" FontFamily="Segoe UI" FontSize="18">Begin testing!</TextBlock>
-                                                <TextBlock Foreground="{DynamicResource settingsPage_Dark_foregroundSecondary2}" Margin="10,10,0,0" FontFamily="Segoe UI">Sign up for the prerelease program to become a tester and get prerelease builds!</TextBlock>
-                                                <StackPanel/>
-
-                                                <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_PrereleaseProgramSettingsPage_IntroductionPanel_SignUpButton" Background="{DynamicResource settingsPage_Dark_backgroundSecondary}"  Theme="1"
-                                                                                              Margin="0,20,0,0" IsToggleButton="False" Title="Register a prerelease account" Description="Create a new account which you'll use to get prerelease builds..." Click="settingsPage_PrereleaseProgramSettingsPage_IntroductionPanel_SignUpButton_Click">
-                                                    <usercontrols:settingsPage_ToggleSwitchButton.RightSideGrid>
-                                                        <Grid>
-                                                            <usercontrols:ProgressRing Foreground="{DynamicResource accentcolor_light}" Width="25" Height="25" RingFontSize="18" IsActive="False" />
-                                                        </Grid>
-                                                    </usercontrols:settingsPage_ToggleSwitchButton.RightSideGrid>
-                                                </usercontrols:settingsPage_ToggleSwitchButton>
-
-                                                <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_PrereleaseProgramSettingsPage_IntroductionPanel_LoginButton" Background="{DynamicResource settingsPage_Dark_backgroundSecondary}" Theme="1"
-                                                                                              IsToggleButton="False" Title="Already have an account?" Description="Welcome back! Click here to log in..." Click="settingsPage_PrereleaseProgramSettingsPage_IntroductionPanel_LoginButton_Click">
-                                                    <usercontrols:settingsPage_ToggleSwitchButton.RightSideGrid>
-                                                        <Grid>
-                                                            <usercontrols:ProgressRing Foreground="{DynamicResource accentcolor_light}" Width="25" Height="25" RingFontSize="18" IsActive="False" />
-                                                        </Grid>
-                                                    </usercontrols:settingsPage_ToggleSwitchButton.RightSideGrid>
-                                                </usercontrols:settingsPage_ToggleSwitchButton>
-
-                                            </StackPanel>
-
-                                        </Grid>
-
-                                    </StackPanel>
-                                </ScrollViewer>
-
-                            </Grid>
-
-                            <Grid x:Name="settingsPage_DefaultCustomizationsDebugPage" Tag="7"
+                            <Grid x:Name="settingsPage_DefaultCustomizationsDebugPage" Tag="5"
                                   Visibility="Collapsed">
 
                                 <StackPanel x:Name="settingsPage_DefaultCustomizationsDebugPage_ProgressPanel" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
@@ -1075,15 +793,7 @@
                                     <TextBlock Foreground="{DynamicResource accentcolor_dark}" HorizontalAlignment="Center" Margin="0,8,0,0" FontFamily="Segoe UI Semilight" FontSize="16">This shouldn't take long...</TextBlock>
                                 </StackPanel>
 
-                                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Visibility="Visible">
-                                    <StackPanel Margin="10">
-
-                                        <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DefaultCustomizationsDebugPage_SettingsButton" IsToggleButton="False" Margin="0,0,0,15" Title="Delivery settings" Description="Delivery settings" Click="settingsPage_DefaultCustomizationsDebugPage_SettingsButton_Click" />
-
-                                        <TextBlock x:Name="settingsPage_DefaultCustomiazionsDebugPage_MainTextBlock" FontFamily="Consolas">DEFAULT CUSTOMIZATIONS FILE CONTENTS GO HERE</TextBlock>
-
-                                    </StackPanel>
-                                </ScrollViewer>
+                                <Settings_Subpages_CustomizationsDebugPageControls:Page x:Name="settingsPage_CustomizationsDebugPage_Control"/>
 
                             </Grid>
 
@@ -1238,6 +948,34 @@
                 </StackPanel>
 
             </Grid>
+
+        </Grid>
+
+        <Grid x:Name="firstrunPage" Background="Black"
+              Visibility="Collapsed">
+
+            <UserControl x:Name="firstrunPage_ViewHost" />
+
+        </Grid>
+
+        <Grid x:Name="splashPage" Background="#2FFFFFFF" Visibility="Collapsed">
+
+            <Image x:Name="splashPage_SplashImage" Source="/Resources/icon_white.ico" Height="96" Width="96" />
+
+            <StackPanel x:Name="splashPage_ProgressPanel" Orientation="Horizontal" Margin="0,300,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="14.447"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                </StackPanel.Resources>
+
+                <usercontrols:ProgressRing x:Name="splashPage_ProgressRing" Width="30" Height="30" Margin="0,0,15,0"/>
+
+                <TextBlock x:Name="splashPage_ProgressTextBlock" Text="Preparing Webcam Viewer..."/>
+
+            </StackPanel>
 
         </Grid>
 

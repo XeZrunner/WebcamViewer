@@ -1,0 +1,129 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WebcamViewer.Pages.First_run_page" xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls">
+
+    <!--#region Colors-->
+
+    <SolidColorBrush x:Key="FirstRunPage_Background" Color="Black"/>
+    <SolidColorBrush x:Key="FirstRunPage_Foreground" Color="White"/>
+
+    <!--#endregion-->
+
+    <Style x:Key="FirstRunPage_BackButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="{DynamicResource FirstRunPage_Foreground}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="15.557"/>
+        <Setter Property="FontFamily" Value="/Fonts/#Segoe MDL2 Assets"/>
+        <Setter Property="Margin" Value="0,10,0,0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <Custom:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Custom:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <!-- <Setter Property="Background" Value="#1FFFFFFF"/> -->
+                <Setter Property="Foreground" Value="{DynamicResource accentcolor_light}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Foreground" Value="Black"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="FirstRunPage_Win81ButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="{DynamicResource FirstRunPage_Foreground}"/>
+        <Setter Property="Background" Value="{DynamicResource FirstRunPage_Background}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource FirstRunPage_Background}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="FontSize" Value="14.667"/>
+        <Setter Property="Padding" Value="24,4"/>
+        <Setter Property="MinWidth" Value="90"/>
+        <!-- <Setter Property="Height" Value="32"/> -->
+        <!-- <Setter Property="MinWidth" Value="180"/> -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RenderTransformOrigin="0.5, 0.5">
+                        <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5, 0.5"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource MessageDialog_FullWidth_Button_Dark_OverBackground}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource MessageDialog_FullWidth_Button_Dark_OverBorderBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource FirstRunPage_Foreground}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource FirstRunPage_Foreground}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource FirstRunPage_Foreground}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource MessageDialog_FullWidth_Background}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#66CACACA"/>
+                            <Setter Property="BorderBrush" Value="#1A000000"/>
+                            <Setter Property="Foreground" Value="#66000000"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="FirstRunPage_Win81ButtonStyle_Dark" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="{DynamicResource accentcolor_dark}"/>
+        <!-- <Setter Property="BorderBrush" Value="{DynamicResource accentcolor_dark}"/> -->
+        <Setter Property="BorderBrush" Value="{DynamicResource FirstRunPage_Foreground}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="FontSize" Value="14.667"/>
+        <Setter Property="Padding" Value="24,4"/>
+        <Setter Property="MinWidth" Value="90"/>
+        <!-- <Setter Property="Height" Value="32"/> -->
+        <!-- <Setter Property="MinWidth" Value="180"/> -->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RenderTransformOrigin="0.5, 0.5">
+                        <Controls:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Controls:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5, 0.5"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource accentcolor_light}"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource FirstRunPage_Foreground}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource FirstRunPage_Foreground}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource FirstRunPage_Background}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="BorderBrush" Value="#66FFFFFF"/>
+                            <Setter Property="Foreground" Value="#66FFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

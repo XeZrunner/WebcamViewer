@@ -1,0 +1,40 @@
+﻿<UserControl x:Name="page" x:Class="WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.Page"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface"
+             xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
+             mc:Ignorable="d" 
+             d:DesignWidth="500" d:DesignHeight="572" Background="{DynamicResource settingsPage_background}" Loaded="page_Loaded">
+    <Grid>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel x:Name="sectionsPanel" Margin="10">
+
+                <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">COLORS</Label>
+
+                <!-- Colors -->
+                <StackPanel Margin="0,5,0,0">
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_UI_AccentColorButton" Title="Accent color" Description="The color to use throughout the user interface...&#x0a;Current color: %s" IsToggleButton="False">
+                        <usercontrols:settingsPage_ToggleSwitchButton.RightSideGrid>
+                            <Grid>
+
+                                <Rectangle Fill="{DynamicResource accentcolor_dark}" Width="30" Height="30" />
+
+                            </Grid>
+                        </usercontrols:settingsPage_ToggleSwitchButton.RightSideGrid>
+                    </usercontrols:settingsPage_ToggleSwitchButton>
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_UI_ThemeButton" IsToggleButton="False" Title="Theme" Description="The theme to use throughout the user interface...&#x0a;Current theme: %s" Click="settingsPage_UserInterfacePage_UI_ThemeButton_Click"/>
+                </StackPanel>
+
+                <!-- Settings -->
+                <StackPanel Margin="0,10,0,0">
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_SettingsPage_ShowAccentColorOnTitlebarToggleButton" Title="Show accent color on titlebar" Description="Shows the current accent color on the titlebar in the Settings" Tag="settings_showtitlebarcolor" Click="settingsPage_ToggleButtonClick"/>
+                </StackPanel>
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</UserControl>

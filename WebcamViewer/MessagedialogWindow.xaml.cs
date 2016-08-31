@@ -23,7 +23,7 @@ namespace WebcamViewer
             InitializeComponent();
         }
 
-        public void SetupDialog(string Title, object Content, bool DarkTheme, bool Content_DisableMargin, string FirstButtonContent, string SecondButtonContent, RoutedEventHandler FirstButtonClickEvent, RoutedEventHandler SecondButtonClickEvent)
+        public void SetupDialog(string Title, object Content, bool? DarkTheme, bool Content_DisableMargin, string FirstButtonContent, string SecondButtonContent, RoutedEventHandler FirstButtonClickEvent, RoutedEventHandler SecondButtonClickEvent)
         {
             // Title
             if (Title != "")
@@ -46,8 +46,9 @@ namespace WebcamViewer
                 contentGrid.Children.Add(textblock);
             }
 
-            // Dark theme
-            if (DarkTheme)
+            // Theme
+
+            if (DarkTheme == true)
             {
                 Application.Current.Resources["MessageDialog_ForegroundText"] = Application.Current.Resources["MessageDialog_Dark_ForegroundText"];
                 Application.Current.Resources["MessageDialog_ForegroundSecondary"] = Application.Current.Resources["MessageDialog_Dark_ForegroundSecondary"];
@@ -56,7 +57,7 @@ namespace WebcamViewer
                 firstButton.Style = Application.Current.Resources["UWPButtonStyle_Dark"] as Style;
                 secondButton.Style = Application.Current.Resources["UWPButtonStyle_Dark"] as Style;
             }
-            else
+            else if (DarkTheme == false)
             {
                 Application.Current.Resources["MessageDialog_ForegroundText"] = Application.Current.Resources["MessageDialog_Light_ForegroundText"];
                 Application.Current.Resources["MessageDialog_ForegroundSecondary"] = Application.Current.Resources["MessageDialog_Light_ForegroundSecondary"];
@@ -65,20 +66,47 @@ namespace WebcamViewer
                 firstButton.Style = Application.Current.Resources["UWPButtonStyle"] as Style;
                 secondButton.Style = Application.Current.Resources["UWPButtonStyle"] as Style;
             }
+            else
+            {
+                string themeString;
+
+                if (Properties.Settings.Default.ui_theme == 0)
+                    themeString = "Light";
+                else
+                    themeString = "Dark";
+
+                Application.Current.Resources["MessageDialog_Background"] = Application.Current.Resources["MessageDialog_" + themeString + "_Background"];
+                Application.Current.Resources["MessageDialog_ForegroundText"] = Application.Current.Resources["MessageDialog_" + themeString + "_ForegroundText"];
+                Application.Current.Resources["MessageDialog_ForegroundSecondary"] = Application.Current.Resources["MessageDialog_" + themeString + "_ForegroundSecondary"];
+
+                // button styles
+                if (Properties.Settings.Default.ui_theme == 0)
+                {
+                    firstButton.Style = Application.Current.Resources["UWPButtonStyle"] as Style;
+                    secondButton.Style = Application.Current.Resources["UWPButtonStyle"] as Style;
+                }
+                else
+                {
+                    firstButton.Style = Application.Current.Resources["UWPButtonStyle_Dark"] as Style;
+                    secondButton.Style = Application.Current.Resources["UWPButtonStyle_Dark"] as Style;
+                }
+            }
 
             // Content_DisableMargin
             if (Content_DisableMargin)
                 contentGrid.Margin = new Thickness(0);
             else
+            {
                 contentGrid.Margin = new Thickness(24, 0, 24, 0);
+            }
 
             // Button text
             firstButton.Content = FirstButtonContent;
             secondButton.Content = SecondButtonContent;
 
 
-            // ----- Button visibility ------ //
-
+            // Button visibility
+            //
             // First button
             if (FirstButtonContent != "")
                 firstButton.Visibility = Visibility.Visible;
@@ -91,8 +119,13 @@ namespace WebcamViewer
             else
                 secondButton.Visibility = Visibility.Collapsed;
 
-            // ----- Button visibility ----- //
-
+            // Button focus
+            if (firstButton.Visibility == Visibility.Visible & secondButton.Visibility == Visibility.Visible)
+                secondButton.Focus();
+            if (firstButton.Visibility == Visibility.Visible & secondButton.Visibility != Visibility.Visible)
+                firstButton.Focus();
+            if (firstButton.Visibility != Visibility.Visible & secondButton.Visibility == Visibility.Visible)
+                secondButton.Focus();
 
             // Button click events
             if (FirstButtonClickEvent == null)

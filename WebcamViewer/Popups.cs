@@ -30,9 +30,9 @@ namespace WebcamViewer
 
             /// <summary>
             /// The theme of the dialog.
-            /// If this is true, the dialog is going to be dark-themed. If false, it's going to be light-themed.
+            /// If this is true, the dialog is going to be dark-themed. If false, it's going to be light-themed. If it's null, it's determined by the theme.
             /// </summary>
-            public bool IsDarkTheme = false;
+            public bool? IsDarkTheme = null;
 
             /// <summary>
             /// If enabled, the content part of the dialog is not going to have a margin.
@@ -162,9 +162,9 @@ namespace WebcamViewer
 
             /// <summary>
             /// The theme of the dialog.
-            /// If this is true, the dialog is going to be dark-themed. If false, it's going to be light-themed.
+            /// If this is true, the dialog is going to be dark-themed. If false, it's going to be light-themed. If it's null, it's determined by the theme.
             /// </summary>
-            public bool IsDarkTheme = false;
+            public bool? IsDarkTheme = null;
 
             /// <summary>
             /// If enabled, the content part of the dialog is not going to have a margin.

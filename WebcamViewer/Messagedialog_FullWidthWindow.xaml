@@ -6,10 +6,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebcamViewer"
         mc:Ignorable="d"
-        Title="Messagedialog_FullWidthWindow" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" SizeToContent="Height" SizeChanged="Window_SizeChanged"
+        Title="Messagedialog_FullWidthWindow" Background="{DynamicResource MessageDialog_FullWidth_Background}" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" SizeToContent="Height" SizeChanged="Window_SizeChanged"
         ShowTitleBar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False" TextOptions.TextRenderingMode="Grayscale" >
     
-    <Grid Background="White" VerticalAlignment="Center" MinWidth="350" MaxWidth="530">
+    <Grid VerticalAlignment="Center" MinWidth="350" MaxWidth="530">
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="Foreground" Value="{DynamicResource MessageDialog_FullWidth_ForegroundText}"/>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource MessageDialog_FullWidth_ForegroundText}"/>
+            </Style>
+        </Grid.Resources>
+        
         <Grid.RowDefinitions>
             <RowDefinition x:Name="rowdefinition_0" Height="Auto"/>
             <RowDefinition x:Name="rowdefinition_1" Height="*"/>

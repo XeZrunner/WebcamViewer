@@ -47,6 +47,16 @@ namespace WebcamViewer
             webcamPage_menuGrid_cameraButton_Click(firstCameraButton, new RoutedEventArgs());
         }
 
+        /// --------TODO LIST-------- ///
+        /// 
+        /// ------------------------- ///
+        /// 1. Modular pages
+        /// ------------------------- ///
+        /// 2. New settings subpage loading code
+        /// ------------------------- ///
+        /// 
+        /// --------TODO LIST-------- ///
+
         #region Window & titlebar
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
@@ -118,7 +128,7 @@ namespace WebcamViewer
         /// <summary>
         /// Dims the program UI. (note: it also dims (thus blocks) the titlebar)
         /// </summary>
-        void global_Dim()
+        public void global_Dim()
         {
             global_dimGrid.Opacity = 0;
             global_dimGrid.Visibility = Visibility.Visible;
@@ -132,7 +142,7 @@ namespace WebcamViewer
             this.NonActiveGlowBrush = this.GlowBrush;
         }
 
-        void global_UnDim()
+        public void global_UnDim()
         {
             DoubleAnimation animation = new DoubleAnimation(0, TimeSpan.FromSeconds(0.3));
 
@@ -165,15 +175,7 @@ namespace WebcamViewer
             dlg.Title = Title;
             dlg.Content = Content;
 
-            if (DarkMode == null)
-            {
-                if (current_page == 0)
-                    dlg.IsDarkTheme = true;
-                else
-                    dlg.IsDarkTheme = false;
-            }
-            else
-                dlg.IsDarkTheme = DarkMode.Value;
+            dlg.IsDarkTheme = DarkMode;
 
             global_Dim();
 
@@ -195,15 +197,7 @@ namespace WebcamViewer
             dlg.Title = Title;
             dlg.Content = Content;
 
-            if (DarkMode == null)
-            {
-                if (current_page == 0)
-                    dlg.IsDarkTheme = true;
-                else
-                    dlg.IsDarkTheme = false;
-            }
-            else
-                dlg.IsDarkTheme = DarkMode.Value;
+            dlg.IsDarkTheme = DarkMode;
 
             global_Dim();
 
@@ -231,7 +225,7 @@ namespace WebcamViewer
 
         bool AllowBackButtonLogic = true;
 
-        void webcamPage_OpenMenu()
+        public void webcamPage_OpenMenu()
         {
             if (webcamPage_menuGrid.Visibility == Visibility.Hidden || webcamPage_menuGrid.Visibility == Visibility.Collapsed)
             {
@@ -271,7 +265,7 @@ namespace WebcamViewer
             }
         }
 
-        void webcamPage_CloseMenu()
+        public void webcamPage_CloseMenu()
         {
             if (webcamPage_menuGrid.Visibility == Visibility.Visible)
             {
@@ -395,6 +389,7 @@ namespace WebcamViewer
             webcamPage_menuGrid_localSaveButton_Click(this, new RoutedEventArgs());
 
             // kindof ugly
+            /*
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(0.5);
             timer.Tick += (s1, ev) =>
@@ -408,6 +403,7 @@ namespace WebcamViewer
 
             };
             timer.Start();
+            */
         }
 
         private void webcampage_menuGrid_archiveorgSaveButton_Click(object sender, RoutedEventArgs e)
@@ -415,7 +411,7 @@ namespace WebcamViewer
             archivebrowser.Url = new Uri("http://web.archive.org/save/" + currentImageUri);
             //webcamPage_ShowProgressUI(3); webcamPage_progressBar.IsIndeterminate = true; webcamPage_progressLabel.Content = "connecting to archive.org...";
             webcamPage_ShowProgressUI(4); webcamPage_menuGrid_SetProgressText("Preparing to save on archive.org...");
-            webcamPage_menuGrid_HideCamerasPanel(); webcamPage_menuGrid_HideOverviewButton();
+            //webcamPage_menuGrid_HideCamerasPanel(); webcamPage_menuGrid_HideOverviewButton();
 
             //webcamPage_CloseMenu();
         }
@@ -512,7 +508,8 @@ namespace WebcamViewer
         void SaveImageFile()
         {
             //webcamPage_ShowProgressUI(3); webcamPage_progressBar.IsIndeterminate = true; webcamPage_progressLabel.Content = "preparing to download image...";
-            webcamPage_ShowProgressUI(4); webcamPage_menuGrid_SetProgressText("Preparing to download image..."); webcamPage_menuGrid_HideCamerasPanel(); webcamPage_menuGrid_HideOverviewButton();
+            webcamPage_ShowProgressUI(4); webcamPage_menuGrid_SetProgressText("Preparing to download image...");
+            //webcamPage_menuGrid_HideCamerasPanel(); webcamPage_menuGrid_HideOverviewButton();
 
             Thread thread = new Thread(() =>
             {
@@ -550,7 +547,8 @@ namespace WebcamViewer
         {
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                webcamPage_HideProgressUI(); webcamPage_menuGrid_ShowCamerasPanel(); webcamPage_menuGrid_ShowOverviewButton();
+                webcamPage_HideProgressUI();
+                //webcamPage_menuGrid_ShowCamerasPanel(); webcamPage_menuGrid_ShowOverviewButton();
                 //refreshtimer.Start();
 
                 if (e.Error != null)
@@ -709,7 +707,7 @@ namespace WebcamViewer
         /// Shows the progress UI.
         /// </summary>
         /// <param name="mode">The kind of progress UI to show. 0 = ProgressRing only, 1 = ProgressRing + text, 2 = ProgressBar only, 3 = ProgressBar + text, 4 = sidemenu ProgressRing</param>
-        void webcamPage_ShowProgressUI(int mode)
+        public void webcamPage_ShowProgressUI(int mode)
         {
             if (mode <= 3)
             {
@@ -766,7 +764,7 @@ namespace WebcamViewer
             }
         }
 
-        void webcamPage_HideProgressUI()
+        public void webcamPage_HideProgressUI()
         {
             if (webcamPage_Dim.Visibility == Visibility.Visible)
             {
@@ -796,7 +794,7 @@ namespace WebcamViewer
             }
         }
 
-        void webcamPage_menuGrid_SetProgressText(string text)
+        public void webcamPage_menuGrid_SetProgressText(string text)
         {
             webcamPage_menuGrid_progressPanel_progressTextBlock.Text = text;
         }
@@ -806,487 +804,6 @@ namespace WebcamViewer
         #endregion
 
         #region Settings page
-
-        #region Webcam editor page
-
-        ListViewDragDropManager<settingsPage_WebcamEditorPage_Camera> dragdropManager = new ListViewDragDropManager<settingsPage_WebcamEditorPage_Camera>();
-
-        bool settingsPage_WebcamEditorPage_createdDragDropManager = false;
-
-        private void settingsPage_WebcamEditorPage_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (settingsPage_WebcamEditorPage_ListView_handleSelectionChange)
-            {
-                settingsPage_WebcamEditorPage_ItemEditorGrid.Visibility = Visibility.Visible;
-                settingsPage_WebcamEditorPage_ItemEditorGrid_Main.Visibility = Visibility.Visible;
-                settingsPage_WebcamEditorPage_ItemEditorGrid_Disabled.Visibility = Visibility.Collapsed;
-
-                settingsPage_WebcamEditorPage_ItemEditor_NameTextBox.Text = Properties.Settings.Default.camera_names[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
-                settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox.Text = Properties.Settings.Default.camera_urls[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
-            }
-        }
-
-        bool settingsPage_WebcamEditorPage_ListView_handleSelectionChange = true;
-
-        private void settingsPage_WebcamEditorPage_ListView_dragdropManager_ProcessDrop(object sender, ProcessDropEventArgs<settingsPage_WebcamEditorPage_Camera> e)
-        {
-            settingsPage_WebcamEditorPage_ListView_handleSelectionChange = false;
-
-            settingsPage_WebcamEditorPage_ItemEditorGrid_Main.Visibility = Visibility.Collapsed;
-            settingsPage_WebcamEditorPage_ItemEditorGrid_Disabled.Visibility = Visibility.Visible;
-
-            e.ItemsSource.Move(e.OldIndex, e.NewIndex);
-
-            e.Effects = DragDropEffects.Move;
-        }
-
-        private void settingsPage_WebcamEditorPage_SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.camera_names.Clear();
-            Properties.Settings.Default.camera_urls.Clear();
-
-            foreach (settingsPage_WebcamEditorPage_Camera item in settingsPage_WebcamEditorPage_ListView.Items)
-            {
-                // names
-                Properties.Settings.Default.camera_names.Add(item.Name);
-
-                // urls
-                Properties.Settings.Default.camera_urls.Add(item.Url);
-            }
-
-            settingsPage_WebcamEditorPage_ListView_handleSelectionChange = true;
-
-            if (settingsPage_WebcamEditorPage_ListView.SelectedIndex != null)
-            {
-                settingsPage_WebcamEditorPage_ItemEditorGrid_Main.Visibility = Visibility.Visible;
-                settingsPage_WebcamEditorPage_ItemEditorGrid_Disabled.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        // Class
-        public class settingsPage_WebcamEditorPage_Camera
-        {
-            public string Name { get; set; }
-
-            public string Url { get; set; }
-
-            public string SaveLocation { get; set; }
-
-            public int RefreshRate { get; set; }
-        }
-
-        #endregion
-
-        #region Home page
-
-
-
-        #endregion
-
-        #region Settings page
-
-
-
-        #endregion
-
-        #region User interface page
-
-        private void settingsPage_UserInterfacePage_UI_ThemeButton_Click(object sender, RoutedEventArgs e)
-        {
-            Popups.MessageDialog dlg = new Popups.MessageDialog();
-            dlg.Title = "";
-
-            // will need to be true
-            dlg.Content_DisableMargin = false;
-
-            dlg.IsDarkTheme = true;
-
-            // Introduction-style
-            dlg.Content = "Choose a theme\n\n" + "/Dialog controls/settingsPage_UserInterfacePage_ThemeControl.xaml\n\n" + "Todo: Dialog controls class";
-
-            dlg.FirstButtonContent = "Apply theme";
-            dlg.SecondButtonContent = "Go back";
-
-            dlg.ShowDialog();
-        }
-
-        #endregion
-
-        #region About page
-
-        private void settingsPage_AboutPage_GithubLink_Click(object sender, MouseButtonEventArgs e)
-        {
-            TextBlock textblock = sender as TextBlock;
-
-            // Go to the project Github page
-            Process.Start("https://" + textblock.Text);
-        }
-
-        private void settingsPage_AboutPage_CreditsButton_Click(object sender, RoutedEventArgs e)
-        {
-            Popups.MessageDialog dialog = new Popups.MessageDialog();
-
-            dialog.Content = new settingsPage_AboutPage_CreditsControl();
-
-            dialog.Content_DisableMargin = true;
-
-            dialog.IsDarkTheme = false;
-
-            dialog.FirstButtonContent = "Close";
-
-            dialog.ShowDialog();
-        }
-
-        #endregion
-
-        #region Debug menu page
-
-        private void settingsPage_DebugMenuPage_Home_ProgressDebugButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Create progress UI debug dialog
-            Popups.MessageDialog dlg = new Popups.MessageDialog();
-            dlg.Title = "";
-
-            #region Create content
-            StackPanel stackpanel = new StackPanel();
-
-            Label lbl = new Label { Content = "Choose a progress type. It will automatically end after 10 seconds." };
-
-            StackPanel rbtn_stackpanel = new StackPanel { Margin = new Thickness(0, 5, 0, 10) };
-
-            RadioButton rbtn_0 = new RadioButton { Content = "Modal progressring", IsChecked = true };
-            RadioButton rbtn_1 = new RadioButton { Content = "Modal progressbar (indeterminate)" };
-            RadioButton rbtn_2 = new RadioButton { Content = "In-menu progressring" };
-
-            rbtn_stackpanel.Children.Add(rbtn_0);
-            rbtn_stackpanel.Children.Add(rbtn_1);
-            rbtn_stackpanel.Children.Add(rbtn_2);
-
-            TextBox textbox = new TextBox { Text = "Progress UI Debug", Margin = new Thickness(0, 0, 0, 10) };
-            CheckBox checkbox_countdown = new CheckBox { Content = "Show countdown", IsChecked = true, Margin = new Thickness(0, 0, 0, 5) };
-            #endregion
-
-            // Add stuff to the content stackpanel
-            stackpanel.Children.Add(lbl);
-
-            stackpanel.Children.Add(rbtn_stackpanel);
-
-            stackpanel.Children.Add(textbox);
-
-            stackpanel.Children.Add(checkbox_countdown);
-
-            //  Make the stackpanel the content
-            dlg.Content = stackpanel;
-
-            // Buttons
-            dlg.FirstButtonContent = "Accept";
-            dlg.SecondButtonContent = "Cancel";
-
-            if (dlg.ShowDialogWithResult() == 0)
-            {
-                SwitchToPage(0);
-
-                #region Timers
-                int ui_clocktimer_countdown = 10;
-
-                DispatcherTimer ui_clocktimer = new DispatcherTimer();
-                ui_clocktimer.Interval = new TimeSpan(0, 0, 1);
-                ui_clocktimer.Tick += (s, ev) =>
-                {
-                    if (checkbox_countdown.IsChecked == true)
-                    {
-                        if (webcamPage_progressLabel.Visibility == Visibility.Visible)
-                            webcamPage_progressLabel.Content = textbox.Text + " - " + ui_clocktimer_countdown;
-                        if (webcamPage_menuGrid_progressPanel_progressTextBlock.Visibility == Visibility.Visible)
-                            webcamPage_menuGrid_SetProgressText(textbox.Text + " - " + ui_clocktimer_countdown);
-                    }
-                    ui_clocktimer_countdown--;
-                };
-                ui_clocktimer.Start();
-
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = new TimeSpan(0, 0, 10);
-                timer.Tick += (s, ev) => { timer.Stop(); ui_clocktimer.Stop(); webcamPage_HideProgressUI(); };
-                timer.Start();
-                #endregion
-
-                if (webcamPage_progressLabel.Visibility == Visibility.Visible)
-                    webcamPage_progressLabel.Content = textbox.Text;
-                if (webcamPage_menuGrid_progressPanel_progressTextBlock.Visibility == Visibility.Visible)
-                    webcamPage_menuGrid_SetProgressText(textbox.Text);
-
-                int counter = 0;
-                foreach (RadioButton rbtn in rbtn_stackpanel.Children)
-                {
-                    if (rbtn.IsChecked == true)
-                    {
-                        #region Show appropriate progress UI
-                        switch (counter)
-                        {
-                            case 0:
-                                {
-                                    webcamPage_ShowProgressUI(1);
-                                    webcamPage_CloseMenu();
-                                    break;
-                                }
-                            case 1:
-                                {
-                                    webcamPage_ShowProgressUI(3);
-                                    webcamPage_CloseMenu();
-                                    break;
-                                }
-                            case 2:
-                                {
-                                    webcamPage_ShowProgressUI(4);
-                                    webcamPage_OpenMenu();
-                                    break;
-                                }
-                        }
-                        #endregion
-                    }
-                    else
-                        counter++;
-                }
-            }
-        }
-
-        private void settingsPage_DebugMenuPage_Home_MessageDialogDebugButton_Click(object sender, RoutedEventArgs e)
-        {
-            Popups.MessageDialog dlg = new Popups.MessageDialog();
-            dlg.Title = "Message Dialog debug";
-
-            #region Content
-
-            StackPanel dlg_contentPanel = new StackPanel();
-
-            TextBlock text0 = new TextBlock
-            {
-                Text = "Choose the style to debug"
-            };
-
-            ComboBox styleDropDownButton = new ComboBox()
-            {
-                Margin = new Thickness(0, 10, 0, 10),
-                SelectedIndex = 0
-            };
-
-            styleDropDownButton.Items.Add("Windows 10 UWP ContentDialog");
-            styleDropDownButton.Items.Add("Windows 8.x MessageDialog");
-
-            TextBlock text1 = new TextBlock()
-            {
-                Text = "Title"
-            };
-
-            TextBox titleBox = new TextBox()
-            {
-                Margin = new Thickness(0, 10, 0, 10),
-                Text = "Title"
-            };
-
-            TextBlock text2 = new TextBlock()
-            {
-                Text = "Message"
-            };
-
-            TextBox messageBox = new TextBox()
-            {
-                Margin = new Thickness(0, 10, 0, 10),
-                AcceptsReturn = true,
-                Text = "Message"
-            };
-
-            dlg_contentPanel.Children.Add(text0);
-            dlg_contentPanel.Children.Add(styleDropDownButton);
-            dlg_contentPanel.Children.Add(text1);
-            dlg_contentPanel.Children.Add(titleBox);
-            dlg_contentPanel.Children.Add(text2);
-            dlg_contentPanel.Children.Add(messageBox);
-
-            dlg.Content = dlg_contentPanel;
-
-            #endregion
-
-            dlg.FirstButtonContent = "Show dialog";
-            dlg.SecondButtonContent = "Cancel";
-
-            if (dlg.ShowDialogWithResult() == 0)
-            {
-                if (styleDropDownButton.SelectedIndex == 0)
-                    TextMessageDialog(titleBox.Text, messageBox.Text);
-                else
-                    TextMessageDialog_FullWidth(titleBox.Text, messageBox.Text);
-            }
-
-        }
-
-        private async void settingsPage_DebugMenuPage_Experiments_ExperimentsButton_Click(object sender, RoutedEventArgs e)
-        {
-            Popups.MessageDialog_FullWidth dialog = new Popups.MessageDialog_FullWidth();
-            dialog.Title = "Experiments";
-
-            // Content //
-            StackPanel panel = new StackPanel();
-
-            Label label0 = new Label() { Content = "Toggle experiments on or off" };
-            Label label1 = new Label() { Content = "You will have to enter your Prerelease Credentials to apply any changes" };
-
-            // EXPERIMENT - update ui
-            CheckBox box0 = new CheckBox() { Content = "Updates UI Testing", Margin = new Thickness(0, 10, 0, 0), Tag = "settings_experiment_UpdateUI" };
-            if (Properties.Settings.Default.settings_experiment_UpdateUI) box0.IsChecked = true;
-            else box0.IsChecked = false;
-            // /EXPERIMENT
-
-            // EXPERIMENT - home overview
-            CheckBox box1 = new CheckBox() { Content = "Home Overview", Margin = new Thickness(0, 5, 0, 10), Tag = "home_experiment_Overview" };
-            if (Properties.Settings.Default.home_experiment_Overview) box1.IsChecked = true;
-            else box1.IsChecked = false;
-            // /EXPERIMENT
-
-            panel.Children.Add(label0);
-            panel.Children.Add(label1);
-            panel.Children.Add(box0);
-            panel.Children.Add(box1);
-            // Content //
-
-            dialog.Content = panel;
-
-            dialog.FirstButtonContent = "Apply experiments";
-            dialog.SecondButtonContent = "Go back";
-
-            // Show dialog
-            global_Dim();
-
-            if (dialog.ShowDialogWithResult() == 0)
-            {
-                #region Save changes
-
-                foreach (object item in panel.Children)
-                {
-                    if (item.GetType() == (typeof(CheckBox)))
-                    {
-                        CheckBox box = item as CheckBox;
-
-                        Properties.Settings.Default[(string)box.Tag] = box.IsChecked.Value;
-                        Properties.Settings.Default.Save();
-                    }
-                }
-
-                await GetUserConfiguration(true);
-                #endregion
-            }
-
-            global_UnDim();
-        }
-
-        private async void settingsPage_DebugMenuPage_Configuration_ResetConfigurationButton_Click(object sender, RoutedEventArgs e)
-        {
-            Popups.MessageDialog_FullWidth dlg = new Popups.MessageDialog_FullWidth();
-            dlg.Title = "";
-            dlg.Content = "Resetting the configuration will reset all user settings to their defaults.";
-
-            dlg.FirstButtonContent = "Confirm";
-            dlg.SecondButtonContent = "Go back";
-
-            global_Dim();
-
-            if (dlg.ShowDialogWithResult() == 0)
-            {
-                // Reset configuration
-                Properties.Settings.Default.Reset();
-                Properties.Settings.Default.Save();
-
-                await GetUserConfiguration(true);
-
-                /* no need to restart anymore
-                TextMessageDialog("Configuration has been reset...", "We'll restart Webcam Viewer for you...");
-
-                System.Windows.Forms.Application.Restart();
-                Application.Current.Shutdown();
-                */
-            }
-
-            global_UnDim();
-        }
-
-        #endregion
-
-        #region Prerelease settings page
-
-        private void settingsPage_PrereleaseProgramSettingsPage_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (settingsPage_PrereleaseProgramSettingsPage.Visibility != Visibility.Visible)
-                SetTitlebarButtonsStyle(2);
-        }
-
-        private void settingsPage_PrereleaseProgramSettingsPage_IntroductionPanel_SignUpButton_Click(object sender, RoutedEventArgs e)
-        {
-            User_controls.ProgressRing ring = settingsPage_PrereleaseProgramSettingsPage_IntroductionPanel_SignUpButton.RightSideGrid.Children[0] as User_controls.ProgressRing;
-            ring.IsActive = true;
-
-            // fake timer for UI
-            DispatcherTimer faketimer = new DispatcherTimer();
-            faketimer.Interval = TimeSpan.FromSeconds(3);
-            faketimer.Tick += (s, ev) =>
-            {
-                faketimer.Stop();
-
-                TextMessageDialog("", "An error occured while trying to contact the prerelease account database.", true);
-
-                ring.IsActive = false;
-            };
-            faketimer.Start();
-        }
-
-        private void settingsPage_PrereleaseProgramSettingsPage_IntroductionPanel_LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            User_controls.ProgressRing ring = settingsPage_PrereleaseProgramSettingsPage_IntroductionPanel_LoginButton.RightSideGrid.Children[0] as User_controls.ProgressRing;
-            ring.IsActive = true;
-
-            // fake timer for UI
-            DispatcherTimer faketimer = new DispatcherTimer();
-            faketimer.Interval = TimeSpan.FromSeconds(3);
-            faketimer.Tick += (s, ev) =>
-            {
-                faketimer.Stop();
-
-                TextMessageDialog("", "An error occured while trying to contact the prerelease account database.", true);
-
-                ring.IsActive = false;
-            };
-            faketimer.Start();
-        }
-
-        #endregion
-
-        #region Default customizations debug page
-
-        bool customizationdeliveryPage_visited = false;
-
-        private void settingsPage_DefaultCustomizationsDebugPage_SettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            SwitchToPage(2);
-
-            // Go to status page the first time
-            if (customizationdeliveryPage_visited == false)
-            {
-                Menu_NavigationButton btn = customizationsdeliveryPage_MenuGrid_TopStackPanel.Children[0] as Menu_NavigationButton;
-                Menu_NavigationButton_Click(btn, new RoutedEventArgs());
-
-                customizationdeliveryPage_visited = true;
-            }
-        }
-
-        #endregion
-
-
-        /// Tab button Tags
-        /// 0: Webcams
-        /// 1: User interface
-        /// 2: About & updates
-        /// 3: Debug menu
-        /// 4: Beta program settings
-        /// 5: Default customizations debug
 
         void settingsPage_leftGrid_TabButtonClick(object sender, RoutedEventArgs e)
         {
@@ -1327,11 +844,13 @@ namespace WebcamViewer
                 }
             }
 
-            // Page events
-            settingsPage_DoPageEvents(PageID);
-
+            // legacy - modular settings pages
+            /*
             // Page toggles
             // There should be a different way of getting toggles here, but for now, this is "working".
+
+            // 100% total understandable explanations™ by XeZrunner:
+
             Grid grid = settingsPage_PagesGrid.Children[PageID] as Grid; // the Page™
             ScrollViewer grid_scrollview = null; // the page's main scrollviewer
 
@@ -1341,8 +860,6 @@ namespace WebcamViewer
                     grid_scrollview = viewer as ScrollViewer; // yee, continue
                                                               // if a page is not using a scrollviewer as it's content, it's PROBABLY not the right format. This is ugly and shouldn't be this way, but I'll rewrite it one day. Hopefully.
             }
-
-            // 100% total legit understandable explanations™ by XeZrunner:
 
             if (grid_scrollview != null)
             {
@@ -1367,160 +884,7 @@ namespace WebcamViewer
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// This function (re)loads the appropiate settings for a page once it opens or when a change was made by a function inside the page.
-        /// </summary>
-        void settingsPage_DoPageEvents(int page)
-        {
-            switch (page)
-            {
-                #region Webcam editor
-                case 0: // Webcam Editor
-                    {
-                        if (!settingsPage_WebcamEditorPage_createdDragDropManager)
-                        {
-                            dragdropManager = new ListViewDragDropManager<settingsPage_WebcamEditorPage_Camera>(settingsPage_WebcamEditorPage_ListView);
-
-                            dragdropManager.ProcessDrop += settingsPage_WebcamEditorPage_ListView_dragdropManager_ProcessDrop;
-
-                            settingsPage_WebcamEditorPage_createdDragDropManager = true;
-                        }
-
-                        ObservableCollection<settingsPage_WebcamEditorPage_Camera> items = new ObservableCollection<settingsPage_WebcamEditorPage_Camera>();
-
-                        foreach (string cameraname in Properties.Settings.Default.camera_names)
-                        {
-                            items.Add(new settingsPage_WebcamEditorPage_Camera() { Name = cameraname, Url = Properties.Settings.Default.camera_urls[Properties.Settings.Default.camera_names.IndexOf(cameraname)], SaveLocation = "null", RefreshRate = 0 });
-                        }
-
-                        settingsPage_WebcamEditorPage_ListView_handleSelectionChange = false;
-
-                        settingsPage_WebcamEditorPage_ListView.ItemsSource = items;
-
-                        settingsPage_WebcamEditorPage_ListView_handleSelectionChange = true;
-
-                        // disable some stuff
-                        settingsPage_WebcamEditorPage_ItemEditorGrid.Visibility = Visibility.Collapsed;
-
-                        break;
-                    }
-                #endregion
-
-                #region Home
-                case 1:
-                    {
-                        break;
-                    }
-                #endregion
-
-                #region Settings
-                case 2:
-                    {
-                        break;
-                    }
-                #endregion
-
-                #region User interface page
-                case 3: // User interface
-                    {
-                        // Set some info
-                        #region Accent color button
-                        string accentcolorButton_descriptionText = settingsPage_UserInterfacePage_UI_AccentColorButton.Description.Substring(0, 65);
-                        settingsPage_UserInterfacePage_UI_AccentColorButton.Description = accentcolorButton_descriptionText + "Blue"; // "Blue" will equal current color from the constant array
-                        #endregion
-
-                        break;
-                    }
-                #endregion
-
-                #region About page
-                case 4:
-                    {
-                        #region Version info
-
-                        #region Version number hackz
-                        System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-                        FileVersionInfo fileversioninfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-                        string versionnumber;
-
-                        if (fileversioninfo.FileVersion.Substring(6, 1) == "0")
-                            versionnumber = fileversioninfo.FileVersion.Substring(0, 5);
-                        else
-                            versionnumber = fileversioninfo.FileVersion;
-                        #endregion
-
-                        // Main version labels (on the top of the page, or "Hero labels")
-                        // set settingsPage_AboutPage_ApplicationNameTextBlock.Text to localizated application name
-
-                        settingsPage_AboutPage_VersionNumberTextBlock.Text = versionnumber + " (" + Properties.Settings.Default.versionid + ")";
-
-                        // Debug version info
-                        settingsPage_AboutPage_DebugVersionInfoGrid_VersionNumberTextBlock.Text = String.Format("Version: {0}", versionnumber);
-                        settingsPage_AboutPage_DebugVersionInfoGrid_VersionNameTextBlock.Text = String.Format("Version name: {0}", Properties.Settings.Default.versionid);
-                        settingsPage_AboutPage_DebugVersionInfoGrid_BuildIDTextBlock.Text = String.Format("Build ID: {0}", Properties.Settings.Default.buildid);
-
-                        #endregion
-
-                        break;
-                    }
-                #endregion
-
-                #region Debug menu page
-                case 5:
-                    {
-
-
-                        break;
-                    }
-                #endregion
-
-                #region Prerelease program settings page
-                case 6:
-                    {
-                        SetTitlebarButtonsStyle(0);
-
-                        break;
-                    }
-                #endregion
-
-                #region Default customizations debug page
-                case 7:
-                    {
-
-
-                        break;
-                    }
-                    #endregion
-            }
-        }
-
-        /// <summary>
-        /// Toggles the setting, which is set in the sender button's Tag property, in Properties.Settings.Default.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        async void settingsPage_ToggleButtonClick(object sender, RoutedEventArgs e)
-        {
-            settingsPage_ToggleSwitchButton sBtn = sender as settingsPage_ToggleSwitchButton;
-
-            try
-            {
-                Properties.Settings.Default[(string)sBtn.Tag] = sBtn.IsActive;
-                Properties.Settings.Default.Save();
-
-                await GetUserConfiguration(true);
-            }
-            catch (Exception ex)
-            {
-                sBtn.IsActive = !sBtn.IsActive;
-
-                if (sBtn.Tag != null)
-                    TextMessageDialog_FullWidth("Invalid property", "The setting " + sBtn.Tag.ToString() + " (probably) doesn't exist.\nCheck the button's Tag.\n\nExact error message : " + ex.Message);
-                else
-                    TextMessageDialog_FullWidth("No Tag on the button", "The button " + sBtn.Name + "does not contain a Tag. (the button's Tag equals null)");
-            }
+            */
         }
 
         #endregion
@@ -1545,7 +909,7 @@ namespace WebcamViewer
             }
         }
 
-        private void Menu_NavigationButton_Click(object sender, RoutedEventArgs e)
+        public void Menu_NavigationButton_Click(object sender, RoutedEventArgs e)
         {
             Menu_NavigationButton button = sender as Menu_NavigationButton;
 
@@ -1575,13 +939,13 @@ namespace WebcamViewer
 
         #endregion
 
-        int current_page;
+        public int current_page;
 
         /// <summary>
         /// Transition to a page with it's respective animation.
         /// </summary>
         /// <param name="page">0 = Home, 1 = Settings, 2 = Customizations delivery settings</param>
-        async void SwitchToPage(int page, bool noanim = false)
+        public async void SwitchToPage(int page, bool noanim = false)
         {
             switch (page)
             {
@@ -1683,10 +1047,13 @@ namespace WebcamViewer
                         SolidColorBrush settingsBackground_Brush = (SolidColorBrush)Application.Current.Resources["settingsPage_background"];
 
                         if (settings_showtitlebarcolor)
+                        {
                             SetTitlebarButtonsStyle(0);
+                            return;
+                        }
                         else
                         {
-                            if (settingsBackground_Brush.Color == Colors.White)
+                            if (ui_theme == 0)
                             {
                                 styleToApply = lightStyle;
                                 s_toLight.Begin();
@@ -1713,7 +1080,52 @@ namespace WebcamViewer
 
         #endregion
 
+        #region Theming
+
+        void UI_ApplyTheme(int theme)
+        {
+
+            string themeString;
+
+            if (theme == 0)
+                themeString = "Light";
+            else
+                themeString = "Dark";
+
+            // set the resources
+
+            Application.Current.Resources["settingsPage_background"] = Application.Current.Resources["settingsPage_" + themeString + "_background"];
+            Application.Current.Resources["settingsPage_backgroundSecondary"] = Application.Current.Resources["settingsPage_" + themeString + "_backgroundSecondary"];
+            Application.Current.Resources["settingsPage_backgroundSecondary2"] = Application.Current.Resources["settingsPage_" + themeString + "_backgroundSecondary2"];
+            Application.Current.Resources["settingsPage_backgroundSecondary3"] = Application.Current.Resources["settingsPage_" + themeString + "_backgroundSecondary3"];
+            Application.Current.Resources["settingsPage_backgroundWebcamItemEditor"] = Application.Current.Resources["settingsPage_" + themeString + "_backgroundWebcamItemEditor"];
+
+            Application.Current.Resources["settingsPage_foregroundText"] = Application.Current.Resources["settingsPage_" + themeString + "_foregroundText"];
+            Application.Current.Resources["settingsPage_foregroundSecondary"] = Application.Current.Resources["settingsPage_" + themeString + "_foregroundSecondary"];
+            Application.Current.Resources["settingsPage_foregroundSecondary2"] = Application.Current.Resources["settingsPage_" + themeString + "_foregroundSecondary2"];
+            Application.Current.Resources["settingsPage_foregroundSecondary3"] = Application.Current.Resources["settingsPage_" + themeString + "_foregroundSecondary3"];
+
+            Application.Current.Resources["MessageDialog_Background"] = Application.Current.Resources["MessageDialog_" + themeString + "_Background"];
+            Application.Current.Resources["MessageDialog_ForegroundText"] = Application.Current.Resources["MessageDialog_" + themeString + "_ForegroundText"];
+            Application.Current.Resources["MessageDialog_ForegroundSecondary"] = Application.Current.Resources["MessageDialog_" + themeString + "_ForegroundSecondary"];
+
+            Application.Current.Resources["MessageDialog_FullWidth_Background"] = Application.Current.Resources["MessageDialog_FullWidth_" + themeString + "_Background"];
+            Application.Current.Resources["MessageDialog_FullWidth_ForegroundText"] = Application.Current.Resources["MessageDialog_FullWidth_" + themeString + "_ForegroundText"];
+            Application.Current.Resources["MessageDialog_FullWidth_ForegroundSecondary"] = Application.Current.Resources["MessageDialog_FullWidth_" + themeString + "_ForegroundSecondary"];
+        }
+
+        void UI_ApplyAccentColor(int color)
+        {
+
+        }
+
+        #endregion
+
+        #region Configuration
+
         #region Variables
+
+        int ui_theme;
 
         bool home_blurbehind;
         bool home_archiveorg;
@@ -1724,14 +1136,16 @@ namespace WebcamViewer
         bool settings_showtitlebarcolor;
         bool settings_experiment_UpdateUI;
 
-        #endregion
+        bool app_firstrun;
 
-        #region Configuration
+        string debugmode;
+
+        #endregion
 
         /// <summary>
         /// Gets the user's settings from Properties.Settings.Default and applies the settings if desired.
         /// </summary>
-        async Task<int> GetUserConfiguration(bool applysettings = false)
+        public async Task GetUserConfiguration(bool applysettings = false)
         {
             #region Populate camera list
             webcamPage_menuGrid_cameraListStackPanel.Children.Clear();
@@ -1751,6 +1165,8 @@ namespace WebcamViewer
             #endregion
 
             // Get settings
+            ui_theme = Properties.Settings.Default.ui_theme;
+
             home_blurbehind = Properties.Settings.Default.home_blurbehind;
             home_archiveorg = Properties.Settings.Default.home_archiveorg;
             home_debugoverlay = Properties.Settings.Default.home_debugoverlay;
@@ -1759,12 +1175,14 @@ namespace WebcamViewer
             settings_experiment_UpdateUI = Properties.Settings.Default.settings_experiment_UpdateUI;
             home_experiment_Overview = Properties.Settings.Default.home_experiment_Overview;
 
+            app_firstrun = Properties.Settings.Default.app_firstrun;
+
+            debugmode = Properties.Settings.Default.app_debugmode;
+
             if (applysettings)
             {
                 await ApplyUserConfiguration();
             }
-
-            return 0;
         }
 
         #region Suppress async warning
@@ -1773,9 +1191,15 @@ namespace WebcamViewer
         /// <summary>
         /// Applies the user's settings from the variables, NOT Properties.Settings.Default. That means, you first have to GetUserConfiguration and then you can ApplyUserConfiguration.
         /// </summary>
-        async Task ApplyUserConfiguration()
+        public async Task ApplyUserConfiguration()
         {
             #region Apply configuration
+
+            // ui - theme
+            if (ui_theme == 0)
+                UI_ApplyTheme(0);
+            else
+                UI_ApplyTheme(1);
 
             // home - archive.org
             if (home_archiveorg)
@@ -1816,9 +1240,9 @@ namespace WebcamViewer
             // EXPERIMENT
             // settings - update ui
             if (settings_experiment_UpdateUI)
-                settingsPage_AboutPage_UpdatesGrid.Visibility = Visibility.Visible;
+                settingsPage_AboutPage_Control.settingsPage_AboutPage_UpdatesControl.Visibility = Visibility.Visible;
             else
-                settingsPage_AboutPage_UpdatesGrid.Visibility = Visibility.Collapsed;
+                settingsPage_AboutPage_Control.settingsPage_AboutPage_UpdatesControl.Visibility = Visibility.Collapsed;
 
             // EXPERIMENT
             // home - overview
@@ -1827,7 +1251,17 @@ namespace WebcamViewer
             else
                 webcamPage_menuGrid_HideOverviewButton(true);
 
+            // App - first run UX
+            if (app_firstrun)
+                App_StartFirstRunUX();
+
             #endregion
+        }
+
+        void App_StartFirstRunUX()
+        {
+            Pages.First_run_page.firstrunPage_Control viewhost = new Pages.First_run_page.firstrunPage_Control();
+            firstrunPage_ViewHost.Content = viewhost;
         }
 
         #endregion

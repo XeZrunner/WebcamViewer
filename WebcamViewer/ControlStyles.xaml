@@ -9,7 +9,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontSize" Value="10"/>
-        <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+        <Setter Property="FontFamily" Value="/Fonts/#Segoe MDL2 Assets"/>
         <Setter Property="Padding" Value="10,5"/>
         <Setter Property="Width" Value="45"/>
         <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
@@ -97,7 +97,7 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontSize" Value="10"/>
-        <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+        <Setter Property="FontFamily" Value="/Fonts/#Segoe MDL2 Assets"/>
         <Setter Property="Padding" Value="10,5"/>
         <Setter Property="Width" Value="45"/>
         <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
@@ -179,6 +179,47 @@
 
         </Style.Triggers>
     </Style>
+
+    <!--#region Some controls here for theming-->
+    <Style TargetType="RadioButton">
+        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
+    <Style TargetType="CheckBox">
+        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+
+    <Style TargetType="TextBox">
+        <Setter Property="Background" Value="{DynamicResource settingsPage_backgroundWebcamItemEditor}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource settingsPage_foregroundSecondary3}"/>
+        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Padding" Value="5,0,0,0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource settingsPage_backgroundSecondary2}"/>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource settingsPage_foregroundSecondary2}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
 
     <Style x:Key="UWPButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Foreground" Value="Black"/>
@@ -265,9 +306,9 @@
     </Style>
 
     <Style x:Key="Win81ButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="Background" Value="#B3B6B6B6"/>
-        <Setter Property="BorderBrush" Value="#B3B6B6B6"/>
+        <Setter Property="Foreground" Value="{DynamicResource MessageDialog_FullWidth_ForegroundText}"/>
+        <Setter Property="Background" Value="{DynamicResource MessageDialog_FullWidth_Button_Background}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource MessageDialog_FullWidth_Button_BorderBrush}"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="FontSize" Value="14.667"/>
         <Setter Property="Padding" Value="24,4"/>
@@ -282,13 +323,14 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#D1CDCDCD"/>
-                            <Setter Property="Foreground" Value="Black"/>
+                            <Setter Property="Background" Value="{DynamicResource MessageDialog_FullWidth_Button_OverBackground}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource MessageDialog_FullWidth_Button_OverBorderBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource MessageDialog_ForegroundText}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" Value="Black"/>
-                            <Setter Property="BorderBrush" Value="Black"/>
-                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="{DynamicResource MessageDialog_FullWidth_ForegroundText}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource MessageDialog_FullWidth_ForegroundText}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource MessageDialog_FullWidth_Background}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" Value="#66CACACA"/>
@@ -307,7 +349,8 @@
     <Style x:Key="Win81ButtonStyle_Dark" TargetType="{x:Type Button}">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Background" Value="{DynamicResource accentcolor_dark}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource accentcolor_dark}"/>
+        <!-- <Setter Property="BorderBrush" Value="{DynamicResource accentcolor_dark}"/> -->
+        <Setter Property="BorderBrush" Value="{DynamicResource MessageDialog_FullWidth_DarkButton_BorderBrush}"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="FontSize" Value="14.667"/>
         <Setter Property="Padding" Value="24,4"/>
@@ -326,9 +369,9 @@
                             <Setter Property="Foreground" Value="White"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" Value="Black"/>
-                            <Setter Property="BorderBrush" Value="Black"/>
-                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Background" Value="{DynamicResource MessageDialog_FullWidth_ForegroundText}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource MessageDialog_FullWidth_ForegroundText}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource MessageDialog_FullWidth_Background}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Background" Value="Transparent"/>
@@ -343,5 +386,146 @@
 
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="WebcamEditor_ListViewStyle" TargetType="{x:Type ListView}">
+        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0,0,0,0"/>
+    </Style>
+
+    <Style x:Key="WebcamEditor_ListView_ListViewItemStyle" TargetType="{x:Type ListViewItem}">
+        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="MinHeight" Value="25"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                    <Border x:Name="Bd" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                        <Grid>
+                            <GridViewRowPresenter Columns="{TemplateBinding GridView.ColumnCollection}" Content="{TemplateBinding Content}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                                <GridViewRowPresenter.Resources>
+                                    <Style x:Key="{x:Type TextBlock}" TargetType="{x:Type TextBlock}">
+                                        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ListViewItem}}}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ListViewItem}}}" Value="True">
+                                                <Setter Property="Foreground" Value="{DynamicResource settingsPage_Dark_foregroundText}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ListView}}}" Value="False">
+                                                <Setter Property="Foreground" Value="{DynamicResource GrayNormalBrush}"/>
+                                            </DataTrigger>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ListView}}}" Value="False"/>
+                                                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type ListViewItem}}}" Value="True"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundSecondary2}"/>
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </GridViewRowPresenter.Resources>
+                            </GridViewRowPresenter>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Visibility="Collapsed"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="GridView.ColumnCollection" Value="{x:Null}">
+                            <Setter Property="Visibility" TargetName="contentPresenter" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource settingsPage_background}"/>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource accentcolor_light}"/>
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="Transparent"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource settingsPage_backgroundSecondary}"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True"/>
+                                <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Foreground" Value="{DynamicResource settingsPage_background}"/>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource accentcolor_light}"/>
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="Transparent"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="False"/>
+                                <Condition Property="IsSelected" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource GrayBrush7}"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="WebcamEditor_ListView_GridViewColumnHeaderStyle" TargetType="GridViewColumnHeader">
+        <Setter Property="Controls:ControlsHelper.ContentCharacterCasing" Value="Upper" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="4 2 4 2" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GridViewColumnHeader">
+                    <Grid>
+                        <Rectangle Fill="Transparent" IsHitTestVisible="True" />
+                        <Border x:Name="HeaderBorder" Padding="{TemplateBinding Padding}">
+                            <Controls:ContentControlEx x:Name="HeaderContent"
+                                                       Margin="0 0 0 1"
+                                                       Padding="{TemplateBinding Padding}"
+                                                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                       Content="{TemplateBinding Content}"
+                                                       ContentCharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.ContentCharacterCasing)}"
+                                                       ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                       ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                       RecognizesAccessKey="True"
+                                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        </Border>
+                        <Thumb x:Name="PART_HeaderGripper"
+                               Margin="0 0 -9 0"
+                               HorizontalAlignment="Right"
+                               Style="{StaticResource GridViewColumnHeaderGripper}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="HeaderBorder" Property="Background" Value="{DynamicResource settingsPage_backgroundSecondary}" />
+                            <Setter TargetName="HeaderContent" Property="Margin" Value="1 1 0 0" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Role" Value="Floating">
+                <Setter Property="Opacity" Value="0.7" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="GridViewColumnHeader">
+                            <Canvas Name="PART_FloatingHeaderCanvas">
+                                <Rectangle Width="{TemplateBinding ActualWidth}"
+                                           Height="{TemplateBinding ActualHeight}"
+                                           Fill="#60000000" />
+                            </Canvas>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
 
 </ResourceDictionary>

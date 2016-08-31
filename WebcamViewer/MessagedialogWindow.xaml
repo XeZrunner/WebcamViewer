@@ -8,19 +8,19 @@
         mc:Ignorable="d"
         Title="" WindowStyle="None" ResizeMode="NoResize" MinWidth="320" MaxWidth="548" MinHeight="184" MaxHeight="756" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner"
         ShowTitleBar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False"
-        BorderBrush="{DynamicResource accentcolor_dark}" BorderThickness="1" d:DesignWidth="450" d:DesignHeight="200" Background="{DynamicResource MessageDialog_Background}" TextOptions.TextRenderingMode="Grayscale">
+        BorderBrush="{DynamicResource accentcolor_dark}" BorderThickness="1" d:DesignWidth="450" d:DesignHeight="200" Background="{DynamicResource MessageDialog_Background}" Foreground="{DynamicResource MessageDialog_ForegroundText}" TextOptions.TextRenderingMode="Grayscale">
 
     <Grid x:Name="grid">
-        <Grid.Resources>
-            <Style TargetType="Label">
-                <Setter Property="Foreground" Value="{DynamicResource MessageDialog_ForegroundText}"/>
-            </Style>
-            <Style TargetType="TextBlock">
-                <Setter Property="Foreground" Value="{DynamicResource MessageDialog_ForegroundText}"/>
-            </Style>
-        </Grid.Resources>
 
         <Grid>
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="{DynamicResource MessageDialog_ForegroundText}"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="{DynamicResource MessageDialog_ForegroundText}"/>
+                </Style>
+            </Grid.Resources>
 
             <Grid.RowDefinitions>
                 <RowDefinition x:Name="rowdefinition_0" Height="Auto"/>
@@ -31,8 +31,8 @@
             <Label x:Name="titleLabel" Grid.Row="0" FontFamily="Segoe " FontSize="20" Margin="24,24,24,0" MaxHeight="56">Title</Label>
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <Grid x:Name="contentGrid" Margin="24,0,24,10">
-            </Grid>
+                <Grid x:Name="contentGrid" Margin="24,0,24,10">
+                </Grid>
             </ScrollViewer>
 
             <Grid Grid.Row="2">
