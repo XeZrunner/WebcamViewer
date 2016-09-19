@@ -45,6 +45,12 @@ namespace WebcamViewer
                 contentGrid.Children.Add(textblock);
             }
 
+            // Content_DisableMargin
+            if (Content_DisableMargin)
+                contentGrid.Margin = new Thickness(0);
+            else
+                contentGrid.Margin = new Thickness(0, 0, 0, 15);
+
             // Theme
 
             Application.Current.Resources["MessageDialog_FullWidth_DarkButton_Light_BorderBrush"] = Application.Current.Resources["accentcolor_dark"]; // set the light darkbutton borderbrush color to accentcolor_dark
@@ -96,13 +102,6 @@ namespace WebcamViewer
                 Application.Current.Resources["MessageDialog_FullWidth_DarkButton_BorderBrush"] = Application.Current.Resources["MessageDialog_FullWidth_DarkButton_" + themeString + "_BorderBrush"];
             }
 
-
-            // Content_DisableMargin
-            if (Content_DisableMargin)
-                contentGrid.Margin = new Thickness(0);
-            else
-                contentGrid.Margin = new Thickness(0, 0, 0, 15);
-
             // Button text
             firstButton.Content = FirstButtonContent;
             secondButton.Content = SecondButtonContent;
@@ -151,6 +150,9 @@ namespace WebcamViewer
             double windowHeight = this.Height;
             this.Left = parentWidth / 2;
             this.Top = (parentHeight / 2) - (windowHeight / 2);
+
+            if (this.ActualWidth <= 500)
+                buttonsGrid.HorizontalAlignment = HorizontalAlignment.Stretch;
         }
     }
 }

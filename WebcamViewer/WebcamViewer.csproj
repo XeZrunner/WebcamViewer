@@ -75,7 +75,10 @@
     </ApplicationDefinition>
     <Compile Include="Configuration.cs" />
     <Compile Include="Debug.cs" />
-    <Compile Include="Dialog controls\settingsPage_UserInterfacePage_ThemeControl.xaml.cs">
+    <Compile Include="Pages\Settings page\Subpages\2_User Interface\Controls\settingsPage_UserInterfacePage_AccentControl.xaml.cs">
+      <DependentUpon>settingsPage_UserInterfacePage_AccentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Subpages\2_User Interface\Controls\settingsPage_UserInterfacePage_ThemeControl.xaml.cs">
       <DependentUpon>settingsPage_UserInterfacePage_ThemeControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ListViewDragDrop\DragAdorner.cs" />
@@ -90,11 +93,26 @@
     <Compile Include="Pages\Settings page\Subpages\0_Webcams\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Settings page\Subpages\0_Webcams\res\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Settings page\Subpages\1_Home\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Settings page\Subpages\1_Home\res\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Settings page\Subpages\2_User Interface\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Subpages\2_User Interface\res\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Settings page\Subpages\3_About and updates\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
@@ -102,8 +120,18 @@
     <Compile Include="Pages\Settings page\Subpages\3_About and updates\Controls\Updates_Control.xaml.cs">
       <DependentUpon>Updates_Control.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Settings page\Subpages\3_About and updates\res\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Settings page\Subpages\4_Debug settings\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Subpages\4_Debug settings\res\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Settings page\Subpages\5_Customizations Debug\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
@@ -114,6 +142,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Theming.cs" />
     <Compile Include="User controls\AppBar_Button.xaml.cs">
       <DependentUpon>AppBar_Button.xaml</DependentUpon>
     </Compile>
@@ -123,11 +152,14 @@
     <Compile Include="User controls\ProgressRing.xaml.cs">
       <DependentUpon>ProgressRing.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialog controls\settingsPage_AboutPage_CreditsControl.xaml.cs">
+    <Compile Include="Pages\Settings page\Subpages\3_About and updates\Controls\settingsPage_AboutPage_CreditsControl.xaml.cs">
       <DependentUpon>settingsPage_AboutPage_CreditsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Test_RippleButtonUserControl.xaml.cs">
       <DependentUpon>Test_RippleButtonUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User controls\settingsPage_AccentColorButton.xaml.cs">
+      <DependentUpon>settingsPage_AccentColorButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="User controls\settingsPage_NormalButton.xaml.cs">
       <DependentUpon>settingsPage_NormalButton.xaml</DependentUpon>
@@ -157,7 +189,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialog controls\settingsPage_UserInterfacePage_ThemeControl.xaml">
+    <Page Include="Pages\Settings page\Subpages\2_User Interface\Controls\settingsPage_UserInterfacePage_AccentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings page\Subpages\2_User Interface\Controls\settingsPage_UserInterfacePage_ThemeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -229,11 +265,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialog controls\settingsPage_AboutPage_CreditsControl.xaml">
+    <Page Include="Pages\Settings page\Subpages\3_About and updates\Controls\settingsPage_AboutPage_CreditsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Test_RippleButtonUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\settingsPage_AccentColorButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -282,6 +322,32 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Pages\Settings page\Subpages\0_Webcams\res\Resources.hu.resx" />
+    <EmbeddedResource Include="Pages\Settings page\Subpages\0_Webcams\res\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Settings page\Subpages\1_Home\res\Resources.hu.resx" />
+    <EmbeddedResource Include="Pages\Settings page\Subpages\1_Home\res\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Settings page\Subpages\2_User Interface\res\Resources.hu.resx" />
+    <EmbeddedResource Include="Pages\Settings page\Subpages\2_User Interface\res\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Settings page\Subpages\3_About and updates\res\Resources.hu.resx" />
+    <EmbeddedResource Include="Pages\Settings page\Subpages\3_About and updates\res\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Settings page\Subpages\4_Debug settings\res\Resources.hu.resx" />
+    <EmbeddedResource Include="Pages\Settings page\Subpages\4_Debug settings\res\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.hu.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -304,7 +370,9 @@
   <ItemGroup>
     <Resource Include="Resources\AboutBackground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Pages\Home page\Dialog controls\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

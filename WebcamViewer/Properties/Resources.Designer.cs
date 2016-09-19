@@ -61,12 +61,218 @@ namespace WebcamViewer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        ///   Looks up a localized string similar to Accept.
         /// </summary>
-        public static System.Drawing.Icon icon_white {
+        public static string Accept {
             get {
-                object obj = ResourceManager.GetObject("icon_white", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ResourceManager.GetString("Accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Webcam Viewer.
+        /// </summary>
+        public static string App_Title {
+            get {
+                return ResourceManager.GetString("App_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        public static string Continue {
+            get {
+                return ResourceManager.GetString("Continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decline.
+        /// </summary>
+        public static string Decline {
+            get {
+                return ResourceManager.GetString("Decline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go back.
+        /// </summary>
+        public static string Go_back {
+            get {
+                return ResourceManager.GetString("Go_back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SETTINGS.
+        /// </summary>
+        public static string Settings_UpperCase {
+            get {
+                return ResourceManager.GetString("Settings_UpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About &amp; updates.
+        /// </summary>
+        public static string settingsPage_AboutAndUpdates {
+            get {
+                return ResourceManager.GetString("settingsPage_AboutAndUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug settings.
+        /// </summary>
+        public static string settingsPage_DebugSettings {
+            get {
+                return ResourceManager.GetString("settingsPage_DebugSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default customizations debug.
+        /// </summary>
+        public static string settingsPage_DefaultCustomizationsDebug {
+            get {
+                return ResourceManager.GetString("settingsPage_DefaultCustomizationsDebug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string settingsPage_Home {
+            get {
+                return ResourceManager.GetString("settingsPage_Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User interface.
+        /// </summary>
+        public static string settingsPage_UserInterface {
+            get {
+                return ResourceManager.GetString("settingsPage_UserInterface", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Webcams.
+        /// </summary>
+        public static string settingsPage_Webcams {
+            get {
+                return ResourceManager.GetString("settingsPage_Webcams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try again.
+        /// </summary>
+        public static string Try_again {
+            get {
+                return ResourceManager.GetString("Try_again", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving to archive.org....
+        /// </summary>
+        public static string webcamPage_ArchiveOrgProgress {
+            get {
+                return ResourceManager.GetString("webcamPage_ArchiveOrgProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved!.
+        /// </summary>
+        public static string webcamPage_ArchiveOrgProgressFinished {
+            get {
+                return ResourceManager.GetString("webcamPage_ArchiveOrgProgressFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save on archive.org.
+        /// </summary>
+        public static string webcamPage_ArchiveOrgSave {
+            get {
+                return ResourceManager.GetString("webcamPage_ArchiveOrgSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save image.
+        /// </summary>
+        public static string webcamPage_LocalSave {
+            get {
+                return ResourceManager.GetString("webcamPage_LocalSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading image: .
+        /// </summary>
+        public static string webcamPage_LocalSaveProgress {
+            get {
+                return ResourceManager.GetString("webcamPage_LocalSaveProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved!.
+        /// </summary>
+        public static string webcamPage_LocalSaveProgressFinished {
+            get {
+                return ResourceManager.GetString("webcamPage_LocalSaveProgressFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparing to save image....
+        /// </summary>
+        public static string webcamPage_LocalSaveProgressPreparing {
+            get {
+                return ResourceManager.GetString("webcamPage_LocalSaveProgressPreparing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overview.
+        /// </summary>
+        public static string webcamPage_Overview {
+            get {
+                return ResourceManager.GetString("webcamPage_Overview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Back to camera view.
+        /// </summary>
+        public static string webcamPage_OverviewGoBack {
+            get {
+                return ResourceManager.GetString("webcamPage_OverviewGoBack", resourceCulture);
             }
         }
     }

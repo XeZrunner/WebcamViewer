@@ -21,8 +21,8 @@
 
             </ResourceDictionary.MergedDictionaries>
 
-            <SolidColorBrush x:Key="accentcolor_dark" Color="#2980b9"/>
-            <SolidColorBrush x:Key="accentcolor_light" Color="#3498db"/>
+            <SolidColorBrush x:Key="accentcolor_dark" Color="#27ae60"/>
+            <SolidColorBrush x:Key="accentcolor_light" Color="#2ecc71"/>
 
             <SolidColorBrush x:Key="settingsPage_background" Color="White" />
             <SolidColorBrush x:Key="settingsPage_backgroundSecondary" Color="#FFBBBBBB"/>
@@ -57,17 +57,17 @@
             <SolidColorBrush x:Key="App_NonActiveBorderBrush" Color="DarkGray"/>
             <SolidColorBrush x:Key="App_NonActiveGlowBrush" Color="DarkGray"/>
 
-            <SolidColorBrush x:Key="accentcolor_dark1" Color="#d35400"/>
-            <SolidColorBrush x:Key="accentcolor_dark2" Color="#c0392b"/>
-            <SolidColorBrush x:Key="accentcolor_dark3" Color="#27ae60"/>
-            <SolidColorBrush x:Key="accentcolor_dark4" Color="#2980b9"/>
-            <SolidColorBrush x:Key="accentcolor_dark5" Color="#2c3e50"/>
+            <SolidColorBrush x:Key="accentcolor_dark0" Color="#d35400"/>
+            <SolidColorBrush x:Key="accentcolor_dark1" Color="#c0392b"/>
+            <SolidColorBrush x:Key="accentcolor_dark2" Color="#27ae60"/>
+            <SolidColorBrush x:Key="accentcolor_dark3" Color="#2980b9"/>
+            <SolidColorBrush x:Key="accentcolor_dark4" Color="#2c3e50"/>
 
-            <SolidColorBrush x:Key="accentcolor_light1" Color="#e67e22"/>
-            <SolidColorBrush x:Key="accentcolor_light2" Color="#e74c3c"/>
-            <SolidColorBrush x:Key="accentcolor_light3" Color="#2ecc71"/>
-            <SolidColorBrush x:Key="accentcolor_light4" Color="#3498db"/>
-            <SolidColorBrush x:Key="accentcolor_light5" Color="#34495e"/>
+            <SolidColorBrush x:Key="accentcolor_light0" Color="#e67e22"/>
+            <SolidColorBrush x:Key="accentcolor_light1" Color="#e74c3c"/>
+            <SolidColorBrush x:Key="accentcolor_light2" Color="#2ecc71"/>
+            <SolidColorBrush x:Key="accentcolor_light3" Color="#3498db"/>
+            <SolidColorBrush x:Key="accentcolor_light4" Color="#34495e"/>
 
             <!-- Settings page -->
 
@@ -80,7 +80,7 @@
             <SolidColorBrush x:Key="settingsPage_Light_foregroundText" Color="Black"/>
             <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary" Color="#FF3F3F3F"/>
             <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary2" Color="#FF4F4F4F"/>
-            <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary3" Color="#1F000000"/>
+            <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary3" Color="#2F000000"/>
 
 
             <SolidColorBrush x:Key="settingsPage_Dark_background" Color="#FF202020"/>
@@ -92,7 +92,7 @@
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundText" Color="White"/>
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary" Color="LightGray"/>
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary2" Color="#FFAAAAAA"/>
-            <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary3" Color="#1FFFFFFF"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary3" Color="#2FFFFFFF"/>
 
             <!-- Message dialog -->
 
@@ -123,7 +123,7 @@
             <SolidColorBrush x:Key="MessageDialog_FullWidth_Dark_ForegroundText" Color="White"/>
             <SolidColorBrush x:Key="MessageDialog_FullWidth_Dark_ForegroundSecondary" Color="LightGray"/>
 
-            <SolidColorBrush x:Key="MessageDialog_FullWidth_Dark_Background" Color="Black"/>
+            <SolidColorBrush x:Key="MessageDialog_FullWidth_Dark_Background" Color="#FF1A1A1A"/>
 
             <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_Dark_Background" Color="Transparent"/>
             <SolidColorBrush x:Key="MessageDialog_FullWidth_Button_Dark_BorderBrush" Color="White"/>

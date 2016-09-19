@@ -54,7 +54,7 @@
             </DoubleAnimationUsingKeyFrames>
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="ellipse">
                 <EasingThicknessKeyFrame KeyTime="0" Value="0"/>
-                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="-325"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="-320"/>
             </ThicknessAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ellipse">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
@@ -68,7 +68,16 @@
         <Grid>
 
             <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Height="30" Width="640" Margin="-320,-15">
-                <Ellipse x:Name="ellipse" Fill="#1FFFFFFF" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
+                <Ellipse x:Name="ellipse" Fill="#1FFFFFFF" Width="0" Height="0" RenderTransformOrigin="0.5,0.5">
+                    <Ellipse.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Ellipse.RenderTransform>
+                </Ellipse>
             </Grid>
 
             <Grid>

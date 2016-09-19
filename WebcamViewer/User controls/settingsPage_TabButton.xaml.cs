@@ -30,6 +30,7 @@ namespace WebcamViewer.User_controls
         public event RoutedEventHandler Click;
 
         bool _IsActive = false;
+        bool _ShowDescription = false;
 
         [Description("Icon of the button"), Category("Appearance")]
         public string IconText
@@ -57,22 +58,41 @@ namespace WebcamViewer.User_controls
         {
             get { return _IsActive; }
             set
-            { _IsActive = value;
+            {
+                _IsActive = value;
 
                 if (_IsActive == true)
                 {
                     activestateRectangle.Visibility = Visibility.Visible;
-                    iconTextBlock.Foreground = Application.Current.Resources["accentcolor_dark"] as SolidColorBrush;
-                    titleTextBlock.Foreground = Application.Current.Resources["accentcolor_dark"] as SolidColorBrush;
-                    descriptionTextBlock.Foreground = Application.Current.Resources["accentcolor_dark"] as SolidColorBrush;
+
+                    iconTextBlock.SetResourceReference(Control.ForegroundProperty, "accentcolor_dark");
+                    titleTextBlock.SetResourceReference(Control.ForegroundProperty, "accentcolor_dark");
+                    descriptionTextBlock.SetResourceReference(Control.ForegroundProperty, "accentcolor_dark");
+
                 }
                 else
                 {
                     activestateRectangle.Visibility = Visibility.Hidden;
-                    iconTextBlock.Foreground = Application.Current.Resources["settingsPage_foregroundText"] as SolidColorBrush;
-                    titleTextBlock.Foreground = Application.Current.Resources["settingsPage_foregroundText"] as SolidColorBrush;
-                    descriptionTextBlock.Foreground = Application.Current.Resources["settingsPage_foregroundSecondary"] as SolidColorBrush;
+
+                    iconTextBlock.SetResourceReference(Control.ForegroundProperty, "settingsPage_foregroundSecondary");
+                    titleTextBlock.SetResourceReference(Control.ForegroundProperty, "settingsPage_foregroundSecondary");
+                    descriptionTextBlock.SetResourceReference(Control.ForegroundProperty, "settingsPage_foregroundSecondary2");
                 }
+            }
+        }
+
+        [Description("Show the description text of the button"), Category("Miscellaneous")]
+        public bool ShowDescription
+        {
+            get { return _ShowDescription; }
+            set
+            {
+                _ShowDescription = value;
+
+                if (_ShowDescription == true)
+                    descriptionTextBlock.Visibility = Visibility.Visible;
+                else
+                    descriptionTextBlock.Visibility = Visibility.Collapsed;
             }
         }
 

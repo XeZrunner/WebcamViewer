@@ -25,6 +25,8 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
 
         MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
 
+        Theming Theming = new Theming();
+
         private void page_Loaded(object sender, RoutedEventArgs e)
         {
             foreach (UIElement _panel in sectionsPanel.Children)
@@ -70,11 +72,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
 
             dlg.IsDarkTheme = DarkMode;
 
-            mainwindow.global_Dim();
-
             dlg.ShowDialog();
-
-            mainwindow.global_UnDim();
         }
 
         /// <summary>
@@ -92,16 +90,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
 
             dlg.IsDarkTheme = DarkMode;
 
-            mainwindow.global_Dim();
-
             dlg.ShowDialog();
-
-            mainwindow.global_UnDim();
         }
 
         #endregion
 
-        async void settingsPage_ToggleButtonClick(object sender, RoutedEventArgs e)
+        void settingsPage_ToggleButtonClick(object sender, RoutedEventArgs e)
         {
             settingsPage_ToggleSwitchButton sBtn = sender as settingsPage_ToggleSwitchButton;
 
@@ -110,7 +104,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
                 Properties.Settings.Default[(string)sBtn.Tag] = sBtn.IsActive;
                 Properties.Settings.Default.Save();
 
-                await mainwindow.GetUserConfiguration(true);
+                mainwindow.GetUserConfiguration(true);
             }
             catch (Exception ex)
             {
@@ -125,14 +119,56 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
 
         #region Buttons
 
-        private async void settingsPage_UserInterfacePage_UI_ThemeButton_Click(object sender, RoutedEventArgs e)
+        private void Rectangle_Loaded(object sender, RoutedEventArgs e)
+        {
+            Rectangle r = sender as Rectangle;
+            r.Name = "settingsPage_UserInterfacePage_UI_AccentColorButton_Rectangle";
+
+            // create binding for accent color
+            Binding binding = new Binding();
+            binding.Source = Application.Current.Resources;
+            binding.Path = new PropertyPath("accentcolor_dark");
+
+            // Bind accent color to the temp brush
+            SolidColorBrush brush = new SolidColorBrush();
+            BindingOperations.SetBinding(brush, SolidColorBrush.ColorProperty, binding);
+
+            // create new rectangle
+            r = new Rectangle { Fill = brush };
+        }
+
+        private void settingsPage_UserInterfacePage_UI_AccentColorButton_Click(object sender, RoutedEventArgs e)
         {
             Popups.MessageDialog dlg = new Popups.MessageDialog();
             dlg.Title = "";
 
             dlg.Content_DisableMargin = true;
 
-            Dialog_controls.settingsPage_UserInterfacePage_ThemeControl content = new Dialog_controls.settingsPage_UserInterfacePage_ThemeControl();
+            Controls.settingsPage_UserInterfacePage_AccentControl content = new Controls.settingsPage_UserInterfacePage_AccentControl();
+
+            dlg.Content = content;
+
+            dlg.FirstButtonContent = "Go back";
+            dlg.SecondButtonContent = "Apply changes";
+
+            if (dlg.ShowDialogWithResult() == 1)
+            {
+                Theming.AccentColor.SetAccentColor(content.chosenAccent, true);
+
+                mainwindow.GetUserConfiguration(true);
+
+                mainwindow.UpdateDefaultStyle();
+            }
+        }
+
+        private void settingsPage_UserInterfacePage_UI_ThemeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Popups.MessageDialog dlg = new Popups.MessageDialog();
+            dlg.Title = "";
+
+            dlg.Content_DisableMargin = true;
+
+            Controls.settingsPage_UserInterfacePage_ThemeControl content = new Controls.settingsPage_UserInterfacePage_ThemeControl();
             #region control code
             switch (Properties.Settings.Default.ui_theme)
             {
@@ -151,12 +187,10 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
 
             dlg.Content = content;
 
-            dlg.FirstButtonContent = "Apply changes";
-            dlg.SecondButtonContent = "Go back";
+            dlg.FirstButtonContent = "Go back";
+            dlg.SecondButtonContent = "Apply changes";
 
-            mainwindow.global_Dim();
-
-            if (dlg.ShowDialogWithResult() == 0)
+            if (dlg.ShowDialogWithResult() == 1)
             {
 
                 if (content.radiobutton_Light.IsChecked == true)
@@ -170,15 +204,17 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
                     Properties.Settings.Default.Save();
                 }
 
+                mainwindow.GetUserConfiguration(true);
+
+                mainwindow.UpdateDefaultStyle();
             }
-
-            mainwindow.global_UnDim();
-
-            await mainwindow.GetUserConfiguration(true);
-
-            this.UpdateLayout();
         }
 
         #endregion
+
+        private void page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            sectionsPanel.MaxWidth = this.ActualWidth - 20;
+        }
     }
 }

@@ -53,7 +53,7 @@
             </DoubleAnimationUsingKeyFrames>
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="ellipse">
                 <EasingThicknessKeyFrame KeyTime="0" Value="0"/>
-                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="-325"/>
+                <EasingThicknessKeyFrame KeyTime="0:0:1" Value="-320"/>
             </ThicknessAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ellipse">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>

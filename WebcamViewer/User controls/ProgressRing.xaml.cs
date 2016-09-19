@@ -39,7 +39,7 @@ namespace WebcamViewer.User_controls
 
         private void usercontrol_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (this.Visibility == Visibility.Visible)
+            if (this.IsVisible == true)
             {
                 if (_IsActive == true)
                     StartRing();
@@ -103,8 +103,20 @@ namespace WebcamViewer.User_controls
             _char++;
             ring.Content = _char.ToString();
 
-            if (_char == "\ue0cb"[0])
-                _char = "\ue051"[0];
+            if (_char == "\ue0cb"[0]) // reached the final character
+            {
+                mainTimer.Stop();
+
+                DispatcherTimer endtimer = new DispatcherTimer();
+                endtimer.Interval = TimeSpan.FromSeconds(.5);
+                endtimer.Tick += (s, ev) => 
+                {
+                    endtimer.Stop();
+                    _char = "\ue051"[0];
+                    mainTimer.Start();
+                };
+                endtimer.Start();
+            }
         }
 
         private void StartRing()

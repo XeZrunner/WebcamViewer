@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("Webcam Viewer")]
 [assembly: AssemblyDescription("A simple online webcam image viewer.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Xesign™")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("Copyright © Felix XeZrunner 2016")]
 [assembly: AssemblyTrademark("")]

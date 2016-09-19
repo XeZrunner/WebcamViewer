@@ -67,12 +67,19 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
 
-                <Image x:Name="image" Grid.Row="0" SourceUpdated="image_SourceUpdated" />
+                <Grid Grid.Row="0">
+                    
+                    <Image x:Name="image" SourceUpdated="image_SourceUpdated" />
+                    <Grid x:Name="errorGrid" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">
+                        <TextBlock Foreground="White" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="26.667">&#xe7ba;</TextBlock>
+                    </Grid>
+                    
+                </Grid>
 
                 <TextBlock x:Name="textblock" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="camera name"/>
 
             </Grid>
-            
+
             <!-- Ripple effect grid -->
             <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Width="{Binding ElementName=usercontrol, Path=Width}" Height="{Binding ElementName=usercontrol, Path=Height}" Margin="-116">
                 <Ellipse x:Name="ellipse" Fill="#1FFFFFFF" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using WebcamViewer.User_controls;
+using WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings;
 
 namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 {
@@ -28,6 +29,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
         private void page_Loaded(object sender, RoutedEventArgs e)
         {
+            #region Toggle switches
             foreach (UIElement _panel in sectionsPanel.Children)
             {
                 if (_panel.GetType() == (typeof(StackPanel)))
@@ -47,6 +49,29 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                     }
                 }
             }
+            #endregion
+            #region Debug mode
+
+            if (Properties.Settings.Default.app_debugmode == "testing")
+            {
+                settingsPage_DebugMenuPage_Home_ProgressDebugButton.Visibility = Visibility.Collapsed;
+                settingsPage_DebugMenuPage_GlobalUISection.Visibility = Visibility.Collapsed;
+                settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton.Visibility = Visibility.Collapsed;
+            }
+            else if (Properties.Settings.Default.app_debugmode == "release")
+            {
+                settingsPage_DebugMenuPage_HomeSection.Visibility = Visibility.Collapsed;
+                settingsPage_DebugMenuPage_GlobalUISection.Visibility = Visibility.Collapsed;
+                settingsPage_DebugMenuPage_ExperimentsSection.Visibility = Visibility.Collapsed;
+                settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton.Visibility = Visibility.Collapsed;
+            }
+
+            #endregion
+        }
+
+        private void page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            sectionsPanel.MaxWidth = this.ActualWidth - 20;
         }
 
         #region Dialogs
@@ -66,11 +91,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
             dlg.IsDarkTheme = DarkMode;
 
-            mainwindow.global_Dim();
-
             dlg.ShowDialog();
-
-            mainwindow.global_UnDim();
         }
 
         /// <summary>
@@ -88,16 +109,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
             dlg.IsDarkTheme = DarkMode;
 
-            mainwindow.global_Dim();
-
             dlg.ShowDialog();
-
-            mainwindow.global_UnDim();
         }
 
         #endregion
 
-        async void settingsPage_ToggleButtonClick(object sender, RoutedEventArgs e)
+        void settingsPage_ToggleButtonClick(object sender, RoutedEventArgs e)
         {
             settingsPage_ToggleSwitchButton sBtn = sender as settingsPage_ToggleSwitchButton;
 
@@ -106,7 +123,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                 Properties.Settings.Default[(string)sBtn.Tag] = sBtn.IsActive;
                 Properties.Settings.Default.Save();
 
-                await mainwindow.GetUserConfiguration(true);
+                mainwindow.GetUserConfiguration(true);
             }
             catch (Exception ex)
             {
@@ -310,12 +327,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             TextBlock text5 = new TextBlock()
             {
                 Margin = new Thickness(5, 0, 0, 0),
-                Text = "Left-hands ide button text"
+                Text = "Left-hand side button text"
             };
 
             TextBox secondbuttonTextBox = new TextBox()
             {
-                Margin = new Thickness(0, 10, 0, 10),
+                Margin = new Thickness(0, 10, 0, 0),
                 Text = ""
             };
 
@@ -358,11 +375,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                     dialog.FirstButtonContent = firstbuttonTextBox.Text;
                     dialog.SecondButtonContent = secondbuttonTextBox.Text;
 
-                    mainwindow.global_Dim();
-
                     dialog.ShowDialog();
-
-                    mainwindow.global_UnDim();
                 }
                 else
                 {
@@ -373,17 +386,65 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                     dialog.FirstButtonContent = firstbuttonTextBox.Text;
                     dialog.SecondButtonContent = secondbuttonTextBox.Text;
 
-                    mainwindow.global_Dim();
-
                     dialog.ShowDialog();
-
-                    mainwindow.global_UnDim();
                 }
             }
 
         }
 
-        private async void settingsPage_DebugMenuPage_Experiments_ExperimentsButton_Click(object sender, RoutedEventArgs e)
+        private void settingsPage_DebugMenuPage_Home_AnimationSpeedButton_Click(object sender, RoutedEventArgs e)
+        {
+            Popups.MessageDialog dlg = new Popups.MessageDialog()
+            {
+                Title = "Transitions animation speed",
+                FirstButtonContent = "Save",
+                SecondButtonContent = "Cancel"
+            };
+
+            // set up _content
+
+            Grid _content = new Grid();
+
+            StackPanel content_stackpanel = new StackPanel();
+            content_stackpanel.Margin = new Thickness(10);
+
+            #region Creating the content
+            Slider slider = new Slider();
+
+            slider.Maximum = 1;
+            slider.Minimum = 0.1;
+            slider.Value = Properties.Settings.Default.ui_animationspeed;
+
+            slider.LargeChange = 0.3;
+            slider.SmallChange = 0.1;
+            slider.TickFrequency = 0.1;
+            slider.TickPlacement = System.Windows.Controls.Primitives.TickPlacement.BottomRight;
+            slider.IsSnapToTickEnabled = true;
+            slider.AutoToolTipPlacement = System.Windows.Controls.Primitives.AutoToolTipPlacement.TopLeft;
+            slider.AutoToolTipPrecision = 2;
+
+            slider.Margin = new Thickness(0, 5, 0, 0);
+            #endregion
+
+            // Add the content to the stackpanel
+            content_stackpanel.Children.Add(slider);
+
+            // Add the content to the main _content
+            _content.Children.Add(content_stackpanel);
+
+            // Set the content
+            dlg.Content = _content;
+
+            // Show the dialog
+            if (dlg.ShowDialogWithResult() == 0)
+            {
+                Properties.Settings.Default.ui_animationspeed = slider.Value;
+                Properties.Settings.Default.Save();
+                mainwindow.GetUserConfiguration(true);
+            }
+        }
+
+        private void settingsPage_DebugMenuPage_Experiments_ExperimentsButton_Click(object sender, RoutedEventArgs e)
         {
             Popups.MessageDialog_FullWidth dialog = new Popups.MessageDialog_FullWidth();
             dialog.Title = "Experiments";
@@ -392,24 +453,18 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             StackPanel panel = new StackPanel();
 
             Label label0 = new Label() { Content = "Toggle experiments on or off" };
-            Label label1 = new Label() { Content = "You will have to enter your Prerelease Credentials to apply any changes" };
+            Label label1 = new Label() { Content = "These experiments are early prerelease features.\n" + 
+                                                   "You can only toggle experiments in testing and internal builds." };
 
             // EXPERIMENT - update ui
-            CheckBox box0 = new CheckBox() { Content = "Updates UI Testing", Margin = new Thickness(0, 10, 0, 0), Tag = "settings_experiment_UpdateUI" };
+            CheckBox box0 = new CheckBox() { Content = "Updates UI Testing", Margin = new Thickness(4, 15, 0, 5), Tag = "settings_experiment_UpdateUI" };
             if (Properties.Settings.Default.settings_experiment_UpdateUI) box0.IsChecked = true;
             else box0.IsChecked = false;
-            // /EXPERIMENT
-
-            // EXPERIMENT - home overview
-            CheckBox box1 = new CheckBox() { Content = "Home Overview", Margin = new Thickness(0, 5, 0, 10), Tag = "home_experiment_Overview" };
-            if (Properties.Settings.Default.home_experiment_Overview) box1.IsChecked = true;
-            else box1.IsChecked = false;
             // /EXPERIMENT
 
             panel.Children.Add(label0);
             panel.Children.Add(label1);
             panel.Children.Add(box0);
-            panel.Children.Add(box1);
             // Content //
 
             dialog.Content = panel;
@@ -418,8 +473,6 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             dialog.SecondButtonContent = "Go back";
 
             // Show dialog
-            mainwindow.global_Dim();
-
             if (dialog.ShowDialogWithResult() == 0)
             {
                 #region Save changes
@@ -435,23 +488,19 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                     }
                 }
 
-                await mainwindow.GetUserConfiguration(true);
+                mainwindow.GetUserConfiguration(true);
                 #endregion
             }
-
-            mainwindow.global_UnDim();
         }
 
-        private async void settingsPage_DebugMenuPage_Configuration_ResetConfigurationButton_Click(object sender, RoutedEventArgs e)
+        private void settingsPage_DebugMenuPage_Configuration_ResetConfigurationButton_Click(object sender, RoutedEventArgs e)
         {
             Popups.MessageDialog_FullWidth dlg = new Popups.MessageDialog_FullWidth();
             dlg.Title = "";
-            dlg.Content = "Resetting the configuration will reset all user settings to their defaults.";
+            dlg.Content = res.Resources.ResetConfigurationConfirmation;
 
-            dlg.FirstButtonContent = "Confirm";
-            dlg.SecondButtonContent = "Go back";
-
-            mainwindow.global_Dim();
+            dlg.FirstButtonContent = res.Resources.ResetConfiguration;
+            dlg.SecondButtonContent = Properties.Resources.Go_back;
 
             if (dlg.ShowDialogWithResult() == 0)
             {
@@ -459,7 +508,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                 Properties.Settings.Default.Reset();
                 Properties.Settings.Default.Save();
 
-                await mainwindow.GetUserConfiguration(true);
+                mainwindow.GetUserConfiguration(true);
 
                 /* no need to restart anymore
                 TextMessageDialog("Configuration has been reset...", "We'll restart Webcam Viewer for you...");
@@ -468,8 +517,6 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                 Application.Current.Shutdown();
                 */
             }
-
-            mainwindow.global_UnDim();
         }
 
         private void settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton_Click(object sender, RoutedEventArgs e)

@@ -7,7 +7,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
              mc:Ignorable="d" 
-             MinHeight="60" MaxHeight="75" d:DesignWidth="450" ClipToBounds="True" SizeChanged="UserControl_SizeChanged">
+             MinHeight="60" MaxHeight="75" MinWidth="250" ClipToBounds="True" SizeChanged="UserControl_SizeChanged">
     <UserControl.Resources>
 
         <EasingDoubleKeyFrame x:Key="s_WidthHeightKeyFrame" KeyTime="0:0:1" Value="650"/>
@@ -77,12 +77,16 @@
                     <ColumnDefinition x:Name="contentGrid_columnDefinition1" Width="100"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Margin="15,0,0,0" Grid.Column="0" VerticalAlignment="Center">
+                <Grid x:Name="textGrid" Margin="15,0,0,0" Grid.Column="0" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
                     <TextBlock x:Name="titleTextBlock" Foreground="{DynamicResource settingsPage_foregroundText}" Margin="0" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left">SETTING NAME</TextBlock>
-                    <TextBlock x:Name="descriptionTextBlock" Foreground="{DynamicResource settingsPage_foregroundSecondary2}" HorizontalAlignment="Left" Margin="0,5,0,0" TextWrapping="Wrap" TextTrimming="CharacterEllipsis">Setting description</TextBlock>
+                    <TextBlock x:Name="descriptionTextBlock" Grid.Row="1" Foreground="{DynamicResource settingsPage_foregroundSecondary2}" HorizontalAlignment="Left" Margin="0,5,0,0" TextTrimming="CharacterEllipsis">Setting description</TextBlock>
 
-                </StackPanel>
+                </Grid>
 
                 <Grid x:Name="rightSide_GridContainer" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
 

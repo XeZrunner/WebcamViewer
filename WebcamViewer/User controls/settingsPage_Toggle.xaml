@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.User_controls.settingsPage_Toggle"
              mc:Ignorable="d" 
-             Height="22" Width="45">
+             Height="35" Width="55">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
 
@@ -51,7 +51,7 @@
         </Style>
         <Storyboard x:Key="Toggle_In">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="ellipse">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="24">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="24">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <SineEase EasingMode="EaseOut"/>
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -61,7 +61,7 @@
         <Storyboard x:Key="Toggle_Out">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="ellipse">
                 <EasingDoubleKeyFrame KeyTime="0" Value="24"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <QuarticEase EasingMode="EaseOut"/>
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -69,7 +69,8 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" Click="button_Click">
+    
+    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" Click="button_Click" Height="22" Width="45">
 
         <Border x:Name="border" CornerRadius="10" BorderBrush="{DynamicResource settingsPage_foregroundSecondary}" Background="Transparent" BorderThickness="2">
 

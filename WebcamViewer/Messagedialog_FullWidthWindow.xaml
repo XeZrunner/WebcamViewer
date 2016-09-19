@@ -7,9 +7,9 @@
         xmlns:local="clr-namespace:WebcamViewer"
         mc:Ignorable="d"
         Title="Messagedialog_FullWidthWindow" Background="{DynamicResource MessageDialog_FullWidth_Background}" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" SizeToContent="Height" SizeChanged="Window_SizeChanged"
-        ShowTitleBar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False" TextOptions.TextRenderingMode="Grayscale" >
+        ShowTitleBar="False" ShowInTaskbar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False" TextOptions.TextRenderingMode="Grayscale">
     
-    <Grid VerticalAlignment="Center" MinWidth="350" MaxWidth="530">
+    <Grid VerticalAlignment="Center" MinWidth="270" MaxWidth="500" Margin="30,0,30,0">
         <Grid.Resources>
             <Style TargetType="Label">
                 <Setter Property="Foreground" Value="{DynamicResource MessageDialog_FullWidth_ForegroundText}"/>
@@ -32,13 +32,13 @@
             </Grid>
         </ScrollViewer>
 
-        <Grid Grid.Row="2" HorizontalAlignment="Right">
+        <Grid x:Name="buttonsGrid" Grid.Row="2" HorizontalAlignment="Right">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="firstButton" Grid.Column="0" Style="{DynamicResource Win81ButtonStyle_Dark}" Margin="0,0,0,32" Content="First button" SnapsToDevicePixels="True"/>
+            <Button x:Name="firstButton" Style="{DynamicResource Win81ButtonStyle_Dark}" Margin="0,0,0,32" Content="First button" SnapsToDevicePixels="True"/>
 
             <Button x:Name="secondButton" Grid.Column="1" Style="{DynamicResource Win81ButtonStyle}" Margin="20,0,0,32" Content="Second button" SnapsToDevicePixels="True"/>
 

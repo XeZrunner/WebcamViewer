@@ -39,26 +39,65 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="versionid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Update 2 Beta - Internal development build
-NOT FOR PUBLIC TESTING</Value>
+      <Value Profile="(Default)">Update 2 Beta</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20160831-01@webcamviewer/internal/features/alpha/modularpages</Value>
+      <Value Profile="(Default)">20160917-01@webcamviewer/prerelease/update2/latest</Value>
     </Setting>
     <Setting Name="settings_experiment_UpdateUI" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="home_experiment_Overview" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ui_theme" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="app_debugmode" Type="System.String" Scope="User">
-      <Value Profile="(Default)">developer</Value>
+      <Value Profile="(Default)">testing</Value>
     </Setting>
     <Setting Name="app_firstrun" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="webcamengine_version" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1.2.0</Value>
+    </Setting>
+    <Setting Name="ui_accent" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="camera_refreshrates" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;3&lt;/string&gt;
+  &lt;string&gt;3&lt;/string&gt;
+  &lt;string&gt;30&lt;/string&gt;
+  &lt;string&gt;10&lt;/string&gt;
+  &lt;string&gt;20&lt;/string&gt;
+  &lt;string&gt;3&lt;/string&gt;
+  &lt;string&gt;30&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="home_refreshenabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ui_animationspeed" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="changelog" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Webcam Viewer Update 2
+
+--------------------------------------------------
+
+Prerelease version (beta) [webcamviewer/prerelease/update2/latest)
+Prerelease channel description: Latest private beta channel
+Build ID: 20160917-01
+
+--------------------------------------------------
+
+New features:
+- Transition animation rate in Debug settings
+
+Fixes &amp; enchancements:
+- Reverted to the old behavior of hiding the menu when clicking on a camera so that it hides once the camera finishes loading. This way, you can see the ripple effect.
+- Fixed the Windows 8-style dialogs' contents being cut off at the edges on extra low window sizes
+- Fixed settings pages' sizing on low window sizes</Value>
     </Setting>
   </Settings>
 </SettingsFile>

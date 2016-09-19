@@ -115,7 +115,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta - Internal development build\r\nNOT FOR PUBLIC TESTING")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
@@ -127,7 +127,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20160831-01@webcamviewer/internal/features/alpha/modularpages")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20160917-01@webcamviewer/prerelease/update2/latest")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -139,25 +139,13 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool settings_experiment_UpdateUI {
             get {
                 return ((bool)(this["settings_experiment_UpdateUI"]));
             }
             set {
                 this["settings_experiment_UpdateUI"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool home_experiment_Overview {
-            get {
-                return ((bool)(this["home_experiment_Overview"]));
-            }
-            set {
-                this["home_experiment_Overview"] = value;
             }
         }
         
@@ -175,7 +163,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("developer")]
+        [global::System.Configuration.DefaultSettingValueAttribute("testing")]
         public string app_debugmode {
             get {
                 return ((string)(this["app_debugmode"]));
@@ -187,13 +175,110 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool app_firstrun {
             get {
                 return ((bool)(this["app_firstrun"]));
             }
             set {
                 this["app_firstrun"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.2.0")]
+        public string webcamengine_version {
+            get {
+                return ((string)(this["webcamengine_version"]));
+            }
+            set {
+                this["webcamengine_version"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ui_accent {
+            get {
+                return ((int)(this["ui_accent"]));
+            }
+            set {
+                this["ui_accent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>3</string>
+  <string>3</string>
+  <string>30</string>
+  <string>10</string>
+  <string>20</string>
+  <string>3</string>
+  <string>30</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection camera_refreshrates {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["camera_refreshrates"]));
+            }
+            set {
+                this["camera_refreshrates"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool home_refreshenabled {
+            get {
+                return ((bool)(this["home_refreshenabled"]));
+            }
+            set {
+                this["home_refreshenabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double ui_animationspeed {
+            get {
+                return ((double)(this["ui_animationspeed"]));
+            }
+            set {
+                this["ui_animationspeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"Webcam Viewer Update 2
+
+--------------------------------------------------
+
+Prerelease version (beta) [webcamviewer/prerelease/update2/latest)
+Prerelease channel description: Latest private beta channel
+Build ID: 20160917-01
+
+--------------------------------------------------
+
+New features:
+- Transition animation rate in Debug settings
+
+Fixes & enchancements:
+- Reverted to the old behavior of hiding the menu when clicking on a camera so that it hides once the camera finishes loading. This way, you can see the ripple effect.
+- Fixed the Windows 8-style dialogs' contents being cut off at the edges on extra low window sizes
+- Fixed settings pages' sizing on low window sizes")]
+        public string changelog {
+            get {
+                return ((string)(this["changelog"]));
+            }
+            set {
+                this["changelog"] = value;
             }
         }
     }

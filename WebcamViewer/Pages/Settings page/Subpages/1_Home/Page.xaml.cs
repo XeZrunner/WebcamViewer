@@ -36,6 +36,11 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._1_Home
             }
         }
 
+        private void page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            settingsPage_HomeSettingsPage_MainStackPanel.MaxWidth = this.ActualWidth - 20;
+        }
+
         #region Dialogs
 
         /// <summary>
@@ -53,11 +58,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._1_Home
 
             dlg.IsDarkTheme = DarkMode;
 
-            mainwindow.global_Dim();
-
             dlg.ShowDialog();
-
-            mainwindow.global_UnDim();
         }
 
         /// <summary>
@@ -75,16 +76,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._1_Home
 
             dlg.IsDarkTheme = DarkMode;
 
-            mainwindow.global_Dim();
-
             dlg.ShowDialog();
-
-            mainwindow.global_UnDim();
         }
 
         #endregion
 
-        async void settingsPage_ToggleButtonClick(object sender, RoutedEventArgs e)
+        void settingsPage_ToggleButtonClick(object sender, RoutedEventArgs e)
         {
             settingsPage_ToggleSwitchButton sBtn = sender as settingsPage_ToggleSwitchButton;
 
@@ -93,7 +90,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._1_Home
                 Properties.Settings.Default[(string)sBtn.Tag] = sBtn.IsActive;
                 Properties.Settings.Default.Save();
 
-                await mainwindow.GetUserConfiguration(true);
+                mainwindow.GetUserConfiguration(true);
             }
             catch (Exception ex)
             {

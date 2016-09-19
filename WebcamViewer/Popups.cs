@@ -65,8 +65,15 @@ namespace WebcamViewer
                     SecondButtonClickEvent
                     );
 
-                dialogWindow.Owner = Application.Current.MainWindow;
+                MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+
+                dialogWindow.Owner = mainwindow;
+
+                mainwindow.global_Dim();
+
                 dialogWindow.ShowDialog();
+
+                mainwindow.global_UnDim();
             }
 
             int ResultDialog_result;
@@ -105,8 +112,15 @@ namespace WebcamViewer
                     ResultDialog_SecondButtonClickEvent
                     );
 
-                dialogWindow.Owner = Application.Current.MainWindow;
+                MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+
+                dialogWindow.Owner = mainwindow;
+
+                mainwindow.global_Dim();
+
                 dialogWindow.ShowDialog();
+
+                mainwindow.global_UnDim();
 
                 return ResultDialog_result;
             }
@@ -131,8 +145,15 @@ namespace WebcamViewer
                     SecondButtonClickEvent
                     );
 
-                dialogWindow.Owner = Application.Current.MainWindow;
+                MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+
+                dialogWindow.Owner = mainwindow;
+
+                mainwindow.global_Dim();
+
                 dialogWindow.Show();
+
+                mainwindow.global_UnDim();
             }
 
             /// <summary>
@@ -197,8 +218,15 @@ namespace WebcamViewer
                     SecondButtonClickEvent
                     );
 
-                dialogWindow.Owner = Application.Current.MainWindow;
+                MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+
+                dialogWindow.Owner = mainwindow;
+
+                mainwindow.global_Dim();
+
                 dialogWindow.ShowDialog();
+
+                mainwindow.global_UnDim();
             }
 
             int ResultDialog_result;
@@ -237,8 +265,15 @@ namespace WebcamViewer
                     ResultDialog_SecondButtonClickEvent
                     );
 
-                dialogWindow.Owner = Application.Current.MainWindow;
+                MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+
+                dialogWindow.Owner = mainwindow;
+
+                mainwindow.global_Dim();
+
                 dialogWindow.ShowDialog();
+
+                mainwindow.global_UnDim();
 
                 return ResultDialog_result;
             }
@@ -263,8 +298,15 @@ namespace WebcamViewer
                     SecondButtonClickEvent
                     );
 
-                dialogWindow.Owner = Application.Current.MainWindow;
+                MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+
+                dialogWindow.Owner = mainwindow;
+
+                mainwindow.global_Dim();
+
                 dialogWindow.Show();
+
+                mainwindow.global_UnDim();
             }
 
             /// <summary>

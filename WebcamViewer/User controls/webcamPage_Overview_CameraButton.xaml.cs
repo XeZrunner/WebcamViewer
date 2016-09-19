@@ -34,6 +34,10 @@ namespace WebcamViewer.User_controls
 
         public event RoutedEventHandler Click;
 
+        public string ErrorMessage;
+
+        private bool _IsError = false;
+
         [Description("The Source property of the Image of the button"), Category("Common")]
         public ImageSource Image
         {
@@ -46,6 +50,25 @@ namespace WebcamViewer.User_controls
         {
             get { return textblock.Text; }
             set { textblock.Text = value; }
+        }
+
+        [Description("The error state of the button"), Category("Miscellaneous")]
+        public bool IsError
+        {
+            get { return _IsError; }
+            set
+            {
+                _IsError = value;
+
+                if (_IsError)
+                {
+                    errorGrid.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    errorGrid.Visibility = Visibility.Hidden;
+                }
+            }
         }
 
         DispatcherTimer LongDowntimer = new DispatcherTimer();

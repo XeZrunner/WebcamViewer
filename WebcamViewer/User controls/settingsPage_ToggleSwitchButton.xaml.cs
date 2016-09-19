@@ -39,6 +39,12 @@ namespace WebcamViewer.User_controls
 
             s_WidthHeight.Value = this.ActualWidth * 2;
             s_Margin.Value = new Thickness(-this.ActualWidth);
+
+            double textGridMaxWidth = 0;
+            if (IsToggleButton == true)
+                textGridMaxWidth = this.ActualWidth - 115;
+            else
+                textGridMaxWidth = this.ActualWidth - 15;
         }
 
         bool _IsToggleButton = true;

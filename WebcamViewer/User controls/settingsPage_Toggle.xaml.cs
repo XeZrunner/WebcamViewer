@@ -41,41 +41,30 @@ namespace WebcamViewer.User_controls
                     s_ToggleIn.Begin();
 
                     // target brush
-                    Rectangle temp_rec = new Rectangle(); temp_rec.Fill = Application.Current.Resources["accentcolor_dark"] as SolidColorBrush;
-                    SolidColorBrush temp_brush = (SolidColorBrush)temp_rec.Fill;
+                    Rectangle temp_rec = new Rectangle();
+                    temp_rec.SetResourceReference(Rectangle.FillProperty, "accentcolor_dark");
 
                     // original foregroundsecondary brush
-                    Rectangle original_rec = new Rectangle(); original_rec.Fill = Application.Current.Resources["settingsPage_foregroundSecondary"] as SolidColorBrush;
-                    SolidColorBrush original_brush = (SolidColorBrush)original_rec.Fill;
+                    Rectangle original_rec = new Rectangle();
+                    original_rec.SetResourceReference(Rectangle.FillProperty, "settingsPage_foregroundSecondary");
 
                     // settings background brush
-                    Rectangle settingsbackground_rec = new Rectangle(); settingsbackground_rec.Fill = new SolidColorBrush(Colors.Transparent); //settingsbackground_rec.Fill = Application.Current.Resources["settingsPage_background"] as SolidColorBrush;
-                    SolidColorBrush settingsbackground_brush = (SolidColorBrush)original_rec.Fill;
-
-                    // animations
-                    ColorAnimation animation = new ColorAnimation(temp_brush.Color, new TimeSpan(0, 0, 0, 0, 500).Duration());
-                    ColorAnimation animation_ellipseFill = new ColorAnimation(Colors.White, new TimeSpan(0, 0, 0, 0, 500).Duration());
+                    Rectangle settingsbackground_rec = new Rectangle();
+                    settingsbackground_rec.SetResourceReference(Rectangle.FillProperty, "settingsPage_background");
 
                     // remove Frozen™
-                    border.Background = new SolidColorBrush();
-                    border.BorderBrush = new SolidColorBrush(original_brush.Color);
-                    ellipse.Fill = new SolidColorBrush(settingsbackground_brush.Color);
-                    
-                    // animate!
-                    if (DoAnimation)
-                    {
-                        border.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                        border.BorderBrush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                        ellipse.Fill.BeginAnimation(SolidColorBrush.ColorProperty, animation_ellipseFill);
-                    }
-                    else
-                    {
-                        border.Background = temp_brush;
-                        border.BorderBrush = temp_brush;
-                        ellipse.Fill = Brushes.White;
+                    border.Background = settingsbackground_rec.Fill;
+                    border.BorderBrush = original_rec.Fill;
+                    ellipse.Fill = settingsbackground_rec.Fill;
 
+                    // set!
+                    border.Background = temp_rec.Fill;
+                    border.BorderBrush = temp_rec.Fill;
+                    ellipse.Fill = Brushes.White;
+
+                    // animate!
+                    if (!DoAnimation)
                         s_ToggleIn.SkipToFill();
-                    }
                 }
                 else
                 {
@@ -84,42 +73,30 @@ namespace WebcamViewer.User_controls
                     s_ToggleOut.Begin();
 
                     // target brush
-                    Rectangle temp_rec = new Rectangle(); temp_rec.Fill = Application.Current.Resources["settingsPage_foregroundSecondary"] as SolidColorBrush;
-                    SolidColorBrush temp_brush = (SolidColorBrush)temp_rec.Fill;
+                    Rectangle temp_rec = new Rectangle();
+                    temp_rec.SetResourceReference(Rectangle.FillProperty, "settingsPage_foregroundSecondary");
 
                     // original foregroundsecondary brush
-                    Rectangle original_rec = new Rectangle(); original_rec.Fill = Application.Current.Resources["accentcolor_dark"] as SolidColorBrush;
-                    SolidColorBrush original_brush = (SolidColorBrush)original_rec.Fill;
+                    Rectangle original_rec = new Rectangle();
+                    original_rec.SetResourceReference(Rectangle.FillProperty, "accentcolor_dark");
 
                     // settings background brush
-                    Rectangle settingsbackground_rec = new Rectangle(); settingsbackground_rec.Fill = new SolidColorBrush(Colors.Transparent); //settingsbackground_rec.Fill = Application.Current.Resources["settingsPage_background"] as SolidColorBrush;
-                    SolidColorBrush settingsbackground_brush = (SolidColorBrush)settingsbackground_rec.Fill;
-
-                    // animations
-                    ColorAnimation animation = new ColorAnimation(temp_brush.Color, new TimeSpan(0, 0, 0, 0, 500).Duration());
-                    ColorAnimation animation_background = new ColorAnimation(settingsbackground_brush.Color, new TimeSpan(0, 0, 0, 0, 250).Duration());
-                    ColorAnimation animation_ellipseFill = new ColorAnimation(temp_brush.Color, new TimeSpan(0, 0, 0, 0, 500).Duration());
+                    Rectangle settingsbackground_rec = new Rectangle();
+                    settingsbackground_rec.SetResourceReference(Rectangle.FillProperty, "settingsPage_background");
 
                     // remove Frozen™
-                    border.Background = new SolidColorBrush(original_brush.Color);
-                    border.BorderBrush = new SolidColorBrush(original_brush.Color);
-                    ellipse.Fill = new SolidColorBrush(original_brush.Color);
+                    border.Background = settingsbackground_rec.Fill;
+                    border.BorderBrush = original_rec.Fill;
+                    ellipse.Fill = original_rec.Fill;
+
+                    // set!
+                    border.Background = settingsbackground_rec.Fill;
+                    border.BorderBrush = temp_rec.Fill;
+                    ellipse.Fill = temp_rec.Fill;
 
                     // animate!
-                    if (DoAnimation)
-                    {
-                        border.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation_background);
-                        border.BorderBrush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-                        ellipse.Fill.BeginAnimation(SolidColorBrush.ColorProperty, animation_ellipseFill);
-                    }
-                    else
-                    {
-                        border.Background = settingsbackground_brush;
-                        border.BorderBrush = temp_brush;
-                        ellipse.Fill = temp_brush;
-
+                    if (!DoAnimation)
                         s_ToggleOut.SkipToFill();
-                    }
                 }
                 DoAnimation = false;
             }

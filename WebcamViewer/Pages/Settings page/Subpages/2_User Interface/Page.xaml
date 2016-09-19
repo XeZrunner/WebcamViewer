@@ -4,33 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface"
+             xmlns:res="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.res"
              xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
              mc:Ignorable="d" 
-             d:DesignWidth="500" d:DesignHeight="572" Background="{DynamicResource settingsPage_background}" Loaded="page_Loaded">
+             d:DesignWidth="500" d:DesignHeight="572" Background="{DynamicResource settingsPage_background}" Loaded="page_Loaded" SizeChanged="page_SizeChanged">
     <Grid>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <StackPanel x:Name="sectionsPanel" Margin="10">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel x:Name="sectionsPanel" Margin="10" MinWidth="250">
 
-                <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">COLORS</Label>
+                <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0" Content="{x:Static res:Resources.Colors}"/>
 
                 <!-- Colors -->
                 <StackPanel Margin="0,5,0,0">
-                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_UI_AccentColorButton" Title="Accent color" Description="The color to use throughout the user interface...&#x0a;Current color: %s" IsToggleButton="False">
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_UI_AccentColorButton" Title="{x:Static res:Resources.AccentColor}" Description="{x:Static res:Resources.AccentColorDescription}" IsToggleButton="False" Click="settingsPage_UserInterfacePage_UI_AccentColorButton_Click">
                         <usercontrols:settingsPage_ToggleSwitchButton.RightSideGrid>
                             <Grid>
 
-                                <Rectangle Fill="{DynamicResource accentcolor_dark}" Width="30" Height="30" />
+                                <Rectangle Fill="{DynamicResource accentcolor_dark}" Width="30" Height="30" Loaded="Rectangle_Loaded" />
 
                             </Grid>
                         </usercontrols:settingsPage_ToggleSwitchButton.RightSideGrid>
                     </usercontrols:settingsPage_ToggleSwitchButton>
-                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_UI_ThemeButton" IsToggleButton="False" Title="Theme" Description="The theme to use throughout the user interface...&#x0a;Current theme: %s" Click="settingsPage_UserInterfacePage_UI_ThemeButton_Click"/>
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_UI_ThemeButton" IsToggleButton="False" Title="{x:Static res:Resources.Theme}" Description="{x:Static res:Resources.ThemeDescription}" Click="settingsPage_UserInterfacePage_UI_ThemeButton_Click"/>
                 </StackPanel>
 
                 <!-- Settings -->
                 <StackPanel Margin="0,10,0,0">
-                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_SettingsPage_ShowAccentColorOnTitlebarToggleButton" Title="Show accent color on titlebar" Description="Shows the current accent color on the titlebar in the Settings" Tag="settings_showtitlebarcolor" Click="settingsPage_ToggleButtonClick"/>
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_SettingsPage_ShowAccentColorOnTitlebarToggleButton" Title="{x:Static res:Resources.AccentColorOnTItlebar}" Description="{x:Static res:Resources.AccentColorOnTitlebarDescription}" Tag="settings_showtitlebarcolor" Click="settingsPage_ToggleButtonClick"/>
                 </StackPanel>
 
             </StackPanel>

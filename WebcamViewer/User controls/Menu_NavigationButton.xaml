@@ -72,7 +72,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Rectangle x:Name="rectangle" Fill="{DynamicResource accentcolor_light}" Width="8" Margin="-4,0,0,0" Height="24" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Hidden"/>
+                <Rectangle x:Name="rectangle" Fill="{DynamicResource accentcolor_light}" Width="8" Margin="-4,0,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Left" Visibility="Hidden"/>
 
                 <TextBlock Grid.Column="0" x:Name="iconTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="21" TextOptions.TextFormattingMode="Display">0</TextBlock>
 

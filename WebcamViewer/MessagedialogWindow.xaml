@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:WebcamViewer"
         mc:Ignorable="d"
         Title="" WindowStyle="None" ResizeMode="NoResize" MinWidth="320" MaxWidth="548" MinHeight="184" MaxHeight="756" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner"
-        ShowTitleBar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False"
+        ShowTitleBar="False" ShowInTaskbar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False"
         BorderBrush="{DynamicResource accentcolor_dark}" BorderThickness="1" d:DesignWidth="450" d:DesignHeight="200" Background="{DynamicResource MessageDialog_Background}" Foreground="{DynamicResource MessageDialog_ForegroundText}" TextOptions.TextRenderingMode="Grayscale">
 
     <Grid x:Name="grid">

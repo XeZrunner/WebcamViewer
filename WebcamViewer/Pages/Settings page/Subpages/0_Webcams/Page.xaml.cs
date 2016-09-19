@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WebcamViewer.Pages.Settings_page.Subpages._0_Webcams;
 
 namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
 {
@@ -51,11 +52,14 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
 
         private void page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (this.Visibility == Visibility.Visible)
+            if (this.IsVisible == true)
                 RefreshItemList();
         }
 
-        MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+        private void page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            grid.MaxWidth = this.ActualWidth - 20;
+        }
 
         #region Dialogs
 
@@ -74,11 +78,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
 
             dlg.IsDarkTheme = DarkMode;
 
-            mainwindow.global_Dim();
-
             dlg.ShowDialog();
-
-            mainwindow.global_UnDim();
         }
 
         /// <summary>
@@ -96,11 +96,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
 
             dlg.IsDarkTheme = DarkMode;
 
-            mainwindow.global_Dim();
-
             dlg.ShowDialog();
-
-            mainwindow.global_UnDim();
         }
 
         #endregion
@@ -185,17 +181,28 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
         {
             settingsPage_WebcamEditorPage_ItemEditor_NameTextBox.Text = Properties.Settings.Default.camera_names[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
             settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox.Text = Properties.Settings.Default.camera_urls[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
+            settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox.Text = Properties.Settings.Default.camera_refreshrates[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
         }
 
         // button click events
         private void settingsPage_WebcamEditorPage_SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.camera_names.Clear();
-            Properties.Settings.Default.camera_urls.Clear();
-
             settingsPage_WebcamEditorPage_Camera targetListViewItem = settingsPage_WebcamEditorPage_ListView.Items[settingsPage_WebcamEditorPage_ListView.SelectedIndex] as settingsPage_WebcamEditorPage_Camera;
             targetListViewItem.Name = settingsPage_WebcamEditorPage_ItemEditor_NameTextBox.Text;
             targetListViewItem.Url = settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox.Text;
+            try
+            {
+                targetListViewItem.RefreshRate = int.Parse(settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                TextMessageDialog("Invalid refreshrate", "Please enter a number that represents the seconds at which the camera image will refresh.\n\nError: " + ex.Message);
+                return;
+            }
+
+            Properties.Settings.Default.camera_names.Clear();
+            Properties.Settings.Default.camera_urls.Clear();
+            Properties.Settings.Default.camera_refreshrates.Clear();
 
             foreach (settingsPage_WebcamEditorPage_Camera item in settingsPage_WebcamEditorPage_ListView.Items)
             {
@@ -204,6 +211,9 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
 
                 // urls
                 Properties.Settings.Default.camera_urls.Add(item.Url);
+
+                // refresh rates
+                Properties.Settings.Default.camera_refreshrates.Add(item.RefreshRate.ToString());
             }
 
             Properties.Settings.Default.Save();
@@ -221,14 +231,15 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
         {
             settingsPage_WebcamEditorPage_Camera newcamera = new settingsPage_WebcamEditorPage_Camera()
             {
-                Name = String.Format("Camera #{0}", Properties.Settings.Default.camera_names.Count + 1),
-                Url = "https://cameraurlgoeshere.com/camera-69.jpg [REMOVE ANY ? parameters such as \"?dummy=xyzxyzxyz&ds=1\"]",
+                Name = String.Format(res.Resources.Camera + " #{0}", Properties.Settings.Default.camera_names.Count + 1),
+                Url = res.Resources.New_camera_Template,
                 SaveLocation = "",
                 RefreshRate = 5
             };
 
             Properties.Settings.Default.camera_names.Add(newcamera.Name);
             Properties.Settings.Default.camera_urls.Add(newcamera.Url);
+            Properties.Settings.Default.camera_refreshrates.Add(newcamera.RefreshRate.ToString());
 
             Properties.Settings.Default.Save();
 
@@ -241,11 +252,9 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
         {
             Popups.MessageDialog dlg = new Popups.MessageDialog();
             dlg.Title = "";
-            dlg.Content = "Are you sure you want to remove this camera?\nYou can NOT undo this action.";
-            dlg.FirstButtonContent = "Cancel";
-            dlg.SecondButtonContent = "Remove";
-
-            mainwindow.global_Dim();
+            dlg.Content = res.Resources.Delete_camera_Confirmation;
+            dlg.FirstButtonContent = Properties.Resources.Cancel;
+            dlg.SecondButtonContent = res.Resources.Remove;
 
             if (dlg.ShowDialogWithResult() == 1)
             {
@@ -254,8 +263,6 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
 
                 RefreshItemList();
             }
-
-            mainwindow.global_UnDim();
         }
 
         // Class

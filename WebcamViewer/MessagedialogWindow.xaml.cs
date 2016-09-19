@@ -46,6 +46,14 @@ namespace WebcamViewer
                 contentGrid.Children.Add(textblock);
             }
 
+            // Content_DisableMargin
+            if (Content_DisableMargin)
+                contentGrid.Margin = new Thickness(0);
+            else
+            {
+                contentGrid.Margin = new Thickness(24, 0, 24, 15);
+            }
+
             // Theme
 
             if (DarkTheme == true)
@@ -90,14 +98,6 @@ namespace WebcamViewer
                     firstButton.Style = Application.Current.Resources["UWPButtonStyle_Dark"] as Style;
                     secondButton.Style = Application.Current.Resources["UWPButtonStyle_Dark"] as Style;
                 }
-            }
-
-            // Content_DisableMargin
-            if (Content_DisableMargin)
-                contentGrid.Margin = new Thickness(0);
-            else
-            {
-                contentGrid.Margin = new Thickness(24, 0, 24, 0);
             }
 
             // Button text
