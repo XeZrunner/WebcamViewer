@@ -12,8 +12,6 @@ A simple image webcam viewer for Windows.
   <img src="https://github.com/XeZrunner/WebcamViewer/blob/update2-prerelease/Screenshots/2.png" width="250"/>
 </p>
 
-# Command line arguments
-
 # Download
 [Click this link for downloads](https://github.com/XeZrunner/WebcamViewer/releases)
 
