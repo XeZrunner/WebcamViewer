@@ -44,6 +44,24 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates
             dlg.ShowDialog();
         }
 
+        /// <summary>
+        /// Displays a Windows 8.x MessageDialog-style text message dialog.
+        /// </summary>
+        /// <param name="Title">The title of the dialog</param>
+        /// <param name="Content">The main text of the dialog</param>
+        /// <param name="DarkMode">Determintes whether to style the window light or dark. (0 = dark, 1 = light, null = automatic from theme)</param>
+        void TextMessageDialog_FullWidth(string Title, string Content, bool? DarkMode = null)
+        {
+            Popups.MessageDialog_FullWidth dlg = new Popups.MessageDialog_FullWidth();
+
+            dlg.Title = Title;
+            dlg.Content = Content;
+
+            dlg.IsDarkTheme = DarkMode;
+
+            dlg.ShowDialog();
+        }
+
         #endregion
 
         private void page_Loaded(object sender, RoutedEventArgs e)
@@ -99,7 +117,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates
 
         private void settingsPage_AboutPage_ChangelogButton_Click(object sender, RoutedEventArgs e)
         {
-            TextMessageDialog(res.Resources.Changelog, Properties.Settings.Default.changelog);
+            TextMessageDialog_FullWidth(res.Resources.Changelog, Properties.Settings.Default.changelog);
         }
     }
 }

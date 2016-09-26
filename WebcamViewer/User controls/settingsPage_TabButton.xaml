@@ -6,16 +6,17 @@
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.User_controls.settingsPage_TabButton"
              mc:Ignorable="d" 
-             Height="50" Width="290">
+             Height="50" Width="290" ClipToBounds="True" SizeChanged="usercontrol_SizeChanged">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
-            <Setter Property="Background" Value="{DynamicResource settingsPage_background}"/>
+            <Setter Property="Background" Value="{Binding ElementName=usercontrol, Path=Background}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="Padding" Value="0"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -62,21 +63,21 @@
 
         <Grid>
 
-            <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Height="60" Width="580" Margin="-145,0">
+            <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Height="0" Width="0" Margin="-145, -25">
                 <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_backgroundSecondary}" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
             </Grid>
 
             <Grid>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="54"/>
+                    <ColumnDefinition Width="48"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                                                                         <!-- Height="30" -->
                 <Rectangle x:Name="activestateRectangle" Grid.ColumnSpan="2" Height="25" Width="4" HorizontalAlignment="Left" Fill="{DynamicResource accentcolor_dark}" Visibility="Hidden" />
 
-                <TextBlock x:Name="iconTextBlock" Grid.Column="0" Foreground="{DynamicResource settingsPage_foregroundText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="19.3" TextOptions.TextFormattingMode="Display" Text="0"/>
+                <TextBlock x:Name="iconTextBlock" Grid.Column="0" Foreground="{DynamicResource settingsPage_foregroundText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="19.3" TextOptions.TextRenderingMode="Aliased" Text="0"/>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0">
 

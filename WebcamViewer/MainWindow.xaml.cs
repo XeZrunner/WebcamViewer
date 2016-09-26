@@ -352,12 +352,24 @@ namespace WebcamViewer
 
                 webcamPage_menuGrid.RenderTransform = tTf;
 
+                // Titlebar text theming
+
+                if (ui_theme != 1)
+                {
+                    backButton.Foreground = Application.Current.Resources["webcamPage_Foreground"] as SolidColorBrush;
+                    titleLabel.Foreground = Application.Current.Resources["webcamPage_Foreground"] as SolidColorBrush;
+                }
+
+                // Blur
+
                 DoubleAnimation menuGrid_blurbehind_radiusAnimation = new DoubleAnimation(5, new TimeSpan(0, 0, 0, 0, 300).Duration());
 
                 DispatcherTimer timer = new DispatcherTimer();
                 timer.Interval = menuGrid_movementAnimation.Duration.TimeSpan;
                 timer.Tick += (s, ev) => { timer.Stop(); webcamPage_menuGrid_blurbehindBorder.BeginAnimation(Border.OpacityProperty, menuGrid_blurbehindBorder_opacityAnimation); webcamPage_menuGrid_blurbehind.BeginAnimation(System.Windows.Media.Effects.BlurEffect.RadiusProperty, menuGrid_blurbehind_radiusAnimation); };
                 timer.Start();
+
+                // Back button
 
                 if (AllowBackButtonLogic)
                 {
@@ -386,6 +398,17 @@ namespace WebcamViewer
                 webcamPage_menuGrid.RenderTransform = tTf;
 
                 tTf.BeginAnimation(TranslateTransform.XProperty, menuGrid_movementAnimation);
+
+                // Titlebar theming
+
+                // Titlebar text theming
+
+                if (ui_theme != 1)
+                {
+                    SetTitlebarButtonsStyle(0);
+                }
+
+                // Blur
 
                 DoubleAnimation menuGrid_blurbehind_radiusAnimation = new DoubleAnimation(0, new TimeSpan(0, 0, 0, 0, 100));
 
@@ -1065,6 +1088,11 @@ namespace WebcamViewer
 
                 DoubleAnimation webcamPage_Dim_OpacityAnimation = new DoubleAnimation(0, 1, new TimeSpan(0, 0, 0, 0, 300).Duration());
                 webcamPage_Dim.BeginAnimation(Grid.OpacityProperty, webcamPage_Dim_OpacityAnimation);
+
+                if (ui_theme != 1)
+                {
+                    SetTitlebarButtonsStyle(1);
+                }
             }
             else
             {
@@ -1120,6 +1148,11 @@ namespace WebcamViewer
                 DoubleAnimation webcamPage_Dim_OpacityAnimation = new DoubleAnimation(1, 0, new TimeSpan(0, 0, 0, 0, 300).Duration());
                 webcamPage_Dim.BeginAnimation(Grid.OpacityProperty, webcamPage_Dim_OpacityAnimation);
 
+                if (ui_theme != 1)
+                {
+                    SetTitlebarButtonsStyle(0);
+                }
+
                 DispatcherTimer timer = new DispatcherTimer();
                 timer.Interval = webcamPage_Dim_OpacityAnimation.Duration.TimeSpan;
                 timer.Tick += (s, ev) =>
@@ -1132,7 +1165,8 @@ namespace WebcamViewer
                 };
                 timer.Start();
             }
-            else if (IsMenuProgressHappening == true)
+
+            if (IsMenuProgressHappening == true)
             {
                 // The storyboard handles the Visiblity and IsActive so no need to set it here :)
 
@@ -1355,7 +1389,21 @@ namespace WebcamViewer
 
                         GetUserConfiguration(true);
 
-                        SetTitlebarButtonsStyle(0);
+                        // Titlebar theming
+                        if (webcamPage_Dim.Visibility == Visibility.Visible & ui_theme != 1)
+                        {
+                            SetTitlebarButtonsStyle(1);
+                        }
+                        else if (webcamPage_menuGrid.Visibility == Visibility.Visible & ui_theme != 1)
+                        {
+                            SetTitlebarButtonsStyle(0);
+                            backButton.Foreground = Application.Current.Resources["webcamPage_Foreground"] as SolidColorBrush;
+                            titleLabel.Foreground = Application.Current.Resources["webcamPage_Foreground"] as SolidColorBrush;
+                        }
+                        else
+                        {
+                            SetTitlebarButtonsStyle(0);
+                        }
 
                         break;
                     }
@@ -1385,7 +1433,22 @@ namespace WebcamViewer
                         webcamPage_menuButton.Visibility = Visibility.Collapsed;
                         backButton.Visibility = Visibility.Visible;
 
-                        SetTitlebarButtonsStyle(0);
+                        SetTitlebarButtonsStyle(2);
+
+                        break;
+                    }
+                case 3: // Internal settings page
+                    {
+                        webcamPage.Visibility = Visibility.Collapsed;
+                        settingsPage.Visibility = Visibility.Collapsed;
+                        customizationsdeliveryPage.Visibility = Visibility.Collapsed;
+
+                        internalsettingsPage_Container.Visibility = Visibility.Visible;
+                        internalsettingsPage_Container_frame.Navigate(new Pages.Internal_development_page.Page());
+
+                        backButton.Visibility = Visibility.Visible;
+
+                        SetTitlebarButtonsStyle(2);
 
                         break;
                     }
@@ -1396,7 +1459,7 @@ namespace WebcamViewer
         /// Sets the style of the titlebar buttons to a theme. Use when the theme changes.
         /// </summary>
         /// <param name="style">The theme to change the buttons to. 0 = Dark, 1 = Light, 2 = Settings theme</param>
-        void SetTitlebarButtonsStyle(int style, bool windowcontrolsonly = false)
+        void SetTitlebarButtonsStyle(int style)
         {
             // 0: Dark
             // 1: Light
@@ -1478,6 +1541,10 @@ namespace WebcamViewer
                 themeString = "Dark";
 
             // set the resources
+
+            Application.Current.Resources["webcamPage_Foreground"] = Application.Current.Resources["webcamPage_" + themeString + "_Foreground"];
+            Application.Current.Resources["webcamPage_menuBackground"] = Application.Current.Resources["webcamPage_" + themeString + "_menuBackground"];
+            Application.Current.Resources["webcamPage_menuBackgroundSecondary"] = Application.Current.Resources["webcamPage_" + themeString + "_menuBackgroundSecondary"];
 
             Application.Current.Resources["settingsPage_background"] = Application.Current.Resources["settingsPage_" + themeString + "_background"];
             Application.Current.Resources["settingsPage_backgroundSecondary"] = Application.Current.Resources["settingsPage_" + themeString + "_backgroundSecondary"];

@@ -5,12 +5,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Foreground="{DynamicResource webcamPage_Foreground}"
              MinWidth="10" MaxWidth="200" Height="32" ClipToBounds="True" SizeChanged="usercontrol_SizeChanged">
     <UserControl.Resources>
         <Style x:Key="webcamPage_menuGrid_CameraActionButtonStyle" TargetType="{x:Type Button}">
 
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{Binding ElementName=usercontrol, Path=Foreground}"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FontSize" Value="12"/>
@@ -80,7 +80,7 @@
         <Grid>
 
             <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Height="32" Width="0" Margin="-320,-16">
-                <Ellipse x:Name="ellipse" Fill="#2AFFFFFF" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
+                <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_foregroundSecondary3}" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
             </Grid>
 
             <Grid>

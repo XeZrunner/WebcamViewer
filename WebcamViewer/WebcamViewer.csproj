@@ -75,6 +75,9 @@
     </ApplicationDefinition>
     <Compile Include="Configuration.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="Pages\Internal development page\Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Settings page\Subpages\2_User Interface\Controls\settingsPage_UserInterfacePage_AccentControl.xaml.cs">
       <DependentUpon>settingsPage_UserInterfacePage_AccentControl.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
       <DependentUpon>webcamPage_Overview_CameraButton.xaml</DependentUpon>
     </Compile>
     <Page Include="ControlStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Internal development page\Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

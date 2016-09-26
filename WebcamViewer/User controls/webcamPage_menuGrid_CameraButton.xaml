@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Foreground="{DynamicResource webcamPage_Foreground}"
              Height="30" Width="320" ClipToBounds="True">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
 
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{Binding ElementName=usercontrol, Path=Foreground}"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="FontSize" Value="14"/>
@@ -68,7 +68,7 @@
         <Grid>
 
             <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Height="30" Width="640" Margin="-320,-15">
-                <Ellipse x:Name="ellipse" Fill="#1FFFFFFF" Width="0" Height="0" RenderTransformOrigin="0.5,0.5">
+                <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_foregroundSecondary3}" Width="0" Height="0" RenderTransformOrigin="0.5,0.5">
                     <Ellipse.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -82,7 +82,7 @@
 
             <Grid>
 
-                <TextBlock x:Name="textTextBlock" Grid.Column="1" VerticalAlignment="Center" FontSize="13.5" Margin="15,0,0,0" Text="Camera button"/>
+                <TextBlock x:Name="textTextBlock" Foreground="{DynamicResource webcamPage_Foreground}" Grid.Column="1" VerticalAlignment="Center" FontSize="13.5" Margin="15,0,0,0" Text="Camera button"/>
 
             </Grid>
 

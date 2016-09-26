@@ -21,20 +21,8 @@
 
     <Controls:MetroWindow.Resources>
         <Storyboard x:Key="settingsPage_In">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="webcamPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="webcamPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95"/>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="webcamPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settingsPage">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
-            </ObjectAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="webcamPage">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Collapsed}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Collapsed}"/>
             </ObjectAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="customizationsdeliveryPage">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
@@ -48,33 +36,49 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="customizationsdeliveryPage">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95"/>
             </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="webcamPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="webcamPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settingsPage">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="settingsPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="settingsPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="{Binding Height, ElementName=window}"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuarticEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="webcamPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="settingsPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.55">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="1">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="settingsPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.55">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <!-- <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="closeButton">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
@@ -103,23 +107,28 @@
         </Storyboard>
         <Storyboard x:Key="webcamPage_In">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="settingsPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="settingsPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="settingsPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settingsPage">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Collapsed}"/>
-            </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="webcamPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="webcamPage">
-                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
             </ObjectAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="backButton">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
@@ -151,25 +160,28 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="customizationsdeliveryPage">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95"/>
             </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="webcamPage">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="webcamPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="webcamPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="634">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <QuarticEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="{Binding Height, ElementName=window}"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <QuarticEase EasingMode="EaseOut"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="webcamPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="webcamPage">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="webcamPage_menuGrid_progressIn">
@@ -242,22 +254,22 @@
         </Storyboard>
         <Storyboard x:Key="titlebar_toLight">
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="titleLabel">
-                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF1A1A1A"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF202020"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="backButton">
-                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF1A1A1A"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF202020"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="webcamPage_menuButton">
-                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF1A1A1A"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF202020"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="minimizeButton">
-                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF1A1A1A"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF202020"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="maximizeButton">
-                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF1A1A1A"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF202020"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="closeButton">
-                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF1A1A1A"/>
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF202020"/>
             </ColorAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="customizationsdeliveryPage_In">
@@ -560,14 +572,14 @@
                 </Grid>
 
                 <!-- Dimming -->
-                <Grid x:Name="webcamPage_Dim" Background="#6F000000" Visibility="Hidden">
+                <Grid x:Name="webcamPage_Dim" Background="{DynamicResource webcamPage_menuBackground}" Visibility="Hidden">
 
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                        <Controls:ProgressRing x:Name="webcamPage_progressRing" Foreground="White" Width="60" Height="60" EllipseDiameterScale="0.85" Visibility="Collapsed" />
-                        <Controls:MetroProgressBar x:Name="webcamPage_progressBar" Foreground="White" Width="250" Margin="0,0,0,10" IsIndeterminate="True" Visibility="Hidden"/>
+                        <Controls:ProgressRing x:Name="webcamPage_progressRing" Foreground="{DynamicResource webcamPage_Foreground}" Width="60" Height="60" EllipseDiameterScale="0.85" Visibility="Collapsed" />
+                        <Controls:MetroProgressBar x:Name="webcamPage_progressBar" Foreground="{DynamicResource webcamPage_Foreground}" Width="250" IsIndeterminate="True" Visibility="Hidden"/>
 
-                        <Label x:Name="webcamPage_progressLabel" HorizontalAlignment="Center" FontSize="12" Visibility="Collapsed">loading image...</Label>
+                        <Label x:Name="webcamPage_progressLabel" Foreground="{DynamicResource webcamPage_Foreground}" HorizontalAlignment="Center" FontSize="12" Margin="0,10,0,0" Visibility="Collapsed">loading image...</Label>
 
                     </StackPanel>
 
@@ -589,7 +601,7 @@
                     </Border.Background>
                 </Border>
 
-                <Rectangle Fill="#8F000000"/>
+                <Rectangle Fill="{DynamicResource webcamPage_menuBackground}"/>
 
                 <!-- Content -->
                 <Grid Margin="0,32,0,0">
@@ -606,6 +618,12 @@
                         <Grid x:Name="webcamPage_menuGrid_infoGrid" Height="112" Width="300" Margin="0,10,0,0" VerticalAlignment="Top">
                             <!-- height with progresspanel is 157 -->
 
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{DynamicResource webcamPage_Foreground}"/>
+                                </Style>
+                            </Grid.Resources>
+
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="25"/>
                                 <RowDefinition Height="25"/>
@@ -616,7 +634,7 @@
                             <TextBlock x:Name="webcamPage_menuGrid_cameraNameLabel" Grid.Row="0" VerticalAlignment="Center" FontFamily="Segoe UI Semibold">CAMERA NAME</TextBlock>
                             <TextBlock x:Name="webcamPage_menuGrid_cameraUrlLabel" Grid.Row="1" VerticalAlignment="Center">http://camearurl.com/cam-1.jpg</TextBlock>
 
-                            <Rectangle Grid.Row="2" Fill="#FF333333" Height="2" Margin="10,5,10,5" />
+                            <Rectangle Grid.Row="2" Fill="{DynamicResource settingsPage_foregroundSecondary3}" Height="2" Margin="10,5,10,5" />
 
                             <Grid Grid.Row="3" VerticalAlignment="Center">
 
@@ -629,15 +647,15 @@
                                 </StackPanel>
 
                                 <StackPanel x:Name="webcamPage_menuGrid_progressPanel" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0" Visibility="Hidden">
-                                    <usercontrols:ProgressRing x:Name="webcamPage_menuGrid_progressPanel_progressring" Foreground="White" Width="25" Height="25" RingFontSize="18" />
-                                    <TextBlock x:Name="webcamPage_menuGrid_progressPanel_progressTextBlock" VerticalAlignment="Center" Margin="15,0,0,0" FontSize="13.5">Please wait...</TextBlock>
+                                    <usercontrols:ProgressRing x:Name="webcamPage_menuGrid_progressPanel_progressring" Foreground="{DynamicResource webcamPage_Foreground}" Width="25" Height="25" RingFontSize="18" />
+                                    <TextBlock x:Name="webcamPage_menuGrid_progressPanel_progressTextBlock" Foreground="{DynamicResource webcamPage_Foreground}"  VerticalAlignment="Center" Margin="15,0,0,0" FontSize="13.5">Please wait...</TextBlock>
                                 </StackPanel>
 
                             </Grid>
 
                         </Grid>
 
-                        <Rectangle Fill="#FF2C2C2C" Height="2" Margin="0,5,0,5" />
+                        <Rectangle Fill="{DynamicResource settingsPage_foregroundSecondary3}" Height="2" Margin="0,5,0,5" />
 
                     </StackPanel>
 
@@ -646,8 +664,8 @@
 
                         <StackPanel>
 
-                            <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="webcamPage_menuGrid_overviewButton" Background="Transparent" IconText="&#xe80a;" Text="{x:Static res:Resources.webcamPage_Overview}" Click="webcamPage_menuGrid_overviewButton_Click" />
-                            <Rectangle Fill="#FF2C2C2C" Height="2" Margin="0,5,0,0" />
+                            <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="webcamPage_menuGrid_overviewButton" Foreground="{DynamicResource webcamPage_Foreground}" Background="Transparent" IconText="&#xe80a;" Text="{x:Static res:Resources.webcamPage_Overview}" Click="webcamPage_menuGrid_overviewButton_Click" />
+                            <Rectangle Fill="{DynamicResource settingsPage_foregroundSecondary3}" Height="2" Margin="0,5,0,0" />
 
                         </StackPanel>
 
@@ -804,11 +822,11 @@
 
         </Grid>
 
-        <Grid x:Name="customizationsdeliveryPage" Background="#FF232426" Tag="2"
+        <Grid x:Name="customizationsdeliveryPage" Background="{DynamicResource settingsPage_background}" Tag="2"
               Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
             <Grid.Resources>
                 <Style TargetType="TextBlock">
-                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
                 </Style>
             </Grid.Resources>
             <Grid.RenderTransform>
@@ -849,9 +867,9 @@
 
                             <StackPanel Margin="15,10,10,10">
 
-                                <TextBlock  FontSize="20" Margin="0,0,0,15">Status</TextBlock>
+                                <TextBlock  FontSize="20" Margin="0,0,0,15" Foreground="{DynamicResource settingsPage_foregroundText}">Status</TextBlock>
 
-                                <TextBlock FontSize="14">
+                                <TextBlock FontSize="14" Foreground="{DynamicResource settingsPage_foregroundText}">
                                 Current customization file details
                                 <LineBreak/>
                                 <Rectangle Width="320" Height="2" Margin="0,10,0,10" Fill="#1FFFFFFF"/>
@@ -889,11 +907,11 @@
 
                             <StackPanel Margin="15,10,10,10">
 
-                                <TextBlock  FontSize="20" Margin="0,0,0,15">Configure delivery</TextBlock>
+                                <TextBlock Foreground="{DynamicResource settingsPage_foregroundText}" FontSize="20" Margin="0,0,0,15">Configure delivery</TextBlock>
 
                                 <StackPanel Orientation="Horizontal">
                                     <usercontrols:settingsPage_Toggle IsActive="True" />
-                                    <TextBlock Margin="10,0,0,0" Foreground="LightGray" VerticalAlignment="Center">Use default customizations</TextBlock>
+                                    <TextBlock Margin="10,0,0,0" Foreground="{DynamicResource settingsPage_foregroundText}" VerticalAlignment="Center">Use default customizations</TextBlock>
                                 </StackPanel>
 
                             </StackPanel>
@@ -907,7 +925,7 @@
             </Grid>
 
             <!-- Menu grid -->
-            <Grid Grid.RowSpan="3" x:Name="customizationsdeliveryPage_MenuGrid" Width="48" HorizontalAlignment="Left" Background="#FF333436">
+            <Grid Grid.RowSpan="3" x:Name="customizationsdeliveryPage_MenuGrid" Width="48" HorizontalAlignment="Left" Background="{DynamicResource settingsPage_backgroundSecondary}">
                 <!-- 330 full width -->
 
                 <!-- Marginized content -->
@@ -945,6 +963,16 @@
                 </StackPanel>
 
             </Grid>
+
+            <TextBlock Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48">
+                Placeholder
+            </TextBlock>
+
+        </Grid>
+
+        <Grid x:Name="internalsettingsPage_Container" Background="{DynamicResource settingsPage_background}" Visibility="Collapsed">
+
+            <Frame x:Name="internalsettingsPage_Container_frame" Margin="0,32,0,0"/>
 
         </Grid>
 

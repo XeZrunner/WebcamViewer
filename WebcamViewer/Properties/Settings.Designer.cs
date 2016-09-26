@@ -53,7 +53,7 @@ namespace WebcamViewer.Properties {
   <string>http://www.ugazdy.pl/kamerka/obrazek.jpg</string>
   <string>http://static.glavmore.ru/cam/cam-1.jpg</string>
   <string>http://funsat.sk.d.websupport.sk/webcam/funsat.jpg</string>
-  <string>http://gecom.sk/img/autobuska-aktualne.jpg</string>
+  <string>http://gecom.sk/img/kam-autobuska-orig.jpg</string>
   <string>http://www.megasurf.pl/cam/Video01.jpg</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection camera_urls {
@@ -127,7 +127,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20160917-01@webcamviewer/prerelease/update2/latest")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20160926-00")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -199,7 +199,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int ui_accent {
             get {
                 return ((int)(this["ui_accent"]));
@@ -256,23 +256,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"Webcam Viewer Update 2
-
---------------------------------------------------
-
-Prerelease version (beta) [webcamviewer/prerelease/update2/latest)
-Prerelease channel description: Latest private beta channel
-Build ID: 20160917-01
-
---------------------------------------------------
-
-New features:
-- Transition animation rate in Debug settings
-
-Fixes & enchancements:
-- Reverted to the old behavior of hiding the menu when clicking on a camera so that it hides once the camera finishes loading. This way, you can see the ripple effect.
-- Fixed the Windows 8-style dialogs' contents being cut off at the edges on extra low window sizes
-- Fixed settings pages' sizing on low window sizes")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string changelog {
             get {
                 return ((string)(this["changelog"]));

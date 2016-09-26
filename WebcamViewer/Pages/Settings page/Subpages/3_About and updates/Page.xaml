@@ -14,7 +14,7 @@
 
         <!-- Content -->
         <ScrollViewer x:Name="scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <StackPanel x:Name="stackpanel" Margin="10" MinWidth="250">
+            <StackPanel x:Name="stackpanel" Margin="10" MinWidth="250" Width="780">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
                         <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
@@ -24,7 +24,7 @@
                     </Style>
                 </StackPanel.Resources>
 
-                <TextBlock Foreground="{DynamicResource accentcolor_light}" FontFamily="Segoe UI Bold" FontSize="14" Opacity="0.7" Margin="0" Text="xesign™"/>
+                <TextBlock Foreground="{DynamicResource accentcolor_light}" FontFamily="Segoe UI Bold" FontSize="14" Opacity="0.8" Margin="0" Text="xesign™"/>
                 <TextBlock x:Name="settingsPage_AboutPage_ApplicationNameTextBlock" Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" FontSize="18" Margin="0,0,0,5" Text="{x:Static localres:Resources.App_Title}"/>
                 <TextBlock x:Name="settingsPage_AboutPage_VersionNumberTextBlock" Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" FontSize="14" Margin="0" HorizontalAlignment="Left">4.2.0</TextBlock>
 

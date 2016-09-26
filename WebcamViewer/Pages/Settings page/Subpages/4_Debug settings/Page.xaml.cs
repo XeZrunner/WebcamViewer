@@ -181,8 +181,6 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
             if (dlg.ShowDialogWithResult() == 1)
             {
-                mainwindow.SwitchToPage(0);
-
                 #region Timers
                 int ui_clocktimer_countdown = 10;
 
@@ -212,6 +210,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                 if (mainwindow.webcamPage_menuGrid_progressPanel_progressTextBlock.Visibility == Visibility.Visible)
                     mainwindow.webcamPage_menuGrid_SetProgressText(textbox.Text);
 
+                int mode = 0;
                 int counter = 0;
                 foreach (RadioButton rbtn in rbtn_stackpanel.Children)
                 {
@@ -222,20 +221,17 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                         {
                             case 0:
                                 {
-                                    mainwindow.webcamPage_ShowProgressUI(1);
-                                    mainwindow.webcamPage_CloseMenu();
+                                    mainwindow.webcamPage_ShowProgressUI(1); mode = 0;
                                     break;
                                 }
                             case 1:
                                 {
-                                    mainwindow.webcamPage_ShowProgressUI(3);
-                                    mainwindow.webcamPage_CloseMenu();
+                                    mainwindow.webcamPage_ShowProgressUI(3); mode = 1;
                                     break;
                                 }
                             case 2:
                                 {
-                                    mainwindow.webcamPage_ShowProgressUI(4);
-                                    mainwindow.webcamPage_OpenMenu();
+                                    mainwindow.webcamPage_ShowProgressUI(4); mode = 2;
                                     break;
                                 }
                         }
@@ -243,6 +239,21 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                     }
                     else
                         counter++;
+                }
+
+                if (mode != 2)
+                {
+                    mainwindow.webcamPage_CloseMenu();
+                }
+                else
+                    mainwindow.webcamPage_OpenMenu();
+                mainwindow.SwitchToPage(0);
+
+                // fixup
+                if (mode != 2)
+                {
+                    mainwindow.backButton.Visibility = Visibility.Collapsed;
+                    mainwindow.webcamPage_menuButton.Visibility = Visibility.Visible;
                 }
             }
         }
@@ -537,5 +548,10 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
         }
 
         #endregion
+
+        private void settingsPage_DebugMenuPage_Internal_InternalSettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainwindow.SwitchToPage(3);
+        }
     }
 }

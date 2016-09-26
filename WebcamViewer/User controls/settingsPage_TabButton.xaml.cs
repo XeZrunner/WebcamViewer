@@ -27,6 +27,14 @@ namespace WebcamViewer.User_controls
             s = (Storyboard)FindResource("longMouseDownAnimation");
         }
 
+        private void usercontrol_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            grid.Width = this.ActualWidth * 2;
+            grid.Height = this.ActualHeight * 2;
+
+            grid.Margin = new Thickness(-this.ActualWidth / 2, -this.ActualHeight / 2, -this.ActualWidth / 2, -this.ActualHeight / 2);
+        }
+
         public event RoutedEventHandler Click;
 
         bool _IsActive = false;

@@ -22,7 +22,7 @@
   &lt;string&gt;http://www.ugazdy.pl/kamerka/obrazek.jpg&lt;/string&gt;
   &lt;string&gt;http://static.glavmore.ru/cam/cam-1.jpg&lt;/string&gt;
   &lt;string&gt;http://funsat.sk.d.websupport.sk/webcam/funsat.jpg&lt;/string&gt;
-  &lt;string&gt;http://gecom.sk/img/autobuska-aktualne.jpg&lt;/string&gt;
+  &lt;string&gt;http://gecom.sk/img/kam-autobuska-orig.jpg&lt;/string&gt;
   &lt;string&gt;http://www.megasurf.pl/cam/Video01.jpg&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
@@ -42,7 +42,7 @@
       <Value Profile="(Default)">Update 2 Beta</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20160917-01@webcamviewer/prerelease/update2/latest</Value>
+      <Value Profile="(Default)">20160926-00</Value>
     </Setting>
     <Setting Name="settings_experiment_UpdateUI" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -60,7 +60,7 @@
       <Value Profile="(Default)">1.2.0</Value>
     </Setting>
     <Setting Name="ui_accent" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="camera_refreshrates" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -81,23 +81,7 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Webcam Viewer Update 2
-
---------------------------------------------------
-
-Prerelease version (beta) [webcamviewer/prerelease/update2/latest)
-Prerelease channel description: Latest private beta channel
-Build ID: 20160917-01
-
---------------------------------------------------
-
-New features:
-- Transition animation rate in Debug settings
-
-Fixes &amp; enchancements:
-- Reverted to the old behavior of hiding the menu when clicking on a camera so that it hides once the camera finishes loading. This way, you can see the ripple effect.
-- Fixed the Windows 8-style dialogs' contents being cut off at the edges on extra low window sizes
-- Fixed settings pages' sizing on low window sizes</Value>
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

@@ -9,7 +9,7 @@
         Title="Messagedialog_FullWidthWindow" Background="{DynamicResource MessageDialog_FullWidth_Background}" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" SizeToContent="Height" SizeChanged="Window_SizeChanged"
         ShowTitleBar="False" ShowInTaskbar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False" TextOptions.TextRenderingMode="Grayscale">
     
-    <Grid VerticalAlignment="Center" MinWidth="270" MaxWidth="500" Margin="30,0,30,0">
+    <Grid VerticalAlignment="Center" MinWidth="270" MaxWidth="550" Margin="30,0,30,0">
         <Grid.Resources>
             <Style TargetType="Label">
                 <Setter Property="Foreground" Value="{DynamicResource MessageDialog_FullWidth_ForegroundText}"/>

@@ -40,7 +40,14 @@
                     <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">CONFIGURATION</Label>
 
                     <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Configuration_ResetConfigurationButton" IsToggleButton="False" Title="{x:Static res:Resources.ResetConfiguration}" Description="{x:Static res:Resources.ResetConfigurationDescription}" Click="settingsPage_DebugMenuPage_Configuration_ResetConfigurationButton_Click"/>
-                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton" IsToggleButton="False" Margin="0,0,0,15" Title="Customizations delivery settings" Description="" Click="settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton_Click" />
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton" IsToggleButton="False" Title="Customizations delivery settings" Description="" Click="settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton_Click" />
+                </StackPanel>
+
+                <!-- Internal -->
+                <StackPanel x:Name="settingsPage_DebugMenuPage_InternalSection" Margin="0,5,0,0">
+                    <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">INTERNAL</Label>
+
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Internal_InternalSettingsButton" IsToggleButton="False" Title="Internal settings" Click="settingsPage_DebugMenuPage_Internal_InternalSettingsButton_Click"/>
                 </StackPanel>
 
             </StackPanel>

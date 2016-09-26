@@ -68,6 +68,7 @@ namespace WebcamViewer
                 MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
 
                 dialogWindow.Owner = mainwindow;
+                dialogWindow.MaxHeight = mainwindow.Height - 2;
 
                 mainwindow.global_Dim();
 
@@ -115,6 +116,7 @@ namespace WebcamViewer
                 MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
 
                 dialogWindow.Owner = mainwindow;
+                dialogWindow.MaxHeight = mainwindow.Height - 2;
 
                 mainwindow.global_Dim();
 
@@ -148,6 +150,7 @@ namespace WebcamViewer
                 MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
 
                 dialogWindow.Owner = mainwindow;
+                dialogWindow.MaxHeight = mainwindow.Height - 2;
 
                 mainwindow.global_Dim();
 
@@ -221,6 +224,7 @@ namespace WebcamViewer
                 MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
 
                 dialogWindow.Owner = mainwindow;
+                dialogWindow.MaxHeight = mainwindow.Height - 2;
 
                 mainwindow.global_Dim();
 
@@ -268,6 +272,7 @@ namespace WebcamViewer
                 MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
 
                 dialogWindow.Owner = mainwindow;
+                dialogWindow.MaxHeight = mainwindow.Height - 2;
 
                 mainwindow.global_Dim();
 
@@ -301,6 +306,7 @@ namespace WebcamViewer
                 MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
 
                 dialogWindow.Owner = mainwindow;
+                dialogWindow.MaxHeight = mainwindow.Height - 2;
 
                 mainwindow.global_Dim();
 

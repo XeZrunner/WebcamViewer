@@ -24,6 +24,10 @@
             <SolidColorBrush x:Key="accentcolor_dark" Color="#27ae60"/>
             <SolidColorBrush x:Key="accentcolor_light" Color="#2ecc71"/>
 
+            <SolidColorBrush x:Key="webcamPage_Foreground" Color="#FF202020"/>
+            <SolidColorBrush x:Key="webcamPage_menuBackground" Color="#7AFFFFFF"/>
+            <SolidColorBrush x:Key="webcamPage_menuBackgroundSecondary" Color="#0FFFFFFF"/>
+
             <SolidColorBrush x:Key="settingsPage_background" Color="White" />
             <SolidColorBrush x:Key="settingsPage_backgroundSecondary" Color="#FFBBBBBB"/>
             <SolidColorBrush x:Key="settingsPage_backgroundSecondary2" Color="#FFAAAAAA"/>
@@ -68,6 +72,16 @@
             <SolidColorBrush x:Key="accentcolor_light2" Color="#2ecc71"/>
             <SolidColorBrush x:Key="accentcolor_light3" Color="#3498db"/>
             <SolidColorBrush x:Key="accentcolor_light4" Color="#34495e"/>
+            
+            <!-- Home page -->
+
+            <SolidColorBrush x:Key="webcamPage_Light_Foreground" Color="#FF202020"/>
+            <SolidColorBrush x:Key="webcamPage_Light_menuBackground" Color="#7AFFFFFF"/>
+            <SolidColorBrush x:Key="webcamPage_Light_menuBackgroundSecondary" Color="#0FFFFFFF"/>
+
+            <SolidColorBrush x:Key="webcamPage_Dark_Foreground" Color="White"/>
+            <SolidColorBrush x:Key="webcamPage_Dark_menuBackground" Color="#8F000000"/>
+            <SolidColorBrush x:Key="webcamPage_Dark_menuBackgroundSecondary" Color="#1FFFFFFF"/>
 
             <!-- Settings page -->
 
