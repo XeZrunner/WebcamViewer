@@ -67,49 +67,22 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool home_blurbehind {
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>3</string>
+  <string>3</string>
+  <string>30</string>
+  <string>10</string>
+  <string>20</string>
+  <string>3</string>
+  <string>30</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection camera_refreshrates {
             get {
-                return ((bool)(this["home_blurbehind"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["camera_refreshrates"]));
             }
             set {
-                this["home_blurbehind"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool settings_showtitlebarcolor {
-            get {
-                return ((bool)(this["settings_showtitlebarcolor"]));
-            }
-            set {
-                this["settings_showtitlebarcolor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool home_debugoverlay {
-            get {
-                return ((bool)(this["home_debugoverlay"]));
-            }
-            set {
-                this["home_debugoverlay"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool home_archiveorg {
-            get {
-                return ((bool)(this["home_archiveorg"]));
-            }
-            set {
-                this["home_archiveorg"] = value;
+                this["camera_refreshrates"] = value;
             }
         }
         
@@ -139,54 +112,6 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool settings_experiment_UpdateUI {
-            get {
-                return ((bool)(this["settings_experiment_UpdateUI"]));
-            }
-            set {
-                this["settings_experiment_UpdateUI"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int ui_theme {
-            get {
-                return ((int)(this["ui_theme"]));
-            }
-            set {
-                this["ui_theme"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("developer")]
-        public string app_debugmode {
-            get {
-                return ((string)(this["app_debugmode"]));
-            }
-            set {
-                this["app_debugmode"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool app_firstrun {
-            get {
-                return ((bool)(this["app_firstrun"]));
-            }
-            set {
-                this["app_firstrun"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1.2 Prerelease")]
         public string webcamengine_version {
             get {
@@ -194,63 +119,6 @@ namespace WebcamViewer.Properties {
             }
             set {
                 this["webcamengine_version"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int ui_accent {
-            get {
-                return ((int)(this["ui_accent"]));
-            }
-            set {
-                this["ui_accent"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>3</string>
-  <string>3</string>
-  <string>30</string>
-  <string>10</string>
-  <string>20</string>
-  <string>3</string>
-  <string>30</string>
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection camera_refreshrates {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["camera_refreshrates"]));
-            }
-            set {
-                this["camera_refreshrates"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool home_refreshenabled {
-            get {
-                return ((bool)(this["home_refreshenabled"]));
-            }
-            set {
-                this["home_refreshenabled"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double ui_animationspeed {
-            get {
-                return ((double)(this["ui_animationspeed"]));
-            }
-            set {
-                this["ui_animationspeed"] = value;
             }
         }
         
@@ -286,6 +154,138 @@ Developer features
             }
             set {
                 this["app_logging"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("developer")]
+        public string app_debugmode {
+            get {
+                return ((string)(this["app_debugmode"]));
+            }
+            set {
+                this["app_debugmode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool app_firstrun {
+            get {
+                return ((bool)(this["app_firstrun"]));
+            }
+            set {
+                this["app_firstrun"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int ui_accent {
+            get {
+                return ((int)(this["ui_accent"]));
+            }
+            set {
+                this["ui_accent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ui_theme {
+            get {
+                return ((int)(this["ui_theme"]));
+            }
+            set {
+                this["ui_theme"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double ui_animationspeed {
+            get {
+                return ((double)(this["ui_animationspeed"]));
+            }
+            set {
+                this["ui_animationspeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool home_blurbehind {
+            get {
+                return ((bool)(this["home_blurbehind"]));
+            }
+            set {
+                this["home_blurbehind"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool home_debugoverlay {
+            get {
+                return ((bool)(this["home_debugoverlay"]));
+            }
+            set {
+                this["home_debugoverlay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool home_archiveorg {
+            get {
+                return ((bool)(this["home_archiveorg"]));
+            }
+            set {
+                this["home_archiveorg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool home_refreshenabled {
+            get {
+                return ((bool)(this["home_refreshenabled"]));
+            }
+            set {
+                this["home_refreshenabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool settings_showtitlebarcolor {
+            get {
+                return ((bool)(this["settings_showtitlebarcolor"]));
+            }
+            set {
+                this["settings_showtitlebarcolor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool settings_experiment_UpdateUI {
+            get {
+                return ((bool)(this["settings_experiment_UpdateUI"]));
+            }
+            set {
+                this["settings_experiment_UpdateUI"] = value;
             }
         }
         
