@@ -350,31 +350,37 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Pages\Settings page\Subpages\0_Webcams\res\Resources.fr.resx" />
     <EmbeddedResource Include="Pages\Settings page\Subpages\0_Webcams\res\Resources.hu.resx" />
     <EmbeddedResource Include="Pages\Settings page\Subpages\0_Webcams\res\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Settings page\Subpages\1_Home\res\Resources.fr.resx" />
     <EmbeddedResource Include="Pages\Settings page\Subpages\1_Home\res\Resources.hu.resx" />
     <EmbeddedResource Include="Pages\Settings page\Subpages\1_Home\res\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Settings page\Subpages\2_User Interface\res\Resources.fr.resx" />
     <EmbeddedResource Include="Pages\Settings page\Subpages\2_User Interface\res\Resources.hu.resx" />
     <EmbeddedResource Include="Pages\Settings page\Subpages\2_User Interface\res\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Settings page\Subpages\3_About and updates\res\Resources.fr.resx" />
     <EmbeddedResource Include="Pages\Settings page\Subpages\3_About and updates\res\Resources.hu.resx" />
     <EmbeddedResource Include="Pages\Settings page\Subpages\3_About and updates\res\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Settings page\Subpages\4_Debug settings\res\Resources.fr.resx" />
     <EmbeddedResource Include="Pages\Settings page\Subpages\4_Debug settings\res\Resources.hu.resx" />
     <EmbeddedResource Include="Pages\Settings page\Subpages\4_Debug settings\res\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.fr.resx" />
     <EmbeddedResource Include="Properties\Resources.hu.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

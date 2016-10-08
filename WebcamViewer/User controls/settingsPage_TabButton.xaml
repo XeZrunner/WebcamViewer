@@ -75,7 +75,7 @@
                 </Grid.ColumnDefinitions>
 
                                                                         <!-- Height="25" -->
-                <Rectangle x:Name="activestateRectangle" Grid.ColumnSpan="2" Height="50" Width="4" HorizontalAlignment="Left" Fill="{DynamicResource accentcolor_dark}" Visibility="Hidden" />
+                <Rectangle x:Name="activestateRectangle" Grid.ColumnSpan="2" Height="25" Width="4" HorizontalAlignment="Left" Fill="{DynamicResource accentcolor_dark}" Visibility="Hidden" />
 
                 <TextBlock x:Name="iconTextBlock" Grid.Column="0" Foreground="{DynamicResource settingsPage_foregroundText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="19.3" TextOptions.TextRenderingMode="Aliased" Text="0"/>
 

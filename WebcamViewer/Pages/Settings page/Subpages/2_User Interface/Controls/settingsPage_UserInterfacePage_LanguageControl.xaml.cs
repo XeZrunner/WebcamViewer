@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.Controls
 {
-    /// <summary>
-    /// Interaction logic for settingsPage_UserInterfacePage_LanguageControl.xaml
-    /// </summary>
     public partial class settingsPage_UserInterfacePage_LanguageControl : UserControl
     {
         public settingsPage_UserInterfacePage_LanguageControl()
