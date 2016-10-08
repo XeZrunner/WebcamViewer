@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.User_controls.settingsPage_Toggle"
-             mc:Ignorable="d" 
-             Height="35" Width="55">
+             mc:Ignorable="d" SizeChanged="UserControl_SizeChanged"
+             Height="50" Width="60">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
 
@@ -31,12 +31,11 @@
 
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Rectangle" Property="Fill" Value="#1F000000"/>
-                                <Setter TargetName="Rectangle" Property="Visibility" Value="Visible"/>
+
                             </Trigger>
 
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="Rectangle" Property="Fill" Value="#2F000000"/>
+                                <!-- <Setter TargetName="Rectangle" Property="Fill" Value="#2F000000"/> -->
                             </Trigger>
 
                             <Trigger Property="IsEnabled" Value="False">
@@ -68,32 +67,87 @@
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+
+        <EasingDoubleKeyFrame x:Key="s_WidthHeightKeyFrame" KeyTime="0:0:1" Value="120"/>
+        <EasingThicknessKeyFrame x:Key="s_MarginKeyFrame" KeyTime="0:0:1" Value="-120"/>
+
+        <Storyboard x:Key="longMouseDownAnimation">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="ellipse_Ripple">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <StaticResource ResourceKey="s_WidthHeightKeyFrame"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="ellipse_Ripple">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <StaticResource ResourceKey="s_WidthHeightKeyFrame"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="ellipse_Ripple">
+                <EasingThicknessKeyFrame KeyTime="0" Value="0"/>
+                <StaticResource ResourceKey="s_MarginKeyFrame"/>
+            </ThicknessAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ellipse_Ripple">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="contentGrid_DownRectangle">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.6" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentGrid_DownRectangle">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.6" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        
+        <Style x:Key="MainGridStyle" TargetType="{x:Type Grid}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <!-- <Setter Property="Background" Value="{DynamicResource settingsPage_foregroundSecondary3}"/> -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
-    
-    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" Click="button_Click" Height="22" Width="45">
 
-        <Border x:Name="border" CornerRadius="10" BorderBrush="{DynamicResource settingsPage_foregroundSecondary}" Background="Transparent" BorderThickness="2">
+    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" Click="button_Click" PreviewMouseDown="Button_MouseDown" PreviewMouseUp="button_PreviewMouseUp" PreviewMouseMove="button_PreviewMouseMove">
 
-            <Border CornerRadius="10" BorderBrush="{Binding BorderBrush, ElementName=border}" Background="{Binding Background, ElementName=border}" BorderThickness="1" Margin="-1">
+        <Grid x:Name="contentGrid" Style="{DynamicResource MainGridStyle}" ClipToBounds="True">
+            <Grid.Clip>
+                <EllipseGeometry RadiusX="30" RadiusY="30" Center="30,25" />
+            </Grid.Clip>
 
-                <Grid HorizontalAlignment="Stretch" Margin="4,0,3,0">
+            <Rectangle x:Name="contentGrid_DownRectangle" Fill="{DynamicResource settingsPage_foregroundSecondary3}" Visibility="Hidden"/>
 
-                    <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_foregroundSecondary}" Height="10" Width="10" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
-                        <Ellipse.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
-                                <RotateTransform/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Ellipse.RenderTransform>
-                    </Ellipse>
+            <Grid x:Name="grid" ClipToBounds="True" Width="0" Height="0" Margin="-30,-30">
+                <Ellipse x:Name="ellipse_Ripple" Fill="{DynamicResource settingsPage_foregroundSecondary3}" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
+            </Grid>
 
-                </Grid>
+            <Border x:Name="border" CornerRadius="10" Height="22" Width="45" BorderBrush="{DynamicResource settingsPage_foregroundSecondary}" Background="Transparent" BorderThickness="2">
+
+                <Border CornerRadius="10" BorderBrush="{Binding BorderBrush, ElementName=border}" Background="{Binding Background, ElementName=border}" BorderThickness="1" Margin="-1">
+
+                    <Grid HorizontalAlignment="Stretch" Margin="4,0,3,0">
+
+                        <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_foregroundSecondary}" Height="10" Width="10" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
+                            <Ellipse.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Ellipse.RenderTransform>
+                        </Ellipse>
+
+                    </Grid>
+
+                </Border>
 
             </Border>
 
-        </Border>
+        </Grid>
 
     </Button>
 </UserControl>

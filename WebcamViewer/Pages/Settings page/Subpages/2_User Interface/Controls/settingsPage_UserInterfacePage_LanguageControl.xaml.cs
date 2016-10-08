@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WebcamViewer.Pages.Settings_page.Subpages._5_Customizations_Debug
+namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.Controls
 {
     /// <summary>
-    /// Interaction logic for Page.xaml
+    /// Interaction logic for settingsPage_UserInterfacePage_LanguageControl.xaml
     /// </summary>
-    public partial class Page : UserControl
+    public partial class settingsPage_UserInterfacePage_LanguageControl : UserControl
     {
-        public Page()
+        public settingsPage_UserInterfacePage_LanguageControl()
         {
             InitializeComponent();
         }

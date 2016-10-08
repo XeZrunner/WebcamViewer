@@ -25,12 +25,6 @@ namespace WebcamViewer
             //Thread.CurrentThread.CurrentUICulture = new CultureInfo("hu"); // testing MUI
             InitializeComponent();
 
-            /* legacy
-            archivebrowser.ScriptErrorsSuppressed = true; // disables the script errors that could occur
-            archivebrowser.ProgressChanged += archivebrowser_ProgressChanged;
-            archivebrowser.DocumentCompleted += Archivebrowser_DocumentCompleted;
-            */
-
             webcamPage_menuGrid_progressInStoryboard = (Storyboard)FindResource("webcamPage_menuGrid_progressIn");
             webcamPage_menuGrid_progressOutStoryboard = (Storyboard)FindResource("webcamPage_menuGrid_progressOut");
         }
@@ -49,12 +43,23 @@ namespace WebcamViewer
 
             // Set up autorefreshing
             refreshtimer.Tick += Refreshtimer_Tick;
+
+            // Set up logging
+            if (Properties.Settings.Default.app_logging)
+            {
+                Debug.Log("");
+                Debug.Log("--------------------");
+                Debug.Log("Webcam Viewer " + Properties.Settings.Default.versionid);
+                Debug.Log("App started at: " + DateTime.Now);
+                Debug.Log("--------------------");
+            }
         }
 
         #region Classes
 
         Theming Theming = new Theming();
         Configuration Configuration = new Configuration();
+        Debug Debug = new Debug();
 
         #endregion
 
@@ -83,12 +88,12 @@ namespace WebcamViewer
             // We have to set the container grid's margin to 1 when in normal state because otherwise the border is considered as if it would be an overlay INSIDE the window, not on the outside...
             if (WindowState == WindowState.Maximized)
             {
-                maximizeButton.Content = "\ue923";
+                maximizeButton.TextIcon = "\ue923";
                 grid.Margin = new Thickness(0);
             }
             else
             {
-                maximizeButton.Content = "\ue922";
+                maximizeButton.TextIcon = "\ue922";
                 grid.Margin = new Thickness(1);
             }
         }
@@ -123,6 +128,13 @@ namespace WebcamViewer
             if (current_page == 2) // if we're on Customizations delivery settings page
             {
                 SwitchToPage(1);
+            }
+            if (current_page == 3) // if we're on Internal settings page
+            {
+                SwitchToPage(1);
+
+                // change title
+                titleLabel.Content = Properties.Resources.App_Title;
             }
         }
 
@@ -564,11 +576,17 @@ namespace WebcamViewer
 
         Uri currentImageUri;
         //BitmapImage bimage;
-        string camera_dummy = "?dummy=" + DateTime.Now.Hour + DateTime.Now.Minute + DateTime.Now.Second;
-
-        async Task LoadImage(string Url)
+        string camera_dummy()
         {
-            webcamPage_ShowProgressUI(0);
+            return "?dummy=" + DateTime.Now.Ticks;
+        }
+
+        async Task LoadImage(string Url, bool Autorefresh = false)
+        {
+            StopRefresh();
+
+            if (!Autorefresh)
+                webcamPage_ShowProgressUI(0);
 
             #region Legacy
             /*
@@ -603,11 +621,11 @@ namespace WebcamViewer
             {
                 try
                 {
-                    var bytes = await client.DownloadDataTaskAsync(Url + camera_dummy);
+                    var bytes = await client.DownloadDataTaskAsync(Url + camera_dummy());
 
                     var image = new BitmapImage();
                     image.BeginInit();
-                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.CacheOption = BitmapCacheOption.None;
                     image.StreamSource = new MemoryStream(bytes);
                     image.EndInit();
 
@@ -637,7 +655,7 @@ namespace WebcamViewer
                 }
                 finally
                 {
-                    webcamPage_HideProgressUI();
+                    webcamPage_HideProgressUI(1);
                     #region Update info
                     currentImageUri = new Uri(Properties.Settings.Default.camera_urls[Properties.Settings.Default.camera_urls.IndexOf(Url)]);
                     webcamPage_menuGrid_cameraNameLabel.Text = Properties.Settings.Default.camera_names[(Properties.Settings.Default.camera_urls.IndexOf(Url))].ToUpper();
@@ -692,7 +710,7 @@ namespace WebcamViewer
 
         private async void Refreshtimer_Tick(object sender, EventArgs e)
         {
-            await LoadImage(currentImageUri.ToString());
+            await LoadImage(currentImageUri.ToString(), true);
         }
 
         #endregion
@@ -710,6 +728,8 @@ namespace WebcamViewer
 
         void SaveImageFile()
         {
+            StopRefresh();
+
             //webcamPage_ShowProgressUI(3); webcamPage_progressBar.IsIndeterminate = true; webcamPage_progressLabel.Content = "preparing to download image...";
             webcamPage_ShowProgressUI(4); webcamPage_menuGrid_SetProgressText(Properties.Resources.webcamPage_LocalSaveProgressPreparing);
             //webcamPage_menuGrid_HideCamerasPanel(); webcamPage_menuGrid_HideOverviewButton();
@@ -743,7 +763,8 @@ namespace WebcamViewer
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 webcamPage_menuGrid_SetProgressText(Properties.Resources.webcamPage_LocalSaveProgressFinished);
-                webcamPage_HideProgressUI();
+                webcamPage_HideProgressUI(0);
+                StartRefresh();
                 //webcamPage_menuGrid_ShowCamerasPanel(); webcamPage_menuGrid_ShowOverviewButton();
                 //refreshtimer.Start();
 
@@ -799,6 +820,8 @@ namespace WebcamViewer
             //webcamPage_menuGrid_HideCamerasPanel(); webcamPage_menuGrid_HideOverviewButton();
             */
 
+            StopRefresh();
+
             webcamPage_ShowProgressUI(4); webcamPage_menuGrid_SetProgressText(Properties.Resources.webcamPage_ArchiveOrgProgress); // Saving to archive.org...
 
             try
@@ -848,7 +871,8 @@ namespace WebcamViewer
                 }
             }
 
-            webcamPage_HideProgressUI();
+            webcamPage_HideProgressUI(0);
+            StartRefresh();
         }
 
         // ----- ----- //
@@ -963,7 +987,7 @@ namespace WebcamViewer
 
                     try
                     {
-                        url = new Uri(Properties.Settings.Default.camera_urls[counter] + camera_dummy);
+                        url = new Uri(Properties.Settings.Default.camera_urls[counter] + camera_dummy());
                     }
                     catch (Exception ex)
                     {
@@ -1138,42 +1162,72 @@ namespace WebcamViewer
 
                         break;
                     }
+                case 5:
+                    {
+                        // Autorefresh only
+                        // shows nothing
+
+                        break;
+                    }
             }
         }
 
-        public void webcamPage_HideProgressUI()
+        /// <summary>
+        /// Hides the progress UI.
+        /// </summary>
+        /// <param name="mode">The kind of progress UI to hide. 0 = in-menu, 1 = webcam page, 2 = all (it is 2 by default)</param>
+        public void webcamPage_HideProgressUI(int mode = 2)
         {
-            if (webcamPage_Dim.Visibility == Visibility.Visible)
+            switch (mode)
             {
-                DoubleAnimation webcamPage_Dim_OpacityAnimation = new DoubleAnimation(1, 0, new TimeSpan(0, 0, 0, 0, 300).Duration());
-                webcamPage_Dim.BeginAnimation(Grid.OpacityProperty, webcamPage_Dim_OpacityAnimation);
+                case 0:
+                    {
+                        if (IsMenuProgressHappening == true)
+                        {
+                            // The storyboard handles the Visiblity and IsActive so no need to set it here :)
 
-                if (ui_theme != 1)
-                {
-                    SetTitlebarButtonsStyle(0);
-                }
+                            webcamPage_menuGrid_progressInStoryboard.Stop();
+                            webcamPage_menuGrid_progressOutStoryboard.Begin();
 
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = webcamPage_Dim_OpacityAnimation.Duration.TimeSpan;
-                timer.Tick += (s, ev) =>
-                {
-                    timer.Stop(); webcamPage_Dim.Visibility = Visibility.Collapsed;
+                            IsMenuProgressHappening = false;
+                        }
 
-                    webcamPage_progressRing.Visibility = Visibility.Collapsed;
-                    webcamPage_progressBar.Visibility = Visibility.Collapsed;
-                    webcamPage_progressLabel.Visibility = Visibility.Collapsed;
-                };
-                timer.Start();
-            }
+                        break;
+                    }
+                case 1:
+                    {
+                        if (webcamPage_Dim.Visibility == Visibility.Visible)
+                        {
+                            DoubleAnimation webcamPage_Dim_OpacityAnimation = new DoubleAnimation(1, 0, new TimeSpan(0, 0, 0, 0, 300).Duration());
+                            webcamPage_Dim.BeginAnimation(Grid.OpacityProperty, webcamPage_Dim_OpacityAnimation);
 
-            if (IsMenuProgressHappening == true)
-            {
-                // The storyboard handles the Visiblity and IsActive so no need to set it here :)
+                            if (ui_theme != 1)
+                            {
+                                SetTitlebarButtonsStyle(0);
+                            }
 
-                webcamPage_menuGrid_progressInStoryboard.Stop();
-                webcamPage_menuGrid_progressOutStoryboard.Begin();
+                            DispatcherTimer timer = new DispatcherTimer();
+                            timer.Interval = webcamPage_Dim_OpacityAnimation.Duration.TimeSpan;
+                            timer.Tick += (s, ev) =>
+                            {
+                                timer.Stop(); webcamPage_Dim.Visibility = Visibility.Collapsed;
 
-                IsMenuProgressHappening = false;
+                                webcamPage_progressRing.Visibility = Visibility.Collapsed;
+                                webcamPage_progressBar.Visibility = Visibility.Collapsed;
+                                webcamPage_progressLabel.Visibility = Visibility.Collapsed;
+                            };
+                            timer.Start();
+                        }
+
+                        break;
+                    }
+                case 2:
+                    {
+                        webcamPage_HideProgressUI(0);
+                        webcamPage_HideProgressUI(1);
+
+                        break;
+                    }
             }
         }
 
@@ -1351,9 +1405,7 @@ namespace WebcamViewer
 
         private void Menu_NavigationButton_Click_2(object sender, RoutedEventArgs e)
         {
-            SwitchToPage(1);
-
-            settingsPage_leftGrid_TabButtonClick(settingsPage_leftGrid_DefaultCustomizationsDebugTabButton, new RoutedEventArgs());
+            SwitchToPage(1);            
         }
 
         #endregion
@@ -1405,6 +1457,8 @@ namespace WebcamViewer
                             SetTitlebarButtonsStyle(0);
                         }
 
+                        StartRefresh();
+
                         break;
                     }
                 case 1: // Settings page
@@ -1419,6 +1473,8 @@ namespace WebcamViewer
                         backButton.Visibility = Visibility.Visible;
 
                         SetTitlebarButtonsStyle(2);
+
+                        StopRefresh();
 
                         break;
                     }
@@ -1435,20 +1491,30 @@ namespace WebcamViewer
 
                         SetTitlebarButtonsStyle(2);
 
+                        StopRefresh();
+
                         break;
                     }
                 case 3: // Internal settings page
                     {
-                        webcamPage.Visibility = Visibility.Collapsed;
-                        settingsPage.Visibility = Visibility.Collapsed;
-                        customizationsdeliveryPage.Visibility = Visibility.Collapsed;
+                        current_page = 3;
 
-                        internalsettingsPage_Container.Visibility = Visibility.Visible;
-                        internalsettingsPage_Container_frame.Navigate(new Pages.Internal_development_page.Page());
+                        Storyboard s = (Storyboard)FindResource("internalsettingsPage_In");
+                        s.Begin(); s.SetSpeedRatio(ui_animationspeed);
+                        if (noanim) s.SkipToFill();
 
+                        webcamPage_menuButton.Visibility = Visibility.Collapsed;
                         backButton.Visibility = Visibility.Visible;
 
                         SetTitlebarButtonsStyle(2);
+
+                        if (internalsettingsPage_Container_frame.Content == null) // we want to return to an existing instance once we were there already
+                            internalsettingsPage_Container_frame.Navigate(new Pages.Internal_development_page.Page());
+
+                        // change title
+                        titleLabel.Content = Properties.Resources.App_Title + " - Internal settings";
+
+                        StopRefresh();
 
                         break;
                     }
@@ -1464,11 +1530,7 @@ namespace WebcamViewer
             // 0: Dark
             // 1: Light
 
-            // Styles
-            Style darkStyle = Application.Current.Resources["titlebarButton"] as Style;
-            Style lightStyle = Application.Current.Resources["titlebarButton_Light"] as Style;
-
-            Style styleToApply = null;
+            string styleString = "";
 
             // Storyboards
             Storyboard s_toDark = (Storyboard)FindResource("titlebar_toDark");
@@ -1478,14 +1540,14 @@ namespace WebcamViewer
             {
                 case 0:
                     {
-                        styleToApply = darkStyle;
+                        styleString = "dark";
                         s_toDark.Begin();
 
                         break;
                     }
                 case 1:
                     {
-                        styleToApply = lightStyle;
+                        styleString = "light";
                         s_toLight.Begin();
 
                         break;
@@ -1501,15 +1563,15 @@ namespace WebcamViewer
                         }
                         else
                         {
-                            if (ui_theme == 0)
+                            if (ui_theme == 1)
                             {
-                                styleToApply = lightStyle;
-                                s_toLight.Begin();
+                                styleString = "dark";
+                                s_toDark.Begin();
                             }
                             else
                             {
-                                styleToApply = darkStyle;
-                                s_toDark.Begin();
+                                styleString = "light";
+                                s_toLight.Begin();
                             }
                         }
 
@@ -1518,12 +1580,59 @@ namespace WebcamViewer
             }
 
             // Apply the style to the buttons
-            closeButton.Style = styleToApply;
-            maximizeButton.Style = styleToApply;
-            minimizeButton.Style = styleToApply;
 
-            backButton.Style = styleToApply;
-            webcamPage_menuButton.Style = styleToApply;
+            switch (styleString)
+            {
+                #region Dark
+                case "dark":
+                    {
+                        foreach (User_controls.WindowControlButton button in windowcontrol_stackpanel.Children)
+                        {
+                            string _btnTag = button.Tag as string;
+                            if (_btnTag != "closeButton")
+                            {
+                                button.Tag = "dark";
+                            }
+                        }
+
+                        foreach (User_controls.WindowControlButton button in titlebarGrid_leftcontrols.Children)
+                        {
+                            string _btnTag = button.Tag as string;
+                            if (_btnTag != "closeButton")
+                            {
+                                button.Tag = "dark";
+                            }
+                        }
+
+                        break;
+                    }
+                #endregion
+
+                #region Light
+                case "light":
+                    {
+                        foreach (User_controls.WindowControlButton button in windowcontrol_stackpanel.Children)
+                        {
+                            string _btnTag = button.Tag as string;
+                            if (_btnTag != "closeButton")
+                            {
+                                button.Tag = "light";
+                            }
+                        }
+
+                        foreach (User_controls.WindowControlButton button in titlebarGrid_leftcontrols.Children)
+                        {
+                            string _btnTag = button.Tag as string;
+                            if (_btnTag != "closeButton")
+                            {
+                                button.Tag = "light";
+                            }
+                        }
+
+                        break;
+                    }
+                    #endregion
+            }
         }
 
         #endregion
@@ -1684,14 +1793,19 @@ namespace WebcamViewer
             if (settings_showtitlebarcolor)
             {
                 settingsPage_rectangle.Fill = Application.Current.Resources["accentcolor_dark"] as SolidColorBrush;
+                internalsettingsPage_Rectangle.Fill = Application.Current.Resources["accentcolor_dark"] as SolidColorBrush;
                 webcamPage_Rectangle.Fill = Application.Current.Resources["accentcolor_dark"] as SolidColorBrush;
                 SetTitlebarButtonsStyle(0);
             }
             else
             {
                 settingsPage_rectangle.Fill = Application.Current.Resources["settingsPage_background"] as SolidColorBrush;
+                internalsettingsPage_Rectangle.Fill = Application.Current.Resources["settingsPage_background"] as SolidColorBrush;
                 webcamPage_Rectangle.Fill = System.Windows.Media.Brushes.Black;
-                SetTitlebarButtonsStyle(2);
+                if (current_page == 1)
+                    SetTitlebarButtonsStyle(2);
+                else
+                    SetTitlebarButtonsStyle(0);
             }
 
             // EXPERIMENT
@@ -1705,11 +1819,10 @@ namespace WebcamViewer
             if (debugmode == "release")
             {
                 settingsPage_leftGrid_DebugSettingsTabButton.Visibility = Visibility.Collapsed;
-                settingsPage_leftGrid_DefaultCustomizationsDebugTabButton.Visibility = Visibility.Collapsed;
             }
             else if (debugmode == "testing")
             {
-                settingsPage_leftGrid_DefaultCustomizationsDebugTabButton.Visibility = Visibility.Collapsed;
+                
             }
             settingsPage_leftGrid_DebugSettingsTabButton.Description = "Debug mode: " + debugmode;
 

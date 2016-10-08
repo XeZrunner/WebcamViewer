@@ -28,7 +28,7 @@
                 <RowDefinition x:Name="rowdefinition_2" Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Label x:Name="titleLabel" Grid.Row="0" FontFamily="Segoe " FontSize="20" Margin="24,24,24,0" MaxHeight="56">Title</Label>
+            <TextBlock x:Name="titleLabel" Grid.Row="0" FontFamily="Segoe UI" FontSize="20" Margin="29,24,24,5" MaxHeight="56" TextTrimming="CharacterEllipsis">Title</TextBlock>
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <Grid x:Name="contentGrid" Margin="24,0,24,10">

@@ -29,22 +29,22 @@ namespace WebcamViewer.User_controls
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            grid.Width = this.ActualWidth * 2;
-            grid.Height = this.ActualHeight * 2;
+            //FrameworkElement _parent = Parent as FrameworkElement;
+            //this.MaxWidth = _parent.ActualWidth;
 
-            grid.Margin = new Thickness(-this.ActualWidth / 2, -this.ActualHeight / 2, -this.ActualWidth / 2, -this.ActualHeight / 2);
-
-            var s_WidthHeight = (EasingDoubleKeyFrame)this.Resources["s_WidthHeightKeyFrame"];
+            //var s_WidthHeight = (EasingDoubleKeyFrame)this.Resources["s_WidthHeightKeyFrame"];
             var s_Margin = (EasingThicknessKeyFrame)this.Resources["s_MarginKeyFrame"];
 
-            s_WidthHeight.Value = this.ActualWidth * 2;
+            //s_WidthHeight.Value = this.ActualWidth * 2;
             s_Margin.Value = new Thickness(-this.ActualWidth);
 
             double textGridMaxWidth = 0;
             if (IsToggleButton == true)
-                textGridMaxWidth = this.ActualWidth - 115;
+                textGridMaxWidth = this.ActualWidth - 130;
             else
-                textGridMaxWidth = this.ActualWidth - 15;
+                textGridMaxWidth = this.ActualWidth - 30;
+
+            textGrid.MaxWidth = textGridMaxWidth;
         }
 
         bool _IsToggleButton = true;

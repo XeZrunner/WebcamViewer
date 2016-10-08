@@ -17,47 +17,48 @@
         </Grid.RowDefinitions>
 
         <!-- Action bar -->
-        <Grid x:Name="actionGrid" Margin="48,0,0,0">
+        <Grid x:Name="actionGrid" Background="{DynamicResource settingsPage_background}" Margin="48,0,0,0">
 
-            <TextBlock Foreground="{DynamicResource settingsPage_foregroundText}" Margin="10,0,0,0" FontFamily="Segoe UI Semibold" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left">SUBPAGE</TextBlock>
+            <TextBlock x:Name="subpage_title" Foreground="{DynamicResource settingsPage_foregroundText}" Margin="10,0,0,0" FontFamily="Segoe UI Semibold" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left">SUBPAGE</TextBlock>
 
             <!-- right-side buttons -->
             <Grid HorizontalAlignment="Right">
 
-                <StackPanel Orientation="Horizontal">
-
-                    <usercontrols:settingsPage_TabButton Width="48" IconText="&#xe712;" ToolTip="More..."/>
-
-                </StackPanel>
+                <StackPanel Orientation="Horizontal"/>
 
             </Grid>
 
         </Grid>
 
+        <!-- Subpage Content -->
+        <Frame x:Name="frame" Grid.Row="1" Background="{DynamicResource settingsPage_background}" Margin="48,0,0,0" NavigationUIVisibility="Hidden"></Frame>
+
         <!-- Side menu -->
-        <Grid x:Name="menuGrid" Background="{DynamicResource settingsPage_background}" Grid.RowSpan="2" HorizontalAlignment="Left" Width="48">
+        <Grid x:Name="menuGrid" Background="{DynamicResource settingsPage_background}" Grid.RowSpan="2" HorizontalAlignment="Left" Width="48" Margin="0,-32,0,0">
             <!-- small: 48 | expanded: 290 -->
 
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                <StackPanel>
+            <Rectangle x:Name="menuGrid_darkFilter" Fill="#0F000000" Visibility="Hidden" />
 
-                    <usercontrols:settingsPage_TabButton IconText="&#xe700;" Title="INTERNAL DEVELOPMENT PAGE" Description="Used by internal developers." ShowDescription="True" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0,32,0,0">
+                <StackPanel x:Name="menuGrid_buttonsPanel">
+
+                    <usercontrols:settingsPage_TabButton x:Name="menuButton" IconText="&#xe700;" Title="INTERNAL DEVELOPMENT PAGE" Description="Used by internal developers." ShowDescription="True" Click="menuButton_Click" />
 
                     <!-- <Rectangle Fill="{DynamicResource settingsPage_foregroundSecondary3}" Height="2" Margin="0,5,0,0"/> -->
 
-                    <usercontrols:settingsPage_TabButton IconText="&#xE946;" Title="Status" />
+                    <usercontrols:settingsPage_TabButton IconText="&#xE946;" Title="Status" Tag="0" Click="menuItemButton_Click" />
 
-                    <usercontrols:settingsPage_TabButton IconText="&#xE80F;" Title="Default cameras" />
+                    <usercontrols:settingsPage_TabButton IconText="&#xE80F;" Title="Default cameras" Tag="1" Click="menuItemButton_Click" />
 
-                    <usercontrols:settingsPage_TabButton IconText="&#xE90F;" Title="User configuration" />
+                    <usercontrols:settingsPage_TabButton IconText="&#xE90F;" Title="User configuration" Tag="2" Click="menuItemButton_Click" />
 
-                    <usercontrols:settingsPage_TabButton IconText="&#xE70F;" Title="Configuration file editor" />
+                    <usercontrols:settingsPage_TabButton IconText="&#xE70F;" Title="Configuration file editor" Tag="3" Click="menuItemButton_Click" />
 
                     <Rectangle Fill="{DynamicResource settingsPage_foregroundSecondary3}" Height="2" Margin="0,5"/>
 
-                    <usercontrols:settingsPage_TabButton IconText="&#xE8FD;" Title="Internal settings" />
+                    <usercontrols:settingsPage_TabButton IconText="&#xE8FD;" Title="Internal settings" Tag="4" Click="menuItemButton_Click" />
 
-                    <usercontrols:settingsPage_TabButton IconText="&#xE895;" Title="Application updates" />
+                    <usercontrols:settingsPage_TabButton IconText="&#xE895;" Title="Application updates" Tag="5" Click="menuItemButton_Click" />
 
                     <Rectangle Fill="{DynamicResource settingsPage_foregroundSecondary3}" Height="2" Margin="0,5"/>
 
@@ -65,17 +66,15 @@
 
                     <Rectangle Fill="{DynamicResource settingsPage_foregroundSecondary3}" Height="2" Margin="0,5"/>
 
-                    <usercontrols:settingsPage_TabButton IconText="&#xEA37;" Title="Debug log" />
+                    <usercontrols:settingsPage_TabButton IconText="&#xEA37;" Title="Debug log" Tag="6" Click="menuItemButton_Click" />
 
                 </StackPanel>
             </ScrollViewer>
 
         </Grid>
-
-        <!-- Subpage Content -->
-        <Frame x:Name="frame" Grid.Row="1" Margin="48,0,0,0">
-            
-        </Frame>
+        
+        <!-- Overlay -->
+        <Rectangle Fill="#1F000000" Height="32" VerticalAlignment="Top" Margin="0,-32,0,0"/>
 
     </Grid>
 

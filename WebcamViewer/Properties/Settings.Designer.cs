@@ -127,7 +127,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20160926-00")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20161008-00")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -163,7 +163,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("testing")]
+        [global::System.Configuration.DefaultSettingValueAttribute("developer")]
         public string app_debugmode {
             get {
                 return ((string)(this["app_debugmode"]));
@@ -187,7 +187,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.2.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.2 Prerelease")]
         public string webcamengine_version {
             get {
                 return ((string)(this["webcamengine_version"]));
@@ -256,13 +256,48 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"Webcam Viewer Update 2 Beta - 2016.10.08; feature level 0
+
+Fixes:
+- Autorefresh now stops when changing cameras, saving, or switching to a different page. This fixes many bugs with the image loading and autorefresh enabled.
+
+Minor enchancements, tweaks & fixes
+- Settings toggles now have a bigger, circular background for the mouse down animation.
+
+Developer features
+- A new ""Internal settngs"" page is available for the developer and internal channels. Right now the only working and useful page is the ""Debug log"", which allows you to see the new debug log.
+- Debug logging is here, a toggle in the Developer settings has been added. It is enabled by default in developer, testing and internal builds. Release builds will have this disabled.
+- The debug log page of Internal settings has been improved. There's a new toolbar with options like refreshing, deleting the log file and testing logging.")]
         public string changelog {
             get {
                 return ((string)(this["changelog"]));
             }
             set {
                 this["changelog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool app_logging {
+            get {
+                return ((bool)(this["app_logging"]));
+            }
+            set {
+                this["app_logging"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool experiment_NewFileBrowserUX {
+            get {
+                return ((bool)(this["experiment_NewFileBrowserUX"]));
+            }
+            set {
+                this["experiment_NewFileBrowserUX"] = value;
             }
         }
     }

@@ -78,8 +78,17 @@
     <Compile Include="Pages\Internal development page\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Internal development page\Subpages\DebugLogPage.xaml.cs">
+      <DependentUpon>DebugLogPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Internal development page\Subpages\StatusPage.xaml.cs">
+      <DependentUpon>StatusPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Settings page\Subpages\2_User Interface\Controls\settingsPage_UserInterfacePage_AccentControl.xaml.cs">
       <DependentUpon>settingsPage_UserInterfacePage_AccentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Subpages\2_User Interface\Controls\settingsPage_UserInterfacePage_LanguageControl.xaml.cs">
+      <DependentUpon>settingsPage_UserInterfacePage_LanguageControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Settings page\Subpages\2_User Interface\Controls\settingsPage_UserInterfacePage_ThemeControl.xaml.cs">
       <DependentUpon>settingsPage_UserInterfacePage_ThemeControl.xaml</DependentUpon>
@@ -136,9 +145,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Settings page\Subpages\5_Customizations Debug\Page.xaml.cs">
-      <DependentUpon>Page.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Popups.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -188,6 +194,9 @@
     <Compile Include="User controls\webcamPage_Overview_CameraButton.xaml.cs">
       <DependentUpon>webcamPage_Overview_CameraButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User controls\WindowControlButton.xaml.cs">
+      <DependentUpon>WindowControlButton.xaml</DependentUpon>
+    </Compile>
     <Page Include="ControlStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,7 +205,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Internal development page\Subpages\DebugLogPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Internal development page\Subpages\StatusPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Settings page\Subpages\2_User Interface\Controls\settingsPage_UserInterfacePage_AccentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings page\Subpages\2_User Interface\Controls\settingsPage_UserInterfacePage_LanguageControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -256,10 +277,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Settings page\Subpages\5_Customizations Debug\Page.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="User controls\AppBar_Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -313,6 +330,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User controls\webcamPage_Overview_CameraButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\WindowControlButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

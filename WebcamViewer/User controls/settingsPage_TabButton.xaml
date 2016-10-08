@@ -64,7 +64,7 @@
         <Grid>
 
             <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Height="0" Width="0" Margin="-145, -25">
-                <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_backgroundSecondary}" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
+                <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_foregroundSecondary3}" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
             </Grid>
 
             <Grid>
@@ -74,8 +74,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                                                                        <!-- Height="30" -->
-                <Rectangle x:Name="activestateRectangle" Grid.ColumnSpan="2" Height="25" Width="4" HorizontalAlignment="Left" Fill="{DynamicResource accentcolor_dark}" Visibility="Hidden" />
+                                                                        <!-- Height="25" -->
+                <Rectangle x:Name="activestateRectangle" Grid.ColumnSpan="2" Height="50" Width="4" HorizontalAlignment="Left" Fill="{DynamicResource accentcolor_dark}" Visibility="Hidden" />
 
                 <TextBlock x:Name="iconTextBlock" Grid.Column="0" Foreground="{DynamicResource settingsPage_foregroundText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="19.3" TextOptions.TextRenderingMode="Aliased" Text="0"/>
 

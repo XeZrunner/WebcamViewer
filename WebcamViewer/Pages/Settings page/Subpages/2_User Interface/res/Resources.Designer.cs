@@ -82,9 +82,9 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.res {
         /// <summary>
         ///   Looks up a localized string similar to Show accent color on titlebar.
         /// </summary>
-        public static string AccentColorOnTItlebar {
+        public static string AccentColorOnTitlebar {
             get {
-                return ResourceManager.GetString("AccentColorOnTItlebar", resourceCulture);
+                return ResourceManager.GetString("AccentColorOnTitlebar", resourceCulture);
             }
         }
         
@@ -103,6 +103,25 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.res {
         public static string Colors {
             get {
                 return ResourceManager.GetString("Colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The language to use throughout the user interface.
+        ///Current language: .
+        /// </summary>
+        public static string LanguageDescription {
+            get {
+                return ResourceManager.GetString("LanguageDescription", resourceCulture);
             }
         }
         

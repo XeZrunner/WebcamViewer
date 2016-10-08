@@ -81,13 +81,13 @@ namespace WebcamViewer
 
             void ResultDialog_FirstButtonClickEvent(object sender, RoutedEventArgs e)
             {
-                ResultDialog_result = 0;
+                ResultDialog_result = 1;
                 dialogWindow.Close();
             }
 
             void ResultDialog_SecondButtonClickEvent(object sender, RoutedEventArgs e)
             {
-                ResultDialog_result = 1;
+                ResultDialog_result = 0;
                 dialogWindow.Close();
             }
 

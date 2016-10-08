@@ -56,14 +56,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             {
                 settingsPage_DebugMenuPage_Home_ProgressDebugButton.Visibility = Visibility.Collapsed;
                 settingsPage_DebugMenuPage_GlobalUISection.Visibility = Visibility.Collapsed;
-                settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton.Visibility = Visibility.Collapsed;
             }
             else if (Properties.Settings.Default.app_debugmode == "release")
             {
                 settingsPage_DebugMenuPage_HomeSection.Visibility = Visibility.Collapsed;
                 settingsPage_DebugMenuPage_GlobalUISection.Visibility = Visibility.Collapsed;
                 settingsPage_DebugMenuPage_ExperimentsSection.Visibility = Visibility.Collapsed;
-                settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton.Visibility = Visibility.Collapsed;
             }
 
             #endregion
@@ -71,7 +69,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
         private void page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            sectionsPanel.MaxWidth = this.ActualWidth - 20;
+            //sectionsPanel.MaxWidth = this.ActualWidth - 20;
         }
 
         #region Dialogs
@@ -467,15 +465,26 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             Label label1 = new Label() { Content = "These experiments are early prerelease features.\n" + 
                                                    "You can only toggle experiments in testing and internal builds." };
 
+            #region Experiments
+
             // EXPERIMENT - update ui
             CheckBox box0 = new CheckBox() { Content = "Updates UI Testing", Margin = new Thickness(4, 15, 0, 5), Tag = "settings_experiment_UpdateUI" };
             if (Properties.Settings.Default.settings_experiment_UpdateUI) box0.IsChecked = true;
             else box0.IsChecked = false;
             // /EXPERIMENT
 
+            // EXPERIMENT - new file browser dialog
+            CheckBox box1 = new CheckBox() { Content = "Immersive File Dialog\nInternal Edge/UX-development channels only", Margin = new Thickness(4, 15, 0, 5), Tag = "experiment_NewFileBrowserUX" };
+            if (Properties.Settings.Default.experiment_NewFileBrowserUX) box1.IsChecked = true;
+            else box1.IsChecked = false;
+            // /EXPERIMENT
+
+            #endregion
+
             panel.Children.Add(label0);
             panel.Children.Add(label1);
             panel.Children.Add(box0);
+            panel.Children.Add(box1);
             // Content //
 
             dialog.Content = panel;

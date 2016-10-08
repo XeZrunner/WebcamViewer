@@ -134,10 +134,17 @@ Jelenlegi szín: </value>
     <value>A téma, ami a felhasználói felületen keresztül használva van...
 Current theme: </value>
   </data>
-  <data name="AccentColorOnTItlebar" xml:space="preserve">
+  <data name="AccentColorOnTitlebar" xml:space="preserve">
     <value>Témaszín megjelenítése az ablakcímsoron</value>
   </data>
   <data name="AccentColorOnTitlebarDescription" xml:space="preserve">
     <value>Átszínezi az ablakcímsort a témaszínre.</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Nyelv</value>
+  </data>
+  <data name="LanguageDescription" xml:space="preserve">
+    <value>A nyelv, ami a felhasználói felületen keresztül használva van...
+Jelenlegi nyelv: </value>
   </data>
 </root>

@@ -14,7 +14,7 @@
 
         <!-- Content -->
         <ScrollViewer x:Name="scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <StackPanel x:Name="stackpanel" Margin="10" MinWidth="250" Width="780">
+            <StackPanel x:Name="stackpanel" Margin="10" MinWidth="400">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
                         <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
@@ -46,7 +46,7 @@
                 </TextBlock>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,13,25,0">
-                    
+
                     <usercontrols:settingsPage_NormalButton x:Name="settingsPage_AboutPage_ChangelogButton" Margin="0,0,10,0" Text="{x:Static res:Resources.Changelog}" Click="settingsPage_AboutPage_ChangelogButton_Click"/>
                     <usercontrols:settingsPage_NormalButton x:Name="settingsPage_AboutPage_CreditsButton" Text="{x:Static res:Resources.Credits}" Click="settingsPage_AboutPage_CreditsButton_Click"/>
 

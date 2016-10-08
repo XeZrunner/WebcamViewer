@@ -42,7 +42,7 @@
       <Value Profile="(Default)">Update 2 Beta</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20160926-00</Value>
+      <Value Profile="(Default)">20161008-00</Value>
     </Setting>
     <Setting Name="settings_experiment_UpdateUI" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -51,13 +51,13 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="app_debugmode" Type="System.String" Scope="User">
-      <Value Profile="(Default)">testing</Value>
+      <Value Profile="(Default)">developer</Value>
     </Setting>
     <Setting Name="app_firstrun" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="webcamengine_version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">1.2.0</Value>
+      <Value Profile="(Default)">1.2 Prerelease</Value>
     </Setting>
     <Setting Name="ui_accent" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -81,7 +81,24 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2016.10.08; feature level 0
+
+Fixes:
+- Autorefresh now stops when changing cameras, saving, or switching to a different page. This fixes many bugs with the image loading and autorefresh enabled.
+
+Minor enchancements, tweaks &amp; fixes
+- Settings toggles now have a bigger, circular background for the mouse down animation.
+
+Developer features
+- A new "Internal settngs" page is available for the developer and internal channels. Right now the only working and useful page is the "Debug log", which allows you to see the new debug log.
+- Debug logging is here, a toggle in the Developer settings has been added. It is enabled by default in developer, testing and internal builds. Release builds will have this disabled.
+- The debug log page of Internal settings has been improved. There's a new toolbar with options like refreshing, deleting the log file and testing logging.</Value>
+    </Setting>
+    <Setting Name="app_logging" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="experiment_NewFileBrowserUX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

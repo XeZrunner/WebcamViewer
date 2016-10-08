@@ -16,8 +16,7 @@
         xmlns:Settings_Subpages_HomePageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._1_Home"
         xmlns:Settings_Subpages_UserInterfacePageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface"
         xmlns:Settings_Subpages_AboutPageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates"
-        xmlns:Settings_Subpages_DebugSettingsPageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings"
-        xmlns:Settings_Subpages_CustomizationsDebugPageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._5_Customizations_Debug">
+        xmlns:Settings_Subpages_DebugSettingsPageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings">
 
     <Controls:MetroWindow.Resources>
         <Storyboard x:Key="settingsPage_In">
@@ -79,6 +78,30 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="settingsPage">
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="internalsettingsPage_Container">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="internalsettingsPage_Container">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="internalsettingsPage_Container">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="internalsettingsPage_Container">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
             <!-- <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="closeButton">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
@@ -445,6 +468,79 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.9"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="internalsettingsPage_In">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="webcamPage">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="webcamPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="webcamPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="webcamPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="settingsPage">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="settingsPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="settingsPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.95">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="settingsPage">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="internalsettingsPage_Container">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="internalsettingsPage_Container">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="internalsettingsPage_Container">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="{Binding Height, ElementName=window}"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuarticEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="internalsettingsPage_Container">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="internalsettingsPage_Container">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Controls:MetroWindow.Resources>
 
     <Grid x:Name="grid" Background="Black" Margin="1">
@@ -740,8 +836,6 @@
 
                                 <usercontrols:settingsPage_TabButton x:Name="settingsPage_leftGrid_DebugSettingsTabButton" IconText="&#xE90F;" Title="{x:Static res:Resources.settingsPage_DebugSettings}" Description="Debug mode: %s" ShowDescription="True" Tag="4" Click="settingsPage_leftGrid_TabButtonClick"/>
 
-                                <usercontrols:settingsPage_TabButton x:Name="settingsPage_leftGrid_DefaultCustomizationsDebugTabButton" IconText="&#xe71D;" Title="{x:Static res:Resources.settingsPage_DefaultCustomizationsDebug}" Description="In use: %s" ShowDescription="True" Tag="5" Click="settingsPage_leftGrid_TabButtonClick"/>
-
                             </StackPanel>
                         </ScrollViewer>
 
@@ -796,19 +890,6 @@
                                 <Controls:ProgressRing x:Name="settingsPage_DebugMenuPage_progressRing" Foreground="{DynamicResource accentcolor_dark}" EllipseDiameterScale="0.85" Visibility="Collapsed"/>
 
                                 <Settings_Subpages_DebugSettingsPageControls:Page x:Name="settingsPage_DebugMenuPage_Control" />
-
-                            </Grid>
-
-                            <Grid x:Name="settingsPage_DefaultCustomizationsDebugPage" Tag="5"
-                                  Visibility="Collapsed">
-
-                                <StackPanel x:Name="settingsPage_DefaultCustomizationsDebugPage_ProgressPanel" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
-                                    <Controls:ProgressRing x:Name="settingsPage_DefaultCustomizationsDebugPage_progressRing" Foreground="{DynamicResource accentcolor_dark}" EllipseDiameterScale="0.84" Visibility="Visible"/>
-                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semilight" FontSize="22" Margin="0,15,0,0">Reading default customizations file...</TextBlock>
-                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" HorizontalAlignment="Center" Margin="0,8,0,0" FontFamily="Segoe UI Semilight" FontSize="16">This shouldn't take long...</TextBlock>
-                                </StackPanel>
-
-                                <Settings_Subpages_CustomizationsDebugPageControls:Page x:Name="settingsPage_CustomizationsDebugPage_Control"/>
 
                             </Grid>
 
@@ -970,7 +1051,17 @@
 
         </Grid>
 
-        <Grid x:Name="internalsettingsPage_Container" Background="{DynamicResource settingsPage_background}" Visibility="Collapsed">
+        <Grid x:Name="internalsettingsPage_Container" Background="{DynamicResource settingsPage_background}" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+
+            <Rectangle x:Name="internalsettingsPage_Rectangle" Fill="{DynamicResource accentcolor_dark}" Height="32" VerticalAlignment="Top" />
 
             <Frame x:Name="internalsettingsPage_Container_frame" Margin="0,32,0,0"/>
 
@@ -1021,19 +1112,21 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Back button -->
-            <Button x:Name="backButton" Grid.Column="0" Style="{DynamicResource titlebarButton}" FontSize="13" Width="48" Content="&#xe830;" Visibility="Collapsed" TextOptions.TextFormattingMode="Ideal" Click="backButton_Click"/>
+            <Grid x:Name="titlebarGrid_leftcontrols" Grid.Column="0">
+                <!-- Back button -->
+                <usercontrols:WindowControlButton x:Name="backButton" Width="48" TextIcon="&#xe830;" FontSize="13" Visibility="Collapsed" TextOptions.TextFormattingMode="Ideal" Click="backButton_Click"/>
 
-            <!-- Menu button-->
-            <Button x:Name="webcamPage_menuButton" Grid.Column="0" Style="{DynamicResource titlebarButton}" FontSize="13" Width="48" Content="&#xe700;" Visibility="Collapsed" Click="webcamPage_menuButton_Click"/>
+                <!-- Menu button-->
+                <usercontrols:WindowControlButton x:Name="webcamPage_menuButton" Width="48" TextIcon="&#xe700;" FontSize="13" Visibility="Collapsed" Click="webcamPage_menuButton_Click"/>
+            </Grid>
 
             <Label x:Name="titleLabel" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="White" Grid.Column="1" Content="{x:Static res:Resources.App_Title}"/>
 
             <!-- Window controls -->
-            <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <Button x:Name="minimizeButton" Style="{DynamicResource titlebarButton}" Content="&#xe921;" Click="minimizeButton_Click"/>
-                <Button x:Name="maximizeButton" Style="{DynamicResource titlebarButton}" Content="&#xe922;" Click="maximizeButton_Click"/>
-                <Button x:Name="closeButton" Style="{DynamicResource titlebarButton}" Tag="closeButton" Content="&#xe8bb;" Click="closeButton_Click"/>
+            <StackPanel x:Name="windowcontrol_stackpanel" Grid.Column="2" Orientation="Horizontal">
+                <usercontrols:WindowControlButton x:Name="minimizeButton" TextIcon="&#xe921;" Click="minimizeButton_Click"/>
+                <usercontrols:WindowControlButton x:Name="maximizeButton" TextIcon="&#xe922;" Click="maximizeButton_Click"/>
+                <usercontrols:WindowControlButton x:Name="closeButton" Tag="closeButton" TextIcon="&#xe8bb;" Click="closeButton_Click"/>
             </StackPanel>
 
         </Grid>

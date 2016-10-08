@@ -114,10 +114,17 @@ Current color: </value>
     <value>The theme to use throughout the user interface...
 Current theme: </value>
   </data>
-  <data name="AccentColorOnTItlebar" xml:space="preserve">
+  <data name="AccentColorOnTitlebar" xml:space="preserve">
     <value>Show accent color on titlebar</value>
   </data>
   <data name="AccentColorOnTitlebarDescription" xml:space="preserve">
     <value>Shows the current accent color on the titlebar.</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LanguageDescription" xml:space="preserve">
+    <value>The language to use throughout the user interface.
+Current language: </value>
   </data>
 </root>

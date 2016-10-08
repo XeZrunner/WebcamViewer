@@ -27,7 +27,7 @@ namespace WebcamViewer
         {
             // Title
             if (Title != "")
-                titleLabel.Content = Title;
+                titleLabel.Text = Title;
             else
             {
                 titleLabel.Visibility = Visibility.Collapsed;
@@ -101,8 +101,8 @@ namespace WebcamViewer
             }
 
             // Button text
-            firstButton.Content = FirstButtonContent;
-            secondButton.Content = SecondButtonContent;
+            secondButton.Content = FirstButtonContent;
+            firstButton.Content = SecondButtonContent;
 
 
             // Button visibility

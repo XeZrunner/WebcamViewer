@@ -10,7 +10,7 @@
     <Grid>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <StackPanel x:Name="sectionsPanel" Margin="10" MinWidth="250">
+            <StackPanel x:Name="sectionsPanel" Margin="10">
 
                 <!-- Home -->
                 <StackPanel x:Name="settingsPage_DebugMenuPage_HomeSection" Margin="0,0,0,0">
@@ -40,7 +40,13 @@
                     <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">CONFIGURATION</Label>
 
                     <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Configuration_ResetConfigurationButton" IsToggleButton="False" Title="{x:Static res:Resources.ResetConfiguration}" Description="{x:Static res:Resources.ResetConfigurationDescription}" Click="settingsPage_DebugMenuPage_Configuration_ResetConfigurationButton_Click"/>
-                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton" IsToggleButton="False" Title="Customizations delivery settings" Description="" Click="settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton_Click" />
+                </StackPanel>
+
+                <!-- Debugging -->
+                <StackPanel x:Name="settingsPage_DebugMenuPage_DebuggingSection" Margin="0,5,0,0">
+                    <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">DEBUGGING</Label>
+
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Debugging_DebugLoggingToggleButton" Title="Debug logging" Description="Enable or disable logging. The log file is created in the app's directory." Tag="app_logging" Click="settingsPage_ToggleButtonClick"/>
                 </StackPanel>
 
                 <!-- Internal -->

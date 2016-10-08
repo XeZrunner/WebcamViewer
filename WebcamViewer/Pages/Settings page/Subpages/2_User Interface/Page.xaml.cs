@@ -210,6 +210,33 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
             }
         }
 
+        private void settingsPage_UserInterfacePage_UI_LanguageButton_Click(object sender, RoutedEventArgs e)
+        {
+            Popups.MessageDialog dlg = new Popups.MessageDialog();
+            dlg.Title = "";
+
+            dlg.Content_DisableMargin = true;
+
+            Controls.settingsPage_UserInterfacePage_LanguageControl content = new Controls.settingsPage_UserInterfacePage_LanguageControl();
+            #region control code
+            // check the one that's used
+            #endregion
+
+            dlg.Content = content;
+
+            dlg.FirstButtonContent = "Go back";
+            dlg.SecondButtonContent = "Apply changes";
+
+            if (dlg.ShowDialogWithResult() == 1)
+            {
+                // change and save
+
+                mainwindow.GetUserConfiguration(true);
+
+                mainwindow.UpdateDefaultStyle();
+            }
+        }
+
         #endregion
 
         private void page_SizeChanged(object sender, SizeChangedEventArgs e)
