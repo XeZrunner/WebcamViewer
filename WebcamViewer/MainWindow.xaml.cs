@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -22,7 +23,7 @@ namespace WebcamViewer
     {
         public MainWindow()
         {
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("hu"); // testing MUI
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("fr"); // testing MUI
             InitializeComponent();
 
             webcamPage_menuGrid_progressInStoryboard = (Storyboard)FindResource("webcamPage_menuGrid_progressIn");
