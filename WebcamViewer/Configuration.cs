@@ -389,14 +389,14 @@ namespace WebcamViewer
             {
                 try
                 {
-                    Properties.Settings.Default[(string)Setting] = value;
+                    Properties.Settings.Default[Setting] = value;
                     if (permanent)
                         Properties.Settings.Default.Save();
                 }
                 catch (Exception ex)
                 {
 #if DEBUG
-                    TextMessageDialog("[DEBUG] Could not set setting", ex.Message, true);
+                    TextMessageDialog("[DEBUG] Could not set setting : ", ex.Message, true);
 #endif
                 }
             }

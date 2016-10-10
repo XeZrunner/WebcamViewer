@@ -11,7 +11,7 @@ namespace WebcamViewer
 	/// Provides access to the mouse location by calling unmanaged code.
 	/// </summary>
 	/// <remarks>
-	/// This class was written by Dan Crevier (Microsoft).  
+	/// This class was written by Dan Crevier (Microsoft).  Totally not stolen. I guess.
 	/// http://blogs.msdn.com/llobo/archive/2006/09/06/Scrolling-Scrollviewer-on-Mouse-Drag-at-the-boundaries.aspx
 	/// </remarks>
 	public class MouseUtilities
@@ -19,8 +19,8 @@ namespace WebcamViewer
 		[StructLayout( LayoutKind.Sequential )]
 		private struct Win32Point
 		{
-			public Int32 X;
-			public Int32 Y;
+			public int X;
+			public int Y;
 		};
 
 		[DllImport( "user32.dll" )]
@@ -43,7 +43,7 @@ namespace WebcamViewer
 			// Using PointFromScreen instead of Dan Crevier's code (commented out below)
 			// is a bug fix created by William J. Roberts.  Read his comments about the fix
 			// here: http://www.codeproject.com/useritems/ListViewDragDropManager.asp?msg=1911611#xx1911611xx
-			return relativeTo.PointFromScreen( new Point( (double)mouse.X, (double)mouse.Y ) );
+			return relativeTo.PointFromScreen( new Point(mouse.X, mouse.Y) );
 
 			#region Commented Out
 			//System.Windows.Interop.HwndSource presentationSource =

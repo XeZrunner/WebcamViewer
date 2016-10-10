@@ -22,6 +22,7 @@ namespace WebcamViewer
 	/// Exception will be thrown.
 	/// </summary>
 	/// <typeparam name="ItemType">The type of the ListView's items.</typeparam>
+    /// <remarks>STOLEN FROM GOOGLE SEARCH or not xd -jeuxjeux20</remarks>
 	public class ListViewDragDropManager<ItemType> where ItemType : class
 	{
 		#region Data

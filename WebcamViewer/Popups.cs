@@ -13,7 +13,7 @@ namespace WebcamViewer
     {
 
         /// <summary>
-        /// Windows 10 UWP ContentDialog-style dialog
+        /// Windows 10 UWP ContentDialog-style dialog ftw
         /// </summary>
         public class MessageDialog
         {
