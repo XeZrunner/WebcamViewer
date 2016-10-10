@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ResetConfiguration" xml:space="preserve">
+    <value>Réinitialiser les paramètres par défaut</value>
+  </data>
+  <data name="ResetConfigurationDescription" xml:space="preserve">
+    <value>Réinitialise tout les paramètres utilisateur par ceux par défaut</value>
+  </data>
+  <data name="ResetConfigurationConfirmation" xml:space="preserve">
+    <value>Tout les paramètres utilisateur seront réinitialisés par ceux par défaut</value>
+  </data>
 </root>

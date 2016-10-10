@@ -117,4 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Camera_name" xml:space="preserve">
+    <value>Nom de la caméra</value>
+  </data>
+  <data name="Camera_url" xml:space="preserve">
+    <value>Lien de la caméra</value>
+  </data>
+  <data name="Refresh_rate" xml:space="preserve">
+    <value>Fréquence de rafraîchissement</value>
+  </data>
+  <data name="Save_location" xml:space="preserve">
+    <value>Sauvegarder la location</value>
+  </data>
+  <data name="New_camera" xml:space="preserve">
+    <value>Nouvelle caméra</value>
+  </data>
+  <data name="Delete_camera" xml:space="preserve">
+    <value>Supprimer la caméra</value>
+  </data>
+  <data name="Save_changes" xml:space="preserve">
+    <value>Sauvegarder</value>
+  </data>
+  <data name="New_camera_Template" xml:space="preserve">
+    <value>http://cameraexample.fr/camera.jpg [Retirez.le paramètre de test(?dummy=*********) si.il existe il est automatiquement ajouté</value>
+  </data>
+  <data name="Delete_camera_Confirmation" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer cette caméra ?
+Vous ne pouvez PAS annuler cette action.</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Camera" xml:space="preserve">
+    <value>Caméra</value>
+  </data>
 </root>

@@ -117,4 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Changelog" xml:space="preserve">
+    <value>Nouveautés</value>
+  </data>
+  <data name="Updates" xml:space="preserve">
+    <value>Mises à jour</value>
+  </data>
+  <data name="Credits" xml:space="preserve">
+    <value>Crédits &amp; plus d'informations</value>
+  </data>
+  <data name="AboutText1" xml:space="preserve">
+    <value>"Webcam Viewer" est un logiciel gratuit utilisé pour voir et sauvegarder des caméras utilisant un format vidéo adapté à ceux communs utilisés à travers internet</value>
+  </data>
+  <data name="AboutText2" xml:space="preserve">
+    <value>Ce logiciel est complètement gratuit et libre, jetez un oeil au code source sur</value>
+  </data>
+  <data name="VersionInfo" xml:space="preserve">
+    <value>Information sur la version</value>
+  </data>
+  <data name="Updates_Progress" xml:space="preserve">
+    <value>Recherche en cours de mises à jour...</value>
+  </data>
+  <data name="Updates_InstallUpdate" xml:space="preserve">
+    <value>Télécharger et installer la mise à jour</value>
+  </data>
 </root>

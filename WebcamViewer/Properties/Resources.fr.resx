@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="App_Title" xml:space="preserve">
-    <value>Observateur caméra (?)</value>
+    <value>Webcam Viewer (Lecteur vidéo caméra)</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Réglages</value>
@@ -130,12 +130,63 @@
     <value>Enregistré!</value>
   </data>
   <data name="webcamPage_ArchiveOrgProgressFinished" xml:space="preserve">
-    <value>Enregistré!</value>
+    <value>Enregistrement terminé</value>
   </data>
   <data name="webcamPage_ArchiveOrgProgress" xml:space="preserve">
     <value>Enregistrement en cours ...</value>
   </data>
   <data name="webcamPage_ArchiveOrgSave" xml:space="preserve">
-    <value>Economisez sur les archive.org</value>
+    <value>Economisez grâce à archive.org</value>
+  </data>
+  <data name="webcamPage_LocalSaveProgress" xml:space="preserve">
+    <value>Téléchargement de l'image:</value>
+  </data>
+  <data name="webcamPage_LocalSaveProgressPreparing" xml:space="preserve">
+    <value>Préparation de la sauvegarde de l'image</value>
+  </data>
+  <data name="webcamPage_LocalSave" xml:space="preserve">
+    <value>Sauvegarder l'image</value>
+  </data>
+  <data name="webcamPage_Overview" xml:space="preserve">
+    <value>Aperçu</value>
+  </data>
+  <data name="settingsPage_Webcams" xml:space="preserve">
+    <value>Caméras</value>
+  </data>
+  <data name="settingsPage_Home" xml:space="preserve">
+    <value>Menu principal</value>
+  </data>
+  <data name="settingsPage_UserInterface" xml:space="preserve">
+    <value>Interface utilisateur</value>
+  </data>
+  <data name="settingsPage_AboutAndUpdates" xml:space="preserve">
+    <value>A propos et mises à jour</value>
+  </data>
+  <data name="settingsPage_DebugSettings" xml:space="preserve">
+    <value>Réglages de débogage</value>
+  </data>
+  <data name="settingsPage_DefaultCustomizationsDebug" xml:space="preserve">
+    <value>Personnalisations de débogages par défaut</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="Go_back" xml:space="preserve">
+    <value>Précédent</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accepter</value>
+  </data>
+  <data name="Decline" xml:space="preserve">
+    <value>Refuser</value>
+  </data>
+  <data name="Try_again" xml:space="preserve">
+    <value>Réessaiez</value>
+  </data>
+  <data name="webcamPage_OverviewGoBack" xml:space="preserve">
+    <value>Retour à la vue caméra</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continuer</value>
   </data>
 </root>

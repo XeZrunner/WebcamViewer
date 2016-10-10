@@ -117,4 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Language" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="AccentColorOnTitlebarDescription" xml:space="preserve">
+    <value>Montre la couleur d'accentuation actuelle sur la barre de titre</value>
+  </data>
+  <data name="AccentColor" xml:space="preserve">
+    <value>Couleur d'accentuation</value>
+  </data>
+  <data name="ThemeDescription" xml:space="preserve">
+    <value>Le thème à utiliser à travers l'interface utilisateur
+Thème actuel:</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Thème</value>
+  </data>
+  <data name="AccentColorDescription" xml:space="preserve">
+    <value>La couleur à utiliser à travers l'interface utilisateur
+Couleur actuelle:</value>
+  </data>
+  <data name="Colors" xml:space="preserve">
+    <value>Couleurs</value>
+  </data>
+  <data name="AccentColorOnTitlebar" xml:space="preserve">
+    <value>Montrer la couleur d'accentuation sur la barre de titre</value>
+  </data>
+  <data name="LanguageDescription" xml:space="preserve">
+    <value>La langue utilisé à travers l'interface utilisateur
+Langue actuelle:</value>
+  </data>
 </root>

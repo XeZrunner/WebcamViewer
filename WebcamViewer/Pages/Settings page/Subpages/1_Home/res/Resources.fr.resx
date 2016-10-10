@@ -117,4 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MenuBlurBehind" xml:space="preserve">
+    <value>Flou du derrière du menu</value>
+  </data>
+  <data name="MenuBlurBehind_Description" xml:space="preserve">
+    <value>Flou de l'arrière-plan du menu</value>
+  </data>
+  <data name="ArchiveOrgIntegration" xml:space="preserve">
+    <value>intégration archive.org</value>
+  </data>
+  <data name="ArchiveOrgIntegration_Description" xml:space="preserve">
+    <value>Activez ou désactivez </value>
+  </data>
+  <data name="ImageSizing" xml:space="preserve">
+    <value>Taille de l'image</value>
+  </data>
+  <data name="ImageSizingDescription" xml:space="preserve">
+    <value>Choisissez comment l'image devrait être affichée dans la fenêtre
+Paramètre actuel:</value>
+  </data>
+  <data name="Autorefresh" xml:space="preserve">
+    <value>Activer le rafraîchissement automatique</value>
+  </data>
+  <data name="Autorefresh_Description" xml:space="preserve">
+    <value>Globalement désactiver ou activer automatiquement l'actualisation de l'image</value>
+  </data>
 </root>
