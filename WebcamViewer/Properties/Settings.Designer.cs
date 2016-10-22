@@ -88,7 +88,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta - Autumn Testing")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
@@ -100,7 +100,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20161008-00")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20161022-00")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -124,18 +124,38 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"Webcam Viewer Update 2 Beta - 2016.10.08; feature level 0
+        [global::System.Configuration.DefaultSettingValueAttribute(@"Webcam Viewer Update 2 Beta - 2016.10.22; feature level 0
+
+Fixes: 
+- Fixed a crash caused by clicking the New camera button with no camera selected.
+- Previously, deleting a camera would not persist over restarts unless you clicked Save.
+- Fixed the toggles not updating their colors when changing accents / themes.
+
+Enchancements: 
+- Overview now uses your accent color for the titlebar and action bar.
+- The theme color is now used behind the camera image when it's not in a stretching size mode, unless you force it to black.
+There's also a new toggle for making that color be your accent color.
+
+New features:
+- There's a splash page on startup, which fades out once the image finishes loading.
+
+Debugging features:
+- Accent color now used on the Internal settings page.
+- SwitchToPage() debugging
+- Overview sellout UI testing
+
+Other changes:
+- The changelogs are now sorted Descending, meaning the latest build's changelogs are always on the top.
+
+Known issues:
+- UWP-style dialogs that have a single Close button will not close when clicked. This issue is related to a recent change in the buttons' click events, and will be fixed in the next build.
+
+-----------------------------------------------------------
+
+Webcam Viewer Update 2 Beta - 2016.10.17; feature level 0
 
 Fixes:
-- Autorefresh now stops when changing cameras, saving, or switching to a different page. This fixes many bugs with the image loading and autorefresh enabled.
-
-Minor enchancements, tweaks & fixes
-- Settings toggles now have a bigger, circular background for the mouse down animation.
-
-Developer features
-- A new ""Internal settngs"" page is available for the developer and internal channels. Right now the only working and useful page is the ""Debug log"", which allows you to see the new debug log.
-- Debug logging is here, a toggle in the Developer settings has been added. It is enabled by default in developer, testing and internal builds. Release builds will have this disabled.
-- The debug log page of Internal settings has been improved. There's a new toolbar with options like refreshing, deleting the log file and testing logging.")]
+- Fixed a bug in message dialogs where the buttons' actions were swapped.")]
         public string changelog {
             get {
                 return ((string)(this["changelog"]));
@@ -298,6 +318,30 @@ Developer features
             }
             set {
                 this["experiment_NewFileBrowserUX"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool home_webcamimageBackgroundMode {
+            get {
+                return ((bool)(this["home_webcamimageBackgroundMode"]));
+            }
+            set {
+                this["home_webcamimageBackgroundMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool home_webcamimageBackgroundMode_BlackOverride {
+            get {
+                return ((bool)(this["home_webcamimageBackgroundMode_BlackOverride"]));
+            }
+            set {
+                this["home_webcamimageBackgroundMode_BlackOverride"] = value;
             }
         }
     }

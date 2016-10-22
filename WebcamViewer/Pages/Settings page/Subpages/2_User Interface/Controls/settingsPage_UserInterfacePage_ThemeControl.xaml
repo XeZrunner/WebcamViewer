@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.Controls"
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.Controls.settingsPage_UserInterfacePage_ThemeControl"
              mc:Ignorable="d" 
-             Width="410" Height="170" Background="{DynamicResource MessageDialog_Background}">
+             Width="410" Height="225" Background="{DynamicResource MessageDialog_Background}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="65"/>
@@ -43,9 +43,13 @@
 
                 <RadioButton x:Name="radiobutton_Light" Content="Light theme"/>
 
-                <RadioButton x:Name="radiobutton_Dark" Margin="0,10,0,15" Content="Dark theme"/>
+                <RadioButton x:Name="radiobutton_Dark" Margin="0,10,0,0" Content="Dark theme"/>
 
-                <TextBlock Foreground="{DynamicResource settingsPage_foregroundSecondary2}" FontSize="12"><Run Text="The theme will be applied to both Home and Settings pages."/></TextBlock>
+                <TextBlock Foreground="{DynamicResource settingsPage_foregroundSecondary2}" FontSize="12" Margin="0,5,0,0"><Run Text="The theme will be applied to both Home and Settings pages."/></TextBlock>
+
+                <CheckBox x:Name="checkbox_homepageBlackOverride" Content="Force black image background on homepage" Margin="0,15,0,0"/>
+
+                <TextBlock Foreground="{DynamicResource settingsPage_foregroundSecondary2}" FontSize="12" Margin="0,5,0,0" TextWrapping="Wrap"><Run Text="This checkbox makes the image backgrond always be black regardless of the light or dark themes."/></TextBlock>
 
             </StackPanel>
 

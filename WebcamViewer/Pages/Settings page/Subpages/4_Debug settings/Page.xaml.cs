@@ -420,7 +420,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             #region Creating the content
             Slider slider = new Slider();
 
-            slider.Maximum = 1;
+            slider.Maximum = 5;
             slider.Minimum = 0.1;
             slider.Value = Properties.Settings.Default.ui_animationspeed;
 
@@ -561,6 +561,56 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
         private void settingsPage_DebugMenuPage_Internal_InternalSettingsButton_Click(object sender, RoutedEventArgs e)
         {
             mainwindow.SwitchToPage(3);
+        }
+
+        private void settingsPage_DebugMenuPage_ExpInternal_ShowOverviewSelloutButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainwindow.SwitchToPage(0);
+            mainwindow.webcamPage_CloseMenu();
+
+            mainwindow.ShowSellout();
+        }
+
+        private void settingsPage_DebugMenuPage_Pages_SwitchToPageDebug_Click(object sender, RoutedEventArgs e)
+        {
+            Popups.MessageDialog dialog = new Popups.MessageDialog();
+            dialog.Title = "SwitchToPage() Debug";
+
+            Grid dialog_content = new Grid();
+            StackPanel panel = new StackPanel();
+
+            Label text0 = new Label { Content = "Page number" };
+            TextBox box0 = new TextBox();
+
+            Label text1 = new Label { Content = "No animation" };
+            CheckBox box1 = new CheckBox();
+
+            panel.Children.Add(text0);
+            panel.Children.Add(box0);
+            panel.Children.Add(text1);
+            panel.Children.Add(box1);
+
+            dialog_content.Children.Add(panel);
+
+            dialog.Content = dialog_content;
+
+            dialog.FirstButtonContent = "Call SwitchToPage()";
+            dialog.SecondButtonContent = "Cancel";
+
+            if (dialog.ShowDialogWithResult() == 0)
+            {
+                int arg0 = 0;
+                try
+                {
+                    arg0 = int.Parse(box0.Text);
+                }
+                catch (Exception ex)
+                {
+                    TextMessageDialog("", "Invalid parameter\n\nPage number is invalid. (" + ex.Message + ")");
+                }
+
+                mainwindow.SwitchToPage(arg0, box1.IsChecked.Value);
+            }
         }
     }
 }

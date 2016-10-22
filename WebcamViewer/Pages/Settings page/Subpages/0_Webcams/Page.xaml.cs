@@ -245,6 +245,8 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
 
             comingfromNewCamera = true; RefreshItemList();
 
+            settingsPage_WebcamEditorPage_ListView.SelectedIndex = Properties.Settings.Default.camera_urls.Count - 1;
+
             RefreshItemEditor();
         }
 
@@ -260,6 +262,8 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
             {
                 Properties.Settings.Default.camera_names.RemoveAt(settingsPage_WebcamEditorPage_ListView.SelectedIndex);
                 Properties.Settings.Default.camera_urls.RemoveAt(settingsPage_WebcamEditorPage_ListView.SelectedIndex);
+
+                Properties.Settings.Default.Save();
 
                 RefreshItemList();
             }

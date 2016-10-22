@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.User_controls.settingsPage_TabButton"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Foreground="{DynamicResource settingsPage_foregroundText}"
              Height="50" Width="290" ClipToBounds="True" SizeChanged="usercontrol_SizeChanged">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+            <Setter Property="Foreground" Value="{Binding ElementName=usercontrol, Path=Foreground}"/>
             <Setter Property="Background" Value="{Binding ElementName=usercontrol, Path=Background}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
@@ -77,11 +77,11 @@
                                                                         <!-- Height="25" -->
                 <Rectangle x:Name="activestateRectangle" Grid.ColumnSpan="2" Height="25" Width="4" HorizontalAlignment="Left" Fill="{DynamicResource accentcolor_dark}" Visibility="Hidden" />
 
-                <TextBlock x:Name="iconTextBlock" Grid.Column="0" Foreground="{DynamicResource settingsPage_foregroundText}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="19.3" TextOptions.TextRenderingMode="Aliased" Text="0"/>
+                <TextBlock x:Name="iconTextBlock" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="19.3" TextOptions.TextRenderingMode="Aliased" Text="0"/>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0">
 
-                    <TextBlock x:Name="titleTextBlock" Foreground="{DynamicResource settingsPage_foregroundText}" FontSize="12" Text="TITLE" FontFamily="Segoe UI Semibold" />
+                    <TextBlock x:Name="titleTextBlock" FontSize="12" Text="TITLE" FontFamily="Segoe UI Semibold" />
                     <TextBlock x:Name="descriptionTextBlock" Margin="0,5,0,0" Text="Description" TextWrapping="WrapWithOverflow" FontSize="11" Foreground="{DynamicResource settingsPage_foregroundSecondary}" Visibility="Collapsed"/>
 
                 </StackPanel>

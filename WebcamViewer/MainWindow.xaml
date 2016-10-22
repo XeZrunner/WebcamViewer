@@ -541,6 +541,73 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="webcamPage_overviewSelloutIn">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="webcamPage_Overview_IntroGrid">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="webcamPage_Overview_IntroGrid">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="webcamPage_MainContentGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.9"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="webcamPage_MainContentGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.9"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="webcamPage_MainContentGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="webcamPage_Overview_IntroGrid">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.9"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuarticEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="webcamPage_Overview_IntroGrid">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.9"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <QuarticEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="webcamPage_overviewSelloutOut">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="webcamPage_Overview_IntroGrid">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Collapsed}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="webcamPage_Overview_IntroGrid">
+                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="webcamPage_MainContentGrid">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0.9"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="webcamPage_MainContentGrid">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0.9"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="webcamPage_MainContentGrid">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="webcamPage_Overview_IntroGrid">
+                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0.9"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="webcamPage_Overview_IntroGrid">
+                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0.9"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Controls:MetroWindow.Resources>
 
     <Grid x:Name="grid" Background="Black" Margin="1">
@@ -567,7 +634,15 @@
                 </TransformGroup>
             </Grid.RenderTransform>
 
-            <Grid x:Name="webcamPage_MainContentGrid" Background="Black">
+            <Grid x:Name="webcamPage_MainContentGrid" Background="Black" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
 
                 <!-- Subpages -->
                 <Grid x:Name="webcamPage_MainContentGrid_ImageGrid" Background="Black" RenderTransformOrigin="0.5,0.5">
@@ -583,8 +658,8 @@
                     <Rectangle x:Name="webcamPage_Rectangle" Fill="Black" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top"/>
 
                     <Grid x:Name="webcamPage_ImageContainerGrid" Background="Black" Margin="0,32,0,0">
+                        <Rectangle x:Name="webcamPage_mainBackgroundRectangle" Fill="Black"/>
                         <Image x:Name="webcamPage_Image" Stretch="Uniform"/>
-
                     </Grid>
 
                     <Grid x:Name="webcamPage_debugoverlayGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,42,0,0" Visibility="Collapsed" ClipToBounds="True">
@@ -640,7 +715,7 @@
                             <TranslateTransform/>
                         </TransformGroup>
                     </Grid.RenderTransform>
-                    <Rectangle Fill="#FF222326" Height="32" VerticalAlignment="Top"/>
+                    <!-- #FF222326 --><Rectangle Fill="{DynamicResource accentcolor_dark}" Height="32" VerticalAlignment="Top"/>
 
                     <!-- Marginized content -->
                     <Grid Margin="0,32,0,0">
@@ -649,6 +724,8 @@
                             <RowDefinition Height="48"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+
+                        <Rectangle Grid.RowSpan="2" Fill="{DynamicResource accentcolor_light}" />
 
                         <Controls:MetroProgressBar x:Name="webcamPage_MainContentGrid_OverviewGrid_ProgressBar" Grid.Row="0" Foreground="White" IsIndeterminate="True" Visibility="Hidden"/>
 
@@ -779,6 +856,38 @@
                 </Grid>
 
                 <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="webcamPage_SettingsShortcutButton" VerticalAlignment="Bottom" IconText="&#xe713;" Text="{x:Static res:Resources.Settings}" Click="webcamPage_SettingsShortcutButton_Click"/>
+
+            </Grid>
+
+            <!-- Overview sellout -->
+            <Grid x:Name="webcamPage_Overview_IntroGrid" Background="#2FFFFFFF" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+
+                <Rectangle Fill="#0FFFFFFF" Height="32" VerticalAlignment="Top" />
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <Label FontSize="52" FontFamily="/Fonts/#Segoe MDL2 Assets" HorizontalAlignment="Center">&#xe80A;</Label>
+                    <Label FontSize="26">Overview</Label>
+
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,320,0,0">
+
+                    <Label FontSize="16">See all your cameras laid out in a grid view...</Label>
+
+                    <usercontrols:webcamPage_menuGrid_CameraActionButton Foreground="#5FFFFFFF" HorizontalAlignment="Center" Margin="0,15,0,0" Text="Open Overview" Width="115" Click="webcamPage_menuGrid_CameraActionButton_Click" />
+
+                    <Label Foreground="#1FFFFFFF" HorizontalAlignment="Center" Margin="0,50,0,0" MouseLeftButtonUp="Label_MouseLeftButtonUp">No thanks...</Label>
+
+                </StackPanel>
 
             </Grid>
 
@@ -1073,13 +1182,13 @@
 
         </Grid>
 
-        <Grid x:Name="splashPage" Background="{DynamicResource accentcolor_dark}" Visibility="Collapsed">
+        <Grid x:Name="splashPage" Background="{DynamicResource accentcolor_light}" Visibility="Collapsed">
 
             <Rectangle Fill="#8F000000"/>
 
             <Image x:Name="splashPage_SplashImage" Source="/Resources/icon_white.ico" Height="96" Width="96" Visibility="Visible" />
 
-            <StackPanel x:Name="splashPage_ProgressPanel" Orientation="Horizontal" Margin="0,300,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible">
+            <StackPanel x:Name="splashPage_ProgressPanel" Orientation="Horizontal" Margin="0,320,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Visible">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
                         <Setter Property="Foreground" Value="White"/>
@@ -1088,9 +1197,9 @@
                     </Style>
                 </StackPanel.Resources>
 
-                <usercontrols:ProgressRing x:Name="splashPage_ProgressRing" Width="30" Height="30" Margin="0,0,15,0"/>
+                <usercontrols:ProgressRing x:Name="splashPage_ProgressRing" Width="30" Height="30" RingFontSize="20" Visibility="Hidden" IsActive="False"/>
 
-                <TextBlock x:Name="splashPage_ProgressTextBlock" Text="Preparing Webcam Viewer..."/>
+                <TextBlock x:Name="splashPage_ProgressTextBlock" Text="Preparing Webcam Viewer..." Margin="15,0,0,0" Visibility="Collapsed"/>
 
             </StackPanel>
 

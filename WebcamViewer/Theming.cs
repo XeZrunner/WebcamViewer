@@ -18,6 +18,7 @@ namespace WebcamViewer
         public class _AccentColor
         {
             Configuration.Settings Settings = new Configuration.Settings();
+
             public enum ColorType : int
             {
                 Dark = 0,

@@ -28,6 +28,7 @@
                     </usercontrols:settingsPage_ToggleSwitchButton>
                     <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_UI_ThemeButton" IsToggleButton="False" Title="{x:Static res:Resources.Theme}" Description="{x:Static res:Resources.ThemeDescription}" Click="settingsPage_UserInterfacePage_UI_ThemeButton_Click"/>
                     <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_SettingsPage_ShowAccentColorOnTitlebarToggleButton" Title="{x:Static res:Resources.AccentColorOnTitlebar}" Description="{x:Static res:Resources.AccentColorOnTitlebarDescription}" Tag="settings_showtitlebarcolor" Click="settingsPage_ToggleButtonClick"/>
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_HomePage_ShowAccentColorOnHomePageToggleButton" Title="Show accent color behind camera image" Description="Show the accent color behind the image, if it's not stretching." Tag="home_webcamimageBackgroundMode" Click="settingsPage_ToggleButtonClick"/>
                 </StackPanel>
 
                 <!-- Language -->

@@ -64,13 +64,13 @@
             <SolidColorBrush x:Key="accentcolor_dark0" Color="#d35400"/>
             <SolidColorBrush x:Key="accentcolor_dark1" Color="#c0392b"/>
             <SolidColorBrush x:Key="accentcolor_dark2" Color="#27ae60"/>
-            <SolidColorBrush x:Key="accentcolor_dark3" Color="#2980b9"/>
+            <SolidColorBrush x:Key="accentcolor_dark3" Color="#1997DD"/>
             <SolidColorBrush x:Key="accentcolor_dark4" Color="#2c3e50"/>
 
             <SolidColorBrush x:Key="accentcolor_light0" Color="#e67e22"/>
             <SolidColorBrush x:Key="accentcolor_light1" Color="#e74c3c"/>
             <SolidColorBrush x:Key="accentcolor_light2" Color="#2ecc71"/>
-            <SolidColorBrush x:Key="accentcolor_light3" Color="#3498db"/>
+            <SolidColorBrush x:Key="accentcolor_light3" Color="#139DEA"/>
             <SolidColorBrush x:Key="accentcolor_light4" Color="#34495e"/>
             
             <!-- Home page -->
@@ -97,16 +97,16 @@
             <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary3" Color="#2F000000"/>
 
 
-            <SolidColorBrush x:Key="settingsPage_Dark_background" Color="#FF202020"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_background" Color="#FF303030"/>
             <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary" Color="#FF505050"/>
             <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary2" Color="#FF606060"/>
-            <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary3" Color="#FF252525"/>
-            <SolidColorBrush x:Key="settingsPage_Dark_backgroundWebcamItemEditor" Color="#FF252525"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary3" Color="#FF3F3F3F"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_backgroundWebcamItemEditor" Color="#FF353535"/>
 
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundText" Color="White"/>
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary" Color="LightGray"/>
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary2" Color="#FFAAAAAA"/>
-            <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary3" Color="#2FFFFFFF"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary3" Color="#2AFFFFFF"/>
 
             <!-- Message dialog -->
 

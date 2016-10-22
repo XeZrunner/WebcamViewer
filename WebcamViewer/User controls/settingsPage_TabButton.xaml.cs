@@ -82,7 +82,12 @@ namespace WebcamViewer.User_controls
                 {
                     activestateRectangle.Visibility = Visibility.Hidden;
 
-                    iconTextBlock.SetResourceReference(Control.ForegroundProperty, "settingsPage_foregroundSecondary");
+                    // set foreground to be bound to the usercontrol's Foreground
+                    Binding foreBinding = new Binding();
+                    foreBinding.Path = new PropertyPath("Foreground");
+                    foreBinding.Source = usercontrol;
+
+                    BindingOperations.SetBinding(iconTextBlock, TextBlock.ForegroundProperty, foreBinding);
                     titleTextBlock.SetResourceReference(Control.ForegroundProperty, "settingsPage_foregroundSecondary");
                     descriptionTextBlock.SetResourceReference(Control.ForegroundProperty, "settingsPage_foregroundSecondary2");
                 }

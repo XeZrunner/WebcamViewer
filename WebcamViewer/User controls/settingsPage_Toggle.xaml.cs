@@ -43,26 +43,9 @@ namespace WebcamViewer.User_controls
                     Storyboard s_ToggleIn = (Storyboard)FindResource("Toggle_In");
                     s_ToggleIn.Begin();
 
-                    // target brush
-                    Rectangle temp_rec = new Rectangle();
-                    temp_rec.SetResourceReference(Rectangle.FillProperty, "accentcolor_dark");
-
-                    // original foregroundsecondary brush
-                    Rectangle original_rec = new Rectangle();
-                    original_rec.SetResourceReference(Rectangle.FillProperty, "settingsPage_foregroundSecondary");
-
-                    // settings background brush
-                    Rectangle settingsbackground_rec = new Rectangle();
-                    settingsbackground_rec.SetResourceReference(Rectangle.FillProperty, "settingsPage_background");
-
-                    // remove Frozen™
-                    border.Background = settingsbackground_rec.Fill;
-                    border.BorderBrush = original_rec.Fill;
-                    ellipse.Fill = settingsbackground_rec.Fill;
-
                     // set!
-                    border.Background = temp_rec.Fill;
-                    border.BorderBrush = temp_rec.Fill;
+                    border.SetResourceReference(Border.BackgroundProperty, "accentcolor_dark");
+                    border.SetResourceReference(Border.BorderBrushProperty, "accentcolor_dark");
                     ellipse.Fill = Brushes.White;
 
                     // animate!
@@ -75,27 +58,10 @@ namespace WebcamViewer.User_controls
                     Storyboard s_ToggleOut = (Storyboard)FindResource("Toggle_Out");
                     s_ToggleOut.Begin();
 
-                    // target brush
-                    Rectangle temp_rec = new Rectangle();
-                    temp_rec.SetResourceReference(Rectangle.FillProperty, "settingsPage_foregroundSecondary");
-
-                    // original foregroundsecondary brush
-                    Rectangle original_rec = new Rectangle();
-                    original_rec.SetResourceReference(Rectangle.FillProperty, "accentcolor_dark");
-
-                    // settings background brush
-                    Rectangle settingsbackground_rec = new Rectangle();
-                    settingsbackground_rec.SetResourceReference(Rectangle.FillProperty, "settingsPage_background");
-
-                    // remove Frozen™
-                    border.Background = settingsbackground_rec.Fill;
-                    border.BorderBrush = original_rec.Fill;
-                    ellipse.Fill = original_rec.Fill;
-
                     // set!
-                    border.Background = settingsbackground_rec.Fill;
-                    border.BorderBrush = temp_rec.Fill;
-                    ellipse.Fill = temp_rec.Fill;
+                    border.SetResourceReference(Border.BackgroundProperty, "settingsPage_background");
+                    border.SetResourceReference(Border.BorderBrushProperty, "settingsPage_foregroundSecondary");
+                    ellipse.SetResourceReference(Ellipse.FillProperty, "settingsPage_foregroundSecondary");
 
                     // animate!
                     if (!DoAnimation)

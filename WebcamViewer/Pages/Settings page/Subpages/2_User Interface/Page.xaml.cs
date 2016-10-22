@@ -204,6 +204,17 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
                     Properties.Settings.Default.Save();
                 }
 
+                if (content.checkbox_homepageBlackOverride.IsChecked == true)
+                {
+                    Properties.Settings.Default.home_webcamimageBackgroundMode_BlackOverride = true;
+                    Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    Properties.Settings.Default.home_webcamimageBackgroundMode_BlackOverride = false;
+                    Properties.Settings.Default.Save();
+                }
+
                 mainwindow.GetUserConfiguration(true);
 
                 mainwindow.UpdateDefaultStyle();

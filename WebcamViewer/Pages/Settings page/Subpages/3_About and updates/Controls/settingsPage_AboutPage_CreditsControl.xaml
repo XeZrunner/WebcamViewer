@@ -51,51 +51,33 @@
                 <TextBlock Foreground="{DynamicResource accentcolor_light}" FontFamily="Segoe UI Semibold" Margin="10,0,0,5">THANKS TO:</TextBlock>
 
                 <TextBlock TextWrapping="WrapWithOverflow">
-                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" Margin="0">Mahapps.Metro</TextBlock> for the Window and the controls base
+                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" Margin="0" FontFamily="Segoe UI Semibold">Mahapps.Metro</TextBlock> for the Window and the controls base
                     <LineBreak/>
-                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" Margin="0">Freepik at flaticon.com</TextBlock> for the program icon
+                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" Margin="0">Freepik at flaticon.com</TextBlock> for the program icon
                     <LineBreak/>
                     <LineBreak/>
-                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" Margin="0">Josh Smith</TextBlock> for <TextBlock Foreground="{DynamicResource accentcolor_dark}" Margin="0">ListViewDragDrop</TextBlock> <!-- http://www.codeproject.com/Articles/17266/Drag-and-Drop-Items-in-a-WPF-ListView -->
+                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" Margin="0">Josh Smith</TextBlock> for <TextBlock Foreground="{DynamicResource accentcolor_dark}" Margin="0">ListViewDragDrop</TextBlock> <!-- http://www.codeproject.com/Articles/17266/Drag-and-Drop-Items-in-a-WPF-ListView -->
                     <LineBreak/>
-                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" Margin="0">Ákos Miklós</TextBlock> for the update server and for bugtesting early versions
+                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" Margin="0">Ákos Miklós</TextBlock> for the update server and for bugtesting early versions
+                    <LineBreak/>
+                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" Margin="0">jeuxjeux20</TextBlock> for <TextBlock Foreground="{DynamicResource accentcolor_dark}" Margin="0">French translations</TextBlock> and code improvements. :)
                 </TextBlock>
 
-                <TextBlock Foreground="{DynamicResource accentcolor_light}" FontFamily="Segoe UI Semibold" Margin="10,10,0,5">HISTORY</TextBlock>
+                <TextBlock Foreground="{DynamicResource accentcolor_light}" FontFamily="Segoe UI Semibold" Margin="10,10,0,5">INFO</TextBlock>
 
                 <TextBlock TextWrapping="WrapWithOverflow">
-                The original Webcam Viewer was created in June 2015, using Windows Forms and Visual Studio 2013. It was nothing special, just the common WinForms look and the ability to save the image.
-                It was called <TextBlock Foreground="{DynamicResource accentcolor_dark}" Margin="0">WViewer</TextBlock> at the time.
-                <LineBreak/>
-                <LineBreak/>
-                In September 2015, I re-created the windows, giving them a "flatter" look. It was still WinForms though, and the code was bad. (you could only set 10 cameras maximum)
-                <LineBreak/>
-                <LineBreak/>
-                Around the beginning of 2016, I checked out WPF. It didn't take long to understand how XAML works, but I didn't yet know how to go about creating custom styles or templates.
-                <LineBreak/>
-                I created an exact mirror of the "flatter" WViewer in WPF as a start, and started building upon it, adding animations, richer controls etc...
-                <LineBreak/>
-                When I felt like I want a new design, I'd scrap the previous project and start a new one.
-                <LineBreak/>
-                <LineBreak/>
-                And then, around the end of May and beginning of June, I created this project, named <TextBlock Foreground="{DynamicResource accentcolor_dark}" Margin="0">Webcam Viewer</TextBlock>.
-                <LineBreak/>
-                I originally intended to give it Material Design, but I felt like MDL2 (Microsoft Design Language 2, or the design they use in Windows 10 UWP apps) was more appropriate for this program.
-                <LineBreak/>
-                The project was undergoing fairly okay development at first, but later it became clear to me that I made it a Material-MDL2 hybrid, and the code wasn't that great in the end either.
-                <LineBreak/>
-                <LineBreak/>
-                The Material-MDL2 hybrid Webcam Viewer got one update, two if you count Update 2 Alpha.
-                <LineBreak/>
-                <LineBreak/>
-                I decided I'm not going to start a new project like I used to do with previous iterations of WViewer, but I'm going to get rid of every control in the windows, and I'm going to implement everything, from scratch, while actually keeping the code clean this time.
-                <LineBreak/>
-                And the result is, well, what you're using now: <TextBlock Foreground="{DynamicResource accentcolor_dark}" Margin="0">Webcam Viewer Update 2</TextBlock>.
-                <LineBreak/>
-                <LineBreak/>
-                I hope you like this program, it was a great experience to switch from WinForms to WPF, and I learned a lot from the previous iterations of Webcam Viewer. :)
-                
-            </TextBlock>
+                    Webcam Viewer focuses on image-generating online cameras, that output a .jpg or .png image file every x seconds.
+                    <LineBreak/>
+                    <LineBreak/>
+                    Webcam Viewer is the third iteration of webcam-viewing software I've (re)written. These rewrites were made to spend free time and practice programming/UI design.
+                    <LineBreak/>
+                    <LineBreak/>
+                    This program is open-source, any additions, enchancements, or even feedback about bugs or glitches, or just your own ideas are absolutely welcome.
+                    <LineBreak/>
+                    <LineBreak/>
+                    Webcam Viewer is in no affiliation with the websites or organizations hosting/owning the cameras that come pre-set on first launch.
+                    They're simply provided as examples.
+                </TextBlock>
 
             </StackPanel>
 

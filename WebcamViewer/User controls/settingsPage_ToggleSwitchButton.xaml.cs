@@ -44,7 +44,7 @@ namespace WebcamViewer.User_controls
             else
                 textGridMaxWidth = this.ActualWidth - 30;
 
-            textGrid.MaxWidth = textGridMaxWidth;
+            //textGrid.MaxWidth = textGridMaxWidth;
         }
 
         bool _IsToggleButton = true;

@@ -2,7 +2,6 @@
 using Microsoft.Win32;
 using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -20,9 +19,10 @@ namespace WebcamViewer
 {
     public partial class MainWindow : MetroWindow
     {
+        // init
         public MainWindow()
         {
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("hu"); // testing MUI
+            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr"); // testing MUI
             InitializeComponent();
 
             webcamPage_menuGrid_progressInStoryboard = (Storyboard)FindResource("webcamPage_menuGrid_progressIn");
@@ -53,6 +53,10 @@ namespace WebcamViewer
                 Debug.Log("App started at: " + DateTime.Now);
                 Debug.Log("--------------------");
             }
+
+            // STARTUP SPLASH
+            splashPage.Visibility = Visibility.Visible; // the splash page is always on top regardless
+            splashPage_ProgressRing.Visibility = Visibility.Visible; splashPage_ProgressRing.IsActive = true;
         }
 
         #region Classes
@@ -326,6 +330,25 @@ namespace WebcamViewer
 
         // Pages
 
+        #region Splash page
+
+        public void HideSplashPage()
+        {
+            if (splashPage.Visibility == Visibility.Visible)
+            {
+                DoubleAnimation anim = new DoubleAnimation(0, TimeSpan.FromSeconds(0.5)); // fade animation
+
+                DispatcherTimer timer = new DispatcherTimer(); // closes page
+                timer.Interval = TimeSpan.FromSeconds(0.5);
+                timer.Tick += (s, ev) => { timer.Stop(); splashPage.Visibility = Visibility.Collapsed; };
+
+                splashPage.BeginAnimation(OpacityProperty, anim);
+                timer.Start();
+            }
+        }
+
+        #endregion
+
         #region Webcam page
 
         // titlebar menu button //
@@ -351,7 +374,7 @@ namespace WebcamViewer
                 DoubleAnimation menuGrid_opacityAnimation = new DoubleAnimation(0, 1, new TimeSpan(0, 0, 0, 0, 450).Duration());
                 DoubleAnimation menuGrid_movementAnimation = new DoubleAnimation(-320, 0, new TimeSpan(0, 0, 0, 0, 450).Duration());
 
-                DoubleAnimation menuGrid_blurbehindBorder_opacityAnimation = new DoubleAnimation(0, 1, new TimeSpan(0, 0, 0, 0, 300).Duration());
+                DoubleAnimation menuGrid_blurbehindBorder_opacityAnimation = new DoubleAnimation(0, 1, new TimeSpan(0, 0, 0, 0, 0).Duration()); // 300
 
                 QuarticEase qEase = new QuarticEase(); qEase.EasingMode = EasingMode.EaseOut;
                 menuGrid_movementAnimation.EasingFunction = qEase;
@@ -374,7 +397,7 @@ namespace WebcamViewer
 
                 // Blur
 
-                DoubleAnimation menuGrid_blurbehind_radiusAnimation = new DoubleAnimation(5, new TimeSpan(0, 0, 0, 0, 300).Duration());
+                DoubleAnimation menuGrid_blurbehind_radiusAnimation = new DoubleAnimation(7, new TimeSpan(0, 0, 0, 0, 400).Duration());
 
                 DispatcherTimer timer = new DispatcherTimer();
                 timer.Interval = menuGrid_movementAnimation.Duration.TimeSpan;
@@ -398,7 +421,7 @@ namespace WebcamViewer
                 DoubleAnimation menuGrid_opacityAnimation = new DoubleAnimation(1, 0, new TimeSpan(0, 0, 0, 0, 450).Duration());
                 DoubleAnimation menuGrid_movementAnimation = new DoubleAnimation(0, -320, new TimeSpan(0, 0, 0, 0, 450).Duration());
 
-                DoubleAnimation menuGrid_blurbehindBorder_opacityAnimation = new DoubleAnimation(1, 0, new TimeSpan(0, 0, 0, 0, 300).Duration());
+                DoubleAnimation menuGrid_blurbehindBorder_opacityAnimation = new DoubleAnimation(1, 0, new TimeSpan(0, 0, 0, 0, 0).Duration()); // 300
 
                 QuarticEase qEase = new QuarticEase(); qEase.EasingMode = EasingMode.EaseOut;
                 menuGrid_movementAnimation.EasingFunction = qEase;
@@ -664,6 +687,8 @@ namespace WebcamViewer
                     webcamPage_menuGrid_cameraNameLabel.ToolTip = Properties.Settings.Default.camera_names[(Properties.Settings.Default.camera_urls.IndexOf(Url))];
                     webcamPage_menuGrid_cameraUrlLabel.ToolTip = currentImageUri.ToString();
                     #endregion
+                    // get rid of splashpage if visible
+                    HideSplashPage();
                 }
 
                 // start refreshtimer
@@ -1405,7 +1430,7 @@ namespace WebcamViewer
 
         private void Menu_NavigationButton_Click_2(object sender, RoutedEventArgs e)
         {
-            SwitchToPage(1);            
+            SwitchToPage(1);
         }
 
         #endregion
@@ -1416,10 +1441,16 @@ namespace WebcamViewer
         /// Transition to a page with it's respective animation.
         /// </summary>
         /// <param name="page">0 = Home, 1 = Settings, 2 = Customizations delivery settings</param>
+        /// <param name="noanim">Play no animation.</param>
         public void SwitchToPage(int page, bool noanim = false)
         {
             switch (page)
             {
+                default:
+                    {
+                        TextMessageDialog("Cannot switch to this page.", "The page \"" + page.ToString() + "\" doesn't exist.");
+                        break;
+                    }
                 case 0: // Webcam page
                     {
                         current_page = 0;
@@ -1506,7 +1537,7 @@ namespace WebcamViewer
                         webcamPage_menuButton.Visibility = Visibility.Collapsed;
                         backButton.Visibility = Visibility.Visible;
 
-                        SetTitlebarButtonsStyle(2);
+                        SetTitlebarButtonsStyle(0);
 
                         if (internalsettingsPage_Container_frame.Content == null) // we want to return to an existing instance once we were there already
                             internalsettingsPage_Container_frame.Navigate(new Pages.Internal_development_page.Page());
@@ -1694,6 +1725,7 @@ namespace WebcamViewer
         bool home_blurbehind;
         bool home_archiveorg;
         bool home_debugoverlay;
+        bool home_webcamimagebackgroundmode;
 
         bool settings_showtitlebarcolor;
         bool settings_experiment_UpdateUI;
@@ -1735,6 +1767,7 @@ namespace WebcamViewer
             home_blurbehind = Properties.Settings.Default.home_blurbehind;
             home_archiveorg = Properties.Settings.Default.home_archiveorg;
             home_debugoverlay = Properties.Settings.Default.home_debugoverlay;
+            home_webcamimagebackgroundmode = Properties.Settings.Default.home_webcamimageBackgroundMode;
 
             settings_showtitlebarcolor = Properties.Settings.Default.settings_showtitlebarcolor;
             settings_experiment_UpdateUI = Properties.Settings.Default.settings_experiment_UpdateUI;
@@ -1789,6 +1822,17 @@ namespace WebcamViewer
             else
                 webcamPage_debugoverlayGrid.Visibility = Visibility.Collapsed;
 
+            // home - webcam image background mode
+            if (home_webcamimagebackgroundmode == false)
+            {
+                if (!Properties.Settings.Default.home_webcamimageBackgroundMode_BlackOverride)
+                    webcamPage_mainBackgroundRectangle.Fill = Application.Current.Resources["settingsPage_background"] as SolidColorBrush;
+                else
+                    webcamPage_mainBackgroundRectangle.Fill = Brushes.Black;
+            }
+            else
+                webcamPage_mainBackgroundRectangle.Fill = Application.Current.Resources["accentcolor_dark"] as SolidColorBrush;
+
             // settings - show titlebar color
             if (settings_showtitlebarcolor)
             {
@@ -1822,7 +1866,7 @@ namespace WebcamViewer
             }
             else if (debugmode == "testing")
             {
-                
+
             }
             settingsPage_leftGrid_DebugSettingsTabButton.Description = "Debug mode: " + debugmode;
 
@@ -1840,5 +1884,25 @@ namespace WebcamViewer
         }
 
         #endregion
+
+        public void ShowSellout()
+        {
+            Storyboard sellout_s = (Storyboard)FindResource("webcamPage_overviewSelloutIn");
+            sellout_s.Begin();
+        }
+
+        private void webcamPage_menuGrid_CameraActionButton_Click(object sender, RoutedEventArgs e)
+        {
+            Storyboard sellout_s = (Storyboard)FindResource("webcamPage_overviewSelloutOut");
+            sellout_s.Begin();
+
+            webcamPage_menuGrid_overviewButton_Click(this, new RoutedEventArgs());
+        }
+
+        private void Label_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Storyboard sellout_s = (Storyboard)FindResource("webcamPage_overviewSelloutOut");
+            sellout_s.Begin();
+        }
     }
 }

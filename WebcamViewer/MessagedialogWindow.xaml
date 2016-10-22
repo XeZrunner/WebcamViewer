@@ -41,10 +41,9 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="secondButton" Grid.Column="0" Style="{DynamicResource UWPButtonStyle}" Margin="24,0,0,24" Content="Second button"/>
+                <Button x:Name="firstButton" Grid.Column="0" Style="{DynamicResource UWPButtonStyle}" Margin="24,0,0,24" Content="First button"/>
 
-                <Button x:Name="firstButton" Grid.Column="1" Style="{DynamicResource UWPButtonStyle}" Margin="4,0,24,24" Content="First button"/>
-
+                <Button x:Name="secondButton" Grid.Column="1" Style="{DynamicResource UWPButtonStyle}" Margin="4,0,24,24" Content="Second button"/>
             </Grid>
 
         </Grid>

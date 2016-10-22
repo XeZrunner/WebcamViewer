@@ -101,8 +101,8 @@ namespace WebcamViewer
             }
 
             // Button text
-            secondButton.Content = FirstButtonContent;
-            firstButton.Content = SecondButtonContent;
+            secondButton.Content = SecondButtonContent;
+            firstButton.Content = FirstButtonContent;
 
 
             // Button visibility
@@ -117,7 +117,11 @@ namespace WebcamViewer
             if (SecondButtonContent != "")
                 secondButton.Visibility = Visibility.Visible;
             else
+            {
                 secondButton.Visibility = Visibility.Collapsed;
+                Grid.SetColumn(firstButton, 1);
+                firstButton.Margin = new Thickness(4, 0, 24, 24);
+            }
 
             // Button focus
             if (firstButton.Visibility == Visibility.Visible & secondButton.Visibility == Visibility.Visible)
@@ -129,12 +133,12 @@ namespace WebcamViewer
 
             // Button click events
             if (FirstButtonClickEvent == null)
-                firstButton.Click += (s, ev) => { this.Close(); };
+                secondButton.Click += (s, ev) => { this.Close(); };
             else
-                firstButton.Click += FirstButtonClickEvent;
+                secondButton.Click += FirstButtonClickEvent;
 
             if (SecondButtonClickEvent != null)
-                secondButton.Click += SecondButtonClickEvent;
+                firstButton.Click += SecondButtonClickEvent;
         }
 
     }

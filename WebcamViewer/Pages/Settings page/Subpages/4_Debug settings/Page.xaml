@@ -28,6 +28,13 @@
                     <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Home_AnimationSpeedButton" IsToggleButton="False" Title="Transitions animation speed" Description="The speed transitions play at" Click="settingsPage_DebugMenuPage_Home_AnimationSpeedButton_Click"/>
                 </StackPanel>
 
+                <!-- Pages -->
+                <StackPanel x:Name="settingsPage_DebugMenuPage_PagesSection" Margin="0,5,0,0">
+                    <Label x:Name="settingsPage_DebugMenuPage_Pages_PagesSectionLabel" Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">PAGES</Label>
+
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Pages_SwitchToPageDebug" IsToggleButton="False" Title="SwitchToPage Debug" Description="Call the SwitchToPage() function with set parameters" Click="settingsPage_DebugMenuPage_Pages_SwitchToPageDebug_Click"/>
+                </StackPanel>
+
                 <!-- Experiments -->
                 <StackPanel x:Name="settingsPage_DebugMenuPage_ExperimentsSection" Margin="0,5,0,0">
                     <Label x:Name="settingsPage_DebugMenuPage_Experiments_ExperimentsSectionLabel" Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">EXPERIMENTS</Label>
@@ -54,6 +61,17 @@
                     <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">INTERNAL</Label>
 
                     <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Internal_InternalSettingsButton" IsToggleButton="False" Title="Internal settings" Click="settingsPage_DebugMenuPage_Internal_InternalSettingsButton_Click"/>
+                </StackPanel>
+
+                <!-- Experimental internal tests -->
+                <StackPanel x:Name="settingsPage_DebugMenuPage_ExpInternalSection" Margin="0,5,0,0">
+                    <StackPanel  HorizontalAlignment="Left" Margin="10,0,0,0">
+                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold">Experimental internal tests</Label>
+                        <Label Foreground="{DynamicResource settingsPage_foregroundText}" FontFamily="Segoe UI Semibold">These experiments are temporary, usually consist of UI experiments.</Label>
+                        <Label Foreground="{DynamicResource settingsPage_foregroundText}" FontFamily="Segoe UI Semibold">HOME PAGE EXPERIMENTS</Label>
+                    </StackPanel>
+
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_ExpInternal_ShowOverviewSelloutButton" IsToggleButton="False" Title="Show Overview Sellout" Description="Experiment" Click="settingsPage_DebugMenuPage_ExpInternal_ShowOverviewSelloutButton_Click"/>
                 </StackPanel>
 
             </StackPanel>

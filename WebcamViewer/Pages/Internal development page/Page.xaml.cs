@@ -23,6 +23,26 @@ namespace WebcamViewer.Pages.Internal_development_page
             InitializeComponent();
         }
 
+        private void page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (this.IsVisible == true)
+            {
+                if (Properties.Settings.Default.settings_showtitlebarcolor)
+                {
+                    overlayRectangle.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    overlayRectangle.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
         #region Dialogs
 
         /// <summary>
