@@ -37,7 +37,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
 
                     foreach (UIElement btn in panel.Children)
                     {
-                        if (btn.GetType() == (typeof(settingsPage_ToggleSwitchButton)))
+                        if (btn is settingsPage_ToggleSwitchButton)
                         {
                             settingsPage_ToggleSwitchButton button = btn as settingsPage_ToggleSwitchButton;
                             if (button.Tag != null & (string)button.Tag != "")
@@ -183,6 +183,8 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
                         break;
                     }
             }
+            if (Properties.Settings.Default.home_webcamimageBackgroundMode_BlackOverride)
+                content.checkbox_homepageBlackOverride.IsChecked = true;
             #endregion
 
             dlg.Content = content;
@@ -216,8 +218,6 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
                 }
 
                 mainwindow.GetUserConfiguration(true);
-
-                mainwindow.UpdateDefaultStyle();
             }
         }
 
@@ -230,7 +230,11 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
 
             Controls.settingsPage_UserInterfacePage_LanguageControl content = new Controls.settingsPage_UserInterfacePage_LanguageControl();
             #region control code
-            // check the one that's used
+            foreach (RadioButton btn in content.mainStackPanel.Children)
+            {
+                if ((string)btn.Tag == Properties.Settings.Default.app_language)
+                    btn.IsChecked = true;
+            }
             #endregion
 
             dlg.Content = content;
@@ -241,10 +245,42 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
             if (dlg.ShowDialogWithResult() == 1)
             {
                 // change and save
+                string chosenlanguage = "default";
+                foreach (RadioButton btn in content.mainStackPanel.Children)
+                {
+                    if (btn.IsChecked == true)
+                        chosenlanguage = btn.Tag as string;
+                }
+
+                Properties.Settings.Default.app_language = chosenlanguage;
+                Properties.Settings.Default.Save();
+
+                // restart popup
+                Popups.MessageDialog dlg2 = new Popups.MessageDialog()
+                {
+                    Title = "Restart required to change language",
+                    FirstButtonContent = "Restart later",
+                    SecondButtonContent = "Restart now"
+                };
+
+                StackPanel panel = new StackPanel();
+                Label lbl0 = new Label { Content = "The app needs to be restarted in order to change the language. Would you like to restart now?" };
+                CheckBox box0 = new CheckBox { Content = "Bring me back to the same camera", Margin = new Thickness(0, 5, 0, 5), IsChecked = true };
+
+                panel.Children.Add(lbl0);
+                panel.Children.Add(box0);
+
+                dlg2.Content = panel;
+
+                if (dlg2.ShowDialogWithResult() == 1)
+                {
+                    // bring back to same camera
+                    System.Windows.Forms.Application.Restart();
+                    Application.Current.Shutdown();
+                    return;
+                }
 
                 mainwindow.GetUserConfiguration(true);
-
-                mainwindow.UpdateDefaultStyle();
             }
         }
 

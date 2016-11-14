@@ -13,15 +13,14 @@
         <ScrollViewer x:Name="scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <StackPanel x:Name="settingsPage_HomeSettingsPage_MainStackPanel" Margin="10" MinWidth="250">
 
-                <!-- <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">HOME</Label> -->
+                <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">Camera actions</Label>
 
-                <!-- Home -->
-                <StackPanel x:Name="mainsection" Margin="0,5,0,0">
-                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_MenuBlurBehindToggleButton" Title="{x:Static res:Resources.MenuBlurBehind}" Description="{x:Static res:Resources.MenuBlurBehind_Description}" Tag="home_blurbehind" Click="settingsPage_ToggleButtonClick"/>
-                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_ArchiveOrgIntegrationToggleButton" Title="{x:Static res:Resources.ArchiveOrgIntegration}" Description="{x:Static res:Resources.ArchiveOrgIntegration_Description}" Tag="home_archiveorg" Click="settingsPage_ToggleButtonClick"/>
-                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_AutorefreshToggleButton" Title="{x:Static res:Resources.Autorefresh}" Description="{x:Static res:Resources.Autorefresh_Description}" Tag="home_refreshenabled" Click="settingsPage_ToggleButtonClick"/>
-                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_ImageSizingButton" Title="{x:Static res:Resources.ImageSizing}" Description="{x:Static res:Resources.ImageSizingDescription}" IsToggleButton="False"/>
-                </StackPanel>
+                <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_ArchiveOrgIntegrationToggleButton" Title="{x:Static res:Resources.ArchiveOrgIntegration}" Description="{x:Static res:Resources.ArchiveOrgIntegration_Description}" Tag="home_archiveorg" Click="settingsPage_ToggleButtonClick"/>
+                <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_AutorefreshToggleButton" Title="{x:Static res:Resources.Autorefresh}" Description="{x:Static res:Resources.Autorefresh_Description}" Tag="home_refreshenabled" Click="settingsPage_ToggleButtonClick"/>
+
+                <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">Camera image</Label>
+
+                <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_ImageSizingButton" Title="{x:Static res:Resources.ImageSizing}" Description="{x:Static res:Resources.ImageSizingDescription}" IsToggleButton="False" Click="settingsPage_UserInterfacePage_Home_ImageSizingButton_Click"/>
 
             </StackPanel>
         </ScrollViewer>

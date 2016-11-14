@@ -27,11 +27,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._1_Home
 
         private void page_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach (settingsPage_ToggleSwitchButton btn in mainsection.Children)
+            foreach (FrameworkElement btn in settingsPage_HomeSettingsPage_MainStackPanel.Children)
             {
-                if (btn.Tag != null & (string)btn.Tag != "")
+                if (btn.Tag != null & (string)btn.Tag != "" & btn.GetType() == (typeof(settingsPage_ToggleSwitchButton)))
                 {
-                    btn.IsActive = (bool)Properties.Settings.Default[(string)btn.Tag];
+                    settingsPage_ToggleSwitchButton button = btn as settingsPage_ToggleSwitchButton;
+                    button.IsActive = (bool)Properties.Settings.Default[(string)button.Tag];
                 }
             }
         }
@@ -100,6 +101,28 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._1_Home
                     TextMessageDialog_FullWidth("Invalid property", "The setting " + sBtn.Tag.ToString() + " (probably) doesn't exist.\nCheck the button's Tag.\n\nExact error message : " + ex.Message);
                 else
                     TextMessageDialog_FullWidth("No Tag on the button", "The button " + sBtn.Name + "does not contain a Tag. (the button's Tag equals null)");
+            }
+        }
+
+        private void settingsPage_UserInterfacePage_Home_ImageSizingButton_Click(object sender, RoutedEventArgs e)
+        {
+            Popups.MessageDialog dlg = new Popups.MessageDialog();
+            dlg.Title = "";
+            dlg.Content_DisableMargin = true;
+            dlg.FirstButtonContent = "Go back";
+            dlg.SecondButtonContent = "Accept";
+
+            var dialogcontrol = new Controls.settingsPage_HomePage_ImageSizingDialogControl();
+
+            dlg.Content = dialogcontrol;
+
+            if (dlg.ShowDialogWithResult() == 1)
+            {
+                // save and close
+
+                Properties.Settings.Default.Save();
+
+                mainwindow.GetUserConfiguration(true);
             }
         }
     }

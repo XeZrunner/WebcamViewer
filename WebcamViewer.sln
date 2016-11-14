@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebcamViewer", "WebcamViewer\WebcamViewer.csproj", "{F746707B-E641-422F-969A-212551330B3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XeZrunner.UI", "..\XeZrunner\XeZrunner.UI\XeZrunner.UI\XeZrunner.UI.csproj", "{D04773CB-BFB2-4DC9-AE70-DA99C2B38DA5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F746707B-E641-422F-969A-212551330B3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F746707B-E641-422F-969A-212551330B3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F746707B-E641-422F-969A-212551330B3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D04773CB-BFB2-4DC9-AE70-DA99C2B38DA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D04773CB-BFB2-4DC9-AE70-DA99C2B38DA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D04773CB-BFB2-4DC9-AE70-DA99C2B38DA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D04773CB-BFB2-4DC9-AE70-DA99C2B38DA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

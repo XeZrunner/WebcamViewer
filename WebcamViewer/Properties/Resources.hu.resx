@@ -154,7 +154,7 @@
     <value>Kamerák</value>
   </data>
   <data name="settingsPage_Home" xml:space="preserve">
-    <value>Fő oldal</value>
+    <value>Kamerabeállítások</value>
   </data>
   <data name="settingsPage_UserInterface" xml:space="preserve">
     <value>Megjelenés</value>

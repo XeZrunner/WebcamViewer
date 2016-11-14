@@ -23,9 +23,9 @@ namespace WebcamViewer.User_controls
         public webcamPage_menuGrid_CameraButton()
         {
             InitializeComponent();
-
-            s = (Storyboard)FindResource("longMouseDownAnimation");
         }
+
+        private bool _IsActive = false;
 
         public event RoutedEventHandler Click;
 
@@ -36,102 +36,40 @@ namespace WebcamViewer.User_controls
             set { textTextBlock.Text = value; }
         }
 
-        [Description("Ripple brush"), Category("Appearance")]
-        public Brush RippleBrush
+        [Description("Active state of the button"), Category("Appearance")]
+        public bool IsActive
         {
-            get { return ellipse.Fill; }
-            set { ellipse.Fill = value; }
-        }
-
-        DispatcherTimer LongDowntimer = new DispatcherTimer();
-
-        Storyboard s;
-
-        double translateX;
-        double translateY;
-
-        bool doneDownAnim;
-
-        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-            LongDowntimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
-            LongDowntimer.Tick += (s1, ev) =>
+            get { return _IsActive; }
+            set
             {
-                LongDowntimer.Stop();
+                _IsActive = value;
 
-                translateX = e.MouseDevice.GetPosition(button).X - 160;
-                translateY = e.MouseDevice.GetPosition(button).Y - 15;
+                if (_IsActive == true)
+                {
+                    activestateRectangle.Visibility = Visibility.Visible;
 
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = translateX;
-                myTranslate.Y = translateY;
+                    textTextBlock.SetResourceReference(Control.ForegroundProperty, "accentcolor_dark");
 
-                ellipse.RenderTransform = myTranslate;
+                }
+                else
+                {
+                    activestateRectangle.Visibility = Visibility.Hidden;
 
-                s.SpeedRatio = 0.5;
-                s.Begin();
+                    // set foreground to be bound to the usercontrol's Foreground
+                    Binding foreBinding = new Binding();
+                    foreBinding.Path = new PropertyPath("Foreground");
+                    foreBinding.Source = usercontrol;
 
-                doneDownAnim = true;
-            };
-            LongDowntimer.Start();
-        }
-
-        private void button_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            LongDowntimer.Stop();
-
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-            timer.Tick += (s1, ev) =>
-            {
-                timer.Stop();
-                if (doneDownAnim == true)
-                    s.SetSpeedRatio(3);
-                doneDownAnim = false;
-            };
-            timer.Start();
+                    BindingOperations.SetBinding(textTextBlock, TextBlock.ForegroundProperty, foreBinding);
+                }
+            }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (!doneDownAnim)
-            {
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = Mouse.GetPosition(button).X - 160;
-                myTranslate.Y = Mouse.GetPosition(button).Y - 15;
-
-                ellipse.RenderTransform = myTranslate;
-
-                s.SpeedRatio = 3;
-                s.Begin();
-            }
-
             //bubble the event up to the parent
             if (this.Click != null)
                 this.Click(this, e);
-
         }
-
-        private void button_PreviewMouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                translateX = e.MouseDevice.GetPosition(button).X - 160;
-                translateY = e.MouseDevice.GetPosition(button).Y - 15;
-
-                if ((translateX >= 160 || translateX <= -160) || (translateY >= 15 || translateY <= -15))
-                {
-                    s.SetSpeedRatio(4); return;
-                }
-
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = translateX;
-                myTranslate.Y = translateY;
-
-                ellipse.RenderTransform = myTranslate;
-            }
-        }
-
     }
 }

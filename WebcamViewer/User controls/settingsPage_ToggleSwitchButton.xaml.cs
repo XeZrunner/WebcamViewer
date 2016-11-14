@@ -23,8 +23,6 @@ namespace WebcamViewer.User_controls
         public settingsPage_ToggleSwitchButton()
         {
             InitializeComponent();
-
-            s = (Storyboard)FindResource("longMouseDownAnimation");
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -49,7 +47,7 @@ namespace WebcamViewer.User_controls
 
         bool _IsToggleButton = true;
 
-        int? _Theme = null;
+        int _Theme;
 
         public event RoutedEventHandler Click;
 
@@ -131,7 +129,7 @@ namespace WebcamViewer.User_controls
         [Description("Force the theme of the button"), Category("Appearance")]
         public int Theme
         {
-            get { return _Theme.Value; }
+            get { return _Theme; }
             set
             {
                 _Theme = value;
@@ -141,90 +139,18 @@ namespace WebcamViewer.User_controls
                     // light theme
                     titleTextBlock.Foreground = Application.Current.Resources["settingsPage_Light_foregroundText"] as SolidColorBrush;
                     descriptionTextBlock.Foreground = Application.Current.Resources["settingsPage_Light_foregroundSecondary2"] as SolidColorBrush;
-                    RippleBrush = Application.Current.Resources["settingsPage_Light_backgroundSecondary2"] as SolidColorBrush;
                 }
-                else
+                else if (_Theme == 1)
                 {
                     // dark theme
                     titleTextBlock.Foreground = Application.Current.Resources["settingsPage_Dark_foregroundText"] as SolidColorBrush;
                     descriptionTextBlock.Foreground = Application.Current.Resources["settingsPage_Dark_foregroundSecondary2"] as SolidColorBrush;
-                    RippleBrush = Application.Current.Resources["settingsPage_Dark_backgroundSecondary2"] as SolidColorBrush;
                 }
             }
         }
 
-
-
-        [Description("Ripple brush"), Category("Appearance")]
-        public Brush RippleBrush
-        {
-            get { return ellipse.Fill; }
-            set { ellipse.Fill = value; }
-        }
-
-        DispatcherTimer LongDowntimer = new DispatcherTimer();
-
-        Storyboard s;
-
-        double translateX;
-        double translateY;
-
-        bool doneDownAnim;
-
-        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            LongDowntimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
-            LongDowntimer.Tick += (s1, ev) =>
-            {
-                LongDowntimer.Stop();
-
-                translateX = e.MouseDevice.GetPosition(this).X - this.ActualWidth / 2;
-                translateY = e.MouseDevice.GetPosition(this).Y - this.ActualHeight / 2;
-
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = translateX;
-                myTranslate.Y = translateY;
-
-                ellipse.RenderTransform = myTranslate;
-
-                s.SpeedRatio = 0.5;
-                s.Begin();
-
-                doneDownAnim = true;
-            };
-            LongDowntimer.Start();
-        }
-
-        private void button_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            LongDowntimer.Stop();
-
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-            timer.Tick += (s1, ev) =>
-            {
-                timer.Stop();
-                if (doneDownAnim == true)
-                    s.SetSpeedRatio(3);
-                doneDownAnim = false;
-            };
-            timer.Start();
-        }
-
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (!doneDownAnim)
-            {
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = Mouse.GetPosition(this).X - this.ActualWidth / 2;
-                myTranslate.Y = Mouse.GetPosition(this).Y - this.ActualHeight / 2;
-
-                ellipse.RenderTransform = myTranslate;
-
-                s.SpeedRatio = 3;
-                s.Begin();
-            }
-
             if (_IsToggleButton)
             {
                 toggle.DoAnimation = true;
@@ -235,26 +161,6 @@ namespace WebcamViewer.User_controls
             if (this.Click != null)
                 this.Click(this, e);
 
-        }
-
-        private void button_PreviewMouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                translateX = e.MouseDevice.GetPosition(this).X - this.ActualWidth / 2;
-                translateY = e.MouseDevice.GetPosition(this).Y - this.ActualHeight / 2;
-
-                if ((translateX >= this.ActualWidth / 2 || translateX <= -this.ActualWidth / 2) || (translateY >= this.ActualHeight / 2 || translateY <= -this.ActualHeight / 2))
-                {
-                    s.SetSpeedRatio(4); return;
-                }
-
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = translateX;
-                myTranslate.Y = translateY;
-
-                ellipse.RenderTransform = myTranslate;
-            }
         }
     }
 }

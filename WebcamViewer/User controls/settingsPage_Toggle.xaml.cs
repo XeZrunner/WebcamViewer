@@ -23,8 +23,6 @@ namespace WebcamViewer.User_controls
         public settingsPage_Toggle()
         {
             InitializeComponent();
-
-            s = (Storyboard)FindResource("longMouseDownAnimation");
         }
 
         bool _IsActive;
@@ -78,20 +76,6 @@ namespace WebcamViewer.User_controls
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (!doneDownAnim)
-            {
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = Mouse.GetPosition(this).X - this.ActualWidth / 2;
-                myTranslate.Y = Mouse.GetPosition(this).Y - this.ActualHeight / 2;
-
-                ellipse_Ripple.RenderTransform = myTranslate;
-
-                s.SpeedRatio = 3;
-                s.Begin();
-
-                //contentGrid_DownRectangle.Visibility = Visibility.Visible;
-            }
-
             DoAnimation = true;
             if ((string)this.Tag != "ToggleSwitchButton")
             {
@@ -101,96 +85,7 @@ namespace WebcamViewer.User_controls
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            grid.Width = this.ActualWidth * 2;
-            grid.Height = this.ActualHeight * 2;
-
-            FrameworkElement _parent = Parent as FrameworkElement;
-            this.MaxWidth = _parent.ActualWidth;
-
-            //grid.Margin = new Thickness(-this.ActualWidth / 2, -this.ActualHeight / 2, -this.ActualWidth / 2, -this.ActualHeight / 2);
-
-            var s_WidthHeight = (EasingDoubleKeyFrame)this.Resources["s_WidthHeightKeyFrame"];
-            var s_Margin = (EasingThicknessKeyFrame)this.Resources["s_MarginKeyFrame"];
-
-            s_WidthHeight.Value = this.ActualWidth * 2;
-            s_Margin.Value = new Thickness(-this.ActualWidth);
-        }
-
-        DispatcherTimer LongDowntimer = new DispatcherTimer();
-
-        Storyboard s;
-
-        double translateX;
-        double translateY;
-
-        bool doneDownAnim;
-
-        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            LongDowntimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
-            LongDowntimer.Tick += (s1, ev) =>
-            {
-                LongDowntimer.Stop();
-
-                translateX = e.MouseDevice.GetPosition(this).X - this.ActualWidth / 2;
-                translateY = e.MouseDevice.GetPosition(this).Y - this.ActualHeight / 2;
-
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = translateX;
-                myTranslate.Y = translateY;
-
-                ellipse_Ripple.RenderTransform = myTranslate;
-
-                s.SpeedRatio = 0.5;
-                s.Begin();
-
-                doneDownAnim = true;
-            };
-            LongDowntimer.Start();
-
-            //contentGrid_DownRectangle.Visibility = Visibility.Visible;
-        }
-
-        private void button_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            LongDowntimer.Stop();
-
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-            timer.Tick += (s1, ev) =>
-            {
-                timer.Stop();
-                if (doneDownAnim == true)
-                    s.SetSpeedRatio(3);
-                doneDownAnim = false;
-
-                //contentGrid_DownRectangle.Visibility = Visibility.Hidden;
-            };
-            timer.Start();
-        }
-
-        private void button_PreviewMouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                translateX = e.MouseDevice.GetPosition(this).X - this.ActualWidth / 2;
-                translateY = e.MouseDevice.GetPosition(this).Y - this.ActualHeight / 2;
-
-                if ((translateX >= this.ActualWidth / 2 || translateX <= -this.ActualWidth / 2) || (translateY >= this.ActualHeight / 2 || translateY <= -this.ActualHeight / 2))
-                {
-                    s.SetSpeedRatio(4);
-
-                    //contentGrid_DownRectangle.Visibility = Visibility.Hidden;
-
-                    return;
-                }
-
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = translateX;
-                myTranslate.Y = translateY;
-
-                ellipse_Ripple.RenderTransform = myTranslate;
-            }
+            
         }
     }
 }

@@ -127,4 +127,13 @@ Current theme: </value>
     <value>The language to use throughout the user interface.
 Current language: </value>
   </data>
+  <data name="MenuBlurBehind" xml:space="preserve">
+    <value>Menu blur behind</value>
+  </data>
+  <data name="MenuBlurBehind_Description" xml:space="preserve">
+    <value>Blur the background of the menu</value>
+  </data>
+  <data name="Effects" xml:space="preserve">
+    <value>Effects</value>
+  </data>
 </root>

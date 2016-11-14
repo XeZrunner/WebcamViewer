@@ -147,4 +147,13 @@ Current theme: </value>
     <value>A nyelv, ami a felhasználói felületen keresztül használva van...
 Jelenlegi nyelv: </value>
   </data>
+  <data name="MenuBlurBehind" xml:space="preserve">
+    <value>Menü háttér elmosása</value>
+  </data>
+  <data name="MenuBlurBehind_Description" xml:space="preserve">
+    <value>A menü hátter elmosása</value>
+  </data>
+  <data name="Effects" xml:space="preserve">
+    <value>Effektusok</value>
+  </data>
 </root>

@@ -11,7 +11,7 @@
     <Grid>
 
         <!-- progress panel -->
-        <StackPanel x:Name="progressPanel" Orientation="Horizontal" Visibility="Visible">
+        <StackPanel x:Name="progressPanel" Orientation="Horizontal" Visibility="Collapsed">
 
             <usercontrols:ProgressRing x:Name="progressPanel_ProgressRing" Foreground="{DynamicResource accentcolor_dark}" Width="25" Height="25" RingFontSize="18" IsActive="True" />
 
@@ -19,6 +19,7 @@
 
         </StackPanel>
 
+        <!-- Update found panel -->
         <StackPanel x:Name="updateoverviewPanel" Visibility="Collapsed">
 
             <TextBlock x:Name="updateoverviewPanel_UpdateNameLabel" Foreground="{DynamicResource accentcolor_dark}" FontSize="16">Webcam Viewer Update x (6.9.0)</TextBlock>
@@ -28,6 +29,18 @@
             <usercontrols:settingsPage_NormalButton x:Name="settingsPage_AboutPage_UpdatesGrid_updateoverviewPanel_InstallUpdateButton" Text="{x:Static res:Resources.Updates_InstallUpdate}" HorizontalAlignment="Left" Margin="0,15,0,0" />
 
         </StackPanel>
+        
+        <!-- Debug panel -->
+        <StackPanel x:Name="debugPanel" Visibility="Visible">
+            <Label FontSize="14">Updates Debug</Label>
+            <usercontrols:settingsPage_NormalButton x:Name="debug_TestProgressButton" Text="Test progress" Click="debug_TestProgressButton_Click" />
+            <usercontrols:settingsPage_NormalButton x:Name="debug_TestUpdateOverviewButton" Text="Test update overview" Click="debug_TestUpdateOverviewButton_Click" />
+            <usercontrols:settingsPage_NormalButton x:Name="debug_TestInstallConfirmDialogButton" Text="Show install confirmation dialog" Click="debug_TestInstallConfirmDialogButton_Click" />
+            <usercontrols:settingsPage_NormalButton x:Name="debug_DebugInfoButton" Text="Debug info" Click="debug_DebugInfoButton_Click"/>
+        </StackPanel>
+        
+        <!-- debug panel button -->
+        <Label x:Name="debugLabel" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,-20,0" Visibility="Collapsed" MouseLeftButtonUp="Label_MouseLeftButtonUp">#</Label>
 
     </Grid>
     

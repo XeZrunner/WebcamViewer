@@ -97,12 +97,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MenuBlurBehind" xml:space="preserve">
-    <value>Menu blur behind</value>
-  </data>
-  <data name="MenuBlurBehind_Description" xml:space="preserve">
-    <value>Blur the background of the menu</value>
-  </data>
   <data name="ArchiveOrgIntegration" xml:space="preserve">
     <value>archive.org integration</value>
   </data>

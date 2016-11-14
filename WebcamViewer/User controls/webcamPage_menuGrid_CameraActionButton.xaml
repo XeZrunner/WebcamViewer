@@ -5,8 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
+             xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
              mc:Ignorable="d" Foreground="{DynamicResource webcamPage_Foreground}"
-             MinWidth="10" MaxWidth="200" Height="32" ClipToBounds="True" SizeChanged="usercontrol_SizeChanged">
+             MinWidth="10" Height="32" d:DesignWidth="300"  ClipToBounds="True" SizeChanged="usercontrol_SizeChanged">
     <UserControl.Resources>
         <Style x:Key="webcamPage_menuGrid_CameraActionButtonStyle" TargetType="{x:Type Button}">
 
@@ -86,21 +87,25 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Button x:Name="button" Style="{DynamicResource webcamPage_menuGrid_CameraActionButtonStyle}" PreviewMouseDown="Button_MouseDown" PreviewMouseUp="button_PreviewMouseUp" Click="button_Click" PreviewMouseMove="button_PreviewMouseMove">
+    <Button x:Name="button" Style="{DynamicResource webcamPage_menuGrid_CameraActionButtonStyle}" Click="button_Click">
 
         <Grid>
 
+            <!-- 
             <Rectangle x:Name="contentGrid_DownRectangle" Fill="{DynamicResource webcamPage_menuBackgroundSecondary}" Visibility="Hidden"/>
 
             <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Height="32" Width="0" Margin="-320,-16">
                 <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_foregroundSecondary3}" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
             </Grid>
+            <-->
 
             <Grid>
 
-                <TextBlock x:Name="textTextBlock" Foreground="{Binding ElementName=button, Path=Foreground}" VerticalAlignment="Center" Margin="10,5" Text="ACTION" TextTrimming="CharacterEllipsis"/>
+                <TextBlock x:Name="textTextBlock" Foreground="{Binding ElementName=button, Path=Foreground}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,5" TextTrimming="CharacterEllipsis" Text="ACTION"/>
 
             </Grid>
+
+            <controleffects:RippleDrawable Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource webcamPage_menuBackgroundSecondary}" />
 
         </Grid>
 

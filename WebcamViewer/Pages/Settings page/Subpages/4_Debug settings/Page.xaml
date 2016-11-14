@@ -6,11 +6,11 @@
              xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings"
              xmlns:res="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings.res"
              xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
-             mc:Ignorable="d" d:DesignHeight="572" Background="{DynamicResource settingsPage_background}" Loaded="page_Loaded" SizeChanged="page_SizeChanged">
+             mc:Ignorable="d" d:DesignWidth="500"  Background="{DynamicResource settingsPage_background}" Loaded="page_Loaded" SizeChanged="page_SizeChanged">
     <Grid>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <StackPanel x:Name="sectionsPanel" Margin="10">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel x:Name="sectionsPanel" Margin="10" MinWidth="250">
 
                 <!-- Home -->
                 <StackPanel x:Name="settingsPage_DebugMenuPage_HomeSection" Margin="0,0,0,0">
@@ -33,6 +33,7 @@
                     <Label x:Name="settingsPage_DebugMenuPage_Pages_PagesSectionLabel" Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">PAGES</Label>
 
                     <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Pages_SwitchToPageDebug" IsToggleButton="False" Title="SwitchToPage Debug" Description="Call the SwitchToPage() function with set parameters" Click="settingsPage_DebugMenuPage_Pages_SwitchToPageDebug_Click"/>
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Pages_SplashDebug" IsToggleButton="False" Title="Splash debug" Description="Shows the splash page for 10 seconds." Click="settingsPage_DebugMenuPage_Pages_SplashDebug_Click"/>
                 </StackPanel>
 
                 <!-- Experiments -->
@@ -67,11 +68,20 @@
                 <StackPanel x:Name="settingsPage_DebugMenuPage_ExpInternalSection" Margin="0,5,0,0">
                     <StackPanel  HorizontalAlignment="Left" Margin="10,0,0,0">
                         <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold">Experimental internal tests</Label>
-                        <Label Foreground="{DynamicResource settingsPage_foregroundText}" FontFamily="Segoe UI Semibold">These experiments are temporary, usually consist of UI experiments.</Label>
-                        <Label Foreground="{DynamicResource settingsPage_foregroundText}" FontFamily="Segoe UI Semibold">HOME PAGE EXPERIMENTS</Label>
+                        <Label Foreground="{DynamicResource settingsPage_foregroundSecondary2}" FontFamily="Segoe UI Semibold">These experiments are temporary, usually consist of UI experiments.</Label>
+                        <Label Foreground="{DynamicResource settingsPage_foregroundSecondary2}" FontFamily="Segoe UI Semibold">HOME PAGE EXPERIMENTS</Label>
                     </StackPanel>
 
                     <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_ExpInternal_ShowOverviewSelloutButton" IsToggleButton="False" Title="Show Overview Sellout" Description="Experiment" Click="settingsPage_DebugMenuPage_ExpInternal_ShowOverviewSelloutButton_Click"/>
+                </StackPanel>
+
+                <!-- First run debug -->
+                <StackPanel x:Name="settingsPage_DebugMenuPage_FirstRunSection" Margin="0,5,0,0">
+                    <StackPanel  HorizontalAlignment="Left" Margin="10,0,0,0">
+                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold">First run UX Debug</Label>
+                    </StackPanel>
+
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_FirstRunSection_StartFirstRunUX" IsToggleButton="False" Title="Start First Run UX" Description="" Click="settingsPage_DebugMenuPage_FirstRunSection_StartFirstRunUX_Click"/>
                 </StackPanel>
 
             </StackPanel>

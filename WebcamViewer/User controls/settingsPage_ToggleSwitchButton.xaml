@@ -6,8 +6,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
+             xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
              mc:Ignorable="d" SizeChanged="UserControl_SizeChanged"
-             MaxHeight="75" MinWidth="250" Height="50" ClipToBounds="True">
+             MaxHeight="75" MinWidth="250" Height="60" ClipToBounds="True">
     <UserControl.Resources>
 
         <EasingDoubleKeyFrame x:Key="s_WidthHeightKeyFrame" KeyTime="0:0:2" Value="500"/>
@@ -78,17 +79,11 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" Background="{Binding ElementName=usercontrol, Path=Background}" PreviewMouseDown="Button_MouseDown" PreviewMouseUp="button_PreviewMouseUp" Click="button_Click" PreviewMouseMove="button_PreviewMouseMove">
+    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" Background="{Binding ElementName=usercontrol, Path=Background}" Click="button_Click">
 
-        <Grid>
+        <Grid ClipToBounds="True">
 
-            <Rectangle x:Name="contentGrid_DownRectangle" Fill="{DynamicResource settingsPage_foregroundSecondary3}" Visibility="Hidden"/>
-
-            <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Margin="-250,-250">
-                <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_backgroundSecondary2}" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
-            </Grid>
-
-            <Grid VerticalAlignment="Center">
+            <Grid VerticalAlignment="Stretch">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition x:Name="contentGrid_columnDefinition0" />
@@ -111,6 +106,8 @@
                 </Grid>
 
                 <usercontrols:settingsPage_Toggle x:Name="toggle" Tag="ToggleSwitchButton" Grid.Column="1" />
+
+                <controleffects:RippleDrawable Grid.ColumnSpan="2" Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}" />
 
             </Grid>
 

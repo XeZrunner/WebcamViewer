@@ -23,8 +23,6 @@ namespace WebcamViewer.User_controls
         public webcamPage_menuGrid_ShortcutButton()
         {
             InitializeComponent();
-
-            s = (Storyboard)FindResource("longMouseDownAnimation");
         }
 
         public event RoutedEventHandler Click;
@@ -43,22 +41,16 @@ namespace WebcamViewer.User_controls
             set { textTextBlock.Text = value; }
         }
 
+        /*
         [Description("Ripple brush"), Category("Appearance")]
         public Brush RippleBrush
         {
             get { return ellipse.Fill; }
             set { ellipse.Fill = value; }
         }
+        */
 
-        DispatcherTimer LongDowntimer = new DispatcherTimer();
-
-        Storyboard s;
-
-        double translateX;
-        double translateY;
-
-        bool doneDownAnim;
-
+        /*
         private void Button_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
@@ -100,26 +92,6 @@ namespace WebcamViewer.User_controls
             timer.Start();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            if (!doneDownAnim)
-            {
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = Mouse.GetPosition(button).X - 160;
-                myTranslate.Y = Mouse.GetPosition(button).Y - 20;
-
-                ellipse.RenderTransform = myTranslate;
-
-                s.SpeedRatio = 3;
-                s.Begin();
-            }
-
-            //bubble the event up to the parent
-            if (this.Click != null)
-                this.Click(this, e);
-
-        }
-
         private void button_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -138,6 +110,29 @@ namespace WebcamViewer.User_controls
 
                 ellipse.RenderTransform = myTranslate;
             }
+        }
+        */
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (!doneDownAnim)
+            {
+                TranslateTransform myTranslate = new TranslateTransform();
+                myTranslate.X = Mouse.GetPosition(button).X - 160;
+                myTranslate.Y = Mouse.GetPosition(button).Y - 20;
+
+                ellipse.RenderTransform = myTranslate;
+
+                s.SpeedRatio = 3;
+                s.Begin();
+            }
+            */
+
+            //bubble the event up to the parent
+            if (this.Click != null)
+                this.Click(this, e);
+
         }
     }
 }

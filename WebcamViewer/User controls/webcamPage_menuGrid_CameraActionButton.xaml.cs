@@ -23,13 +23,11 @@ namespace WebcamViewer.User_controls
         public webcamPage_menuGrid_CameraActionButton()
         {
             InitializeComponent();
-
-            s = (Storyboard)FindResource("longMouseDownAnimation");
         }
 
         private void usercontrol_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            grid.Width = this.ActualWidth * 2;
+            //grid.Width = this.ActualWidth * 2;
         }
 
         public event RoutedEventHandler Click;
@@ -41,25 +39,32 @@ namespace WebcamViewer.User_controls
             set { textTextBlock.Text = value.ToUpper(); }
         }
 
+        [Description("Alignment of the text"), Category("Appearance")]
+        public HorizontalAlignment TextAlignment
+        {
+            get { return textTextBlock.HorizontalAlignment; }
+            set { textTextBlock.HorizontalAlignment = value; }
+        }
+
+        /*
         [Description("Ripple brush"), Category("Appearance")]
         public Brush RippleBrush
         {
             get { return ellipse.Fill; }
             set { ellipse.Fill = value; }
         }
+        */
 
-        DispatcherTimer LongDowntimer = new DispatcherTimer();
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            //bubble the event up to the parent
+            if (this.Click != null)
+                this.Click(this, e);
+        }
 
-        Storyboard s;
-
-        double translateX;
-        double translateY;
-
-        bool doneDownAnim;
-
+        /*
         private void Button_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             LongDowntimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             LongDowntimer.Tick += (s1, ev) =>
             {
@@ -98,26 +103,6 @@ namespace WebcamViewer.User_controls
             timer.Start();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            if (!doneDownAnim)
-            {
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = Mouse.GetPosition(button).X - this.ActualWidth / 2;
-                myTranslate.Y = Mouse.GetPosition(button).Y - 16;
-
-                ellipse.RenderTransform = myTranslate;
-
-                s.SpeedRatio = 3;
-                s.Begin();
-            }
-
-            //bubble the event up to the parent
-            if (this.Click != null)
-                this.Click(this, e);
-
-        }
-
         private void button_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -137,5 +122,7 @@ namespace WebcamViewer.User_controls
                 ellipse.RenderTransform = myTranslate;
             }
         }
+        */
+
     }
 }
