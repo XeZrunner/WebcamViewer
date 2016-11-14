@@ -84,7 +84,7 @@ namespace WebcamViewer.Pages.Internal_development_page
         #endregion
 
         private bool isMenuOpen = false;
-        private bool isLoggedIn = false;
+        //private bool isLoggedIn = false;
 
         double menu_compactWidth = 48;
         double menu_expandedWidth = 290;

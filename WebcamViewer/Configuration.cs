@@ -10,6 +10,7 @@ using System.Windows;
 namespace WebcamViewer
 {
     // Default configuration file: https://raw.githubusercontent.com/XeZrunner/WebcamViewer/gh-pages/DefaultConfiguration.txt
+    // The code here is absolutely garbage
 
     public class Configuration
     {

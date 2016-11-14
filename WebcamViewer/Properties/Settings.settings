@@ -39,47 +39,31 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="versionid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Update 2 Beta - Autumn Testing</Value>
+      <Value Profile="(Default)">Update 2 Beta</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20161022-00</Value>
+      <Value Profile="(Default)">20161112-01</Value>
     </Setting>
     <Setting Name="webcamengine_version" Type="System.String" Scope="User">
       <Value Profile="(Default)">1.2 Prerelease</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2016.10.22; feature level 0
+      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2016.11.12; feature level 1
 
-Fixes: 
-- Fixed a crash caused by clicking the New camera button with no camera selected.
-- Previously, deleting a camera would not persist over restarts unless you clicked Save.
-- Fixed the toggles not updating their colors when changing accents / themes.
+User interface:
+- Unified RippleDrawable inclusion
+All hard-coded ripple effects are replaced with the new XeZrunner.UI RippleDrawable control which is further similiar to Google's Android Lollipop ripple.
+The new ripple can no longer be moved by the user, in favor of the ripple slowly "expanding" towards the center of the control, much like on the actual operating system.
+---------------------------------------------
 
-Enchancements: 
-- Overview now uses your accent color for the titlebar and action bar.
-- The theme color is now used behind the camera image when it's not in a stretching size mode, unless you force it to black.
-There's also a new toggle for making that color be your accent color.
+Webcam Viewer Update 2 Beta - 2016.11.05; feature level 2
 
-New features:
-- There's a splash page on startup, which fades out once the image finishes loading.
+User interface:
+- There's a brand new progress circle for the main camera loading UI. The progress circle is made to look like Google's Material Design progress spinner, found in Android 5.0 Lollipop and newer.
+The new progress circle behaves like the custom progressring before it, controllable with IsActive and automatically stops when not visible.
 
-Debugging features:
-- Accent color now used on the Internal settings page.
-- SwitchToPage() debugging
-- Overview sellout UI testing
-
-Other changes:
-- The changelogs are now sorted Descending, meaning the latest build's changelogs are always on the top.
-
-Known issues:
-- UWP-style dialogs that have a single Close button will not close when clicked. This issue is related to a recent change in the buttons' click events, and will be fixed in the next build.
-
------------------------------------------------------------
-
-Webcam Viewer Update 2 Beta - 2016.10.17; feature level 0
-
-Fixes:
-- Fixed a bug in message dialogs where the buttons' actions were swapped.</Value>
+Overview:
+- Added a refresh button in place of the useless "More..." button.</Value>
     </Setting>
     <Setting Name="app_logging" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -124,6 +108,15 @@ Fixes:
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="home_webcamimageBackgroundMode_BlackOverride" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="app_language" Type="System.String" Scope="User">
+      <Value Profile="(Default)">default</Value>
+    </Setting>
+    <Setting Name="app_prereleasechannel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">update2-development</Value>
+    </Setting>
+    <Setting Name="experiment_OverviewAd2" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

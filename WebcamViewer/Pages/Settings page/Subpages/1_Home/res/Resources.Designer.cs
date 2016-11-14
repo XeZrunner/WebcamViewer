@@ -114,23 +114,5 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._1_Home.res {
                 return ResourceManager.GetString("ImageSizingDescription", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Menu blur behind.
-        /// </summary>
-        public static string MenuBlurBehind {
-            get {
-                return ResourceManager.GetString("MenuBlurBehind", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Blur the background of the menu.
-        /// </summary>
-        public static string MenuBlurBehind_Description {
-            get {
-                return ResourceManager.GetString("MenuBlurBehind_Description", resourceCulture);
-            }
-        }
     }
 }

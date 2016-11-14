@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.User_controls.settingsPage_Toggle"
+             xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
              mc:Ignorable="d" SizeChanged="UserControl_SizeChanged"
-             Height="50" Width="60">
+             Width="70" Height="60">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
 
@@ -111,18 +112,20 @@
         </Style>
     </UserControl.Resources>
 
-    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" Click="button_Click" PreviewMouseDown="Button_MouseDown" PreviewMouseUp="button_PreviewMouseUp" PreviewMouseMove="button_PreviewMouseMove">
+    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" Click="button_Click">
 
-        <Grid x:Name="contentGrid" Style="{DynamicResource MainGridStyle}" ClipToBounds="True">
+        <Grid x:Name="contentGrid" Style="{DynamicResource MainGridStyle}" ClipToBounds="False">
             <Grid.Clip>
-                <EllipseGeometry RadiusX="30" RadiusY="30" Center="30,25" />
+                <EllipseGeometry RadiusX="35" RadiusY="35" Center="35,30" />
             </Grid.Clip>
 
+            <!-- 
             <Rectangle x:Name="contentGrid_DownRectangle" Fill="{DynamicResource settingsPage_foregroundSecondary3}" Visibility="Hidden"/>
 
-            <Grid x:Name="grid" ClipToBounds="True" Width="0" Height="0" Margin="-30,-30">
+            <Grid x:Name="grid" ClipToBounds="False" Width="0" Height="0" Margin="-35,-30">
                 <Ellipse x:Name="ellipse_Ripple" Fill="{DynamicResource settingsPage_foregroundSecondary3}" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
             </Grid>
+            -->
 
             <Border x:Name="border" CornerRadius="10" Height="22" Width="45" BorderBrush="{DynamicResource settingsPage_foregroundSecondary}" Background="Transparent" BorderThickness="2">
 
@@ -146,6 +149,8 @@
                 </Border>
 
             </Border>
+
+            <controleffects:RippleDrawable Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="Transparent" Margin="-5"/>
 
         </Grid>
 

@@ -5,6 +5,10 @@ namespace WebcamViewer
 {
     class Debug
     {
+        /// <summary>
+        /// Logs to the app's directory into log.txt, but only if logging is enabled.
+        /// </summary>
+        /// <param name="text">The text to log into the log.</param>
         public void Log(string text)
         {
             if (Properties.Settings.Default.app_logging)

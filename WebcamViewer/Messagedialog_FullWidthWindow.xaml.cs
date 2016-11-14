@@ -152,7 +152,9 @@ namespace WebcamViewer
             this.Top = (parentHeight / 2) - (windowHeight / 2);
 
             if (this.ActualWidth <= 500)
+            {
                 buttonsGrid.HorizontalAlignment = HorizontalAlignment.Stretch;
+            }
         }
     }
 }

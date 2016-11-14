@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WebcamViewer"
+        xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
         mc:Ignorable="d"
         Title="" WindowStyle="None" ResizeMode="NoResize" MinWidth="320" MaxWidth="548" MinHeight="184" MaxHeight="756" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner"
         ShowTitleBar="False" ShowInTaskbar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False"

@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.User_controls.webcamPage_menuGrid_ShortcutButton"
+             xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
              mc:Ignorable="d" Foreground="{DynamicResource webcamPage_Foreground}"
              Height="40" Width="320" ClipToBounds="True">
     <UserControl.Resources>
@@ -15,6 +16,7 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Padding" Value="0"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -73,16 +75,18 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" Background="{Binding ElementName=usercontrol, Path=Background}" PreviewMouseDown="Button_MouseDown" PreviewMouseUp="button_PreviewMouseUp" Click="button_Click" PreviewMouseMove="button_PreviewMouseMove">
+    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" Background="{Binding ElementName=usercontrol, Path=Background}" Click="button_Click">
         <Grid>
 
             <Grid Visibility="Collapsed">
-            <Rectangle x:Name="contentGrid_DownRectangle" Fill="{DynamicResource settingsPage_backgroundSecondary}" Visibility="Hidden"/>
+            <!-- <Rectangle x:Name="contentGrid_DownRectangle" Fill="{DynamicResource settingsPage_backgroundSecondary}" Visibility="Hidden"/> -->
             </Grid>
 
+            <!-- 
             <Grid x:Name="grid" Background="Transparent" ClipToBounds="True" Height="40" Width="640" Margin="-320,0">
                 <Ellipse x:Name="ellipse" Fill="{DynamicResource settingsPage_foregroundSecondary3}" Width="0" Height="0" RenderTransformOrigin="0.5,0.5"/>
             </Grid>
+            -->
 
             <Grid>
 
@@ -96,6 +100,8 @@
                 <TextBlock x:Name="textTextBlock" Foreground="{Binding ElementName=usercontrol, Path=Foreground}" Grid.Column="1" VerticalAlignment="Center" FontSize="13.5" Margin="0,0,0,0"><Run Text="&quot;SHORTCUT&quot; BUTTON"/></TextBlock>
 
             </Grid>
+
+            <controleffects:RippleDrawable Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}" />
 
         </Grid>
     </Button>

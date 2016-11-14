@@ -133,12 +133,12 @@ namespace WebcamViewer
 
             // Button click events
             if (FirstButtonClickEvent == null)
-                secondButton.Click += (s, ev) => { this.Close(); };
+                firstButton.Click += (s, ev) => { this.Close(); };
             else
-                secondButton.Click += FirstButtonClickEvent;
+                firstButton.Click += FirstButtonClickEvent;
 
             if (SecondButtonClickEvent != null)
-                firstButton.Click += SecondButtonClickEvent;
+                secondButton.Click += SecondButtonClickEvent;
         }
 
     }

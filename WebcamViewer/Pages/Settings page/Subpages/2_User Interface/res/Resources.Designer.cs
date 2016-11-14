@@ -107,6 +107,15 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Effects.
+        /// </summary>
+        public static string Effects {
+            get {
+                return ResourceManager.GetString("Effects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -122,6 +131,24 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.res {
         public static string LanguageDescription {
             get {
                 return ResourceManager.GetString("LanguageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu blur behind.
+        /// </summary>
+        public static string MenuBlurBehind {
+            get {
+                return ResourceManager.GetString("MenuBlurBehind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blur the background of the menu.
+        /// </summary>
+        public static string MenuBlurBehind_Description {
+            get {
+                return ResourceManager.GetString("MenuBlurBehind_Description", resourceCulture);
             }
         }
         

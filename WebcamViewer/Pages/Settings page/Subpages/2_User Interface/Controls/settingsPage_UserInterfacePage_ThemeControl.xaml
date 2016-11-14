@@ -37,7 +37,12 @@
             <StackPanel Margin="15,15,15,15">
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type RadioButton}">
-                        <Setter Property="Foreground" Value="{DynamicResource MessageDialog_ForegroundText}"/>
+                        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                    <Style TargetType="{x:Type CheckBox}">
+                        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+                        <Setter Property="Background" Value="Transparent"/>
                     </Style>
                 </StackPanel.Resources>
 

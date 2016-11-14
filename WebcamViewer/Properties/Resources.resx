@@ -154,7 +154,7 @@
     <value>Webcams</value>
   </data>
   <data name="settingsPage_Home" xml:space="preserve">
-    <value>Home</value>
+    <value>Camera settings</value>
   </data>
   <data name="settingsPage_UserInterface" xml:space="preserve">
     <value>User interface</value>

@@ -88,7 +88,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta - Autumn Testing")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
@@ -100,7 +100,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20161022-00")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20161112-01")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -124,38 +124,22 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"Webcam Viewer Update 2 Beta - 2016.10.22; feature level 0
+        [global::System.Configuration.DefaultSettingValueAttribute(@"Webcam Viewer Update 2 Beta - 2016.11.12; feature level 1
 
-Fixes: 
-- Fixed a crash caused by clicking the New camera button with no camera selected.
-- Previously, deleting a camera would not persist over restarts unless you clicked Save.
-- Fixed the toggles not updating their colors when changing accents / themes.
+User interface:
+- Unified RippleDrawable inclusion
+All hard-coded ripple effects are replaced with the new XeZrunner.UI RippleDrawable control which is further similiar to Google's Android Lollipop ripple.
+The new ripple can no longer be moved by the user, in favor of the ripple slowly ""expanding"" towards the center of the control, much like on the actual operating system.
+---------------------------------------------
 
-Enchancements: 
-- Overview now uses your accent color for the titlebar and action bar.
-- The theme color is now used behind the camera image when it's not in a stretching size mode, unless you force it to black.
-There's also a new toggle for making that color be your accent color.
+Webcam Viewer Update 2 Beta - 2016.11.05; feature level 2
 
-New features:
-- There's a splash page on startup, which fades out once the image finishes loading.
+User interface:
+- There's a brand new progress circle for the main camera loading UI. The progress circle is made to look like Google's Material Design progress spinner, found in Android 5.0 Lollipop and newer.
+The new progress circle behaves like the custom progressring before it, controllable with IsActive and automatically stops when not visible.
 
-Debugging features:
-- Accent color now used on the Internal settings page.
-- SwitchToPage() debugging
-- Overview sellout UI testing
-
-Other changes:
-- The changelogs are now sorted Descending, meaning the latest build's changelogs are always on the top.
-
-Known issues:
-- UWP-style dialogs that have a single Close button will not close when clicked. This issue is related to a recent change in the buttons' click events, and will be fixed in the next build.
-
------------------------------------------------------------
-
-Webcam Viewer Update 2 Beta - 2016.10.17; feature level 0
-
-Fixes:
-- Fixed a bug in message dialogs where the buttons' actions were swapped.")]
+Overview:
+- Added a refresh button in place of the useless ""More..."" button.")]
         public string changelog {
             get {
                 return ((string)(this["changelog"]));
@@ -342,6 +326,42 @@ Fixes:
             }
             set {
                 this["home_webcamimageBackgroundMode_BlackOverride"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("default")]
+        public string app_language {
+            get {
+                return ((string)(this["app_language"]));
+            }
+            set {
+                this["app_language"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("update2-development")]
+        public string app_prereleasechannel {
+            get {
+                return ((string)(this["app_prereleasechannel"]));
+            }
+            set {
+                this["app_prereleasechannel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool experiment_OverviewAd2 {
+            get {
+                return ((bool)(this["experiment_OverviewAd2"]));
+            }
+            set {
+                this["experiment_OverviewAd2"] = value;
             }
         }
     }

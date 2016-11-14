@@ -82,7 +82,7 @@
                                 <TextBlock x:Name="WelcomePage_CommandBar_ProgressPanel_TextBlock" FontSize="14.447">Just a sec...</TextBlock>
                             </StackPanel>
 
-                            <Button x:Name="WelcomePage_CommandBar_NextButton" Style="{DynamicResource FirstRunPage_Win81ButtonStyle_Dark}">Next</Button>
+                            <Button x:Name="WelcomePage_CommandBar_NextButton" Style="{DynamicResource FirstRunPage_Win81ButtonStyle_Dark}" Click="WelcomePage_CommandBar_NextButton_Click">Next</Button>
 
                         </StackPanel>
 
@@ -136,11 +136,11 @@
                                 </Style>
                             </StackPanel.Resources>
 
-                            <Rectangle Fill="{DynamicResource accentcolor_light1}" Stroke="{DynamicResource accentcolor_dark1}" Margin="0,0,5,0"/>
+                            <Rectangle Fill="{DynamicResource accentcolor_light0}" Stroke="{DynamicResource accentcolor_dark0}" Margin="0,0,5,0"/>
+                            <Rectangle Fill="{DynamicResource accentcolor_light1}" Stroke="{DynamicResource accentcolor_dark1}"/>
                             <Rectangle Fill="{DynamicResource accentcolor_light2}" Stroke="{DynamicResource accentcolor_dark2}"/>
                             <Rectangle Fill="{DynamicResource accentcolor_light3}" Stroke="{DynamicResource accentcolor_dark3}"/>
                             <Rectangle Fill="{DynamicResource accentcolor_light4}" Stroke="{DynamicResource accentcolor_dark4}"/>
-                            <Rectangle Fill="{DynamicResource accentcolor_light5}" Stroke="{DynamicResource accentcolor_dark5}"/>
 
                         </StackPanel>
 
@@ -347,7 +347,7 @@
                                 <TextBlock x:Name="AccentColorPage_CommandBar_ProgressPanel_TextBlock" FontSize="14.447">Just a sec...</TextBlock>
                             </StackPanel>
 
-                            <Button x:Name="AccentColorPage_CommandBar_NextButton" Style="{DynamicResource FirstRunPage_Win81ButtonStyle_Dark}">Next</Button>
+                            <Button x:Name="AccentColorPage_CommandBar_NextButton" Style="{DynamicResource FirstRunPage_Win81ButtonStyle_Dark}" Click="AccentColorPage_CommandBar_NextButton_Click">Next</Button>
 
                         </StackPanel>
 
@@ -361,7 +361,8 @@
 
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                        <Controls:ProgressRing x:Name="Transition_ProgressPage_ProgressRing" Foreground="{DynamicResource FirstRunPage_Foreground}" Width="60" Height="60" EllipseDiameterScale="0.83" IsActive="False" />
+                        <!-- <Controls:ProgressRing x:Name="Transition_ProgressPage_ProgressRing" Foreground="{DynamicResource FirstRunPage_Foreground}" Width="60" Height="60" EllipseDiameterScale="0.83" IsActive="True" /> -->
+                        <usercontrols:ArcProgress x:Name="Transition_ProgressPage_ProgressRing" Color="White" Width="65" Height="65" IsActive="True" />
                         <TextBlock Foreground="{DynamicResource FirstRunPage_Foreground}" FontFamily="Segoe UI Semibold" FontSize="16.667" Margin="0,30,0,0">Please wait...</TextBlock>
 
                     </StackPanel>

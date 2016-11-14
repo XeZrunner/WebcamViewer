@@ -147,4 +147,13 @@ Couleur actuelle:</value>
     <value>La langue utilisé à travers l'interface utilisateur
 Langue actuelle:</value>
   </data>
+  <data name="MenuBlurBehind" xml:space="preserve">
+    <value>Flou du derrière du menu</value>
+  </data>
+  <data name="MenuBlurBehind_Description" xml:space="preserve">
+    <value>Flou de l'arrière-plan du menu</value>
+  </data>
+  <data name="Effects" xml:space="preserve">
+    <value>Effects*</value>
+  </data>
 </root>

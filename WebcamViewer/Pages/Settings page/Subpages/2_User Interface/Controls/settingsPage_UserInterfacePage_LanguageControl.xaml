@@ -24,6 +24,10 @@
                         <Setter Property="Foreground" Value="White"/>
                         <Setter Property="HorizontalAlignment" Value="Left"/>
                     </Style>
+                    <Style TargetType="{x:Type RadioButton}">
+                        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
                 </StackPanel.Resources>
 
                 <TextBlock FontFamily="Segoe UI Semibold" FontSize="16"><Run Text="{x:Static res:Resources.Language}"/></TextBlock>
@@ -36,14 +40,16 @@
 
             <Grid VerticalAlignment="Center">
 
-                <StackPanel HorizontalAlignment="Left" Margin="10">
+                <StackPanel x:Name="mainStackPanel" HorizontalAlignment="Left" Margin="10">
                     <StackPanel.Resources>
                         <Style TargetType="RadioButton">
+                            <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+                            <Setter Property="Background" Value="Transparent"/>
                             <Setter Property="Margin" Value="5"/>
                         </Style>
                     </StackPanel.Resources>
 
-                    <RadioButton Margin="5,0,5,5">
+                    <RadioButton Margin="5,0,5,5" Tag="default">
                         <RadioButton.Content>
                             <TextBlock>
                                 <TextBlock>Operating system</TextBlock>
@@ -52,11 +58,11 @@
                         </RadioButton.Content>
                     </RadioButton>
 
-                    <RadioButton Content="English" />
+                    <RadioButton Content="English" Tag="en" />
 
-                    <RadioButton Content="Magyar" />
+                    <RadioButton Content="Magyar" Tag="hu" />
 
-                    <RadioButton Content="Français" />
+                    <RadioButton Content="Français" Tag="fr" />
 
                 </StackPanel>
 

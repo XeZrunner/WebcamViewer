@@ -21,8 +21,8 @@
 
             </ResourceDictionary.MergedDictionaries>
 
-            <SolidColorBrush x:Key="accentcolor_dark" Color="#27ae60"/>
-            <SolidColorBrush x:Key="accentcolor_light" Color="#2ecc71"/>
+            <SolidColorBrush x:Key="accentcolor_dark" Color="#1997DD"/>
+            <SolidColorBrush x:Key="accentcolor_light" Color="#139DEA"/>
 
             <SolidColorBrush x:Key="webcamPage_Foreground" Color="#FF202020"/>
             <SolidColorBrush x:Key="webcamPage_menuBackground" Color="#7AFFFFFF"/>
@@ -94,7 +94,7 @@
             <SolidColorBrush x:Key="settingsPage_Light_foregroundText" Color="Black"/>
             <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary" Color="#FF3F3F3F"/>
             <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary2" Color="#FF4F4F4F"/>
-            <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary3" Color="#2F000000"/>
+            <SolidColorBrush x:Key="settingsPage_Light_foregroundSecondary3" Color="#1F000000"/>
 
 
             <SolidColorBrush x:Key="settingsPage_Dark_background" Color="#FF303030"/>
@@ -106,7 +106,7 @@
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundText" Color="White"/>
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary" Color="LightGray"/>
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary2" Color="#FFAAAAAA"/>
-            <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary3" Color="#2AFFFFFF"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_foregroundSecondary3" Color="#1AFFFFFF"/>
 
             <!-- Message dialog -->
 

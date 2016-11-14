@@ -324,7 +324,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             TextBlock text4 = new TextBlock()
             {
                 Margin = new Thickness(5, 0, 0, 0),
-                Text = "Right-hand side button text"
+                Text = "Left button text"
             };
 
             TextBox firstbuttonTextBox = new TextBox()
@@ -336,7 +336,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             TextBlock text5 = new TextBlock()
             {
                 Margin = new Thickness(5, 0, 0, 0),
-                Text = "Left-hand side button text"
+                Text = "Right button text"
             };
 
             TextBox secondbuttonTextBox = new TextBox()
@@ -455,15 +455,15 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
         private void settingsPage_DebugMenuPage_Experiments_ExperimentsButton_Click(object sender, RoutedEventArgs e)
         {
-            Popups.MessageDialog_FullWidth dialog = new Popups.MessageDialog_FullWidth();
+            Popups.MessageDialog dialog = new Popups.MessageDialog();
             dialog.Title = "Experiments";
 
             // Content //
+            ScrollViewer scrollview = new ScrollViewer() { VerticalScrollBarVisibility = ScrollBarVisibility.Auto, HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled };
             StackPanel panel = new StackPanel();
 
             Label label0 = new Label() { Content = "Toggle experiments on or off" };
-            Label label1 = new Label() { Content = "These experiments are early prerelease features.\n" + 
-                                                   "You can only toggle experiments in testing and internal builds." };
+            Label label1 = new Label() { Content = "These experiments are early prerelease features.\n" };
 
             #region Experiments
 
@@ -473,21 +473,32 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             else box0.IsChecked = false;
             // /EXPERIMENT
 
+            // EXPERIMENT - overview ad2
+            CheckBox box2 = new CheckBox() { Content = "Overview Ad2\nShows an Overview ad on startup.", Margin = new Thickness(4, 15, 0, 5), Tag = "experiment_OverviewAd2" };
+            if (Properties.Settings.Default.experiment_OverviewAd2) box2.IsChecked = true;
+            else box2.IsChecked = false;
+            // /EXPERIMENT
+
+            /* LATER
             // EXPERIMENT - new file browser dialog
             CheckBox box1 = new CheckBox() { Content = "Immersive File Dialog\nInternal Edge/UX-development channels only", Margin = new Thickness(4, 15, 0, 5), Tag = "experiment_NewFileBrowserUX" };
             if (Properties.Settings.Default.experiment_NewFileBrowserUX) box1.IsChecked = true;
             else box1.IsChecked = false;
             // /EXPERIMENT
+            */
 
             #endregion
 
             panel.Children.Add(label0);
             panel.Children.Add(label1);
             panel.Children.Add(box0);
-            panel.Children.Add(box1);
+            panel.Children.Add(box2);
+            //panel.Children.Add(box1);
             // Content //
 
-            dialog.Content = panel;
+            scrollview.Content = panel;
+
+            dialog.Content = scrollview;
 
             dialog.FirstButtonContent = "Apply experiments";
             dialog.SecondButtonContent = "Go back";
@@ -538,25 +549,6 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                 */
             }
         }
-
-        private void settingsPage_DebugMenuPage_Configuration_CustomizationsDeliverySettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            mainwindow.SwitchToPage(2);
-
-            // Go to status page the first time
-
-            bool customizationdeliveryPage_visited = false;
-
-            if (customizationdeliveryPage_visited == false)
-            {
-                Menu_NavigationButton btn = mainwindow.customizationsdeliveryPage_MenuGrid_TopStackPanel.Children[0] as Menu_NavigationButton;
-                mainwindow.Menu_NavigationButton_Click(btn, new RoutedEventArgs());
-
-                customizationdeliveryPage_visited = true;
-            }
-        }
-
-        #endregion
 
         private void settingsPage_DebugMenuPage_Internal_InternalSettingsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -611,6 +603,49 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
                 mainwindow.SwitchToPage(arg0, box1.IsChecked.Value);
             }
+        }
+
+        private void settingsPage_DebugMenuPage_Pages_SplashDebug_Click(object sender, RoutedEventArgs e)
+        {
+
+            Popups.MessageDialog dlg = new Popups.MessageDialog { Title = "Splash debug", FirstButtonContent = "Go back", SecondButtonContent = "Accept" };
+
+            StackPanel panel = new StackPanel();
+
+            Label lbl0 = new Label { Content = "Progress text" };
+            TextBox box0 = new TextBox { Margin = new Thickness(0, 5, 0, 5) };
+            Label lbl1 = new Label { Content = "The splash page will disappear automatically in 10 seconds." };
+
+            panel.Children.Add(lbl0);
+            panel.Children.Add(box0);
+            panel.Children.Add(lbl1);
+
+            dlg.Content = panel;
+
+            if (dlg.ShowDialogWithResult() == 1)
+            {
+                // timer
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(10); // 10 seconds
+                timer.Tick += (s, ev) =>
+                {
+                    timer.Stop();
+
+                    // hide splash page
+                    mainwindow.HideSplashPage();
+                };
+                timer.Start();
+
+                // show the splash page
+                mainwindow.ShowSplashPage(box0.Text);
+            }
+        }
+
+        #endregion
+
+        private void settingsPage_DebugMenuPage_FirstRunSection_StartFirstRunUX_Click(object sender, RoutedEventArgs e)
+        {
+            mainwindow.App_StartFirstRunUX();
         }
     }
 }

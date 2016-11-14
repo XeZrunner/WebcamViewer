@@ -23,13 +23,11 @@ namespace WebcamViewer.User_controls
         public settingsPage_NormalButton()
         {
             InitializeComponent();
-
-            s = (Storyboard)FindResource("longMouseDownAnimation");
         }
 
         private void usercontrol_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            grid.Width = this.ActualWidth * 2;
+            
         }
 
         public event RoutedEventHandler Click;
@@ -41,101 +39,11 @@ namespace WebcamViewer.User_controls
             set { textTextBlock.Text = value; }
         }
 
-        [Description("Ripple brush"), Category("Appearance")]
-        public Brush RippleBrush
-        {
-            get { return ellipse.Fill; }
-            set { ellipse.Fill = value; }
-        }
-
-        DispatcherTimer LongDowntimer = new DispatcherTimer();
-
-        Storyboard s;
-
-        double translateX;
-        double translateY;
-
-        bool doneDownAnim;
-
-        private void Button_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-            LongDowntimer.Interval = new TimeSpan(0, 0, 0, 0, 500);
-            LongDowntimer.Tick += (s1, ev) =>
-            {
-                LongDowntimer.Stop();
-
-                translateX = e.MouseDevice.GetPosition(button).X - this.ActualWidth / 2;
-                translateY = e.MouseDevice.GetPosition(button).Y - 16 ;
-
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = translateX;
-                myTranslate.Y = translateY;
-
-                ellipse.RenderTransform = myTranslate;
-
-                s.SpeedRatio = 0.5;
-                s.Begin();
-
-                doneDownAnim = true;
-            };
-            LongDowntimer.Start();
-        }
-
-        private void button_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            LongDowntimer.Stop();
-
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
-            timer.Tick += (s1, ev) =>
-            {
-                timer.Stop();
-                if (doneDownAnim == true)
-                    s.SetSpeedRatio(3);
-                doneDownAnim = false;
-            };
-            timer.Start();
-        }
-
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (!doneDownAnim)
-            {
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = Mouse.GetPosition(button).X - this.ActualWidth / 2;
-                myTranslate.Y = Mouse.GetPosition(button).Y - 16;
-
-                ellipse.RenderTransform = myTranslate;
-
-                s.SpeedRatio = 3;
-                s.Begin();
-            }
-
             //bubble the event up to the parent
             if (this.Click != null)
                 this.Click(this, e);
-
-        }
-
-        private void button_PreviewMouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                translateX = e.MouseDevice.GetPosition(button).X - this.ActualWidth / 2;
-                translateY = e.MouseDevice.GetPosition(button).Y - 16;
-
-                if ((translateX >= (this.ActualWidth / 2) || translateX <= -(this.ActualWidth / 2)) || (translateY >= 16 || translateY <= -16))
-                {
-                    s.SetSpeedRatio(4); return;
-                }
-
-                TranslateTransform myTranslate = new TranslateTransform();
-                myTranslate.X = translateX;
-                myTranslate.Y = translateY;
-
-                ellipse.RenderTransform = myTranslate;
-            }
         }
     }
 }

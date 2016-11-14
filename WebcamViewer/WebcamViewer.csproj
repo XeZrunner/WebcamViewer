@@ -84,6 +84,9 @@
     <Compile Include="Pages\Internal development page\Subpages\StatusPage.xaml.cs">
       <DependentUpon>StatusPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Settings page\Subpages\1_Home\Controls\settingsPage_HomePage_ImageSizingDialogControl.xaml.cs">
+      <DependentUpon>settingsPage_HomePage_ImageSizingDialogControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Settings page\Subpages\2_User Interface\Controls\settingsPage_UserInterfacePage_AccentControl.xaml.cs">
       <DependentUpon>settingsPage_UserInterfacePage_AccentControl.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,10 @@
     <Compile Include="User controls\AppBar_Button.xaml.cs">
       <DependentUpon>AppBar_Button.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User controls\Arc.cs" />
+    <Compile Include="User controls\ArcProgress.xaml.cs">
+      <DependentUpon>ArcProgress.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User controls\Menu_NavigationButton.xaml.cs">
       <DependentUpon>Menu_NavigationButton.xaml</DependentUpon>
     </Compile>
@@ -210,6 +217,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Internal development page\Subpages\StatusPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings page\Subpages\1_Home\Controls\settingsPage_HomePage_ImageSizingDialogControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,6 +289,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User controls\AppBar_Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\ArcProgress.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -406,6 +421,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\Home page\Dialog controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XeZrunner\XeZrunner.UI\XeZrunner.UI\XeZrunner.UI.csproj">
+      <Project>{d04773cb-bfb2-4dc9-ae70-da99c2b38da5}</Project>
+      <Name>XeZrunner.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
