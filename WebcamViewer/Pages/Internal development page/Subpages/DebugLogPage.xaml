@@ -14,11 +14,10 @@
 
         <Grid Height="50" VerticalAlignment="Top" Margin="0,-50,0,0">
             <Rectangle Fill="{DynamicResource settingsPage_backgroundSecondary}"/>
+            <Rectangle Fill="#0F000000"/>
 
             <TextBlock x:Name="subpage_title" Foreground="{DynamicResource settingsPage_foregroundText}" Margin="10,0,0,0" FontFamily="Segoe UI Semibold" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left">DEBUG LOG</TextBlock>
         </Grid>
-
-        <Rectangle Fill="{DynamicResource settingsPage_backgroundSecondary2}" Height="32" VerticalAlignment="Top" Margin="0,-82,0,0" />
 
         <Grid>
             <Grid.RowDefinitions>
@@ -43,7 +42,7 @@
                 </TextBlock>
             </ScrollViewer>
 
-            <Controls:ProgressRing Grid.RowSpan="2" x:Name="progressring" Foreground="{DynamicResource accentcolor_dark}" Width="60" Height="60" EllipseDiameterScale="0.85" IsActive="False" Visibility="Collapsed" />
+            <usercontrols:ArcProgress Grid.RowSpan="2" x:Name="progressring" Color="{DynamicResource accentcolor_dark}" Width="65" Height="65" IsActive="False" Visibility="Collapsed" />
         </Grid>
 
     </Grid>

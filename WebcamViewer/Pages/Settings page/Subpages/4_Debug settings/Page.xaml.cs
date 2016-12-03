@@ -468,20 +468,20 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             #region Experiments
 
             // EXPERIMENT - update ui
-            CheckBox box0 = new CheckBox() { Content = "Updates UI Testing", Margin = new Thickness(4, 15, 0, 5), Tag = "settings_experiment_UpdateUI" };
+            CheckBox box0 = new CheckBox() { Content = "Updates UI Testing", Margin = new Thickness(4, 5, 0, 5), Tag = "settings_experiment_UpdateUI" };
             if (Properties.Settings.Default.settings_experiment_UpdateUI) box0.IsChecked = true;
             else box0.IsChecked = false;
             // /EXPERIMENT
 
-            // EXPERIMENT - overview ad2
-            CheckBox box2 = new CheckBox() { Content = "Overview Ad2\nShows an Overview ad on startup.", Margin = new Thickness(4, 15, 0, 5), Tag = "experiment_OverviewAd2" };
-            if (Properties.Settings.Default.experiment_OverviewAd2) box2.IsChecked = true;
-            else box2.IsChecked = false;
+            // EXPERIMENT - zOverview
+            CheckBox box1 = new CheckBox() { Content = "New Overview as default\nOpen the new Overview by default", Margin = new Thickness(4, 5, 0, 5), Tag = "experiment_zOverview" };
+            if (Properties.Settings.Default.experiment_zOverview) box1.IsChecked = true;
+            else box1.IsChecked = false;
             // /EXPERIMENT
 
             /* LATER
             // EXPERIMENT - new file browser dialog
-            CheckBox box1 = new CheckBox() { Content = "Immersive File Dialog\nInternal Edge/UX-development channels only", Margin = new Thickness(4, 15, 0, 5), Tag = "experiment_NewFileBrowserUX" };
+            CheckBox box1 = new CheckBox() { Content = "Immersive File Dialog\nInternal Edge/UX-development channels only", Margin = new Thickness(4, 5, 0, 5), Tag = "experiment_NewFileBrowserUX" };
             if (Properties.Settings.Default.experiment_NewFileBrowserUX) box1.IsChecked = true;
             else box1.IsChecked = false;
             // /EXPERIMENT
@@ -492,8 +492,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             panel.Children.Add(label0);
             panel.Children.Add(label1);
             panel.Children.Add(box0);
-            panel.Children.Add(box2);
-            //panel.Children.Add(box1);
+            panel.Children.Add(box1);
             // Content //
 
             scrollview.Content = panel;
@@ -559,8 +558,6 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
         {
             mainwindow.SwitchToPage(0);
             mainwindow.webcamPage_CloseMenu();
-
-            mainwindow.ShowSellout();
         }
 
         private void settingsPage_DebugMenuPage_Pages_SwitchToPageDebug_Click(object sender, RoutedEventArgs e)
@@ -642,10 +639,5 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
         }
 
         #endregion
-
-        private void settingsPage_DebugMenuPage_FirstRunSection_StartFirstRunUX_Click(object sender, RoutedEventArgs e)
-        {
-            mainwindow.App_StartFirstRunUX();
-        }
     }
 }

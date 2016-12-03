@@ -75,12 +75,42 @@ namespace WebcamViewer.User_controls
             }
         }
 
+        /*
         [Description("Color"), Category("Brush")]
         public SolidColorBrush Color
         {
             get { return arc.Stroke as SolidColorBrush; }
             set { arc.Stroke = value; }
         }
+        */
+
+        #region Color
+
+        static FrameworkPropertyMetadata ColorPropertyMetaData = new FrameworkPropertyMetadata(new SolidColorBrush(), new PropertyChangedCallback(ColorProperty_Changed));
+
+        static void ColorProperty_Changed(DependencyObject dobj, DependencyPropertyChangedEventArgs e)
+        {
+            ArcProgress main = dobj as ArcProgress;
+            main.arc.Stroke = e.NewValue as SolidColorBrush;
+        }
+
+        public static readonly DependencyProperty ColorProperty = DependencyProperty.Register("Color", typeof(SolidColorBrush), typeof(ArcProgress), ColorPropertyMetaData);
+
+        /// <summary>
+        /// The color of the ripple.
+        /// </summary>
+        /// 
+        [Description("The color of the ripple"), Category("Brush")]
+        public SolidColorBrush Color
+        {
+            get { return GetValue(ColorProperty) as SolidColorBrush; }
+            set
+            {
+                SetValue(ColorProperty, value);
+            }
+        }
+
+        #endregion
 
         private void StartAnim()
         {
@@ -92,6 +122,12 @@ namespace WebcamViewer.User_controls
         {
             s.Stop();
             arc.Visibility = Visibility.Hidden;
+        }
+
+        private void usercontrol_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            arc.Radius = (this.ActualWidth - 5) / 2;
+            arc.Center = new Point(this.ActualWidth / 2, this.ActualHeight / 2);
         }
     }
 }

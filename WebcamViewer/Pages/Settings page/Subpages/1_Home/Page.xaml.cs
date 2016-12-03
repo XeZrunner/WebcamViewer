@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WebcamViewer.User_controls;
 
 namespace WebcamViewer.Pages.Settings_page.Subpages._1_Home
@@ -120,6 +109,15 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._1_Home
             {
                 // save and close
 
+                string s = "uniform";
+
+                foreach (RadioButton btn in dialogcontrol.mainStackPanel.Children)
+                {
+                    if (btn.IsChecked == true)
+                        s = btn.Tag as string;
+                }
+
+                Properties.Settings.Default.home_imagesizing = s;
                 Properties.Settings.Default.Save();
 
                 mainwindow.GetUserConfiguration(true);

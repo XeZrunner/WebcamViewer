@@ -1,0 +1,68 @@
+﻿<Page x:Class="WebcamViewer.Pages.Settings_page.Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:res="clr-namespace:WebcamViewer.Properties"
+      xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page"
+      xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
+      xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Settings"
+      
+      xmlns:Settings_Controls="clr-namespace:WebcamViewer.Pages.Settings_page.Controls"
+      
+      >
+
+    <Grid Background="{DynamicResource settingsPage_background}">
+
+        <!-- Desktop overview view -->
+        <Grid x:Name="view_desktopgrid">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <!-- Title and search -->
+                <Grid Grid.Row="0">
+
+                    <StackPanel>
+
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Content="{x:Static res:Resources.Settings}"/>
+                        <Grid Width="300" Margin="0,5,0,0">
+                            <TextBox />
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0">
+                                <Label Foreground="{DynamicResource settingsPage_foregroundSecondary2}" FontFamily="/Fonts/#Segoe MDL2 Assets" Content="&#xe721;" VerticalAlignment="Center" />
+                                <Label Foreground="{DynamicResource settingsPage_foregroundSecondary2}" VerticalAlignment="Center" Content="Search for a setting..." />
+                            </StackPanel>
+                        </Grid>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <!-- Overview Grid -->
+                <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <WrapPanel x:Name="view_desktopgrid_WrapPanel">
+                            
+                            <Settings_Controls:desktopgrid_ItemControl />
+                            <Settings_Controls:desktopgrid_ItemControl />
+                            
+                        </WrapPanel>
+                    </ScrollViewer>
+
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+
+</Page>

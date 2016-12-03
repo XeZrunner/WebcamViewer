@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
              xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
              mc:Ignorable="d" Foreground="White"
-             Height="65" Width="65" RenderTransformOrigin="0.5,0.5" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged">
+             Height="65" Width="65" RenderTransformOrigin="0.5,0.5" Loaded="UserControl_Loaded" IsVisibleChanged="UserControl_IsVisibleChanged" SizeChanged="usercontrol_SizeChanged">
     
     <UserControl.Resources>
         <Storyboard x:Key="ArcAnim" RepeatBehavior="Forever">
@@ -35,7 +35,7 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <usercontrols:Arc x:Name="arc" Center="32.5,32.5" Radius="30" StartAngle="0" EndAngle="0" Stroke="{Binding ElementName=usercontrol, Path=Foreground}" StrokeThickness="2" RenderTransformOrigin="0.5,0.5">
+    <usercontrols:Arc x:Name="arc" Center="32.5,32.5" Radius="30" StartAngle="0" EndAngle="0" Stroke="{Binding ElementName=usercontrol, Path=Foreground}" StrokeThickness="3" RenderTransformOrigin="0.5,0.5">
         <usercontrols:Arc.RenderTransform>
             <TransformGroup>
                 <TranslateTransform/>

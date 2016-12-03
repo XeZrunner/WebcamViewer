@@ -75,14 +75,29 @@
     </ApplicationDefinition>
     <Compile Include="Configuration.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="Pages\Home page\Overview\Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Internal development page\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Internal development page\Subpages\DebugLogPage.xaml.cs">
       <DependentUpon>DebugLogPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Internal development page\Subpages\DefaultCamerasPage.xaml.cs">
+      <DependentUpon>DefaultCamerasPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Internal development page\Subpages\StatusPage.xaml.cs">
       <DependentUpon>StatusPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Internal development page\Subpages\UserConfigurationPage.xaml.cs">
+      <DependentUpon>UserConfigurationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Controls\desktopgrid_ItemControl.xaml.cs">
+      <DependentUpon>desktopgrid_ItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Settings page\Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Settings page\Subpages\1_Home\Controls\settingsPage_HomePage_ImageSizingDialogControl.xaml.cs">
       <DependentUpon>settingsPage_HomePage_ImageSizingDialogControl.xaml</DependentUpon>
@@ -101,9 +116,6 @@
     <Compile Include="ListViewDragDrop\MouseUtilities.cs" />
     <Compile Include="Messagedialog_FullWidthWindow.xaml.cs">
       <DependentUpon>Messagedialog_FullWidthWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\First run page\firstrunPage_Control.xaml.cs">
-      <DependentUpon>firstrunPage_Control.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Settings page\Subpages\0_Webcams\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
@@ -208,6 +220,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Home page\Overview\Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Internal development page\Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,7 +232,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Internal development page\Subpages\DefaultCamerasPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Internal development page\Subpages\StatusPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Internal development page\Subpages\UserConfigurationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings page\Controls\desktopgrid_ItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Settings page\Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,14 +285,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Messagedialog_FullWidthWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\First run page\firstrunPage_ResourceDictionary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\First run page\firstrunPage_Control.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

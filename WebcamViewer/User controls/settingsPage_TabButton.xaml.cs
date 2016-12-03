@@ -23,6 +23,8 @@ namespace WebcamViewer.User_controls
         public settingsPage_TabButton()
         {
             InitializeComponent();
+
+            rippleDrawable.Speed = (float)Properties.Settings.Default.ui_animationspeed;
         }
 
         private void usercontrol_SizeChanged(object sender, SizeChangedEventArgs e)

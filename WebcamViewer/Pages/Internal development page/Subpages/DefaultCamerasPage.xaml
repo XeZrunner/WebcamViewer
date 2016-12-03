@@ -1,0 +1,146 @@
+﻿<Page x:Name="page" x:Class="WebcamViewer.Pages.Internal_development_page.Subpages.DefaultCamerasPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WebcamViewer.Pages.Internal_development_page.Subpages"
+      xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
+      xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Default cameras" Loaded="Page_Loaded" IsVisibleChanged="page_IsVisibleChanged">
+
+    <Grid>
+        <ScrollViewer Margin="10">
+
+            <Grid>
+
+                <StackPanel>
+
+                    <Label FontSize="20" FontFamily="Segoe UI Semibold">Default cameras</Label>
+                    <Label>Below is a list of all the cameras that come pre-configured with Webcam Viewer.</Label>
+
+                </StackPanel>
+
+                <Grid Margin="5,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                    <TextBlock Foreground="{DynamicResource settingsPage_foregroundSecondary}" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        
+                        <!-- START -->
+                        
+                        <TextBlock Foreground="Black">
+                            Michalovce, Slovakia - Námestie osloboditeľov 01
+                        </TextBlock>
+                        
+                        <LineBreak/>
+                        
+                        http://www.michalovce.sk/webcam/michalovce.sk-camera-001.jpg
+                        
+                        <!-- END -->
+                        
+                        <LineBreak/>
+                        <LineBreak/>
+                        
+                        <!-- START -->
+                        
+                        <TextBlock Foreground="Black">
+                            Nowy Targ, Poland - Restaurant "U gazdy" (Kamera na Tatry)
+                        </TextBlock>
+                        
+                        <LineBreak/>
+                        
+                        http://www.ugazdy.pl/kamerka/obrazek.jpg
+                        
+                        <!-- END -->
+                        
+                        <LineBreak/>
+                        <LineBreak/>
+                        
+                        <!-- START -->
+                        
+                        <TextBlock Foreground="Black">
+                            Gelendzhik, Russia - Glavmore (Camera 2)
+                        </TextBlock>
+                        
+                        <LineBreak/>
+                        
+                        http://static.glavmore.ru/cam/cam-1.jpg
+                        
+                        <!-- END -->
+                        
+                        <LineBreak/>
+                        <LineBreak/>
+                        
+                        <!-- START -->
+                        
+                        <TextBlock Foreground="Black">
+                            Poprad, Slovakia - Weather station "Funsat"
+                        </TextBlock>
+                        
+                        <LineBreak/>
+                        
+                        http://funsat.sk.d.websupport.sk/webcam/funsat.jpg
+                        
+                        <!-- END -->
+                        
+                        <LineBreak/>
+                        <LineBreak/>
+                        
+                        <!-- START -->
+                        
+                        <TextBlock Foreground="Black">
+                            Michalovce, Slovakia - Busová stanica
+                        </TextBlock>
+                        
+                        <LineBreak/>
+                        
+                        http://gecom.sk/img/kam-autobuska-orig.jpg
+                        
+                        <!-- END -->
+                        
+                        <LineBreak/>
+                        <LineBreak/>
+                        
+                        <!-- START -->
+                        
+                        <TextBlock Foreground="Black">
+                            Żywiec, Poland - Żywiec lake
+                        </TextBlock>
+                        
+                        <LineBreak/>
+                        
+                        http://www.megasurf.pl/cam/Video01.jpg
+                        
+                        <!-- END -->
+                        
+                        <LineBreak/>
+                        <LineBreak/>
+                        
+                        <!-- START -->
+                        
+                        <TextBlock Foreground="Black">
+                            Levoča, Slovakia - www.pocasielevoca.sk
+                        </TextBlock>
+                        
+                        <LineBreak/>
+                        
+                        http://www.pocasielevoca.sk/data/snimek.jpg
+                        
+                        <!-- END -->
+                        
+                    </TextBlock>
+
+                    <controleffects:RippleDrawable Color="{DynamicResource settingsPage_backgroundSecondary4}" FillColor="Transparent" />
+
+                </Grid>
+
+            </Grid>
+
+        </ScrollViewer>
+
+        <usercontrols:ArcProgress Grid.RowSpan="2" x:Name="progressring" Color="{DynamicResource settingsPage_foregroundSecondary}" Width="65" Height="65" IsActive="False" Visibility="Collapsed" />
+
+    </Grid>
+
+</Page>

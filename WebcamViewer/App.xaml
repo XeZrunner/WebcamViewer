@@ -32,6 +32,7 @@
             <SolidColorBrush x:Key="settingsPage_backgroundSecondary" Color="#FFBBBBBB"/>
             <SolidColorBrush x:Key="settingsPage_backgroundSecondary2" Color="#FFAAAAAA"/>
             <SolidColorBrush x:Key="settingsPage_backgroundSecondary3" Color="#FFDADADA"/>
+            <SolidColorBrush x:Key="settingsPage_backgroundSecondary4" Color="#1F000000"/>
             <SolidColorBrush x:Key="settingsPage_backgroundWebcamItemEditor" Color="White"/>
 
             <SolidColorBrush x:Key="settingsPage_foregroundText" Color="Black"/>
@@ -89,6 +90,7 @@
             <SolidColorBrush x:Key="settingsPage_Light_backgroundSecondary" Color="#FFBBBBBB"/>
             <SolidColorBrush x:Key="settingsPage_Light_backgroundSecondary2" Color="#FFAAAAAA"/>
             <SolidColorBrush x:Key="settingsPage_Light_backgroundSecondary3" Color="#FFDADADA"/> <!-- https://youtu.be/lNYcviXK4rg?t=51s xDD -->
+            <SolidColorBrush x:Key="settingsPage_Light_backgroundSecondary4" Color="#1F000000"/>
             <SolidColorBrush x:Key="settingsPage_Light_backgroundWebcamItemEditor" Color="White"/>
 
             <SolidColorBrush x:Key="settingsPage_Light_foregroundText" Color="Black"/>
@@ -101,6 +103,7 @@
             <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary" Color="#FF505050"/>
             <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary2" Color="#FF606060"/>
             <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary3" Color="#FF3F3F3F"/>
+            <SolidColorBrush x:Key="settingsPage_Dark_backgroundSecondary4" Color="#1FFFFFFF"/>
             <SolidColorBrush x:Key="settingsPage_Dark_backgroundWebcamItemEditor" Color="#FF353535"/>
 
             <SolidColorBrush x:Key="settingsPage_Dark_foregroundText" Color="White"/>
