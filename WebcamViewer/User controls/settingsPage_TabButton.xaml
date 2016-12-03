@@ -107,7 +107,7 @@
 
             </Grid>
 
-            <controleffects:RippleDrawable Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}"/>
+            <controleffects:RippleDrawable x:Name="rippleDrawable" Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}"/>
 
         </Grid>
 

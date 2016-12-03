@@ -35,7 +35,7 @@
         </Storyboard>
     </UserControl.Resources>
 
-    <usercontrols:Arc x:Name="arc" Center="32.5,32.5" Radius="30" StartAngle="0" EndAngle="0" Stroke="{Binding ElementName=usercontrol, Path=Foreground}" StrokeThickness="2" RenderTransformOrigin="0.5,0.5">
+    <usercontrols:Arc x:Name="arc" Center="32.5,32.5" Radius="30" StartAngle="0" EndAngle="0" Stroke="{Binding ElementName=usercontrol, Path=Foreground}" StrokeThickness="3" RenderTransformOrigin="0.5,0.5">
         <usercontrols:Arc.RenderTransform>
             <TransformGroup>
                 <TranslateTransform/>

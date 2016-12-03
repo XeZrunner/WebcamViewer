@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._1_Home.Controls"
              xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
              mc:Ignorable="d" 
-             Width="410" Height="170" Background="{DynamicResource MessageDialog_Background}">
+             Width="410" Height="170" Background="{DynamicResource MessageDialog_Background}" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="65"/>
@@ -40,33 +40,13 @@
 
             <Grid VerticalAlignment="Center">
 
-                <StackPanel x:Name="mainStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <StackPanel x:Name="mainStackPanel" Margin="10">
 
-                    <usercontrols:settingsPage_NormalButton Height="85" Width="85" Margin="0,0,5,0">
+                    <RadioButton Tag="none">None</RadioButton>
+                    <RadioButton Margin="0,5,0,0" Tag="fill">Fill</RadioButton>
+                    <RadioButton Margin="0,5,0,0" Tag="uniform">Uniform</RadioButton>
+                    <RadioButton Margin="0,5,0,0" Tag="uniformtofill">Uniform to fill</RadioButton>
 
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Image Source="/Resources/icon_white.ico" Stretch="Uniform" Width="30" />
-                            <TextBlock Grid.Row="1" HorizontalAlignment="Center">Uniform</TextBlock>
-                        </Grid>
-
-                    </usercontrols:settingsPage_NormalButton>
-
-                    <usercontrols:settingsPage_NormalButton Height="85" Width="85">
-
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Image Source="/Resources/icon_white.ico" Stretch="Fill" Width="30" />
-                            <TextBlock Grid.Row="1" HorizontalAlignment="Center">Fill</TextBlock>
-                        </Grid>
-
-                    </usercontrols:settingsPage_NormalButton>
                 </StackPanel>
 
             </Grid>

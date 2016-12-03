@@ -1,0 +1,70 @@
+﻿<Page x:Class="WebcamViewer.Pages.Home_page.Overview.Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WebcamViewer.Pages.Home_page.Overview"
+      xmlns:res="clr-namespace:WebcamViewer.Properties"
+      xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Home Overview">
+
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="mainView" Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!-- Action bar -->
+            <Grid Grid.Row="0">
+
+                <Rectangle x:Name="mainView_ActionBar_backgroundRectangle" Fill="{DynamicResource accentcolor_light}"/>
+
+                <Grid x:Name="mainView_ActionBar_ContentGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <usercontrols:AppBar_Button Grid.Column="0" IconText="&#xe72b;" />
+
+                    <Label Foreground="White" Grid.Column="1" FontSize="15" FontFamily="Segoe UI Semibold" Margin="5,0,0,0" VerticalAlignment="Center"
+                               Content="{x:Static res:Resources.webcamPage_Overview}"/>
+
+                    <usercontrols:AppBar_Button Grid.Column="2" IconText="&#xe72c;" />
+
+                </Grid>
+
+            </Grid>
+            
+            <!-- Camera overview -->
+            <Grid Grid.Row="1">
+
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        <usercontrols:webcamPage_Overview_CameraButton CameraName="Camera #?" Image="http://46.150.192.118:8001/jpg/1/image.jpg" />
+                        <usercontrols:webcamPage_Overview_CameraButton CameraName="Camera #?" Image="http://46.150.192.118:8001/jpg/1/image.jpg" />
+
+                    </WrapPanel>
+                </ScrollViewer>
+                
+            </Grid>
+
+        </Grid>
+
+        <Rectangle x:Name="mainView_ActionBar_titlebarext_Rectangle" Grid.Row="0" Fill="{DynamicResource accentcolor_light}"/>
+        <Rectangle x:Name="mainView_ActionBar_titlebarext_Rectangle_overlay" Grid.Row="0" Fill="#0F000000"/>
+
+    </Grid>
+
+</Page>

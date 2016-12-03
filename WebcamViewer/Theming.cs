@@ -97,6 +97,7 @@ namespace WebcamViewer
                 Application.Current.Resources["settingsPage_backgroundSecondary"] = Application.Current.Resources[string.Format("settingsPage_{0}_backgroundSecondary", ThemeNames[theme]) ];
                 Application.Current.Resources["settingsPage_backgroundSecondary2"] = Application.Current.Resources[string.Format("settingsPage_{0}_backgroundSecondary2", ThemeNames[theme]) ];
                 Application.Current.Resources["settingsPage_backgroundSecondary3"] = Application.Current.Resources[string.Format("settingsPage_{0}_backgroundSecondary3", ThemeNames[theme]) ];
+                Application.Current.Resources["settingsPage_backgroundSecondary4"] = Application.Current.Resources[string.Format("settingsPage_{0}_backgroundSecondary4", ThemeNames[theme])];
                 Application.Current.Resources["settingsPage_backgroundWebcamItemEditor"] = Application.Current.Resources[string.Format("settingsPage_{0}_backgroundWebcamItemEditor", ThemeNames[theme]) ];
 
                 Application.Current.Resources["settingsPage_foregroundText"] = Application.Current.Resources[string.Format("settingsPage_{0}_foregroundText", ThemeNames[theme]) ];

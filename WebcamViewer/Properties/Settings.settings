@@ -6,24 +6,24 @@
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;Michalovce, Slovakia - Námestie osloboditeľov 01&lt;/string&gt;
-  &lt;string&gt;Michalovce, Slovakia - Námestie osloboditeľov 01 [raw]&lt;/string&gt;
   &lt;string&gt;Nowy Targ, Poland - Restaurant "U gazdy" (Kamera na Tatry)&lt;/string&gt;
   &lt;string&gt;Gelendzhik, Russia - Glavmore (Camera 2)&lt;/string&gt;
   &lt;string&gt;Poprad, Slovakia - Weather station "Funsat"&lt;/string&gt;
   &lt;string&gt;Michalovce, Slovakia - Busová stanica&lt;/string&gt;
   &lt;string&gt;Żywiec, Poland - Żywiec lake&lt;/string&gt;
+  &lt;string&gt;Levoča, Slovakia - www.pocasielevoca.sk&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="camera_urls" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;http://www.michalovce.sk/webcam/michalovce.sk-camera-001.jpg&lt;/string&gt;
-  &lt;string&gt;http://46.150.192.118:8001/jpg/1/image.jpg&lt;/string&gt;
   &lt;string&gt;http://www.ugazdy.pl/kamerka/obrazek.jpg&lt;/string&gt;
   &lt;string&gt;http://static.glavmore.ru/cam/cam-1.jpg&lt;/string&gt;
   &lt;string&gt;http://funsat.sk.d.websupport.sk/webcam/funsat.jpg&lt;/string&gt;
   &lt;string&gt;http://gecom.sk/img/kam-autobuska-orig.jpg&lt;/string&gt;
   &lt;string&gt;http://www.megasurf.pl/cam/Video01.jpg&lt;/string&gt;
+  &lt;string&gt;http://www.pocasielevoca.sk/data/snimek.jpg&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="camera_refreshrates" Type="System.Collections.Specialized.StringCollection" Scope="User">
@@ -42,13 +42,25 @@
       <Value Profile="(Default)">Update 2 Beta</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20161112-01</Value>
+      <Value Profile="(Default)">20161203-00</Value>
     </Setting>
     <Setting Name="webcamengine_version" Type="System.String" Scope="User">
       <Value Profile="(Default)">1.2 Prerelease</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2016.11.12; feature level 1
+      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2016.11.16; feature level 1
+
+New features:
+- Added the ability to change the image stretching mode.
+
+Developer:
+- Added the default cameras page, with all the default cameras listed.
+
+Logging:
+- Most basic things are logged now.
+---------------------------------------------
+
+Webcam Viewer Update 2 Beta - 2016.11.12; feature level 1
 
 User interface:
 - Unified RippleDrawable inclusion
@@ -116,8 +128,8 @@ Overview:
     <Setting Name="app_prereleasechannel" Type="System.String" Scope="User">
       <Value Profile="(Default)">update2-development</Value>
     </Setting>
-    <Setting Name="experiment_OverviewAd2" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="home_imagesizing" Type="System.String" Scope="User">
+      <Value Profile="(Default)">uniform</Value>
     </Setting>
   </Settings>
 </SettingsFile>

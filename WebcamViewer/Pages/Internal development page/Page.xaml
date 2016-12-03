@@ -75,8 +75,9 @@
 
         </Grid>
         
-        <!-- Overlay -->
-         <Rectangle x:Name="overlayRectangle" Fill="Black" Height="32" VerticalAlignment="Top" Margin="0,-32,0,0"/>
+        <!-- Titlebar -->
+        <Rectangle x:Name="titlebaraccentRectangle" Fill="{DynamicResource accentcolor_light}" Height="32" VerticalAlignment="Top" Margin="0,-32,0,0"/>
+        <Rectangle x:Name="accentOverlayRectangle" Fill="#0F000000" Height="32" VerticalAlignment="Top" Margin="0,-32,0,0"/>
 
     </Grid>
 

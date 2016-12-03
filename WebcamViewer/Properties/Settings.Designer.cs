@@ -28,12 +28,12 @@ namespace WebcamViewer.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
   <string>Michalovce, Slovakia - Námestie osloboditeľov 01</string>
-  <string>Michalovce, Slovakia - Námestie osloboditeľov 01 [raw]</string>
   <string>Nowy Targ, Poland - Restaurant ""U gazdy"" (Kamera na Tatry)</string>
   <string>Gelendzhik, Russia - Glavmore (Camera 2)</string>
   <string>Poprad, Slovakia - Weather station ""Funsat""</string>
   <string>Michalovce, Slovakia - Busová stanica</string>
   <string>Żywiec, Poland - Żywiec lake</string>
+  <string>Levoča, Slovakia - www.pocasielevoca.sk</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection camera_names {
             get {
@@ -49,12 +49,12 @@ namespace WebcamViewer.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
   <string>http://www.michalovce.sk/webcam/michalovce.sk-camera-001.jpg</string>
-  <string>http://46.150.192.118:8001/jpg/1/image.jpg</string>
   <string>http://www.ugazdy.pl/kamerka/obrazek.jpg</string>
   <string>http://static.glavmore.ru/cam/cam-1.jpg</string>
   <string>http://funsat.sk.d.websupport.sk/webcam/funsat.jpg</string>
   <string>http://gecom.sk/img/kam-autobuska-orig.jpg</string>
   <string>http://www.megasurf.pl/cam/Video01.jpg</string>
+  <string>http://www.pocasielevoca.sk/data/snimek.jpg</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection camera_urls {
             get {
@@ -100,7 +100,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20161112-01")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20161203-00")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -124,7 +124,19 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"Webcam Viewer Update 2 Beta - 2016.11.12; feature level 1
+        [global::System.Configuration.DefaultSettingValueAttribute(@"Webcam Viewer Update 2 Beta - 2016.11.16; feature level 1
+
+New features:
+- Added the ability to change the image stretching mode.
+
+Developer:
+- Added the default cameras page, with all the default cameras listed.
+
+Logging:
+- Most basic things are logged now.
+---------------------------------------------
+
+Webcam Viewer Update 2 Beta - 2016.11.12; feature level 1
 
 User interface:
 - Unified RippleDrawable inclusion
@@ -355,13 +367,13 @@ Overview:
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool experiment_OverviewAd2 {
+        [global::System.Configuration.DefaultSettingValueAttribute("uniform")]
+        public string home_imagesizing {
             get {
-                return ((bool)(this["experiment_OverviewAd2"]));
+                return ((string)(this["home_imagesizing"]));
             }
             set {
-                this["experiment_OverviewAd2"] = value;
+                this["home_imagesizing"] = value;
             }
         }
     }

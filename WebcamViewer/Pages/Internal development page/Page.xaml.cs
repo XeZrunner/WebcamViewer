@@ -32,14 +32,7 @@ namespace WebcamViewer.Pages.Internal_development_page
         {
             if (this.IsVisible == true)
             {
-                if (Properties.Settings.Default.settings_showtitlebarcolor)
-                {
-                    overlayRectangle.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    overlayRectangle.Visibility = Visibility.Visible;
-                }
+
             }
         }
 
@@ -93,8 +86,8 @@ namespace WebcamViewer.Pages.Internal_development_page
         object[] subpages = new object[]
         {
             new Subpages.StatusPage(), // 0
-            null,
-            null,
+            new Subpages.DefaultCamerasPage(), // 1
+            new Subpages.UserConfigurationPage(), // 2
             null,
             null,
             null,
@@ -105,8 +98,8 @@ namespace WebcamViewer.Pages.Internal_development_page
         {
             // everything is all caps
             "STATUS",
-            "",
-            "",
+            "DEFAULT CAMERAS",
+            "USER CONFIGURATION",
             "",
             "",
             "",

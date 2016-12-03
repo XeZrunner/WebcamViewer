@@ -473,12 +473,6 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             else box0.IsChecked = false;
             // /EXPERIMENT
 
-            // EXPERIMENT - overview ad2
-            CheckBox box2 = new CheckBox() { Content = "Overview Ad2\nShows an Overview ad on startup.", Margin = new Thickness(4, 15, 0, 5), Tag = "experiment_OverviewAd2" };
-            if (Properties.Settings.Default.experiment_OverviewAd2) box2.IsChecked = true;
-            else box2.IsChecked = false;
-            // /EXPERIMENT
-
             /* LATER
             // EXPERIMENT - new file browser dialog
             CheckBox box1 = new CheckBox() { Content = "Immersive File Dialog\nInternal Edge/UX-development channels only", Margin = new Thickness(4, 15, 0, 5), Tag = "experiment_NewFileBrowserUX" };
@@ -492,7 +486,6 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             panel.Children.Add(label0);
             panel.Children.Add(label1);
             panel.Children.Add(box0);
-            panel.Children.Add(box2);
             //panel.Children.Add(box1);
             // Content //
 
@@ -559,8 +552,6 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
         {
             mainwindow.SwitchToPage(0);
             mainwindow.webcamPage_CloseMenu();
-
-            mainwindow.ShowSellout();
         }
 
         private void settingsPage_DebugMenuPage_Pages_SwitchToPageDebug_Click(object sender, RoutedEventArgs e)
