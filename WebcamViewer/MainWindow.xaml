@@ -637,7 +637,7 @@
         <!-- Pages -->
 
         <Grid x:Name="webcamPage" Background="Black" Tag="0"
-              Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+              Visibility="Visible" RenderTransformOrigin="0.5,0.5">
             <Grid.Resources>
                 <Style TargetType="Label">
                     <Setter Property="Foreground" Value="White"/>
@@ -788,9 +788,104 @@
 
             </Grid>
 
+            <!-- Save and error panel -->
+            <Grid x:Name="webcamPage_saveGrid" Visibility="Collapsed">
+
+                <!-- Blur effect -->
+                <Border>
+                    <Border.Effect>
+                        <BlurEffect x:Name="webcamPage_saveGrid_BlurEffect" Radius="5" />
+                    </Border.Effect>
+                    <Border.Background>
+                        <VisualBrush Visual="{Binding ElementName=webcamPage_Image}" Stretch="None" AlignmentX="Center" AlignmentY="Center"/>
+                    </Border.Background>
+                </Border>
+
+                <Rectangle Fill="{DynamicResource webcamPage_menuBackground}"/>
+
+                <Grid x:Name="webcamPage_saveGrid_SavePanel" Visibility="Visible">
+
+                    <!-- Progress animation -->
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        <Grid Margin="-7.5,-7.5,0,0">
+                            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.4"
+                           Foreground="{DynamicResource webcamPage_Foreground}" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="36"
+                           Content="&#xeb9f;"/>
+
+                            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,30,0,0"
+                           Foreground="{DynamicResource webcamPage_Foreground}" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="28"
+                           Content="&#xe896;"/>
+                        </Grid>
+
+                        <usercontrols:ArcProgress Color="{DynamicResource webcamPage_Foreground}" Width="100" Height="100" IsActive="True" Visibility="Visible"/>
+
+                    </Grid>
+
+                    <!-- Progress status-->
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                      Margin="0,250,0,0">
+
+                        <Label HorizontalAlignment="Center"
+                           Foreground="{DynamicResource webcamPage_Foreground}"
+                           Content="Status" />
+
+                        <Controls:MetroProgressBar x:Name="webcamPage_saveGrid_progressBar" Margin="0,10,0,0" Width="300" Height="5"
+                                 Foreground="{DynamicResource webcamPage_Foreground}" BorderThickness="0"
+                                 IsIndeterminate="False" Value="30"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid x:Name="webcamPage_saveGrid_ErrorPanel" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <StackPanel Width="350">
+
+                        <Label Foreground="{DynamicResource webcamPage_Foreground}" FontFamily="Segoe UI Semibold" FontSize="18"
+                               Content="Hiba történt a kép mentése közben..."/>
+
+                        <TextBlock Foreground="{DynamicResource webcamPage_Foreground}" Margin="5">
+                            Ellenőrizd az internetkapcsolatod, és próbáld újra.
+                            <LineBreak/>
+                            Hiba: Kevés a szabad terület a ?: meghajtón.
+                        </TextBlock>
+
+                        <Grid Margin="0,15,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <usercontrols:webcamPage_menuGrid_CameraActionButton Grid.Column="0" TextAlignment="Center" 
+                                                                                 Text="Try again"/>
+
+                            <usercontrols:webcamPage_menuGrid_CameraActionButton Grid.Column="1" TextAlignment="Center" 
+                                                                                 Text="OK" />
+
+                        </Grid>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </Grid>
+
+            <Grid x:Name="zOverviewGrid" Visibility="Collapsed">
+                <Border Margin="0,32,0,0">
+                    <Border.Effect>
+                        <BlurEffect Radius="10"/>
+                    </Border.Effect>
+                    <Border.Background>
+                        <VisualBrush Visual="{Binding ElementName=webcamPage_Image}" Stretch="None" AlignmentX="Center" AlignmentY="Center" />
+                    </Border.Background>
+                </Border>
+                <Frame x:Name="zOverviewFrame" />
+            </Grid>
+
             <!-- Menu grid -->
             <Grid x:Name="webcamPage_menuGrid" Background="#00FFFFFF" HorizontalAlignment="Left" Width="320" ClipToBounds="True" RenderTransformOrigin="0.5, 0.5"
-                  Visibility="Visible">
+                  Visibility="Collapsed">
 
                 <!-- Blurbehind -->
                 <Border x:Name="webcamPage_menuGrid_blurbehindBorder">
@@ -891,18 +986,6 @@
 
                 </StackPanel>
 
-            </Grid>
-
-            <Grid x:Name="zOverviewGrid" Visibility="Collapsed">
-                <Border Margin="0,32,0,0">
-                    <Border.Effect>
-                        <BlurEffect Radius="10"/>
-                    </Border.Effect>
-                    <Border.Background>
-                        <VisualBrush Visual="{Binding ElementName=webcamPage_Image}" Stretch="None" AlignmentX="Center" AlignmentY="Center" />
-                    </Border.Background>
-                </Border>
-                <Frame x:Name="zOverviewFrame" />
             </Grid>
 
         </Grid>
@@ -1107,12 +1190,6 @@
             <Rectangle x:Name="internalsettingsPage_Rectangle" Fill="{DynamicResource accentcolor_dark}" Height="32" VerticalAlignment="Top" />
 
             <Frame x:Name="internalsettingsPage_Container_frame" Margin="0,32,0,0"/>
-
-        </Grid>
-
-        <Grid x:Name="firstrunPage" Background="Black" Visibility="Collapsed">
-
-            <UserControl x:Name="firstrunPage_ViewHost" />
 
         </Grid>
 

@@ -117,9 +117,6 @@
     <Compile Include="Messagedialog_FullWidthWindow.xaml.cs">
       <DependentUpon>Messagedialog_FullWidthWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\First run page\firstrunPage_Control.xaml.cs">
-      <DependentUpon>firstrunPage_Control.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Settings page\Subpages\0_Webcams\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
     </Compile>
@@ -288,14 +285,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Messagedialog_FullWidthWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\First run page\firstrunPage_ResourceDictionary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\First run page\firstrunPage_Control.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

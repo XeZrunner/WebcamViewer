@@ -26,7 +26,7 @@
             <!-- Action bar -->
             <Grid Grid.Row="0">
 
-                <Rectangle x:Name="mainView_ActionBar_backgroundRectangle" Fill="{DynamicResource accentcolor_light}"/>
+                <Rectangle x:Name="mainView_ActionBar_backgroundRectangle" Fill="{DynamicResource accentcolor_light}" Opacity="0"/>
 
                 <Grid x:Name="mainView_ActionBar_ContentGrid">
                     <Grid.ColumnDefinitions>
@@ -35,12 +35,20 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <usercontrols:AppBar_Button Grid.Column="0" IconText="&#xe72b;" />
+                    <usercontrols:AppBar_Button x:Name="mainView_backButton" Grid.Column="0" IconText="&#xe72b;" Click="mainView_backButton_Click" />
 
-                    <Label Foreground="White" Grid.Column="1" FontSize="15" FontFamily="Segoe UI Semibold" Margin="5,0,0,0" VerticalAlignment="Center"
+                    <Label Foreground="White" Grid.Column="1" FontSize="15" FontFamily="Segoe UI Semibold" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
                                Content="{x:Static res:Resources.webcamPage_Overview}"/>
 
-                    <usercontrols:AppBar_Button Grid.Column="2" IconText="&#xe72c;" />
+                    <StackPanel Orientation="Horizontal" Grid.Column="2">
+                    
+                    <usercontrols:AppBar_Button x:Name="mainView_debugMenuButton" Click="mainView_debugMenuButton_Click"
+                                                IconText="&#xe700;" />
+                    
+                    <usercontrols:AppBar_Button x:Name="mainView_refreshButton" Click="mainView_refreshButton_Click"
+                                                IconText="&#xe72c;" />
+
+                    </StackPanel>
 
                 </Grid>
 
@@ -50,14 +58,16 @@
             <Grid Grid.Row="1">
 
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <WrapPanel x:Name="mainView_wrappanel" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                        <usercontrols:webcamPage_Overview_CameraButton CameraName="Camera #?" Image="http://46.150.192.118:8001/jpg/1/image.jpg" />
-                        <usercontrols:webcamPage_Overview_CameraButton CameraName="Camera #?" Image="http://46.150.192.118:8001/jpg/1/image.jpg" />
+                        <usercontrols:webcamPage_Overview_CameraButton CameraName="Camera #?" />
+                        <usercontrols:webcamPage_Overview_CameraButton CameraName="Camera #?" />
 
                     </WrapPanel>
                 </ScrollViewer>
-                
+
+                <usercontrols:ArcProgress x:Name="mainView_progressarc" Color="White" Visibility="Hidden"/>
+
             </Grid>
 
         </Grid>

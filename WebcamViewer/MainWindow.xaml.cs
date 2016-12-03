@@ -449,7 +449,7 @@ namespace WebcamViewer
         #region Webcam page
 
         // titlebar menu button //
-        private void webcamPage_menuButton_Click(object sender, RoutedEventArgs e)
+        public void webcamPage_menuButton_Click(object sender, RoutedEventArgs e)
         {
             if (splashPage.Visibility == Visibility.Visible)
                 return;
@@ -650,22 +650,26 @@ namespace WebcamViewer
 
         private void webcamPage_menuGrid_overviewButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Keyboard.IsKeyDown(Key.LeftShift))
+            if (Properties.Settings.Default.experiment_zOverview)
             {
-                zOverviewGrid.Visibility = Visibility.Visible;
-                zOverviewFrame.Navigate(new Pages.Home_page.Overview.Page());
-
-                SetTitlebarButtonsStyle(0);
+                webcamPage_MainContentGrid_SwitchTozOverview();
             }
             else
             {
-                if (webcamPage_MainContentGrid_OverviewGrid.Visibility != Visibility.Visible)
-                    webcamPage_MainContentGrid_SwitchToOverview();
+                if (Keyboard.IsKeyDown(Key.LeftShift))
+                {
+                    webcamPage_MainContentGrid_SwitchTozOverview();
+                }
                 else
-                    webcamPage_MainContentGrid_SwitchToCameraView();
-
-                webcamPage_CloseMenu();
+                {
+                    if (webcamPage_MainContentGrid_OverviewGrid.Visibility != Visibility.Visible & zOverviewGrid.Visibility != Visibility.Visible)
+                        webcamPage_MainContentGrid_SwitchToOverview();
+                    else
+                        webcamPage_MainContentGrid_SwitchToCameraView();
+                }
             }
+
+            webcamPage_CloseMenu();
         }
 
         async void webcamPage_menuGrid_cameraButton_Click(object sender, RoutedEventArgs e)
@@ -1094,7 +1098,7 @@ namespace WebcamViewer
             Debug.Log("WEBCAMPAGE: Switched to overview.");
         }
 
-        void webcamPage_MainContentGrid_SwitchToCameraView()
+        public void webcamPage_MainContentGrid_SwitchToCameraView()
         {
             Storyboard s = (Storyboard)FindResource("webcamPage_OverviewOut");
             s.Begin(); s.SetSpeedRatio(ui_animationspeed);
@@ -1122,7 +1126,63 @@ namespace WebcamViewer
             // hide overview debug
             webcamPage_menuGrid_overviewDebugButton.Visibility = Visibility.Collapsed;
 
+            DoubleAnimation anim_zOverview = new DoubleAnimation(0, TimeSpan.FromSeconds(.3));
+            zOverviewGrid.BeginAnimation(OpacityProperty, anim_zOverview);
+
+            DispatcherTimer anim_zOverview_Timer = new DispatcherTimer();
+            anim_zOverview_Timer.Interval = TimeSpan.FromSeconds(.3);
+            anim_zOverview_Timer.Tick += (s1, ev) => { anim_zOverview_Timer.Stop(); zOverviewGrid.Visibility = Visibility.Collapsed; };
+            anim_zOverview_Timer.Start();
+
             Debug.Log("WEBCAMPAGE: Switched to camera view.");
+        }
+
+        Pages.Home_page.Overview.Page zOverview_page;
+
+        public void webcamPage_MainContentGrid_SwitchTozOverview()
+        {
+            DoubleAnimation anim_zOverview = new DoubleAnimation(1, TimeSpan.FromSeconds(0.3));
+
+            zOverviewGrid.Visibility = Visibility.Visible;
+            zOverviewGrid.Opacity = 0;
+
+            if (zOverviewFrame.Content == null)
+            {
+                zOverview_page = new Pages.Home_page.Overview.Page();
+                zOverviewFrame.Navigate(zOverview_page);
+            }
+
+            zOverviewGrid.BeginAnimation(OpacityProperty, anim_zOverview);
+
+            zOverview_page.RefreshOverview();
+
+            // ----- ----- ----- //
+
+            webcamPage_menuGrid_overviewButton.IconText = "\ue72b";
+            webcamPage_menuGrid_overviewButton.Text = Properties.Resources.webcamPage_OverviewGoBack;
+
+            AllowBackButtonLogic = false; // disable backbutton logic
+            webcamPage_menuGrid_HideCamerasPanel(); // hide the menu cameras
+            #region Hide the infogrid
+
+            DoubleAnimation anim = new DoubleAnimation(0, TimeSpan.FromSeconds(.5));
+            webcamPage_menuGrid_infoGrid.BeginAnimation(OpacityProperty, anim);
+
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(.5);
+            timer.Tick += (s1, ev) => { timer.Stop(); webcamPage_menuGrid_infoGrid.Visibility = Visibility.Collapsed; menuGrid_rowdefinition_infoGrid.Height = new GridLength(0); };
+            timer.Start();
+
+            #endregion
+
+            // hide "back" buttons
+            backButton.Visibility = Visibility.Collapsed;
+            webcamPage_menuButton.Visibility = Visibility.Collapsed;
+
+            // show overview debug
+            webcamPage_menuGrid_overviewDebugButton.Visibility = Visibility.Visible;
+
+            Debug.Log("WEBCAMPAGE: Switched to overview.");
         }
 
         async void webcamPage_MainContentGrid_Overview_LoadContent()
@@ -1815,7 +1875,7 @@ namespace WebcamViewer
                     #endregion
             }
 
-            Debug.Log("CORE_TITLEBAR: Set style to " + styleString + "(" + style + ")");
+            //Debug.Log("CORE_TITLEBAR: Set style to " + styleString + "(" + style + ")");
         }
 
         #endregion
@@ -1882,8 +1942,6 @@ namespace WebcamViewer
 
         bool settings_showtitlebarcolor;
         bool settings_experiment_UpdateUI;
-
-        bool experiment_overviewad2;
 
         bool app_firstrun;
         string app_language;
@@ -2064,34 +2122,6 @@ namespace WebcamViewer
             settingsPage_leftGrid_DebugSettingsTabButton.Description = "Debug mode: " + debugmode;
             webcamPage_debugoverlay_debugmodeTextBlock.Text = string.Format("Debug mode: {0}", Properties.Settings.Default.app_debugmode);
             webcamPage_debugoverlay_prereleasechannelTextBlock.Text = string.Format("Prerelease channel: {0}", Properties.Settings.Default.app_prereleasechannel);
-
-            // App - first run UX
-            if (app_firstrun)
-                App_StartFirstRunUX();
-        }
-
-        public void App_StartFirstRunUX()
-        {
-            Debug.Log("FirstRunUX - Started First Run UX");
-
-            Pages.First_run_page.firstrunPage_Control viewhost = new Pages.First_run_page.firstrunPage_Control();
-            firstrunPage_ViewHost.Content = viewhost;
-
-            // load welcome page
-            viewhost.WelcomePage.Visibility = Visibility.Visible;
-
-            // animate page
-            firstrunPage.Opacity = 0;
-            DoubleAnimation anim = new DoubleAnimation(1, TimeSpan.FromSeconds(.5));
-            firstrunPage.BeginAnimation(OpacityProperty, anim);
-
-            firstrunPage.Visibility = Visibility.Visible;
-
-            // no back button
-            backButton.Visibility = Visibility.Collapsed;
-            webcamPage_menuButton.Visibility = Visibility.Collapsed;
-
-            Debug.Log("FirstRunUX - Page created and loaded.");
         }
 
         #endregion

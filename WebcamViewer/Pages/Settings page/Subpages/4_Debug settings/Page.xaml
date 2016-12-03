@@ -12,6 +12,13 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel x:Name="sectionsPanel" Margin="10" MinWidth="250">
 
+                <!-- Internal -->
+                <StackPanel x:Name="settingsPage_DebugMenuPage_InternalSection" Margin="0,5,0,0">
+                    <!-- <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">INTERNAL</Label> -->
+
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Internal_InternalSettingsButton" IsToggleButton="False" Title="Internal settings" Click="settingsPage_DebugMenuPage_Internal_InternalSettingsButton_Click"/>
+                </StackPanel>
+
                 <!-- Home -->
                 <StackPanel x:Name="settingsPage_DebugMenuPage_HomeSection" Margin="0,0,0,0">
                     <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">HOME</Label>
@@ -57,31 +64,17 @@
                     <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Debugging_DebugLoggingToggleButton" Title="Debug logging" Description="Enable or disable logging. The log file is created in the app's directory." Tag="app_logging" Click="settingsPage_ToggleButtonClick"/>
                 </StackPanel>
 
-                <!-- Internal -->
-                <StackPanel x:Name="settingsPage_DebugMenuPage_InternalSection" Margin="0,5,0,0">
-                    <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,0,0,0">INTERNAL</Label>
-
-                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_Internal_InternalSettingsButton" IsToggleButton="False" Title="Internal settings" Click="settingsPage_DebugMenuPage_Internal_InternalSettingsButton_Click"/>
-                </StackPanel>
-
                 <!-- Experimental internal tests -->
                 <StackPanel x:Name="settingsPage_DebugMenuPage_ExpInternalSection" Margin="0,5,0,0">
                     <StackPanel  HorizontalAlignment="Left" Margin="10,0,0,0">
                         <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold">Experimental internal tests</Label>
                         <Label Foreground="{DynamicResource settingsPage_foregroundSecondary2}" FontFamily="Segoe UI Semibold">These experiments are temporary, usually consist of UI experiments.</Label>
-                        <Label Foreground="{DynamicResource settingsPage_foregroundSecondary2}" FontFamily="Segoe UI Semibold">HOME PAGE EXPERIMENTS</Label>
                     </StackPanel>
-
-                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_ExpInternal_ShowOverviewSelloutButton" IsToggleButton="False" Title="Show Overview Sellout" Description="Experiment" Click="settingsPage_DebugMenuPage_ExpInternal_ShowOverviewSelloutButton_Click"/>
                 </StackPanel>
 
                 <!-- First run debug -->
                 <StackPanel x:Name="settingsPage_DebugMenuPage_FirstRunSection" Margin="0,5,0,0">
-                    <StackPanel  HorizontalAlignment="Left" Margin="10,0,0,0">
-                        <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold">First run UX Debug</Label>
-                    </StackPanel>
-
-                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_DebugMenuPage_FirstRunSection_StartFirstRunUX" IsToggleButton="False" Title="Start First Run UX" Description="" Click="settingsPage_DebugMenuPage_FirstRunSection_StartFirstRunUX_Click"/>
+                    <StackPanel  HorizontalAlignment="Left" Margin="10,0,0,0"/>
                 </StackPanel>
 
             </StackPanel>

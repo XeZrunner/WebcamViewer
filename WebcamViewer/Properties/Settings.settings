@@ -42,13 +42,21 @@
       <Value Profile="(Default)">Update 2 Beta</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20161203-00</Value>
+      <Value Profile="(Default)">20161203-01</Value>
     </Setting>
     <Setting Name="webcamengine_version" Type="System.String" Scope="User">
       <Value Profile="(Default)">1.2 Prerelease</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2016.11.16; feature level 1
+      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2016.12.03; feature level 1
+
+New features:
+- Experimental: new Overview!
+You can test the new Overview by holding down Shift on your keyboard while clicking on the Overview button in the menu.
+Some features may not work just yet, it is going to get developed more and more in future builds.
+---------------------------------------------
+
+Webcam Viewer Update 2 Beta - 2016.11.16; feature level 1
 
 New features:
 - Added the ability to change the image stretching mode.
@@ -130,6 +138,9 @@ Overview:
     </Setting>
     <Setting Name="home_imagesizing" Type="System.String" Scope="User">
       <Value Profile="(Default)">uniform</Value>
+    </Setting>
+    <Setting Name="experiment_zOverview" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

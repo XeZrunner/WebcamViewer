@@ -123,5 +123,11 @@ namespace WebcamViewer.User_controls
             s.Stop();
             arc.Visibility = Visibility.Hidden;
         }
+
+        private void usercontrol_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            arc.Radius = (this.ActualWidth - 5) / 2;
+            arc.Center = new Point(this.ActualWidth / 2, this.ActualHeight / 2);
+        }
     }
 }
