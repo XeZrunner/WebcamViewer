@@ -152,10 +152,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             RadioButton rbtn_0 = new RadioButton { Content = "Modal progressring", IsChecked = true };
             RadioButton rbtn_1 = new RadioButton { Content = "Modal progressbar (indeterminate)" };
             RadioButton rbtn_2 = new RadioButton { Content = "In-menu progressring" };
+            RadioButton rbtn_3 = new RadioButton { Content = "Modal save panel" };
 
             rbtn_stackpanel.Children.Add(rbtn_0);
             rbtn_stackpanel.Children.Add(rbtn_1);
             rbtn_stackpanel.Children.Add(rbtn_2);
+            rbtn_stackpanel.Children.Add(rbtn_3);
 
             TextBox textbox = new TextBox { Text = "Progress UI Debug", Margin = new Thickness(0, 0, 0, 10) };
             CheckBox checkbox_countdown = new CheckBox { Content = "Show countdown", IsChecked = true, Margin = new Thickness(0, 0, 0, 5) };
@@ -192,21 +194,22 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                             mainwindow.webcamPage_progressLabel.Content = textbox.Text + " - " + ui_clocktimer_countdown;
                         if (mainwindow.webcamPage_menuGrid_progressPanel_progressTextBlock.Visibility == Visibility.Visible)
                             mainwindow.webcamPage_menuGrid_SetProgressText(textbox.Text + " - " + ui_clocktimer_countdown);
+                        if (mainwindow.webcamPage_saveGrid.IsVisible)
+                            mainwindow.UpdateSavePanelStatus(textbox.Text + " - " + ui_clocktimer_countdown);
                     }
                     ui_clocktimer_countdown--;
                 };
                 ui_clocktimer.Start();
 
                 DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = new TimeSpan(0, 0, 10);
-                timer.Tick += (s, ev) => { timer.Stop(); ui_clocktimer.Stop(); mainwindow.webcamPage_HideProgressUI(); };
+                timer.Interval = new TimeSpan(0, 0, 11);
+                timer.Tick += (s, ev) => { timer.Stop(); ui_clocktimer.Stop(); mainwindow.webcamPage_HideProgressUI(); if (mainwindow.webcamPage_saveGrid.IsVisible) mainwindow.HideSavePanel(); };
                 timer.Start();
                 #endregion
 
-                if (mainwindow.webcamPage_progressLabel.Visibility == Visibility.Visible)
                     mainwindow.webcamPage_progressLabel.Content = textbox.Text;
-                if (mainwindow.webcamPage_menuGrid_progressPanel_progressTextBlock.Visibility == Visibility.Visible)
                     mainwindow.webcamPage_menuGrid_SetProgressText(textbox.Text);
+                    mainwindow.UpdateSavePanelStatus(textbox.Text);
 
                 int mode = 0;
                 int counter = 0;
@@ -232,6 +235,11 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                                     mainwindow.webcamPage_ShowProgressUI(4); mode = 2;
                                     break;
                                 }
+                            case 3:
+                                {
+                                    mainwindow.ShowSavePanel(); mode = 3;
+                                    break;
+                                }
                         }
                         #endregion
                     }
@@ -239,7 +247,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                         counter++;
                 }
 
-                if (mode != 2)
+                if (mode < 2 && mode == 3)
                 {
                     mainwindow.webcamPage_CloseMenu();
                 }

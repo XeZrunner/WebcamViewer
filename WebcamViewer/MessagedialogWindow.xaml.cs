@@ -23,6 +23,8 @@ namespace WebcamViewer
             InitializeComponent();
         }
 
+        MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+
         public void SetupDialog(string Title, object Content, bool? DarkTheme, bool Content_DisableMargin, string FirstButtonContent, string SecondButtonContent, RoutedEventHandler FirstButtonClickEvent, RoutedEventHandler SecondButtonClickEvent)
         {
             // Title

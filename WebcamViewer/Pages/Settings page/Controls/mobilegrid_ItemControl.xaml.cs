@@ -16,9 +16,9 @@ using System.Windows.Shapes;
 
 namespace WebcamViewer.Pages.Settings_page.Controls
 {
-    public partial class desktopgrid_ItemControl : UserControl
+    public partial class mobilegrid_ItemControl : UserControl
     {
-        public desktopgrid_ItemControl()
+        public mobilegrid_ItemControl()
         {
             InitializeComponent();
         }

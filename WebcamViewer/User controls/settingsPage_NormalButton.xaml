@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:WebcamViewer.User_controls"
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.User_controls.settingsPage_NormalButton"
              xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
-             mc:Ignorable="d" 
-             Height="34" MinWidth="120" Background="{DynamicResource settingsPage_backgroundSecondary3}" FontSize="14" ClipToBounds="True" SizeChanged="usercontrol_SizeChanged">
+             mc:Ignorable="d"
+             Height="34" MinWidth="120" Foreground="{DynamicResource settingsPage_foregroundText}" Background="{DynamicResource settingsPage_backgroundSecondary3}" FontSize="14" ClipToBounds="True" SizeChanged="usercontrol_SizeChanged">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
@@ -74,7 +74,7 @@
 
             <Grid>
 
-                <TextBlock x:Name="textTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="24,5" Margin="0" FontSize="{Binding ElementName=usercontrol, Path=FontSize}" Text="Button"/>
+                <TextBlock x:Name="textTextBlock" Foreground="{Binding ElementName=usercontrol, Path=Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="24,5" Margin="0" FontSize="{Binding ElementName=usercontrol, Path=FontSize}" Text="Button"/>
 
             </Grid>
 

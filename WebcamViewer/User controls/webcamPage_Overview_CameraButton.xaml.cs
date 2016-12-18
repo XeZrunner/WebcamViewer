@@ -35,18 +35,27 @@ namespace WebcamViewer.User_controls
 
         private bool _IsError = false;
 
+        private bool _MobileView = false;
+
         [Description("The Source property of the Image of the button"), Category("Common")]
         public ImageSource Image
         {
             get { return image.Source; }
-            set { image.Source = value; }
+            set { image.Source = value; mobileView_image.Source = value; }
         }
 
         [Description("The name of the camera"), Category("Common")]
         public string CameraName
         {
             get { return textblock.Text; }
-            set { textblock.Text = value; }
+            set { textblock.Text = value; mobileView_titleLabel.Content = value; }
+        }
+
+        [Description("Mobile-view only: Description / Info"), Category("Common")]
+        public string MobileDescription
+        {
+            get { return mobileView_descriptionLabel.Content as string; }
+            set { mobileView_descriptionLabel.Content = value; }
         }
 
         [Description("The error state of the button"), Category("Miscellaneous")]
@@ -65,6 +74,34 @@ namespace WebcamViewer.User_controls
                 {
                     errorGrid.Visibility = Visibility.Hidden;
                 }
+            }
+        }
+
+        [Description("Determines whether to use the mobile view"), Category("Common")]
+        public bool UseMobileView
+        {
+            get { return mobileView.IsVisible; }
+            set { _MobileView = value; UpdateView(); }
+        }
+
+        /// <summary>
+        /// Updates the view (mobile or desktop)
+        /// </summary>
+        private void UpdateView()
+        {
+            if (_MobileView)
+            {
+                // switch to mobile view
+                mobileView.Visibility = Visibility.Visible;
+                deskopView.Visibility = Visibility.Collapsed;
+                this.Height = 60; this.Width = Double.NaN;
+            }
+            else
+            {
+                // switch to desktop view
+                mobileView.Visibility = Visibility.Collapsed;
+                deskopView.Visibility = Visibility.Visible;
+                this.Height = 263; this.Width = 263;
             }
         }
 

@@ -42,13 +42,26 @@
       <Value Profile="(Default)">Update 2 Beta</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20161203-01</Value>
+      <Value Profile="(Default)">20161216-01</Value>
     </Setting>
     <Setting Name="webcamengine_version" Type="System.String" Scope="User">
       <Value Profile="(Default)">1.2 Prerelease</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2016.12.03; feature level 1
+      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2016.12.16; feature level 1
+
+New features:
+- New image saving panel, replacing the old "in-menu" one completely
+
+Developer:
+- Added a new UI Controls Testing page to Settings with all the UI controls listed
+
+Early testing:
+- Experimental: zSettings Early Preview
+Access in menu by clicking on zSettings.
+---------------------------------------------
+
+Webcam Viewer Update 2 Beta - 2016.12.03; feature level 1
 
 New features:
 - Experimental: new Overview!
@@ -74,16 +87,7 @@ User interface:
 - Unified RippleDrawable inclusion
 All hard-coded ripple effects are replaced with the new XeZrunner.UI RippleDrawable control which is further similiar to Google's Android Lollipop ripple.
 The new ripple can no longer be moved by the user, in favor of the ripple slowly "expanding" towards the center of the control, much like on the actual operating system.
----------------------------------------------
-
-Webcam Viewer Update 2 Beta - 2016.11.05; feature level 2
-
-User interface:
-- There's a brand new progress circle for the main camera loading UI. The progress circle is made to look like Google's Material Design progress spinner, found in Android 5.0 Lollipop and newer.
-The new progress circle behaves like the custom progressring before it, controllable with IsActive and automatically stops when not visible.
-
-Overview:
-- Added a refresh button in place of the useless "More..." button.</Value>
+---------------------------------------------</Value>
     </Setting>
     <Setting Name="app_logging" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -140,7 +144,7 @@ Overview:
       <Value Profile="(Default)">uniform</Value>
     </Setting>
     <Setting Name="experiment_zOverview" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

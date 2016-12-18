@@ -39,6 +39,13 @@ namespace WebcamViewer.User_controls
             set { textTextBlock.Text = value; }
         }
 
+        [Description("Text alignment"), Category("Appearance")]
+        public HorizontalAlignment TextAlignment
+        {
+            get { return textTextBlock.HorizontalAlignment; }
+            set { textTextBlock.HorizontalAlignment = value; }
+        }
+
         private void button_Click(object sender, RoutedEventArgs e)
         {
             //bubble the event up to the parent

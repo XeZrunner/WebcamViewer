@@ -8,13 +8,15 @@
       xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="Home Overview">
+      Title="Home Overview" SizeChanged="Page_SizeChanged">
 
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
             <RowDefinition />
         </Grid.RowDefinitions>
+
+        <Rectangle Grid.Row="1" Fill="{DynamicResource settingsPage_background}" Opacity="0.5"/>
 
         <Grid x:Name="mainView" Grid.Row="1">
 
@@ -35,17 +37,21 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <usercontrols:AppBar_Button x:Name="mainView_backButton" Grid.Column="0" IconText="&#xe72b;" Click="mainView_backButton_Click" />
+                    <usercontrols:AppBar_Button x:Name="mainView_backButton" Grid.Column="0"
+                                                Foreground="{DynamicResource settingsPage_foregroundText}"
+                                                IconText="&#xe72b;" Click="mainView_backButton_Click" />
 
-                    <Label Foreground="White" Grid.Column="1" FontSize="15" FontFamily="Segoe UI Semibold" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
+                    <Label Foreground="{DynamicResource settingsPage_foregroundText}" Grid.Column="1" FontSize="15" FontFamily="Segoe UI Semibold" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"
                                Content="{x:Static res:Resources.webcamPage_Overview}"/>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="2">
                     
-                    <usercontrols:AppBar_Button x:Name="mainView_debugMenuButton" Click="mainView_debugMenuButton_Click"
+                    <usercontrols:AppBar_Button x:Name="mainView_debugButton" Click="mainView_debugButton_Click"
+                                                Foreground="{DynamicResource settingsPage_foregroundText}"
                                                 IconText="&#xe700;" />
                     
                     <usercontrols:AppBar_Button x:Name="mainView_refreshButton" Click="mainView_refreshButton_Click"
+                                                Foreground="{DynamicResource settingsPage_foregroundText}"
                                                 IconText="&#xe72c;" />
 
                     </StackPanel>
@@ -66,14 +72,20 @@
                     </WrapPanel>
                 </ScrollViewer>
 
-                <usercontrols:ArcProgress x:Name="mainView_progressarc" Color="White" Visibility="Hidden"/>
+                <Label x:Name="mainView_nocamerasLabel" Foreground="{DynamicResource settingsPage_foregroundSecondary}" FontSize="14" Visibility="Collapsed"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Content="There are no cameras to show. :("/>
+
+                <usercontrols:ArcProgress x:Name="mainView_progressarc" Color="{DynamicResource settingsPage_foregroundText}" Visibility="Hidden"/>
 
             </Grid>
 
         </Grid>
 
-        <Rectangle x:Name="mainView_ActionBar_titlebarext_Rectangle" Grid.Row="0" Fill="{DynamicResource accentcolor_light}"/>
-        <Rectangle x:Name="mainView_ActionBar_titlebarext_Rectangle_overlay" Grid.Row="0" Fill="#0F000000"/>
+        <Grid x:Name="titlebarExtensionGrid" Grid.Row="0" Visibility="Collapsed">
+        <Rectangle x:Name="mainView_ActionBar_titlebarext_Rectangle" Fill="{DynamicResource accentcolor_light}"/>
+        <Rectangle x:Name="mainView_ActionBar_titlebarext_Rectangle_overlay" Fill="#0F000000"/>
+        </Grid>
 
     </Grid>
 
