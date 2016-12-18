@@ -79,9 +79,6 @@
     </ApplicationDefinition>
     <Compile Include="Configuration.cs" />
     <Compile Include="Debug.cs" />
-    <Compile Include="Pages\GitIgnorePageTest.xaml.cs">
-      <DependentUpon>GitIgnorePageTest.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Home page\Overview\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
     </Compile>
@@ -227,10 +224,6 @@
       <DependentUpon>WindowControlButton.xaml</DependentUpon>
     </Compile>
     <Page Include="ControlStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\GitIgnorePageTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
