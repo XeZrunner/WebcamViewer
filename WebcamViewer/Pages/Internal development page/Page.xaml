@@ -60,7 +60,7 @@
 
                     <usercontrols:settingsPage_TabButton IconText="&#xE90F;" Title="User configuration" Tag="2" Click="menuItemButton_Click" />
 
-                    <usercontrols:settingsPage_TabButton IconText="&#xE70F;" Title="Configuration file editor" Tag="3" Click="menuItemButton_Click" />
+                    <usercontrols:settingsPage_TabButton IconText="&#xE70F;" Title="JSON Testing" Tag="3" Click="menuItemButton_Click" />
 
                     <Rectangle Fill="{DynamicResource settingsPage_foregroundSecondary3}" Height="2" Margin="0,5"/>
 

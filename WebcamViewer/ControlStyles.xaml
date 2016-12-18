@@ -538,4 +538,8 @@
         </Setter>
     </Style>
 
+    <Style TargetType="Label">
+        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+    </Style>
+
 </ResourceDictionary>

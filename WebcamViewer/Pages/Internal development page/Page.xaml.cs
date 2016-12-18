@@ -76,19 +76,13 @@ namespace WebcamViewer.Pages.Internal_development_page
 
         #endregion
 
-        private bool isMenuOpen = false;
-        //private bool isLoggedIn = false;
-
-        double menu_compactWidth = 48;
-        double menu_expandedWidth = 290;
-
         #region Subpages arrays
         object[] subpages = new object[]
         {
             new Subpages.StatusPage(), // 0
             new Subpages.DefaultCamerasPage(), // 1
             new Subpages.UserConfigurationPage(), // 2
-            null,
+            new Subpages.JSONTestingPage(), //3
             null,
             null,
             new Subpages.DebugLogPage() // 6
@@ -100,12 +94,18 @@ namespace WebcamViewer.Pages.Internal_development_page
             "STATUS",
             "DEFAULT CAMERAS",
             "USER CONFIGURATION",
-            "",
+            "JSON Testing",
             "",
             "",
             "DEBUG LOG"
         };
         #endregion
+
+        private bool isMenuOpen = false;
+        //private bool isLoggedIn = false;
+
+        double menu_compactWidth = 48;
+        double menu_expandedWidth = 290;
 
         private void menuButton_Click(object sender, RoutedEventArgs e)
         {
