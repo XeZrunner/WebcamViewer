@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace WebcamViewer.Updates
+namespace WebcamViewer
 {
     class Popups
     {

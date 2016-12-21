@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace WebcamViewer.Updates
+namespace WebcamViewer
 {
     class Debug
     {

@@ -16,7 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace WebcamViewer.Updates.Updates.User_controls
+namespace WebcamViewer.User_controls
 {
     public partial class settingsPage_Toggle : UserControl
     {

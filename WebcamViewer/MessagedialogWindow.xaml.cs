@@ -14,7 +14,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WebcamViewer.Updates
+namespace WebcamViewer
 {
     public partial class MessagedialogWindow : MetroWindow
     {

@@ -9,7 +9,7 @@ using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using System.Windows.Controls;
 
-namespace WebcamViewer.Updates
+namespace WebcamViewer
 {
 	/// <summary>
 	/// Renders a visual which can follow the mouse cursor, 

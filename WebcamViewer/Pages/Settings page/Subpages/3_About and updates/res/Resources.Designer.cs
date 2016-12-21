@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebcamViewer.Updates.Updates.Pages.Settings_page.Subpages._3_About_and_updates.res {
+namespace WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates.res {
     using System;
     
     

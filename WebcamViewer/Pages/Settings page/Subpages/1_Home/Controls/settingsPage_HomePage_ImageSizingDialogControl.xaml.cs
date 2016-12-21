@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace WebcamViewer.Updates.Updates.Pages.Settings_page.Subpages._1_Home.Controls
+namespace WebcamViewer.Pages.Settings_page.Subpages._1_Home.Controls
 {
     public partial class settingsPage_HomePage_ImageSizingDialogControl : UserControl
     {

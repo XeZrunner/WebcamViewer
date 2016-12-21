@@ -1,23 +1,23 @@
-﻿<Controls:MetroWindow x:Name="window" x:Class="WebcamViewer.Updates.MainWindow"
+﻿<Controls:MetroWindow x:Name="window" x:Class="WebcamViewer.MainWindow"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:res="clr-namespace:WebcamViewer.Updates.Properties"
-        xmlns:local="clr-namespace:WebcamViewer.Updates"
-        xmlns:usercontrols="clr-namespace:WebcamViewer.Updates.User_controls"
+        xmlns:res="clr-namespace:WebcamViewer.Properties"
+        xmlns:local="clr-namespace:WebcamViewer"
+        xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
         xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
         mc:Ignorable="d"
         Title="{x:Static res:Resources.App_Title}" Height="674" Width="855" MinHeight="325" MinWidth="380" Icon="/Resources/icon_white.ico" WindowStyle="None" WindowStartupLocation="CenterScreen" TextOptions.TextRenderingMode="Grayscale" SizeChanged="window_SizeChanged" Loaded="window_Loaded"
         ShowTitleBar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False"
         Background="Black" BorderThickness="1" BorderBrush="{DynamicResource accentcolor_dark}" GlowBrush="{DynamicResource accentcolor_dark}" NonActiveBorderBrush="{DynamicResource App_NonActiveBorderBrush}" NonActiveGlowBrush="{DynamicResource App_NonActiveGlowBrush}"
         
-        xmlns:Settings_Subpages_WebcamEditorPageControls="clr-namespace:WebcamViewer.Updates.Pages.Settings_page.Subpages._0_Webcams"
-        xmlns:Settings_Subpages_HomePageControls="clr-namespace:WebcamViewer.Updates.Pages.Settings_page.Subpages._1_Home"
-        xmlns:Settings_Subpages_UserInterfacePageControls="clr-namespace:WebcamViewer.Updates.Pages.Settings_page.Subpages._2_User_Interface"
-        xmlns:Settings_Subpages_AboutPageControls="clr-namespace:WebcamViewer.Updates.Pages.Settings_page.Subpages._3_About_and_updates"
-        xmlns:Settings_Subpages_DebugSettingsPageControls="clr-namespace:WebcamViewer.Updates.Pages.Settings_page.Subpages._4_Debug_settings">
+        xmlns:Settings_Subpages_WebcamEditorPageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._0_Webcams"
+        xmlns:Settings_Subpages_HomePageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._1_Home"
+        xmlns:Settings_Subpages_UserInterfacePageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface"
+        xmlns:Settings_Subpages_AboutPageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates"
+        xmlns:Settings_Subpages_DebugSettingsPageControls="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings">
 
     <Controls:MetroWindow.Resources>
         <Storyboard x:Key="settingsPage_In">

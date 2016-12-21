@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WebcamViewer.Updates.Updates.Pages.Internal_development_page.Subpages
+namespace WebcamViewer.Pages.Internal_development_page.Subpages
 {
     public partial class UserConfigurationPage
     {

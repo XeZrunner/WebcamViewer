@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WebcamViewer.Updates
+namespace WebcamViewer
 {
     public partial class App : Application
     {

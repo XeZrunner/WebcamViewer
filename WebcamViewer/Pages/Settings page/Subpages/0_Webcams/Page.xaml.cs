@@ -13,9 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WebcamViewer.Updates.Pages.Settings_page.Subpages._0_Webcams;
+using WebcamViewer.Pages.Settings_page.Subpages._0_Webcams;
 
-namespace WebcamViewer.Updates.Updates.Pages.Settings_page.Subpages._0_Webcams
+namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
 {
     /// <summary>
     /// Interaction logic for Page.xaml

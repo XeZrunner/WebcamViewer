@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WebcamViewer.Updates.Updates.User_controls
+namespace WebcamViewer.User_controls
 {
     public partial class settingsPage_AccentColorButton : UserControl
     {

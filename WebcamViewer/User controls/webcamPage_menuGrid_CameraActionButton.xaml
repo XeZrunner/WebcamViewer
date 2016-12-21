@@ -1,10 +1,10 @@
-﻿<UserControl x:Name="usercontrol" x:Class="WebcamViewer.Updates.User_controls.webcamPage_menuGrid_CameraActionButton"
+﻿<UserControl x:Name="usercontrol" x:Class="WebcamViewer.User_controls.webcamPage_menuGrid_CameraActionButton"
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WebcamViewer.Updates.User_controls"
+             xmlns:local="clr-namespace:WebcamViewer.User_controls"
              xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
              mc:Ignorable="d" Foreground="{DynamicResource webcamPage_Foreground}"
              MinWidth="10" Height="32" d:DesignWidth="300"  ClipToBounds="True" SizeChanged="usercontrol_SizeChanged">

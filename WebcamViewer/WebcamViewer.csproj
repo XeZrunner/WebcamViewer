@@ -179,7 +179,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Theming.cs" />
-    <Compile Include="Updates\UpdatesEngine.cs" />
+    <Compile Include="UpdatesEngine.cs" />
     <Compile Include="User controls\AppBar_Button.xaml.cs">
       <DependentUpon>AppBar_Button.xaml</DependentUpon>
     </Compile>

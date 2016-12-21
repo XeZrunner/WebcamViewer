@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebcamViewer.Updates.Updates.Properties {
+namespace WebcamViewer.Properties {
     using System;
     
     

@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
 
-namespace WebcamViewer.Updates.Updates.User_controls
+namespace WebcamViewer.User_controls
 {
     public partial class WindowControlButton : UserControl
     {

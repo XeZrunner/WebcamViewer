@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WebcamViewer.Updates.Updates.Pages.Settings_page.Subpages._2_User_Interface.Controls
+namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.Controls
 {
     public partial class settingsPage_UserInterfacePage_ThemeControl : UserControl
     {

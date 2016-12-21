@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WebcamViewer.Updates
+namespace WebcamViewer
 {
     public partial class Messagedialog_FullWidthWindow : MetroWindow
     {
