@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WebcamViewer.User_controls"
-             xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.User_controls.settingsPage_NormalButton"
+             xmlns:local="clr-namespace:WebcamViewer.Updates.User_controls"
+             xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.Updates.User_controls.settingsPage_NormalButton"
              xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
              mc:Ignorable="d" HorizontalAlignment="Left"
              Height="34" MinWidth="120" Foreground="{DynamicResource settingsPage_foregroundText}" Background="{DynamicResource settingsPage_backgroundSecondary3}" FontSize="14" ClipToBounds="True" SizeChanged="usercontrol_SizeChanged">

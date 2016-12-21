@@ -13,10 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using WebcamViewer.User_controls;
-using WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings;
+using WebcamViewer.Updates.Pages.Settings_page.Subpages._4_Debug_settings;
+using WebcamViewer.Updates.User_controls;
 
-namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
+namespace WebcamViewer.Updates.Updates.Pages.Settings_page.Subpages._4_Debug_settings
 {
     public partial class Page : UserControl
     {

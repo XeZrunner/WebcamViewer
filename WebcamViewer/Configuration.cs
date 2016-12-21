@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WebcamViewer
+namespace WebcamViewer.Updates
 {
     // Default configuration file: https://raw.githubusercontent.com/XeZrunner/WebcamViewer/gh-pages/DefaultConfiguration.txt
     // The code here is absolutely garbage

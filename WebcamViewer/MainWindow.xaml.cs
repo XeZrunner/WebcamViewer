@@ -14,9 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using WebcamViewer.User_controls;
+using WebcamViewer.Updates.User_controls;
 
-namespace WebcamViewer
+namespace WebcamViewer.Updates
 {
     public partial class MainWindow : MetroWindow
     {

@@ -5,7 +5,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace WebcamViewer.User_controls
+namespace WebcamViewer.Updates.Updates.User_controls
 {
     public sealed class Arc : Shape
     {

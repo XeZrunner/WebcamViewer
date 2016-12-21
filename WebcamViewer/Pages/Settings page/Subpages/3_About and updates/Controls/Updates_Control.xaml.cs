@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates.Controls
+namespace WebcamViewer.Updates.Updates.Pages.Settings_page.Subpages._3_About_and_updates.Controls
 {
     /// <summary>
     /// Interaction logic for Updates_Control.xaml

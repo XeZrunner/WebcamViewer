@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WebcamViewer
+namespace WebcamViewer.Updates
 {
     /// <summary>
     /// Interaction logic for Test_RippleButtonUserControl.xaml

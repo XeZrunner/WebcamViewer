@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WebcamViewer.Pages.Settings_page
+namespace WebcamViewer.Updates.Updates.Pages.Settings_page
 {
     public partial class Page
     {

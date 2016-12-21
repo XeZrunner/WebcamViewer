@@ -8,7 +8,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace WebcamViewer.User_controls
+namespace WebcamViewer.Updates.Updates.User_controls
 {
     public partial class webcamPage_Overview_CameraButton : UserControl
     {

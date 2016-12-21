@@ -13,9 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface;
+using WebcamViewer.Updates.Pages.Settings_page.Subpages._2_User_Interface;
 
-namespace WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates
+namespace WebcamViewer.Updates.Updates.Pages.Settings_page.Subpages._3_About_and_updates
 {
     public partial class Page : UserControl
     {

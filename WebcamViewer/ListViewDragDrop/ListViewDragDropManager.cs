@@ -10,7 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Input;
 
-namespace WebcamViewer
+namespace WebcamViewer.Updates
 {
 	#region ListViewDragDropManager
 

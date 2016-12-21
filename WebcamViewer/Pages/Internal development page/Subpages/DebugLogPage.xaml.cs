@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace WebcamViewer.Pages.Internal_development_page.Subpages
+namespace WebcamViewer.Updates.Updates.Pages.Internal_development_page.Subpages
 {
     public partial class DebugLogPage
     {
