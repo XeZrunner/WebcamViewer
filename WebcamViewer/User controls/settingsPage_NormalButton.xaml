@@ -28,7 +28,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{DynamicResource settingsPage_backgroundSecondary3}"/>
+                    <!-- <Setter Property="Background" Value="{DynamicResource settingsPage_backgroundSecondary3}"/> -->
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
 
@@ -78,7 +78,7 @@
 
             </Grid>
 
-            <controleffects:RippleDrawable Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}"/>
+            <controleffects:RippleDrawable x:Name="rippledrawable" Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}"/>
 
         </Grid>
 

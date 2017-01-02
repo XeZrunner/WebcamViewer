@@ -12,32 +12,25 @@
 
     <Grid>
 
-        <Grid Height="50" VerticalAlignment="Top" Margin="0,-50,0,0">
-            <Rectangle Fill="{DynamicResource settingsPage_backgroundSecondary}"/>
-            <Rectangle Fill="#0F000000"/>
-
-            <TextBlock x:Name="subpage_title" Foreground="{DynamicResource settingsPage_foregroundText}" Margin="10,0,0,0" FontFamily="Segoe UI Semibold" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left">DEBUG LOG</TextBlock>
-        </Grid>
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Background="{DynamicResource settingsPage_backgroundSecondary}">
+            <Grid Grid.Row="0" Background="{DynamicResource accentcolor_light}">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="deleteLogFileButton" Text="Delete log file" Click="deleteLogFileButton_Click"/>
-                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="toggleLoggingButton" Text="Toggle logging" Click="toggleLoggingButton_Click"/>
-                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="testLogEntryButton" Text="Test log entry" Click="testLogEntryButton_Click"/>
+                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="deleteLogFileButton" Foreground="White" Color="LightGray" Text="Delete log file" Click="deleteLogFileButton_Click"/>
+                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="toggleLoggingButton" Foreground="White" Color="LightGray" Text="Toggle logging" Click="toggleLoggingButton_Click"/>
+                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="testLogEntryButton" Foreground="White" Color="LightGray" Text="Test log entry" Click="testLogEntryButton_Click"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="refreshButton" Text="Refresh" HorizontalAlignment="Right" Click="refreshButton_Click"/>
+                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="refreshButton" Foreground="White" Color="LightGray" Text="Refresh" HorizontalAlignment="Right" Click="refreshButton_Click"/>
                 </StackPanel>
             </Grid>
 
             <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <TextBlock x:Name="textblock" Foreground="{DynamicResource settingsPage_foregroundText}" Background="{DynamicResource settingsPage_backgroundSecondary3}">
+                <TextBlock x:Name="textblock" Foreground="{DynamicResource settingsPage_foregroundText}" Background="{DynamicResource settingsPage_background}">
                     Debug log goes here
                 </TextBlock>
             </ScrollViewer>

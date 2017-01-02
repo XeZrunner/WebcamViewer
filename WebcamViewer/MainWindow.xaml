@@ -308,7 +308,8 @@
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF202020"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="backButton">
-                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF202020"/>
+                <!-- <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF202020"/> -->
+                <EasingColorKeyFrame KeyTime="0:0:0.3" Value="White"/>
             </ColorAnimationUsingKeyFrames>
             <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="webcamPage_menuButton">
                 <EasingColorKeyFrame KeyTime="0:0:0.3" Value="#FF202020"/>
@@ -677,10 +678,11 @@
                         </TransformGroup>
                     </Grid.RenderTransform>
 
-                    <Rectangle x:Name="webcamPage_Rectangle" Fill="Black" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top"/>
+                    <Rectangle x:Name="webcamPage_Rectangle" Fill="{DynamicResource settingsPage_Dark_foregroundSecondary3}" Height="{Binding ElementName=titlebarGrid, Path=Height}" VerticalAlignment="Top"/>
 
                     <Grid x:Name="webcamPage_ImageContainerGrid" Background="Black" Margin="0,32,0,0">
                         <Rectangle x:Name="webcamPage_mainBackgroundRectangle" Fill="Black"/>
+
                         <Image x:Name="webcamPage_Image" Stretch="Uniform"/>
                     </Grid>
 
@@ -803,7 +805,7 @@
 
                 <Rectangle Fill="{DynamicResource webcamPage_menuBackground}"/>
 
-                <Grid x:Name="webcamPage_saveGrid_SavePanel" Visibility="Visible">
+                <Grid x:Name="webcamPage_saveGrid_SavePanel" Visibility="Hidden">
 
                     <!-- Progress animation -->
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -831,6 +833,67 @@
                            Content="Status" />
 
                         <Controls:MetroProgressBar x:Name="webcamPage_saveGrid_progressBar" Margin="0,10,0,0" Width="300" Height="5"
+                                 Foreground="{DynamicResource webcamPage_Foreground}" BorderThickness="0"
+                                 IsIndeterminate="True" Value="30"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid x:Name="webcamPage_saveGrid_BothSavePanel" Visibility="Hidden">
+
+                    <!-- Progress animation -->
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        <Grid Margin="-7.5,-7.5,0,0">
+                            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.4"
+                           Foreground="{DynamicResource webcamPage_Foreground}" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="36"
+                           Content="&#xeb9f;"/>
+
+                            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,30,0,0"
+                           Foreground="{DynamicResource webcamPage_Foreground}" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="28"
+                           Content="&#xe896;"/>
+                        </Grid>
+
+                        <usercontrols:ArcProgress x:Name="webcamPage_saveGrid_BothSave_ProgressArc" Color="{DynamicResource webcamPage_Foreground}" Width="100" Height="100" IsActive="True" Visibility="Visible"/>
+
+                    </Grid>
+
+                    <!-- Progress status-->
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                      Margin="0,280,0,0" Width="300">
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+
+                            <Label x:Name="webcamPage_saveGrid_BothSave_localsaveLabelIcon" Visibility="Hidden"
+                                   Foreground="{DynamicResource accentcolor_light}" FontFamily="/Fonts/#Segoe MDL2 Assets"
+                                   VerticalAlignment="Center"
+                                   Content="&#xe73E;"/>
+
+                            <Label x:Name="webcamPage_saveGrid_BothSave_localsaveLabel"
+                                   Foreground="{DynamicResource webcamPage_Foreground}"
+                                   Content="Local save" />
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+
+                            <Label x:Name="webcamPage_saveGrid_BothSave_archivesaveLabelIcon" Visibility="Hidden"
+                                   Foreground="{DynamicResource accentcolor_light}" FontFamily="/Fonts/#Segoe MDL2 Assets"
+                                   VerticalAlignment="Center"
+                                   Content="&#xe73E;"/>
+
+                            <Label x:Name="webcamPage_saveGrid_BothSave_archivesaveLabel"
+                                   Foreground="{DynamicResource webcamPage_Foreground}"
+                                   Content="Archive.org save" />
+
+
+
+                        </StackPanel>
+
+                        <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="webcamPage_saveGrid_BothSave_OKButton" Text="OK" TextAlignment="Center" Margin="0,30,0,0" Visibility="Visible" Click="webcamPage_saveGrid_BothSave_OKButton_Click" />
+
+                        <Controls:MetroProgressBar x:Name="webcamPage_saveGrid_BothSave_progressBar" Margin="0,10,0,0" Width="300" Height="5" Visibility="Collapsed"
                                  Foreground="{DynamicResource webcamPage_Foreground}" BorderThickness="0"
                                  IsIndeterminate="True" Value="30"/>
 
@@ -1009,7 +1072,7 @@
                 </TransformGroup>
             </Grid.RenderTransform>
 
-            <Grid x:Name="settingsPage_MainContentGrid" Background="{DynamicResource settingsPage_background}">
+            <Grid x:Name="settingsPage_MainContentGrid" >
 
                 <!-- Content -->
                 <Grid Margin="0,32,0,0">
@@ -1263,6 +1326,22 @@
             </Frame.RenderTransform>
         </Frame>
 
+        <Frame x:Name="eastereggFrame" Visibility="Collapsed" />
+
+        <!-- Dialogs -->
+        <Grid x:Name="contentdialogGrid" Visibility="Hidden">
+
+            <Rectangle x:Name="contentdialogGrid_Dim" Fill="#5F000000" Visibility="Visible" />
+
+            <!-- this is the grid we clear the children of and set the new contentdialog to reside in -->
+            <Grid x:Name="contentdialogContainerGrid">
+                
+                
+                
+            </Grid>
+
+        </Grid>
+
         <Grid x:Name="titlebarGrid" Background="#00FFFFFF" Height="32" VerticalAlignment="Top" MouseDown="titlebarGrid_MouseDown">
             <Grid.ContextMenu>
                 <ContextMenu HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -1280,7 +1359,7 @@
 
             <Grid x:Name="titlebarGrid_leftcontrols" Grid.Column="0">
                 <!-- Back button -->
-                <usercontrols:WindowControlButton x:Name="backButton" Width="48" TextIcon="&#xe830;" FontSize="13" Visibility="Collapsed" TextOptions.TextFormattingMode="Ideal" Click="backButton_Click"/>
+                <usercontrols:WindowControlButton x:Name="backButton" Background="{DynamicResource accentcolor_dark}" Width="48" TextIcon="&#xe830;" FontSize="13" Visibility="Collapsed" TextOptions.TextFormattingMode="Ideal" Click="backButton_Click"/>
 
                 <!-- Menu button-->
                 <usercontrols:WindowControlButton x:Name="webcamPage_menuButton" Width="48" TextIcon="&#xe700;" FontSize="13" Visibility="Collapsed" Click="webcamPage_menuButton_Click"/>
@@ -1299,8 +1378,6 @@
 
         <Grid x:Name="global_dimGrid" Background="#6F000000" Visibility="Collapsed">
         </Grid>
-
-        <!-- <usercontrols:ArcProgress HorizontalAlignment="Center" VerticalAlignment="Center" /> -->
 
     </Grid>
 

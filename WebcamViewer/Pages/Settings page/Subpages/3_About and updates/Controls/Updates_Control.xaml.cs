@@ -25,7 +25,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates.Control
             InitializeComponent();
         }
 
-        UpdatesEngine updatesEngine = new UpdatesEngine();
+        Updates.UpdatesEngine updatesEngine = new Updates.UpdatesEngine();
 
         private void debug_TestProgressButton_Click(object sender, RoutedEventArgs e)
         {

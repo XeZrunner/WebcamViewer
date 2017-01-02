@@ -102,11 +102,8 @@
     <Compile Include="Pages\Internal development page\Subpages\UserConfigurationPage.xaml.cs">
       <DependentUpon>UserConfigurationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Settings page\Controls\desktopgrid_ItemControl.xaml.cs">
-      <DependentUpon>desktopgrid_ItemControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Settings page\Controls\mobilegrid_ItemControl.xaml.cs">
-      <DependentUpon>mobilegrid_ItemControl.xaml</DependentUpon>
+    <Compile Include="Pages\Settings page\Controls\SettingsItemControl.xaml.cs">
+      <DependentUpon>SettingsItemControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Settings page\Page.xaml.cs">
       <DependentUpon>Page.xaml</DependentUpon>
@@ -172,6 +169,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Settings page\Subpages\5_Samples\Page.xaml.cs">
+      <DependentUpon>Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Popups.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -186,6 +186,9 @@
     <Compile Include="User controls\Arc.cs" />
     <Compile Include="User controls\ArcProgress.xaml.cs">
       <DependentUpon>ArcProgress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User controls\ContentDialogControl.xaml.cs">
+      <DependentUpon>ContentDialogControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="User controls\Menu_NavigationButton.xaml.cs">
       <DependentUpon>Menu_NavigationButton.xaml</DependentUpon>
@@ -229,6 +232,12 @@
     <Compile Include="User controls\WindowControlButton.xaml.cs">
       <DependentUpon>WindowControlButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Video_RippleTestWindow.xaml.cs">
+      <DependentUpon>Video_RippleTestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WebcamViewerM_EE\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
     <Page Include="ControlStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -261,11 +270,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Settings page\Controls\desktopgrid_ItemControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Settings page\Controls\mobilegrid_ItemControl.xaml">
+    <Page Include="Pages\Settings page\Controls\SettingsItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -333,11 +338,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Settings page\Subpages\5_Samples\Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="User controls\AppBar_Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User controls\ArcProgress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\ContentDialogControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -394,6 +407,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User controls\WindowControlButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Video_RippleTestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WebcamViewerM_EE\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

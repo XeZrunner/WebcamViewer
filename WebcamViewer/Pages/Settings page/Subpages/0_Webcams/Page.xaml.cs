@@ -133,6 +133,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
                 settingsPage_WebcamEditorPage_ItemEditorGrid_Disabled.Visibility = Visibility.Collapsed;
 
                 settingsPage_WebcamEditorPage_DeleteCameraButton.IsEnabled = true;
+                settingsPage_WebcamEditorPage_SaveButton.IsEnabled = true;
 
                 RefreshItemEditor();
 
@@ -179,9 +180,19 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
 
         void RefreshItemEditor()
         {
-            settingsPage_WebcamEditorPage_ItemEditor_NameTextBox.Text = Properties.Settings.Default.camera_names[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
-            settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox.Text = Properties.Settings.Default.camera_urls[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
-            settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox.Text = Properties.Settings.Default.camera_refreshrates[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
+            if (settingsPage_WebcamEditorPage_ListView.Items.Count > 0)
+            {
+                settingsPage_WebcamEditorPage_ItemEditor_NameTextBox.Text = Properties.Settings.Default.camera_names[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
+                settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox.Text = Properties.Settings.Default.camera_urls[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
+                settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox.Text = Properties.Settings.Default.camera_refreshrates[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
+            }
+            else
+            {
+                settingsPage_WebcamEditorPage_ItemEditor_NameTextBox.Clear();
+                settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox.Clear();
+                settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox.Clear();
+                settingsPage_WebcamEditorPage_SaveButton.IsEnabled = false;
+            }
         }
 
         // button click events
@@ -262,6 +273,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
             {
                 Properties.Settings.Default.camera_names.RemoveAt(settingsPage_WebcamEditorPage_ListView.SelectedIndex);
                 Properties.Settings.Default.camera_urls.RemoveAt(settingsPage_WebcamEditorPage_ListView.SelectedIndex);
+                Properties.Settings.Default.camera_refreshrates.RemoveAt(settingsPage_WebcamEditorPage_ListView.SelectedIndex);
 
                 Properties.Settings.Default.Save();
 

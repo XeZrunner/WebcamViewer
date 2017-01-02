@@ -203,13 +203,13 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
                 DispatcherTimer timer = new DispatcherTimer();
                 timer.Interval = new TimeSpan(0, 0, 11);
-                timer.Tick += (s, ev) => { timer.Stop(); ui_clocktimer.Stop(); mainwindow.webcamPage_HideProgressUI(); if (mainwindow.webcamPage_saveGrid.IsVisible) mainwindow.HideSavePanel(); };
+                timer.Tick += async (s, ev) => { timer.Stop(); ui_clocktimer.Stop(); mainwindow.webcamPage_HideProgressUI(); if (mainwindow.webcamPage_saveGrid.IsVisible) await mainwindow.HideSavePanel(); };
                 timer.Start();
                 #endregion
 
-                    mainwindow.webcamPage_progressLabel.Content = textbox.Text;
-                    mainwindow.webcamPage_menuGrid_SetProgressText(textbox.Text);
-                    mainwindow.UpdateSavePanelStatus(textbox.Text);
+                mainwindow.webcamPage_progressLabel.Content = textbox.Text;
+                mainwindow.webcamPage_menuGrid_SetProgressText(textbox.Text);
+                mainwindow.UpdateSavePanelStatus(textbox.Text);
 
                 int mode = 0;
                 int counter = 0;
@@ -275,7 +275,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
             TextBlock text0 = new TextBlock
             {
-                Margin = new Thickness(5,0,0,0),
+                Margin = new Thickness(5, 0, 0, 0),
                 Text = "Choose the style to debug"
             };
 
@@ -285,6 +285,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                 SelectedIndex = 0
             };
 
+            styleDropDownButton.Items.Add("ContentDialog");
             styleDropDownButton.Items.Add("Windows 10 UWP ContentDialog");
             styleDropDownButton.Items.Add("Windows 8.x MessageDialog");
 
@@ -385,6 +386,24 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
                 if (styleDropDownButton.SelectedIndex == 0)
                 {
+                    Popups.ContentDialog dialog = new Popups.ContentDialog();
+                    dialog.Title = titleBox.Text;
+                    dialog.Text = messageBox.Text;
+
+                    if (theme == null)
+                        dialog.Theme = ContentDialogControl._Theme.Auto;
+                    else if (theme.Value == false)
+                        dialog.Theme = ContentDialogControl._Theme.Light;
+                    else
+                        dialog.Theme = ContentDialogControl._Theme.Dark;
+
+                    dialog.Button0_Text = firstbuttonTextBox.Text;
+                    dialog.Button1_Text = secondbuttonTextBox.Text;
+
+                    dialog.ShowDialog();
+                }
+                else if (styleDropDownButton.SelectedIndex == 1)
+                {
                     Popups.MessageDialog dialog = new Popups.MessageDialog();
                     dialog.Title = titleBox.Text;
                     dialog.Content = messageBox.Text;
@@ -394,7 +413,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
                     dialog.ShowDialog();
                 }
-                else
+                else if (styleDropDownButton.SelectedIndex == 2)
                 {
                     Popups.MessageDialog_FullWidth dialog = new Popups.MessageDialog_FullWidth();
                     dialog.Title = titleBox.Text;
@@ -487,6 +506,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             else box1.IsChecked = false;
             // /EXPERIMENT
 
+            // EXPERIMENT - bothsave
+            CheckBox box2 = new CheckBox() { Content = "Both Save Experiment", Margin = new Thickness(4, 5, 0, 5), Tag = "experiment_BothSave" };
+            if (Properties.Settings.Default.experiment_BothSave) box2.IsChecked = true;
+            else box2.IsChecked = false;
+            // /EXPERIMENT
+
             /* LATER
             // EXPERIMENT - new file browser dialog
             CheckBox box1 = new CheckBox() { Content = "Immersive File Dialog\nInternal Edge/UX-development channels only", Margin = new Thickness(4, 5, 0, 5), Tag = "experiment_NewFileBrowserUX" };
@@ -501,6 +526,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             panel.Children.Add(label1);
             panel.Children.Add(box0);
             panel.Children.Add(box1);
+            panel.Children.Add(box2);
             // Content //
 
             scrollview.Content = panel;

@@ -23,9 +23,15 @@ namespace WebcamViewer.Pages.Internal_development_page
             InitializeComponent();
         }
 
+        MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+
         private void page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            if (mainwindow.current_page == 4)
+            {
+                titlebaraccentRectangle.Visibility = Visibility.Collapsed;
+                accentOverlayRectangle.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -33,6 +39,31 @@ namespace WebcamViewer.Pages.Internal_development_page
             if (this.IsVisible == true)
             {
 
+            }
+        }
+
+        private void page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (mainwindow.Width <= 482)
+            {
+                frame.Margin = new Thickness(0);
+                menu_compactWidth = 0;
+                DoubleAnimation menuAnim = new DoubleAnimation(menu_compactWidth, TimeSpan.FromSeconds(0.1));
+                menuAnim.Completed += (s, ev) => { menuGrid.Visibility = Visibility.Collapsed; };
+                menuGrid.BeginAnimation(WidthProperty, menuAnim);
+
+                ThicknessAnimation contentAnim = new ThicknessAnimation(new Thickness(menu_compactWidth, 0, 0, 0), TimeSpan.FromSeconds(.1));
+                frame.BeginAnimation(MarginProperty, contentAnim);
+            }
+            else
+            {
+                menuGrid.Visibility = Visibility.Visible;
+                frame.Margin = new Thickness(48, 0, 0, 0);
+                menu_compactWidth = 48;
+                DoubleAnimation menuAnim = new DoubleAnimation(menu_compactWidth, TimeSpan.FromSeconds(0.1));
+                ThicknessAnimation contentAnim = new ThicknessAnimation(new Thickness(menu_compactWidth, 0, 0, 0), TimeSpan.FromSeconds(.1));
+                menuGrid.BeginAnimation(WidthProperty, menuAnim);
+                frame.BeginAnimation(MarginProperty, contentAnim);
             }
         }
 
@@ -114,6 +145,9 @@ namespace WebcamViewer.Pages.Internal_development_page
                 DoubleAnimation menuOpen_Anim = new DoubleAnimation(menu_expandedWidth, TimeSpan.FromSeconds(0.3));
                 menuGrid.BeginAnimation(WidthProperty, menuOpen_Anim);
 
+                if (!menuGrid.IsVisible)
+                    menuGrid.Visibility = Visibility.Visible;
+
                 if (Properties.Settings.Default.ui_theme != 1)
                 {
                     menuGrid_darkFilter.Visibility = Visibility.Visible; menuGrid_darkFilter.Opacity = 0;
@@ -127,6 +161,12 @@ namespace WebcamViewer.Pages.Internal_development_page
             else // close the menu
             {
                 DoubleAnimation menuClose_Anim = new DoubleAnimation(menu_compactWidth, TimeSpan.FromSeconds(0.3));
+                menuClose_Anim.Completed += (s, ev) =>
+                {
+                    if (mainwindow.Width <= 482)
+                        menuGrid.Visibility = Visibility.Collapsed;
+                };
+
                 menuGrid.BeginAnimation(WidthProperty, menuClose_Anim);
 
                 if (Properties.Settings.Default.ui_theme != 1)

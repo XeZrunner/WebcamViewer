@@ -39,16 +39,36 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="versionid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Update 2 Beta</Value>
+      <Value Profile="(Default)">Update 2 Beta
+Framework Development Branch, Edge Channel</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20161216-01</Value>
+      <Value Profile="(Default)">20170102-01</Value>
     </Setting>
     <Setting Name="webcamengine_version" Type="System.String" Scope="User">
       <Value Profile="(Default)">1.2 Prerelease</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2016.12.16; feature level 1
+      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2017.01.02; feature level 1
+
+Happy new year! :)
+
+This build extends the menu blurbehind option to affect the new universal Save / camera error panel's blurbehind.
+---------------------------------------------
+
+Webcam Viewer Update 2 Beta - 2016.12.27; feature level 1
+
+Improvements:
+- Overview can now reload individual cameras when they couldn't load.
+- We're getting closer to finishing the new zSettings. New improvements include loading pages into the memory for later use, and an universal control for both desktop and mobile views.
+
+Developer:
+- Overview debug received some debug buttons.
+- zSettings debug
+---------------------------------------------
+
+
+Webcam Viewer Update 2 Beta - 2016.12.16; feature level 1
 
 New features:
 - New image saving panel, replacing the old "in-menu" one completely
@@ -99,10 +119,10 @@ The new ripple can no longer be moved by the user, in favor of the ripple slowly
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ui_accent" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="ui_theme" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="ui_animationspeed" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -123,7 +143,7 @@ The new ripple can no longer be moved by the user, in favor of the ripple slowly
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="settings_experiment_UpdateUI" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="experiment_NewFileBrowserUX" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -144,6 +164,9 @@ The new ripple can no longer be moved by the user, in favor of the ripple slowly
       <Value Profile="(Default)">uniform</Value>
     </Setting>
     <Setting Name="experiment_zOverview" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="experiment_BothSave" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>

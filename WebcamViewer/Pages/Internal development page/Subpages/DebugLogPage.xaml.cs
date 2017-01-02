@@ -31,18 +31,18 @@ namespace WebcamViewer.Pages.Internal_development_page.Subpages
             
         }
 
-        private void page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private async void page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (this.IsVisible == true)
             {
                 if (Properties.Settings.Default.app_logging)
                 {
-                    ReadLog();
+                    await ReadLog();
                 }
             }
         }
 
-        private async void ReadLog()
+        private async Task ReadLog()
         {
             textblock.Text = ""; // clear
             try
@@ -75,7 +75,7 @@ namespace WebcamViewer.Pages.Internal_development_page.Subpages
             }
         }
 
-        private void toggleLoggingButton_Click(object sender, RoutedEventArgs e)
+        private async void toggleLoggingButton_Click(object sender, RoutedEventArgs e)
         {
             if (Properties.Settings.Default.app_logging)
             {
@@ -86,21 +86,21 @@ namespace WebcamViewer.Pages.Internal_development_page.Subpages
                 Debug.Log("Logging enabled.");
             }
 
-            ReadLog();
+            await ReadLog();
 
             Properties.Settings.Default.app_logging = !Properties.Settings.Default.app_logging;
             Properties.Settings.Default.Save();
         }
 
-        private void testLogEntryButton_Click(object sender, RoutedEventArgs e)
+        private async void testLogEntryButton_Click(object sender, RoutedEventArgs e)
         {
             Debug.Log("TEST");
-            ReadLog();
+            await ReadLog();
         }
 
-        private void refreshButton_Click(object sender, RoutedEventArgs e)
+        private async void refreshButton_Click(object sender, RoutedEventArgs e)
         {
-            ReadLog();
+            await ReadLog();
         }
     }
 }

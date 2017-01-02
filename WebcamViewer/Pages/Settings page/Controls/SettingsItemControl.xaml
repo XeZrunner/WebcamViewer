@@ -1,0 +1,94 @@
+﻿<UserControl x:Name="usercontrol" x:Class="WebcamViewer.Pages.Settings_page.Controls.SettingsItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Controls"
+             xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
+             mc:Ignorable="d"
+             Height="200" Width="200">
+    <!-- 200 200 -->
+    <!-- 70 300 -->
+    <UserControl.Resources>
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="{DynamicResource FlatButtonFontSize}"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <ContentControl x:Name="PART_ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="{DynamicResource GrayBrush2}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Button x:Name="button" Style="{DynamicResource ButtonStyle}" Click="button_Click">
+        <Button.Clip>
+            <RectangleGeometry x:Name="borderRect" Rect="0,0,200,200" RadiusX="3" RadiusY="3" />
+        </Button.Clip>
+        <Grid>
+            
+            <Grid x:Name="desktopGrid" Visibility="Visible">
+
+                <TextBlock x:Name="iconTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="28"
+               Foreground="{DynamicResource accentcolor_dark}" Text="&#xE90F;" />
+
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,120,0,0">
+
+                    <TextBlock x:Name="titleTextBlock" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="14"
+                       Foreground="{DynamicResource accentcolor_dark}" Text="Title" />
+
+                    <TextBlock x:Name="descTextBlock" HorizontalAlignment="Center" FontSize="12" Margin="0,5,0,0" TextWrapping="WrapWithOverflow" TextAlignment="Center" Text="Description" />
+
+                </StackPanel>
+
+                <controleffects:RippleDrawable Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}" Margin="0,2,0,-2" />
+
+            </Grid>
+
+            <Grid x:Name="mobileGrid" Visibility="Collapsed">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="iconTextBlock_mobile" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="28"
+               Foreground="{DynamicResource accentcolor_dark}" Text="{Binding ElementName=iconTextBlock, Path=Text}" />
+
+                <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+
+                    <TextBlock x:Name="titleTextBlock_mobile" FontFamily="Segoe UI Semibold" FontSize="14"
+                       Foreground="{DynamicResource accentcolor_dark}" Text="{Binding ElementName=titleTextBlock, Path=Text}" />
+
+                    <TextBlock x:Name="descTextBlock_mobile" FontSize="12" Margin="0,5,0,0" TextWrapping="WrapWithOverflow" Text="{Binding ElementName=descTextBlock, Path=Text}" />
+
+                </StackPanel>
+
+            </Grid>
+
+            <controleffects:RippleDrawable  Grid.ColumnSpan="2" Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}" />
+
+        </Grid>
+    </Button>
+
+</UserControl>

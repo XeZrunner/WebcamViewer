@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:WebcamViewer.Pages.Internal_development_page"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="Internal development page" Loaded="page_Loaded" IsVisibleChanged="page_IsVisibleChanged">
+      Title="Internal development page" Loaded="page_Loaded" IsVisibleChanged="page_IsVisibleChanged" SizeChanged="page_SizeChanged">
 
     <Grid>
 
@@ -42,7 +42,7 @@
         <Frame x:Name="frame" Grid.Row="1" Background="{DynamicResource settingsPage_background}" Margin="48,0,0,0" NavigationUIVisibility="Hidden"></Frame>
 
         <!-- Side menu -->
-        <Grid x:Name="menuGrid" Background="{DynamicResource settingsPage_background}" Grid.RowSpan="2" HorizontalAlignment="Left" Width="48" Margin="0,50,0,0">
+        <Grid x:Name="menuGrid" Background="{DynamicResource settingsPage_background}" Grid.Row="1" HorizontalAlignment="Left" Width="48" Visibility="Visible">
             <!-- small: 48 | expanded: 290 -->
 
             <Rectangle x:Name="menuGrid_darkFilter" Fill="#0F000000" Visibility="Hidden" />

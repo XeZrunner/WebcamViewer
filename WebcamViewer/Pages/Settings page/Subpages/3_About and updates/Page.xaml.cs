@@ -117,7 +117,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates
 
         private void settingsPage_AboutPage_ChangelogButton_Click(object sender, RoutedEventArgs e)
         {
-            TextMessageDialog_FullWidth(res.Resources.Changelog, Properties.Settings.Default.changelog);
+            TextMessageDialog(res.Resources.Changelog, Properties.Settings.Default.changelog);
         }
     }
 }

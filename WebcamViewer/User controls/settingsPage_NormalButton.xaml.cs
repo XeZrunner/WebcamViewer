@@ -32,6 +32,8 @@ namespace WebcamViewer.User_controls
 
         public event RoutedEventHandler Click;
 
+        private _Theme m_Theme = _Theme.Auto;
+
         [Description("Text of the button"), Category("Appearance")]
         public string Text
         {
@@ -44,6 +46,38 @@ namespace WebcamViewer.User_controls
         {
             get { return textTextBlock.HorizontalAlignment; }
             set { textTextBlock.HorizontalAlignment = value; }
+        }
+
+        public _Theme Theme
+        {
+            get { return m_Theme; }
+            set { m_Theme = value; UpdateTheming(); }
+        }
+
+        public enum _Theme
+        {
+            Light,
+            Dark,
+            Auto
+        }
+
+        private void UpdateTheming()
+        {
+            if (m_Theme == _Theme.Auto)
+            {
+                rippledrawable.SetResourceReference(XeZrunner.UI.ControlEffects.RippleDrawable.ColorProperty, "settingsPage_foregroundSecondary3");
+                rippledrawable.SetResourceReference(XeZrunner.UI.ControlEffects.RippleDrawable.FillColorProperty, "settingsPage_foregroundSecondary3");
+            }
+            else if (m_Theme == _Theme.Light)
+            {
+                rippledrawable.SetResourceReference(XeZrunner.UI.ControlEffects.RippleDrawable.ColorProperty, "settingsPage_Light_foregroundSecondary3");
+                rippledrawable.SetResourceReference(XeZrunner.UI.ControlEffects.RippleDrawable.FillColorProperty, "settingsPage_Light_foregroundSecondary3");
+            }
+            else
+            {
+                rippledrawable.SetResourceReference(XeZrunner.UI.ControlEffects.RippleDrawable.ColorProperty, "settingsPage_Dark_foregroundSecondary3");
+                rippledrawable.SetResourceReference(XeZrunner.UI.ControlEffects.RippleDrawable.FillColorProperty, "settingsPage_Dark_foregroundSecondary3");
+            }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

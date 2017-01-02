@@ -9,11 +9,12 @@
       xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="Settings" SizeChanged="Page_SizeChanged"
+      Title="Settings" Loaded="Page_Loaded" SizeChanged="Page_SizeChanged"
       
       xmlns:Settings_Controls="clr-namespace:WebcamViewer.Pages.Settings_page.Controls"
       
       >
+    
     <Page.Resources>
         <Storyboard x:Key="SubViewIn">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="overviewGrids">
@@ -127,8 +128,7 @@
                 </TransformGroup>
             </Grid.RenderTransform>
 
-            <!-- Desktop overview view -->
-            <Grid x:Name="view_desktopgrid" Visibility="Visible">
+            <Grid x:Name="mainoverviewGrid" Visibility="Visible">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -136,59 +136,12 @@
                 </Grid.RowDefinitions>
 
                 <!-- Title and search -->
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0" Visibility="Visible">
 
                     <StackPanel>
 
                         <Label Foreground="{DynamicResource settingsPage_foregroundText}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Content="{x:Static res:Resources.Settings}"/>
-                        <Grid Width="300" Margin="0,5,0,0">
-                            <TextBox />
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0">
-                                <Label Foreground="{DynamicResource settingsPage_foregroundSecondary2}" FontFamily="/Fonts/#Segoe MDL2 Assets" Content="&#xe721;" VerticalAlignment="Center" />
-                                <Label Foreground="{DynamicResource settingsPage_foregroundSecondary2}" VerticalAlignment="Center" Content="Search for a setting..." />
-                            </StackPanel>
-                        </Grid>
-
-                    </StackPanel>
-
-                </Grid>
-
-                <!-- Overview Grid -->
-                <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
-
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <WrapPanel x:Name="view_desktopgrid_WrapPanel" Margin="10">
-
-                            <Settings_Controls:desktopgrid_ItemControl x:Name="desktop_webcameditorTile" Title="Webcam editor" Description="Add, edit and/or remove cameras" IconText="&#xE8FD;" Click="webcameditorTile_Click"/>
-                            <Settings_Controls:desktopgrid_ItemControl x:Name="desktop_camerasettingsTile" Title="Camera settings" Description="Change some camera image-related settings" IconText="&#xE960;" Click="camerasettingsTile_Click"/>
-                            <Settings_Controls:desktopgrid_ItemControl x:Name="desktop_userinterfaceTile" Title="User interface" Description="Modify the look &amp; feel of the app" IconText="&#xE2B1;" Click="userinterfaceTile_Click"/>
-                            <Settings_Controls:desktopgrid_ItemControl x:Name="desktop_aboutTile" Title="About &amp; updates" Description="Credits and app updates" IconText="&#xE946;" Click="aboutTile_Click"/>
-                            <Settings_Controls:desktopgrid_ItemControl Title="Debug settings" Description="Debug mode: %s" IconText="&#xE90F;"/>
-                            <Settings_Controls:desktopgrid_ItemControl x:Name="desktop_internalsettingsTile" Title="Internal settings" Description="Existence: True" IconText="&#xE1DE;" Click="internalsettingsTile_Click"/>
-                            <Settings_Controls:desktopgrid_ItemControl x:Name="desktop_rippledebugTile" Title="Ripple debug" Description="" IconText="" Click="rippledebugTile_Click"/>
-
-                        </WrapPanel>
-                    </ScrollViewer>
-
-                </Grid>
-
-            </Grid>
-
-            <!-- Mobile overview view -->
-            <Grid x:Name="view_mobilegrid" Visibility="Collapsed">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-                <!-- Title and search -->
-                <Grid Grid.Row="0">
-
-                    <StackPanel>
-
-                        <Label Foreground="{DynamicResource settingsPage_foregroundText}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Content="{x:Static res:Resources.Settings}"/>
-                        <Grid HorizontalAlignment="Stretch" Margin="0,5,0,0">
+                        <Grid Width="300" Margin="0,5,0,0" Visibility="Collapsed">
                             <TextBox />
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0">
                                 <Label Foreground="{DynamicResource settingsPage_foregroundSecondary2}" FontFamily="/Fonts/#Segoe MDL2 Assets" Content="&#xe721;" VerticalAlignment="Center" />
@@ -204,17 +157,20 @@
                 <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,10,0,0">
 
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <StackPanel x:Name="view_mobilegrid_StackPanel">
+                        <WrapPanel x:Name="view_desktopgrid_WrapPanel" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
 
-                            <Settings_Controls:mobilegrid_ItemControl x:Name="mobile_webcameditorTile" Title="Webcam editor" Description="Add, edit and/or remove cameras" IconText="&#xE8FD;" Click="webcameditorTile_Click"/>
-                            <Settings_Controls:mobilegrid_ItemControl x:Name="mobile_camerasettingsTile" Title="Camera settings" Description="Change some camera image-related settings" IconText="&#xE960;" Click="camerasettingsTile_Click"/>
-                            <Settings_Controls:mobilegrid_ItemControl x:Name="mobile_userinterfaceTile" Title="User interface" Description="Modify the look &amp; feel of the app" IconText="&#xE2B1;" Click="userinterfaceTile_Click"/>
-                            <Settings_Controls:mobilegrid_ItemControl x:Name="mobile_aboutTile" Title="About &amp; updates" Description="Credits and app updates" IconText="&#xE946;" Click="aboutTile_Click"/>
-                            <Settings_Controls:mobilegrid_ItemControl Title="Debug settings" Description="Debug mode: %s" IconText="&#xE90F;"/>
-                            <Settings_Controls:mobilegrid_ItemControl x:Name="mobile_internalsettingsTile" Title="Internal settings" Description="Existence: True" IconText="&#xE1DE;" Click="internalsettingsTile_Click"/>
-                            <Settings_Controls:mobilegrid_ItemControl x:Name="mobile_rippledebugTile" Title="Ripple debug" Description="" IconText="" Click="rippledebugTile_Click"/>
+                            <Settings_Controls:SettingsItemControl x:Name="webcameditorTile" Title="Webcam editor" Description="Add, edit and/or remove cameras" IconText="&#xE8FD;" Click="SettingsItemButton_Click" Tag="0" />
+                            <Settings_Controls:SettingsItemControl x:Name="camerasettingsTile" Title="Camera settings" Description="Change some camera image-related settings" IconText="&#xE960;" Click="SettingsItemButton_Click" Tag="1" />
+                            <Settings_Controls:SettingsItemControl x:Name="userinterfaceTile" Title="User interface" Description="Modify the look &amp; feel of the app" IconText="&#xE2B1;" Click="SettingsItemButton_Click" Tag="2" />
+                            <Settings_Controls:SettingsItemControl x:Name="aboutTile" Title="About &amp; updates" Description="Credits and app updates" IconText="&#xE946;" Click="SettingsItemButton_Click" Tag="3" />
+                            <Settings_Controls:SettingsItemControl x:Name="debugsettingsTile" Title="Debug settings" Description="Debug mode: %s" IconText="&#xE90F;" Click="SettingsItemButton_Click" Tag="4" />
+                            <Settings_Controls:SettingsItemControl x:Name="internalsettingsTile" Title="Internal settings" Description="Existence: True" IconText="&#xE1DE;" Click="SettingsItemButton_Click" Tag="5" />
+                            <Settings_Controls:SettingsItemControl x:Name="rippledebugTile" Title="Ripple debug" Description="" IconText="&#xe000;" Click="SettingsItemButton_Click" Tag="6" />
+                            <Settings_Controls:SettingsItemControl x:Name="snowbackgrounddebugTile" Title="Snow background debug" Description="It's Christmas Time!" IconText="&#xe000;" Click="SettingsItemButton_Click" Tag="7" />
+                            <Settings_Controls:SettingsItemControl x:Name="livecameratestingTile" Title="Live camera testing" Description="FlowingImage Test" IconText="&#xe960;" Click="SettingsItemButton_Click" Tag="8" />
+                            <Settings_Controls:SettingsItemControl x:Name="samplesTile" Title="Samples" Description="Settings UI Samples" IconText="&#xe000;" Click="SettingsItemButton_Click" Tag="9" />
 
-                        </StackPanel>
+                        </WrapPanel>
                     </ScrollViewer>
 
                 </Grid>
@@ -255,10 +211,18 @@
 
         </Grid>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+        <StackPanel x:Name="debugToolbar" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <usercontrols:AppBar_Button x:Name="debugButton" Foreground="{DynamicResource settingsPage_foregroundText}" IconText="&#xe700;" Click="debugButton_Click" />
             <usercontrols:AppBar_Button x:Name="mobileViewButton" Foreground="{DynamicResource settingsPage_foregroundText}" IconText="&#xe8ea;" Click="mobileViewButton_Click" />
             <usercontrols:AppBar_Button x:Name="desktopViewButton" Foreground="{DynamicResource settingsPage_foregroundText}" IconText="&#xe7f8;" Click="desktopViewButton_Click" />
         </StackPanel>
+        
+        <!-- Splash! -->
+        <Grid x:Name="splashGrid" Background="{DynamicResource accentcolor_dark}" Visibility="Collapsed">
+
+            <Label Foreground="White" FontSize="90" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Segoe MDL2 Assets" Content="&#xe713;" />
+
+        </Grid>
 
     </Grid>
 
