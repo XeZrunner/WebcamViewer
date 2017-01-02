@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:WebcamViewer.Pages.Internal_development_page"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="Internal development page" Loaded="page_Loaded" IsVisibleChanged="page_IsVisibleChanged">
+      Title="Internal development page" Loaded="page_Loaded" IsVisibleChanged="page_IsVisibleChanged" SizeChanged="page_SizeChanged">
 
     <Grid>
 
@@ -17,11 +17,17 @@
         </Grid.RowDefinitions>
 
         <!-- Action bar -->
-        <Grid x:Name="actionGrid" Margin="48,0,0,0">
+        <Grid x:Name="actionGrid" Margin="0,0,0,0">
 
             <Rectangle x:Name="actionGrid_color" Fill="{DynamicResource accentcolor_light}" />
 
-            <TextBlock x:Name="subpage_title" Foreground="White" Margin="10,0,0,0" FontFamily="Segoe UI Semibold" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left">SUBPAGE</TextBlock>
+            <StackPanel Orientation="Horizontal">
+
+                <usercontrols:AppBar_Button x:Name="menuButton" Foreground="White" IconText="&#xe700;" Click="menuButton_Click"/>
+
+                <TextBlock x:Name="subpage_title" Foreground="White" Margin="10,0,0,0" FontFamily="Segoe UI Semibold" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Left">SUBPAGE</TextBlock>
+
+            </StackPanel>
 
             <!-- right-side buttons -->
             <Grid HorizontalAlignment="Right">
@@ -36,7 +42,7 @@
         <Frame x:Name="frame" Grid.Row="1" Background="{DynamicResource settingsPage_background}" Margin="48,0,0,0" NavigationUIVisibility="Hidden"></Frame>
 
         <!-- Side menu -->
-        <Grid x:Name="menuGrid" Background="{DynamicResource settingsPage_background}" Grid.RowSpan="2" HorizontalAlignment="Left" Width="48" Margin="0,0,0,0">
+        <Grid x:Name="menuGrid" Background="{DynamicResource settingsPage_background}" Grid.Row="1" HorizontalAlignment="Left" Width="48" Visibility="Visible">
             <!-- small: 48 | expanded: 290 -->
 
             <Rectangle x:Name="menuGrid_darkFilter" Fill="#0F000000" Visibility="Hidden" />
@@ -44,7 +50,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0,0,0,0">
                 <StackPanel x:Name="menuGrid_buttonsPanel">
 
-                    <usercontrols:settingsPage_TabButton x:Name="menuButton" Foreground="White" Background="{DynamicResource accentcolor_light}" HorizontalAlignment="Left" IconText="&#xe700;" Title="" Description="" ShowDescription="True" Click="menuButton_Click"/>
+                    <!-- <usercontrols:settingsPage_TabButton x:Name="menuButton" Foreground="White" Background="{DynamicResource accentcolor_light}" HorizontalAlignment="Left" IconText="&#xe700;" Title="" Description="" ShowDescription="True" Click="menuButton_Click"/> -->
 
                     <!-- <Rectangle Fill="{DynamicResource settingsPage_foregroundSecondary3}" Height="2" Margin="0,5,0,0"/> -->
 
@@ -54,7 +60,7 @@
 
                     <usercontrols:settingsPage_TabButton IconText="&#xE90F;" Title="User configuration" Tag="2" Click="menuItemButton_Click" />
 
-                    <usercontrols:settingsPage_TabButton IconText="&#xE70F;" Title="Configuration file editor" Tag="3" Click="menuItemButton_Click" />
+                    <usercontrols:settingsPage_TabButton IconText="&#xE70F;" Title="JSON Testing" Tag="3" Click="menuItemButton_Click" />
 
                     <Rectangle Fill="{DynamicResource settingsPage_foregroundSecondary3}" Height="2" Margin="0,5"/>
 
@@ -74,7 +80,7 @@
             </ScrollViewer>
 
         </Grid>
-        
+
         <!-- Titlebar -->
         <Rectangle x:Name="titlebaraccentRectangle" Fill="{DynamicResource accentcolor_light}" Height="32" VerticalAlignment="Top" Margin="0,-32,0,0"/>
         <Rectangle x:Name="accentOverlayRectangle" Fill="#0F000000" Height="32" VerticalAlignment="Top" Margin="0,-32,0,0"/>

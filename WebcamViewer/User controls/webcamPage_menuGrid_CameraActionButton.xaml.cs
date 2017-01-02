@@ -23,7 +23,12 @@ namespace WebcamViewer.User_controls
         public webcamPage_menuGrid_CameraActionButton()
         {
             InitializeComponent();
+
+            if (Color == Brushes.Gold)
+                Color = Theming.AccentColor.GetAccentColor(Properties.Settings.Default.ui_accent, Properties.Settings.Default.ui_theme);
         }
+
+        Theming Theming = new Theming();
 
         private void usercontrol_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -44,6 +49,29 @@ namespace WebcamViewer.User_controls
         {
             get { return textTextBlock.HorizontalAlignment; }
             set { textTextBlock.HorizontalAlignment = value; }
+        }
+
+        static FrameworkPropertyMetadata ColorPropertyMetaData = new FrameworkPropertyMetadata(Brushes.Gold, new PropertyChangedCallback(ColorProperty_Changed));
+
+        static void ColorProperty_Changed(DependencyObject dobj, DependencyPropertyChangedEventArgs e)
+        {
+            webcamPage_menuGrid_CameraActionButton main = dobj as webcamPage_menuGrid_CameraActionButton;
+        }
+
+        public static readonly DependencyProperty ColorProperty = DependencyProperty.Register("Color", typeof(SolidColorBrush), typeof(webcamPage_menuGrid_CameraActionButton), ColorPropertyMetaData);
+
+        /// <summary>
+        /// The color of the ripple.
+        /// </summary>
+        /// 
+        [Description("Mouse over color"), Category("Brush")]
+        public SolidColorBrush Color
+        {
+            get { return GetValue(ColorProperty) as SolidColorBrush; }
+            set
+            {
+                SetValue(ColorProperty, value);
+            }
         }
 
         /*

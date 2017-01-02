@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WebcamViewer.Pages.Settings_page.Controls
+namespace WebcamViewer.Pages.Settings_page.Subpages._5_Samples
 {
     /// <summary>
-    /// Interaction logic for desktopgrid_ItemControl.xaml
+    /// Interaction logic for Page.xaml
     /// </summary>
-    public partial class desktopgrid_ItemControl : UserControl
+    public partial class Page
     {
-        public desktopgrid_ItemControl()
+        public Page()
         {
             InitializeComponent();
         }

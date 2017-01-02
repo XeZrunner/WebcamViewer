@@ -11,25 +11,32 @@
       d:DesignHeight="600" d:DesignWidth="800"
       Title="Default cameras" Loaded="Page_Loaded" IsVisibleChanged="page_IsVisibleChanged">
 
-    <Grid>
+    <Grid Background="{DynamicResource settingsPage_background}">
         <ScrollViewer Margin="10">
 
             <Grid>
 
-                <StackPanel>
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
 
-                    <Label FontSize="20" FontFamily="Segoe UI Semibold">Default cameras</Label>
-                    <Label>Below is a list of all the cameras that come pre-configured with Webcam Viewer.</Label>
+                    <Label Foreground="{DynamicResource settingsPage_foregroundText}" FontSize="20" FontFamily="Segoe UI Semibold">Default cameras</Label>
+                    <Label Foreground="{DynamicResource settingsPage_foregroundText}">Below is a list of all the cameras that come pre-configured with Webcam Viewer.</Label>
 
                 </StackPanel>
 
                 <Grid Margin="5,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
 
-                    <TextBlock Foreground="{DynamicResource settingsPage_foregroundSecondary}" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <StackPanel>
+
+                        <Grid>
+                            <Grid.Clip>
+                                <RectangleGeometry Rect="0,0,369,340" RadiusX="3" RadiusY="3" />
+                            </Grid.Clip>
+
+                            <TextBlock Foreground="{DynamicResource settingsPage_foregroundSecondary}" Padding="10" HorizontalAlignment="Left" VerticalAlignment="Top">
                         
                         <!-- START -->
                         
-                        <TextBlock Foreground="Black">
+                        <TextBlock Foreground="{DynamicResource settingsPage_foregroundText}">
                             Michalovce, Slovakia - Námestie osloboditeľov 01
                         </TextBlock>
                         
@@ -44,7 +51,7 @@
                         
                         <!-- START -->
                         
-                        <TextBlock Foreground="Black">
+                        <TextBlock Foreground="{DynamicResource settingsPage_foregroundText}">
                             Nowy Targ, Poland - Restaurant "U gazdy" (Kamera na Tatry)
                         </TextBlock>
                         
@@ -59,7 +66,7 @@
                         
                         <!-- START -->
                         
-                        <TextBlock Foreground="Black">
+                        <TextBlock Foreground="{DynamicResource settingsPage_foregroundText}">
                             Gelendzhik, Russia - Glavmore (Camera 2)
                         </TextBlock>
                         
@@ -74,7 +81,7 @@
                         
                         <!-- START -->
                         
-                        <TextBlock Foreground="Black">
+                        <TextBlock Foreground="{DynamicResource settingsPage_foregroundText}">
                             Poprad, Slovakia - Weather station "Funsat"
                         </TextBlock>
                         
@@ -89,7 +96,7 @@
                         
                         <!-- START -->
                         
-                        <TextBlock Foreground="Black">
+                        <TextBlock Foreground="{DynamicResource settingsPage_foregroundText}">
                             Michalovce, Slovakia - Busová stanica
                         </TextBlock>
                         
@@ -104,7 +111,7 @@
                         
                         <!-- START -->
                         
-                        <TextBlock Foreground="Black">
+                        <TextBlock Foreground="{DynamicResource settingsPage_foregroundText}">
                             Żywiec, Poland - Żywiec lake
                         </TextBlock>
                         
@@ -119,7 +126,7 @@
                         
                         <!-- START -->
                         
-                        <TextBlock Foreground="Black">
+                        <TextBlock Foreground="{DynamicResource settingsPage_foregroundText}">
                             Levoča, Slovakia - www.pocasielevoca.sk
                         </TextBlock>
                         
@@ -131,7 +138,18 @@
                         
                     </TextBlock>
 
-                    <controleffects:RippleDrawable Color="{DynamicResource settingsPage_backgroundSecondary4}" FillColor="Transparent" />
+                            <controleffects:RippleDrawable Color="{DynamicResource settingsPage_backgroundSecondary4}" FillColor="Transparent" />
+
+                        </Grid>
+
+                        <usercontrols:settingsPage_NormalButton x:Name="resetDefaultCamerasButton"
+                                                                Background="Transparent" Margin="0,10,0,0" TextAlignment="Left"
+                                                                Text="Reset default cameras (apply configuration file)" />
+                        <usercontrols:settingsPage_NormalButton x:Name="resetConfigurationButton"
+                                                                Background="Transparent" TextAlignment="Left"
+                                                                Text="Reset configuration" />
+
+                    </StackPanel>
 
                 </Grid>
 

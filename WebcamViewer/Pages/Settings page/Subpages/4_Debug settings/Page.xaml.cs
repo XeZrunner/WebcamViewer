@@ -152,10 +152,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             RadioButton rbtn_0 = new RadioButton { Content = "Modal progressring", IsChecked = true };
             RadioButton rbtn_1 = new RadioButton { Content = "Modal progressbar (indeterminate)" };
             RadioButton rbtn_2 = new RadioButton { Content = "In-menu progressring" };
+            RadioButton rbtn_3 = new RadioButton { Content = "Modal save panel" };
 
             rbtn_stackpanel.Children.Add(rbtn_0);
             rbtn_stackpanel.Children.Add(rbtn_1);
             rbtn_stackpanel.Children.Add(rbtn_2);
+            rbtn_stackpanel.Children.Add(rbtn_3);
 
             TextBox textbox = new TextBox { Text = "Progress UI Debug", Margin = new Thickness(0, 0, 0, 10) };
             CheckBox checkbox_countdown = new CheckBox { Content = "Show countdown", IsChecked = true, Margin = new Thickness(0, 0, 0, 5) };
@@ -192,21 +194,22 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                             mainwindow.webcamPage_progressLabel.Content = textbox.Text + " - " + ui_clocktimer_countdown;
                         if (mainwindow.webcamPage_menuGrid_progressPanel_progressTextBlock.Visibility == Visibility.Visible)
                             mainwindow.webcamPage_menuGrid_SetProgressText(textbox.Text + " - " + ui_clocktimer_countdown);
+                        if (mainwindow.webcamPage_saveGrid.IsVisible)
+                            mainwindow.UpdateSavePanelStatus(textbox.Text + " - " + ui_clocktimer_countdown);
                     }
                     ui_clocktimer_countdown--;
                 };
                 ui_clocktimer.Start();
 
                 DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = new TimeSpan(0, 0, 10);
-                timer.Tick += (s, ev) => { timer.Stop(); ui_clocktimer.Stop(); mainwindow.webcamPage_HideProgressUI(); };
+                timer.Interval = new TimeSpan(0, 0, 11);
+                timer.Tick += async (s, ev) => { timer.Stop(); ui_clocktimer.Stop(); mainwindow.webcamPage_HideProgressUI(); if (mainwindow.webcamPage_saveGrid.IsVisible) await mainwindow.HideSavePanel(); };
                 timer.Start();
                 #endregion
 
-                if (mainwindow.webcamPage_progressLabel.Visibility == Visibility.Visible)
-                    mainwindow.webcamPage_progressLabel.Content = textbox.Text;
-                if (mainwindow.webcamPage_menuGrid_progressPanel_progressTextBlock.Visibility == Visibility.Visible)
-                    mainwindow.webcamPage_menuGrid_SetProgressText(textbox.Text);
+                mainwindow.webcamPage_progressLabel.Content = textbox.Text;
+                mainwindow.webcamPage_menuGrid_SetProgressText(textbox.Text);
+                mainwindow.UpdateSavePanelStatus(textbox.Text);
 
                 int mode = 0;
                 int counter = 0;
@@ -232,6 +235,11 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                                     mainwindow.webcamPage_ShowProgressUI(4); mode = 2;
                                     break;
                                 }
+                            case 3:
+                                {
+                                    mainwindow.ShowSavePanel(); mode = 3;
+                                    break;
+                                }
                         }
                         #endregion
                     }
@@ -239,7 +247,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                         counter++;
                 }
 
-                if (mode != 2)
+                if (mode < 2 && mode == 3)
                 {
                     mainwindow.webcamPage_CloseMenu();
                 }
@@ -267,7 +275,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
             TextBlock text0 = new TextBlock
             {
-                Margin = new Thickness(5,0,0,0),
+                Margin = new Thickness(5, 0, 0, 0),
                 Text = "Choose the style to debug"
             };
 
@@ -277,6 +285,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                 SelectedIndex = 0
             };
 
+            styleDropDownButton.Items.Add("ContentDialog");
             styleDropDownButton.Items.Add("Windows 10 UWP ContentDialog");
             styleDropDownButton.Items.Add("Windows 8.x MessageDialog");
 
@@ -377,6 +386,24 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
                 if (styleDropDownButton.SelectedIndex == 0)
                 {
+                    Popups.ContentDialog dialog = new Popups.ContentDialog();
+                    dialog.Title = titleBox.Text;
+                    dialog.Text = messageBox.Text;
+
+                    if (theme == null)
+                        dialog.Theme = ContentDialogControl._Theme.Auto;
+                    else if (theme.Value == false)
+                        dialog.Theme = ContentDialogControl._Theme.Light;
+                    else
+                        dialog.Theme = ContentDialogControl._Theme.Dark;
+
+                    dialog.Button0_Text = firstbuttonTextBox.Text;
+                    dialog.Button1_Text = secondbuttonTextBox.Text;
+
+                    dialog.ShowDialog();
+                }
+                else if (styleDropDownButton.SelectedIndex == 1)
+                {
                     Popups.MessageDialog dialog = new Popups.MessageDialog();
                     dialog.Title = titleBox.Text;
                     dialog.Content = messageBox.Text;
@@ -386,7 +413,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
                     dialog.ShowDialog();
                 }
-                else
+                else if (styleDropDownButton.SelectedIndex == 2)
                 {
                     Popups.MessageDialog_FullWidth dialog = new Popups.MessageDialog_FullWidth();
                     dialog.Title = titleBox.Text;
@@ -479,6 +506,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             else box1.IsChecked = false;
             // /EXPERIMENT
 
+            // EXPERIMENT - bothsave
+            CheckBox box2 = new CheckBox() { Content = "Both Save Experiment", Margin = new Thickness(4, 5, 0, 5), Tag = "experiment_BothSave" };
+            if (Properties.Settings.Default.experiment_BothSave) box2.IsChecked = true;
+            else box2.IsChecked = false;
+            // /EXPERIMENT
+
             /* LATER
             // EXPERIMENT - new file browser dialog
             CheckBox box1 = new CheckBox() { Content = "Immersive File Dialog\nInternal Edge/UX-development channels only", Margin = new Thickness(4, 5, 0, 5), Tag = "experiment_NewFileBrowserUX" };
@@ -493,6 +526,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             panel.Children.Add(label1);
             panel.Children.Add(box0);
             panel.Children.Add(box1);
+            panel.Children.Add(box2);
             // Content //
 
             scrollview.Content = panel;

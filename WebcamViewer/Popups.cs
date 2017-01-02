@@ -5,14 +5,13 @@ namespace WebcamViewer
 {
     class Popups
     {
-
         /// <summary>
         /// Windows 10 UWP ContentDialog-style dialog ftw
         /// </summary>
         public class MessageDialog
         {
 
-            MessagedialogWindow dialogWindow = new MessagedialogWindow();
+            public MessagedialogWindow dialogWindow = new MessagedialogWindow();
 
             public string Title = "";
 
@@ -62,6 +61,8 @@ namespace WebcamViewer
                 MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
 
                 dialogWindow.Owner = mainwindow;
+                if (mainwindow.Width <= 482)
+                    dialogWindow.MaxWidth = mainwindow.Width - 2;
                 dialogWindow.MaxHeight = mainwindow.Height - 2;
 
                 mainwindow.global_Dim();
@@ -315,6 +316,69 @@ namespace WebcamViewer
             public void Close()
             {
                 dialogWindow.Close();
+            }
+        }
+
+        public class ContentDialog
+        {
+            private MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+
+            public string Title = "Title";
+            public string Text = "";
+
+            public Grid ContentGrid = null;
+
+            public string Button0_Text = "";
+            public string Button1_Text = "OK";
+
+            public RoutedEventHandler Button0_Click = null;
+            public RoutedEventHandler Button1_Click = null;
+
+            public User_controls.ContentDialogControl._Theme Theme = User_controls.ContentDialogControl._Theme.Auto;
+
+            public void ShowDialog()
+            {
+                User_controls.ContentDialogControl dialog = new User_controls.ContentDialogControl();
+                dialog.Title = Title;
+
+                if (Text != null && ContentGrid == null)
+                    dialog.Text = Text;
+                else if (Text == null && ContentGrid != null)
+                    dialog.ContentGrid = ContentGrid;
+                else
+                    dialog.Text = "Popups.cs: could not decide beetween Text or ContentGrid.";
+
+                dialog.Theme = Theme;
+
+                if (Button0_Text != "" & Button0_Text != null)
+                    dialog.Button0_Text = Button0_Text;
+                else
+                    dialog.button0.Visibility = Visibility.Collapsed;
+
+                if (Button1_Text != "" & Button1_Text != null)
+                    dialog.Button1_Text = Button1_Text;
+                else
+                {
+                    dialog.button1.Visibility = Visibility.Collapsed;
+                    Grid.SetColumn(dialog.button0, 2);
+                }
+
+                // button click events
+
+                // Button 0
+                if (Button0_Click == null) // no click event, make it close the dialog down
+                    dialog.button0.Click += (s, ev) => { mainwindow.CloseContentDialog(); };
+                else
+                    dialog.button0.Click += Button0_Click;
+
+                // Button 1
+                if (Button1_Click == null) // no click event, make it close the dialog down
+                    dialog.button1.Click += (s, ev) => { mainwindow.CloseContentDialog(); };
+                else
+                    dialog.button1.Click += Button1_Click;
+
+                // Show the dialog
+                mainwindow.ShowContentDialog(dialog);
             }
         }
 

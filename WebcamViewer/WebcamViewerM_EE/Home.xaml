@@ -1,0 +1,127 @@
+﻿<Page x:Class="WebcamViewer.WebcamViewerM_EE.Home"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WebcamViewer.WebcamViewerM_EE"
+      xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Home" Background="Black" Loaded="Page_Loaded" >
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Rectangle Fill="#1DFFFFFF" Grid.Row="0" />
+
+        <!-- content -->
+        <Grid Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="actionBar" Grid.Row="0" Height="48" Background="#1FFFFFFF">
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+
+                    <usercontrols:AppBar_Button x:Name="menuButton" Click="menuButton_Click" />
+
+                    <Label x:Name="actionBar_cameraLabel" Content="CAMERA NAME"
+                           Margin="5,0,0,0" VerticalAlignment="Center"
+                           Foreground="White" FontFamily="Segoe UI Semibold" FontSize="14"/>
+
+                </StackPanel>
+
+            </Grid>
+
+            <Grid x:Name="webcamimageGrid" Grid.Row="1">
+
+                <Image x:Name="webcamimage" />
+
+            </Grid>
+
+            <Grid x:Name="menuGrid" Grid.Row="1" Visibility="Hidden"
+                  HorizontalAlignment="Left" Width="300"
+                  RenderTransformOrigin="0.5, 0.5">
+
+                <Grid.RenderTransform>
+                    <TranslateTransform x:Name="menu_translateTransform" />
+                </Grid.RenderTransform>
+
+                <!-- Blurbehind border -->
+                <Border>
+
+                    <Border.Background>
+                        <VisualBrush Visual="{Binding ElementName=webcamimageGrid}" Stretch="None" AlignmentX="Left" />
+                    </Border.Background>
+
+                    <Border.Effect>
+                        <BlurEffect x:Name="menu_blureffect" Radius="10" />
+                    </Border.Effect>
+                    
+                </Border>
+                
+                <!-- Dim -->
+                <Rectangle Fill="#5A000000" />
+
+                <StackPanel VerticalAlignment="Top">
+
+                    <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="menu_localsaveButton" Text="Save image" IconText="&#xe74e;"
+                                                                     Width="300"
+                                                                     Foreground="White"
+                                                                     Click="menu_localsaveButton_Click"/>
+
+                    <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="menu_archiveorgsaveButton" Text="Save image on archive.org" IconText="&#xe898;"
+                                                                     Width="300"
+                                                                     Foreground="White"
+                                                                     Click="menu_archiveorgsaveButton_Click"/>
+
+                    <Rectangle Fill="#4FFFFFFF" Height="1" Margin="5" />
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="0,0,0,48">
+                        <StackPanel x:Name="menu_cameraList" />
+                    </ScrollViewer>
+
+                </StackPanel>
+                
+                <!-- Settings button -->
+
+                <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="menu_settingsButton" Text="Settings" IconText="&#xe713;"
+                                                                 VerticalAlignment="Bottom"
+                                                                 Foreground="White"
+                                                                 Click="menu_settingsButton_Click"/>
+
+            </Grid>
+
+            <Grid x:Name="progressGrid" Grid.Row="1" Background="#5F000000" Visibility="Hidden">
+
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    
+                    <Controls:ProgressRing x:Name="progressGrid_progressRing" Visibility="Hidden"
+                                           Width="60" Height="60" EllipseDiameterScale="0.85"
+                                           Foreground="White"/>
+
+                    <Controls:MetroProgressBar x:Name="progressGrid_progressBar" Visibility="Hidden"
+                                               Width="300" IsIndeterminate="True"
+                                               Foreground="White" />
+
+                    <Label x:Name="progressGrid_progressLabel" Content="Status"
+                           Margin="0,150,0,0" HorizontalAlignment="Center"
+                           Foreground="White" />
+
+                </Grid>
+
+            </Grid>
+
+        </Grid>
+
+    </Grid>
+
+</Page>

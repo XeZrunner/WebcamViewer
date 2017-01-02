@@ -88,7 +88,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta\r\nFramework Development Branch, Edge Channel")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
@@ -100,7 +100,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20161203-01")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20170102-01")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -124,27 +124,35 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Webcam Viewer Update 2 Beta - 2016.12.03; feature level 1\r\n\r\nNew features:\r\n- Exp" +
-            "erimental: new Overview!\r\nYou can test the new Overview by holding down Shift on" +
-            " your keyboard while clicking on the Overview button in the menu.\r\nSome features" +
-            " may not work just yet, it is going to get developed more and more in future bui" +
-            "lds.\r\n---------------------------------------------\r\n\r\nWebcam Viewer Update 2 Be" +
-            "ta - 2016.11.16; feature level 1\r\n\r\nNew features:\r\n- Added the ability to change" +
-            " the image stretching mode.\r\n\r\nDeveloper:\r\n- Added the default cameras page, wit" +
-            "h all the default cameras listed.\r\n\r\nLogging:\r\n- Most basic things are logged no" +
-            "w.\r\n---------------------------------------------\r\n\r\nWebcam Viewer Update 2 Beta" +
-            " - 2016.11.12; feature level 1\r\n\r\nUser interface:\r\n- Unified RippleDrawable incl" +
-            "usion\r\nAll hard-coded ripple effects are replaced with the new XeZrunner.UI Ripp" +
-            "leDrawable control which is further similiar to Google\'s Android Lollipop ripple" +
-            ".\r\nThe new ripple can no longer be moved by the user, in favor of the ripple slo" +
-            "wly \"expanding\" towards the center of the control, much like on the actual opera" +
-            "ting system.\r\n---------------------------------------------\r\n\r\nWebcam Viewer Upd" +
-            "ate 2 Beta - 2016.11.05; feature level 2\r\n\r\nUser interface:\r\n- There\'s a brand n" +
-            "ew progress circle for the main camera loading UI. The progress circle is made t" +
-            "o look like Google\'s Material Design progress spinner, found in Android 5.0 Loll" +
-            "ipop and newer.\r\nThe new progress circle behaves like the custom progressring be" +
-            "fore it, controllable with IsActive and automatically stops when not visible.\r\n\r" +
-            "\nOverview:\r\n- Added a refresh button in place of the useless \"More...\" button.")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Webcam Viewer Update 2 Beta - 2017.01.02; feature level 1\r\n\r\nHappy new year! :)\r\n" +
+            "\r\nThis build extends the menu blurbehind option to affect the new universal Save" +
+            " / camera error panel\'s blurbehind.\r\n-------------------------------------------" +
+            "--\r\n\r\nWebcam Viewer Update 2 Beta - 2016.12.27; feature level 1\r\n\r\nImprovements:" +
+            "\r\n- Overview can now reload individual cameras when they couldn\'t load.\r\n- We\'re" +
+            " getting closer to finishing the new zSettings. New improvements include loading" +
+            " pages into the memory for later use, and an universal control for both desktop " +
+            "and mobile views.\r\n\r\nDeveloper:\r\n- Overview debug received some debug buttons.\r\n" +
+            "- zSettings debug\r\n---------------------------------------------\r\n\r\n\r\nWebcam Vie" +
+            "wer Update 2 Beta - 2016.12.16; feature level 1\r\n\r\nNew features:\r\n- New image sa" +
+            "ving panel, replacing the old \"in-menu\" one completely\r\n\r\nDeveloper:\r\n- Added a " +
+            "new UI Controls Testing page to Settings with all the UI controls listed\r\n\r\nEarl" +
+            "y testing:\r\n- Experimental: zSettings Early Preview\r\nAccess in menu by clicking " +
+            "on zSettings.\r\n---------------------------------------------\r\n\r\nWebcam Viewer Up" +
+            "date 2 Beta - 2016.12.03; feature level 1\r\n\r\nNew features:\r\n- Experimental: new " +
+            "Overview!\r\nYou can test the new Overview by holding down Shift on your keyboard " +
+            "while clicking on the Overview button in the menu.\r\nSome features may not work j" +
+            "ust yet, it is going to get developed more and more in future builds.\r\n---------" +
+            "------------------------------------\r\n\r\nWebcam Viewer Update 2 Beta - 2016.11.16" +
+            "; feature level 1\r\n\r\nNew features:\r\n- Added the ability to change the image stre" +
+            "tching mode.\r\n\r\nDeveloper:\r\n- Added the default cameras page, with all the defau" +
+            "lt cameras listed.\r\n\r\nLogging:\r\n- Most basic things are logged now.\r\n-----------" +
+            "----------------------------------\r\n\r\nWebcam Viewer Update 2 Beta - 2016.11.12; " +
+            "feature level 1\r\n\r\nUser interface:\r\n- Unified RippleDrawable inclusion\r\nAll hard" +
+            "-coded ripple effects are replaced with the new XeZrunner.UI RippleDrawable cont" +
+            "rol which is further similiar to Google\'s Android Lollipop ripple.\r\nThe new ripp" +
+            "le can no longer be moved by the user, in favor of the ripple slowly \"expanding\"" +
+            " towards the center of the control, much like on the actual operating system.\r\n-" +
+            "--------------------------------------------")]
         public string changelog {
             get {
                 return ((string)(this["changelog"]));
@@ -192,7 +200,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
         public int ui_accent {
             get {
                 return ((int)(this["ui_accent"]));
@@ -204,7 +212,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int ui_theme {
             get {
                 return ((int)(this["ui_theme"]));
@@ -288,7 +296,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool settings_experiment_UpdateUI {
             get {
                 return ((bool)(this["settings_experiment_UpdateUI"]));
@@ -372,13 +380,25 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool experiment_zOverview {
             get {
                 return ((bool)(this["experiment_zOverview"]));
             }
             set {
                 this["experiment_zOverview"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool experiment_BothSave {
+            get {
+                return ((bool)(this["experiment_BothSave"]));
+            }
+            set {
+                this["experiment_BothSave"] = value;
             }
         }
     }

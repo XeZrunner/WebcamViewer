@@ -31,21 +31,11 @@ namespace WebcamViewer
             /// Returns the SolidColorBrush for an accent color.
             /// </summary>
             /// <param name="accent">The accent color to get</param>
-            /// <param name="type">The type of accent color to get. 0 = dark, 1 = light</param>
+            /// <param name="type">The type of accent color to get. 0 = light, 1 = dark</param>
             public SolidColorBrush GetAccentColor(int accent, int type)
             {
-                string[] typeToName = { "dark", "light" };
+                string[] typeToName = { "light", "dark" };
                 return Application.Current.Resources["accentcolor_" + typeToName[type] + accent] as SolidColorBrush;
-            }
-            /// <summary>
-            /// Returns the SolidColorBrush for an accent color using the enum ColorType.
-            /// </summary>
-            /// <param name="accent">The accent color to get</param>
-            /// <param name="type">The type of accent color to get. ColorType.Dark = Dark ; ColorType.Light = Light ; pretty obvious nah ?</param>
-            public SolidColorBrush GetAccentColor(int accent, ColorType type)
-            {
-                string[] typeToName = { "dark", "light" };
-                return Application.Current.Resources["accentcolor_" + typeToName[(int)type] + accent] as SolidColorBrush;
                 
             }
 

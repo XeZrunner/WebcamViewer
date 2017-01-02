@@ -1,0 +1,17 @@
+﻿<Page x:Class="WebcamViewer.Pages.Settings_page.Subpages._5_Samples.Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._5_Samples"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Page" Background="{DynamicResource settingsPage_background}">
+
+    <Grid>
+
+        <Label Foreground="{DynamicResource accentcolor_dark}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Content="Settings samples" />
+
+    </Grid>
+
+</Page>
