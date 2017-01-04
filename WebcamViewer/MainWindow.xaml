@@ -969,7 +969,7 @@
                         <RowDefinition x:Name="menuGrid_rowdefinition_infoGrid" Height="Auto" />
                         <RowDefinition x:Name="menuGrid_rowdefinition_overviewButton" Height="Auto" />
                         <RowDefinition x:Name="menuGrid_rowdefinition_cameralist" />
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0">
@@ -1031,7 +1031,7 @@
                     </Grid>
 
                     <!-- camera list -->
-                    <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Top">
+                    <ScrollViewer Grid.Row="2" Margin="0,0,0,80" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Top">
                         <StackPanel x:Name="webcamPage_menuGrid_cameraListStackPanel">
 
 
@@ -1041,7 +1041,7 @@
 
                 </Grid>
 
-                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                <StackPanel Grid.Row="3" Orientation="Vertical" VerticalAlignment="Bottom">
 
                     <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="webcamPage_SettingsShortcutButton" IconText="&#xe713;" Text="{x:Static res:Resources.Settings}" Click="webcamPage_SettingsShortcutButton_Click"/>
 

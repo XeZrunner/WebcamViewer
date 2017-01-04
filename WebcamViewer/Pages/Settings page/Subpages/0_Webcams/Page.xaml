@@ -15,7 +15,7 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition />
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="255"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
@@ -29,7 +29,7 @@
                     </Style>
                 </Grid.Resources>
 
-                <Label Grid.Row="0" Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" Margin="5,0,0,0" Visibility="Collapsed">WEBCAMS</Label>
+                <Label Grid.Row="0" Foreground="{DynamicResource settingsPage_foregroundText}" FontFamily="Segoe UI Semilight" FontSize="16" Margin="5,0,0,0" Visibility="Visible">Webcams</Label>
 
                 <ListView Grid.Row="1" x:Name="settingsPage_WebcamEditorPage_ListView" Margin="0,5,0,10" SelectionChanged="settingsPage_WebcamEditorPage_ListView_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource WebcamEditor_ListViewStyle}" ItemContainerStyle="{DynamicResource WebcamEditor_ListView_ListViewItemStyle}">
                     <ListView.View>
