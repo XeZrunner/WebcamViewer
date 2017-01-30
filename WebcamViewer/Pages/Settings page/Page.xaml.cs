@@ -59,12 +59,17 @@ namespace WebcamViewer.Pages.Settings_page
         /// <param name="DarkMode">Determintes whether to style the window light or dark. (0 = dark, 1 = light, null = automatic from theme)</param>
         void TextMessageDialog(string Title, string Content, bool? DarkMode = null)
         {
-            Popups.MessageDialog dlg = new Popups.MessageDialog();
+            Popups.ContentDialog dlg = new Popups.ContentDialog();
 
             dlg.Title = Title;
-            dlg.Content = Content;
+            dlg.Text = Content;
 
-            dlg.IsDarkTheme = DarkMode;
+            if (DarkMode == null)
+                dlg.Theme = User_controls.ContentDialogControl._Theme.Auto;
+            else if (DarkMode.Value == true)
+                dlg.Theme = User_controls.ContentDialogControl._Theme.Dark;
+            else if (DarkMode.Value == false)
+                dlg.Theme = User_controls.ContentDialogControl._Theme.Light;
 
             dlg.ShowDialog();
         }
@@ -91,6 +96,8 @@ namespace WebcamViewer.Pages.Settings_page
 
         #region View
 
+        public ViewModes _viewMode;
+
         public enum ViewModes
         {
             Desktop,
@@ -101,11 +108,11 @@ namespace WebcamViewer.Pages.Settings_page
         {
             if (manualOverride == null)
             {
-                if (this.ActualWidth <= 482)
+                if (this.ActualWidth <= 545 & _viewMode != ViewModes.Mobile)
                 {
                     UpdateView(ViewModes.Mobile);
                 }
-                else
+                else if (this.ActualWidth >= 545 & _viewMode != ViewModes.Desktop)
                 {
                     UpdateView(ViewModes.Desktop);
                 }
@@ -121,6 +128,11 @@ namespace WebcamViewer.Pages.Settings_page
                     view_desktopgrid_WrapPanel.VerticalAlignment = VerticalAlignment.Stretch;
                     view_desktopgrid_WrapPanel.Orientation = Orientation.Vertical;
                     view_desktopgrid_WrapPanel.ItemWidth = mainwindow.Width - 2;
+
+                    view_subpagegrid_menuButton.Visibility = Visibility.Visible;
+                    Subpage_CloseGlobalMenu();
+
+                    _viewMode = ViewModes.Mobile;
                 }
                 else
                 {
@@ -131,6 +143,11 @@ namespace WebcamViewer.Pages.Settings_page
                     view_desktopgrid_WrapPanel.VerticalAlignment = VerticalAlignment.Center;
                     view_desktopgrid_WrapPanel.Orientation = Orientation.Horizontal;
                     view_desktopgrid_WrapPanel.ItemWidth = Double.NaN;
+
+                    view_subpagegrid_menuButton.Visibility = Visibility.Collapsed;
+                    Subpage_OpenGlobalMenu();
+
+                    _viewMode = ViewModes.Desktop;
                 }
 
             }
@@ -271,9 +288,9 @@ namespace WebcamViewer.Pages.Settings_page
 
         private void debugButton_Click(object sender, RoutedEventArgs e)
         {
-            Popups.MessageDialog dialog = new Popups.MessageDialog();
+            Popups.ContentDialog dialog = new Popups.ContentDialog();
             dialog.Title = "Settings debug";
-            dialog.FirstButtonContent = "Close";
+            dialog.Button0_Text = "Close";
 
             #region Create content
             StackPanel panel = new StackPanel();
@@ -297,7 +314,7 @@ namespace WebcamViewer.Pages.Settings_page
             panel.Children.Add(btn1);
             panel.Children.Add(btn2);
 
-            dialog.Content = panel;
+            dialog.ContentGrid = panel;
             #endregion
 
             #region Do stuff
@@ -316,17 +333,21 @@ namespace WebcamViewer.Pages.Settings_page
 
             btn2.Click += (s, ev) =>
             {
-                if (debugButton.IsVisible) {
+                if (debugButton.IsVisible)
+                {
 
                     debugToolbar.Visibility = Visibility.Collapsed;
 
-                    btn2.Text = "Show debug buttons"; }
+                    btn2.Text = "Show debug buttons";
+                }
 
-                else {
+                else
+                {
 
                     debugToolbar.Visibility = Visibility.Visible;
 
-                    btn2.Text = "Hide debug buttons"; }
+                    btn2.Text = "Hide debug buttons";
+                }
             };
 
             int inmemPagesCounter = 0;
@@ -369,21 +390,105 @@ namespace WebcamViewer.Pages.Settings_page
 
             int sButton_Tag = int.Parse((string)sButton.Tag);
 
-            LoadSettingsPageIntoMemory(sButton_Tag);
+            NavigateToSubpage(sButton_Tag);
+
+            SubViewIn_Anim.Begin();
+        }
+
+        public void NavigateToSubpage(int page)
+        {
+            LoadSettingsPageIntoMemory(page);
 
             try
             {
                 view_desktop_subpagegrid_Frame.Navigate(currentSettingPage);
-                view_subpagegrid_activeSubpageLabel.Content = SettingsPages_Titles[sButton_Tag].ToUpper();
+                view_subpagegrid_activeSubpageLabel.Content = SettingsPages_Titles[page].ToUpper();
+
+                view_subpagegrid_SideMenuControl.control._SetButtonActiveState(page);
             }
             catch (Exception ex)
             {
-                TextMessageDialog("Could not load subpage", "Make sure the button's Tag is a correct page ID.\n\nError: " + ex.Message + "\nButton tag: " + sButton.Tag.ToString());
+                TextMessageDialog("Could not load subpage", "Make sure the button's Tag is a correct page ID.\n\nError: " + ex.Message + "\nButton tag: " + page.ToString());
 
                 return;
             }
-
-            SubViewIn_Anim.Begin();
         }
+
+        private void view_subpagegrid_SideMenuControl_SelectionChanged(object sender, EventArgs e)
+        {
+            User_controls.settingsPage_TabButton sBtn = sender as User_controls.settingsPage_TabButton;
+
+            int id_destination = (int)sBtn.Tag;
+
+            NavigateToSubpage(id_destination);
+        }
+
+        #region Global menu
+
+        private void view_subpagegrid_menuButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (view_subpagegrid_GlobalMenu.Visibility == Visibility.Hidden)
+            {
+                Subpage_OpenGlobalMenu();
+            }
+            else
+            {
+                Subpage_CloseGlobalMenu();
+            }
+        }
+
+        private void Subpage_OpenGlobalMenu(bool IsAnim = true)
+        {
+            view_subpagegrid_GlobalMenu.Visibility = Visibility.Visible;
+
+            TranslateTransform transform = new TranslateTransform();
+
+            DoubleAnimation anim_menu = new DoubleAnimation(-300, 0, TimeSpan.FromSeconds(.3));
+            anim_menu.EasingFunction = new QuadraticEase();
+
+            ThicknessAnimation anim_content = new ThicknessAnimation(new Thickness(-300, 48, 0, 0), new Thickness(0), TimeSpan.FromSeconds(.3));
+            anim_content.EasingFunction = new QuadraticEase();
+
+            if (!IsAnim)
+            {
+                anim_menu.Duration = TimeSpan.FromSeconds(0);
+                anim_content.Duration = TimeSpan.FromSeconds(0);
+            }
+
+            view_subpagegrid_GlobalMenu.RenderTransform = transform;
+
+            transform.BeginAnimation(TranslateTransform.XProperty, anim_menu);
+
+            if (_viewMode == ViewModes.Desktop)
+                view_desktop_subpagegrid_Frame.BeginAnimation(MarginProperty, anim_content);
+        }
+
+        private void Subpage_CloseGlobalMenu(bool IsAnim = true)
+        {
+            TranslateTransform transform = new TranslateTransform();
+
+            DoubleAnimation anim_menu = new DoubleAnimation(0, -300, TimeSpan.FromSeconds(.3));
+            anim_menu.EasingFunction = new QuadraticEase();
+            anim_menu.Completed += (s, ev) => { view_subpagegrid_GlobalMenu.Visibility = Visibility.Hidden; };
+
+
+            ThicknessAnimation anim_content = new ThicknessAnimation(new Thickness(0), new Thickness(-300, 48, 0, 0), TimeSpan.FromSeconds(.3));
+            anim_content.EasingFunction = new QuadraticEase();
+
+            if (!IsAnim)
+            {
+                anim_menu.Duration = TimeSpan.FromSeconds(0);
+                anim_content.Duration = TimeSpan.FromSeconds(0);
+            }
+
+            view_subpagegrid_GlobalMenu.RenderTransform = transform;
+
+            transform.BeginAnimation(TranslateTransform.XProperty, anim_menu);
+
+            if (_viewMode == ViewModes.Desktop)
+                view_desktop_subpagegrid_Frame.BeginAnimation(MarginProperty, anim_content);
+        }
+
+        #endregion
     }
 }

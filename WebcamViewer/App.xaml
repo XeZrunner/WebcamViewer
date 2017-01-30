@@ -12,7 +12,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
                 <!-- Accent and AppTheme setting -->
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Cobalt.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
                 <!-- Flat button everywhere -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
@@ -24,8 +24,13 @@
             <SolidColorBrush x:Key="accentcolor_dark" Color="#1997DD"/>
             <SolidColorBrush x:Key="accentcolor_light" Color="#139DEA"/>
 
+            <SolidColorBrush x:Key="webcamPage_Background" Color="White"/>
             <SolidColorBrush x:Key="webcamPage_Foreground" Color="#FF202020"/>
-            <SolidColorBrush x:Key="webcamPage_menuBackground" Color="#7AFFFFFF"/>
+            <SolidColorBrush x:Key="webcamPage_BackgroundSecondary" Color="#FFBBBBBB"/>
+            <SolidColorBrush x:Key="webcamPage_ForegroundSecondary" Color="#FF404040"/>
+            <SolidColorBrush x:Key="webcamPage_ForegroundSecondary2" Color="#FF606060"/>
+
+            <SolidColorBrush x:Key="webcamPage_menuBackground" Color="#8AFFFFFF"/>
             <SolidColorBrush x:Key="webcamPage_menuBackgroundSecondary" Color="#0FFFFFFF"/>
 
             <SolidColorBrush x:Key="settingsPage_background" Color="White" />
@@ -76,11 +81,19 @@
             
             <!-- Home page -->
 
+            <SolidColorBrush x:Key="webcamPage_Light_Background" Color="White"/>
             <SolidColorBrush x:Key="webcamPage_Light_Foreground" Color="#FF202020"/>
-            <SolidColorBrush x:Key="webcamPage_Light_menuBackground" Color="#7AFFFFFF"/>
+            <SolidColorBrush x:Key="webcamPage_Light_BackgroundSecondary" Color="#FFBBBBBB"/>
+            <SolidColorBrush x:Key="webcamPage_Light_ForegroundSecondary" Color="#FF404040" />
+            
+            <SolidColorBrush x:Key="webcamPage_Light_menuBackground" Color="#8AFFFFFF"/>
             <SolidColorBrush x:Key="webcamPage_Light_menuBackgroundSecondary" Color="#0FFFFFFF"/>
 
+            <SolidColorBrush x:Key="webcamPage_Dark_Background" Color="Black" />
             <SolidColorBrush x:Key="webcamPage_Dark_Foreground" Color="White"/>
+            <SolidColorBrush x:Key="webcamPage_Dark_BackgroundSecondary" Color="#FF202020" />
+            <SolidColorBrush x:Key="webcamPage_Dark_ForegroundSecondary" Color="#FFDDDDDD"/>
+
             <SolidColorBrush x:Key="webcamPage_Dark_menuBackground" Color="#8F000000"/>
             <SolidColorBrush x:Key="webcamPage_Dark_menuBackgroundSecondary" Color="#1FFFFFFF"/>
 

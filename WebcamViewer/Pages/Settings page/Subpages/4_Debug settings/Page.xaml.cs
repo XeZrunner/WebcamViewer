@@ -139,7 +139,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
         private void settingsPage_DebugMenuPage_Home_ProgressDebugButton_Click(object sender, RoutedEventArgs e)
         {
             // Create progress UI debug dialog
-            Popups.MessageDialog dlg = new Popups.MessageDialog();
+            Popups.ContentDialog dlg = new Popups.ContentDialog();
             dlg.Title = "";
 
             #region Create content
@@ -173,20 +173,20 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             stackpanel.Children.Add(checkbox_countdown);
 
             //  Make the stackpanel the content
-            dlg.Content = stackpanel;
+            dlg.ContentGrid = stackpanel;
 
             // Buttons
-            dlg.FirstButtonContent = "Cancel";
-            dlg.SecondButtonContent = "Accept";
+            dlg.Button0_Text = "Cancel";
+            dlg.Button1_Text = "Accept";
 
-            if (dlg.ShowDialogWithResult() == 1)
+            dlg.Button1_Click += (s, ev) =>
             {
                 #region Timers
                 int ui_clocktimer_countdown = 10;
 
                 DispatcherTimer ui_clocktimer = new DispatcherTimer();
                 ui_clocktimer.Interval = new TimeSpan(0, 0, 1);
-                ui_clocktimer.Tick += (s, ev) =>
+                ui_clocktimer.Tick += (s1, ev1) =>
                 {
                     if (checkbox_countdown.IsChecked == true)
                     {
@@ -203,7 +203,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
                 DispatcherTimer timer = new DispatcherTimer();
                 timer.Interval = new TimeSpan(0, 0, 11);
-                timer.Tick += async (s, ev) => { timer.Stop(); ui_clocktimer.Stop(); mainwindow.webcamPage_HideProgressUI(); if (mainwindow.webcamPage_saveGrid.IsVisible) await mainwindow.HideSavePanel(); };
+                timer.Tick += async (s2, ev2) => { timer.Stop(); ui_clocktimer.Stop(); mainwindow.webcamPage_HideProgressUI(); if (mainwindow.webcamPage_saveGrid.IsVisible) await mainwindow.HideSavePanel(); };
                 timer.Start();
                 #endregion
 
@@ -261,7 +261,9 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                     mainwindow.backButton.Visibility = Visibility.Collapsed;
                     mainwindow.webcamPage_menuButton.Visibility = Visibility.Visible;
                 }
-            }
+            };
+
+            dlg.ShowDialog();
         }
 
         private void settingsPage_DebugMenuPage_Home_MessageDialogDebugButton_Click(object sender, RoutedEventArgs e)
@@ -430,11 +432,11 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
         private void settingsPage_DebugMenuPage_Home_AnimationSpeedButton_Click(object sender, RoutedEventArgs e)
         {
-            Popups.MessageDialog dlg = new Popups.MessageDialog()
+            Popups.ContentDialog dlg = new Popups.ContentDialog()
             {
                 Title = "Transitions animation speed",
-                FirstButtonContent = "Save",
-                SecondButtonContent = "Cancel"
+                Button0_Text = "Cancel",
+                Button1_Text = "Save"
             };
 
             // set up _content
@@ -469,20 +471,22 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             _content.Children.Add(content_stackpanel);
 
             // Set the content
-            dlg.Content = _content;
+            dlg.ContentGrid = _content;
 
             // Show the dialog
-            if (dlg.ShowDialogWithResult() == 0)
+            dlg.Button1_Click += (s, ev) =>
             {
                 Properties.Settings.Default.ui_animationspeed = slider.Value;
                 Properties.Settings.Default.Save();
                 mainwindow.GetUserConfiguration(true);
-            }
+            };
+
+            dlg.ShowDialog();
         }
 
         private void settingsPage_DebugMenuPage_Experiments_ExperimentsButton_Click(object sender, RoutedEventArgs e)
         {
-            Popups.MessageDialog dialog = new Popups.MessageDialog();
+            Popups.ContentDialog dialog = new Popups.ContentDialog();
             dialog.Title = "Experiments";
 
             // Content //
@@ -531,13 +535,13 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
             scrollview.Content = panel;
 
-            dialog.Content = scrollview;
+            dialog.ContentGrid = scrollview;
 
-            dialog.FirstButtonContent = "Apply experiments";
-            dialog.SecondButtonContent = "Go back";
+            dialog.Button0_Text = "Go back";
+            dialog.Button1_Text = "Apply experiments";
 
             // Show dialog
-            if (dialog.ShowDialogWithResult() == 0)
+            dialog.Button1_Click += (s, ev) =>
             {
                 #region Save changes
 
@@ -554,7 +558,9 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
                 mainwindow.GetUserConfiguration(true);
                 #endregion
-            }
+            };
+
+            dialog.ShowDialog();
         }
 
         private void settingsPage_DebugMenuPage_Configuration_ResetConfigurationButton_Click(object sender, RoutedEventArgs e)
@@ -596,7 +602,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
         private void settingsPage_DebugMenuPage_Pages_SwitchToPageDebug_Click(object sender, RoutedEventArgs e)
         {
-            Popups.MessageDialog dialog = new Popups.MessageDialog();
+            Popups.ContentDialog dialog = new Popups.ContentDialog();
             dialog.Title = "SwitchToPage() Debug";
 
             Grid dialog_content = new Grid();
@@ -615,12 +621,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
             dialog_content.Children.Add(panel);
 
-            dialog.Content = dialog_content;
+            dialog.ContentGrid = dialog_content;
 
-            dialog.FirstButtonContent = "Call SwitchToPage()";
-            dialog.SecondButtonContent = "Cancel";
+            dialog.Button0_Text = "Cancel";
+            dialog.Button1_Text = "Call SwitchToPage()";
 
-            if (dialog.ShowDialogWithResult() == 0)
+            dialog.Button1_Click += (s, ev) =>
             {
                 int arg0 = 0;
                 try
@@ -633,13 +639,14 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
                 }
 
                 mainwindow.SwitchToPage(arg0, box1.IsChecked.Value);
-            }
+            };
+
+            dialog.ShowDialog();
         }
 
         private void settingsPage_DebugMenuPage_Pages_SplashDebug_Click(object sender, RoutedEventArgs e)
         {
-
-            Popups.MessageDialog dlg = new Popups.MessageDialog { Title = "Splash debug", FirstButtonContent = "Go back", SecondButtonContent = "Accept" };
+            Popups.ContentDialog dlg = new Popups.ContentDialog { Title = "Splash debug", Button0_Text = "Go back", Button1_Text = "Accept" };
 
             StackPanel panel = new StackPanel();
 
@@ -651,9 +658,9 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
             panel.Children.Add(box0);
             panel.Children.Add(lbl1);
 
-            dlg.Content = panel;
+            dlg.ContentGrid = panel;
 
-            if (dlg.ShowDialogWithResult() == 1)
+            dlg.Button1_Click += (s1, ev1) =>
             {
                 // timer
                 DispatcherTimer timer = new DispatcherTimer();
@@ -669,7 +676,9 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
 
                 // show the splash page
                 mainwindow.ShowSplashPage(box0.Text);
-            }
+            };
+
+            dlg.ShowDialog();
         }
 
         #endregion

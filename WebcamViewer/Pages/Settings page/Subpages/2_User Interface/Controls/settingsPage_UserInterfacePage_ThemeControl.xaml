@@ -1,5 +1,6 @@
 ﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -35,16 +36,6 @@
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
 
             <StackPanel Margin="15,15,15,15">
-                <StackPanel.Resources>
-                    <Style TargetType="{x:Type RadioButton}">
-                        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
-                        <Setter Property="Background" Value="Transparent"/>
-                    </Style>
-                    <Style TargetType="{x:Type CheckBox}">
-                        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
-                        <Setter Property="Background" Value="Transparent"/>
-                    </Style>
-                </StackPanel.Resources>
 
                 <RadioButton x:Name="radiobutton_Light" Content="Light theme"/>
 

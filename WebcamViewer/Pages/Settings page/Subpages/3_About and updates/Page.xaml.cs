@@ -34,12 +34,17 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates
         /// <param name="DarkMode">Determintes whether to style the window light or dark. (0 = dark, 1 = light, null = automatic from theme)</param>
         void TextMessageDialog(string Title, string Content, bool? DarkMode = null)
         {
-            Popups.MessageDialog dlg = new Popups.MessageDialog();
+            Popups.ContentDialog dlg = new Popups.ContentDialog();
 
             dlg.Title = Title;
-            dlg.Content = Content;
+            dlg.Text = Content;
 
-            dlg.IsDarkTheme = DarkMode;
+            if (DarkMode == null)
+                dlg.Theme = User_controls.ContentDialogControl._Theme.Auto;
+            else if (DarkMode.Value == true)
+                dlg.Theme = User_controls.ContentDialogControl._Theme.Dark;
+            else if (DarkMode.Value == false)
+                dlg.Theme = User_controls.ContentDialogControl._Theme.Light;
 
             dlg.ShowDialog();
         }
@@ -104,13 +109,13 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates
 
         private void settingsPage_AboutPage_CreditsButton_Click(object sender, RoutedEventArgs e)
         {
-            Popups.MessageDialog dialog = new Popups.MessageDialog();
+            Popups.ContentDialog dialog = new Popups.ContentDialog();
 
-            dialog.Content = new Pages.Settings_page.Subpages._3_About_and_updates.Controls.settingsPage_AboutPage_CreditsControl();
+            dialog.ContentGrid = new Pages.Settings_page.Subpages._3_About_and_updates.Controls.settingsPage_AboutPage_CreditsControl();
 
-            dialog.Content_DisableMargin = true;
+            dialog.NoMarginDialog = true;
 
-            dialog.FirstButtonContent = "Close";
+            dialog.Button0_Text = "Close";
 
             dialog.ShowDialog();
         }

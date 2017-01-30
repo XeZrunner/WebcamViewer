@@ -45,12 +45,20 @@
                                Content="{x:Static res:Resources.webcamPage_Overview}"/>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="2">
-                    
-                    <usercontrols:AppBar_Button x:Name="mainView_debugButton" Click="mainView_debugButton_Click"
+
+                        <usercontrols:AppBar_Button x:Name="mobileViewButton" Click="mobileViewButton_Click"
+                                                    Foreground="{DynamicResource settingsPage_foregroundText}"
+                                                    IconText="&#xe8ea;" />
+
+                        <usercontrols:AppBar_Button x:Name="desktopViewButton" Click="desktopViewButton_Click"
+                                                    Foreground="{DynamicResource settingsPage_foregroundText}"
+                                                    IconText="&#xe7f8;" />
+
+                        <usercontrols:AppBar_Button x:Name="mainView_debugButton" Click="mainView_debugButton_Click"
                                                 Foreground="{DynamicResource settingsPage_foregroundText}"
                                                 IconText="&#xe700;" />
-                    
-                    <usercontrols:AppBar_Button x:Name="mainView_refreshButton" Click="mainView_refreshButton_Click"
+
+                        <usercontrols:AppBar_Button x:Name="mainView_refreshButton" Click="mainView_refreshButton_Click"
                                                 Foreground="{DynamicResource settingsPage_foregroundText}"
                                                 IconText="&#xe72c;" />
 
@@ -59,7 +67,7 @@
                 </Grid>
 
             </Grid>
-            
+
             <!-- Camera overview -->
             <Grid Grid.Row="1">
 
@@ -76,15 +84,15 @@
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        Content="There are no cameras to show. :("/>
 
-                <usercontrols:ArcProgress x:Name="mainView_progressarc" Color="{DynamicResource settingsPage_foregroundText}" Visibility="Hidden"/>
+                <usercontrols:ArcProgress x:Name="mainView_progressarc" Color="{DynamicResource accentcolor_dark}" Visibility="Hidden"/>
 
             </Grid>
 
         </Grid>
 
         <Grid x:Name="titlebarExtensionGrid" Grid.Row="0" Visibility="Collapsed">
-        <Rectangle x:Name="mainView_ActionBar_titlebarext_Rectangle" Fill="{DynamicResource accentcolor_light}"/>
-        <Rectangle x:Name="mainView_ActionBar_titlebarext_Rectangle_overlay" Fill="#0F000000"/>
+            <Rectangle x:Name="mainView_ActionBar_titlebarext_Rectangle" Fill="{DynamicResource accentcolor_light}"/>
+            <Rectangle x:Name="mainView_ActionBar_titlebarext_Rectangle_overlay" Fill="#0F000000"/>
         </Grid>
 
     </Grid>

@@ -9,7 +9,7 @@
         xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
         xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
         mc:Ignorable="d"
-        Title="{x:Static res:Resources.App_Title}" Height="674" Width="855" MinHeight="325" MinWidth="380" Icon="/Resources/icon_white.ico" WindowStyle="None" WindowStartupLocation="CenterScreen" TextOptions.TextRenderingMode="Grayscale" SizeChanged="window_SizeChanged" Loaded="window_Loaded"
+        Title="{x:Static res:Resources.App_Title}" Height="674" Width="855" MinHeight="570" MinWidth="480" Icon="/Resources/icon_white.ico" WindowStyle="None" WindowStartupLocation="CenterScreen" TextOptions.TextRenderingMode="Grayscale" SizeChanged="window_SizeChanged" Loaded="window_Loaded"
         ShowTitleBar="False" ShowCloseButton="False" ShowMaxRestoreButton="False" ShowMinButton="False" WindowTransitionsEnabled="False"
         Background="Black" BorderThickness="1" BorderBrush="{DynamicResource accentcolor_dark}" GlowBrush="{DynamicResource accentcolor_dark}" NonActiveBorderBrush="{DynamicResource App_NonActiveBorderBrush}" NonActiveGlowBrush="{DynamicResource App_NonActiveGlowBrush}"
         
@@ -1314,8 +1314,10 @@
 
         </Grid>
 
-        <Rectangle x:Name="zSettingsFrame_Rec" Fill="{DynamicResource settingsPage_background}" Height="32" VerticalAlignment="Top" Visibility="Collapsed" />
-        <Frame x:Name="zSettingsFrame" Visibility="Collapsed" Margin="0,32,0,0">
+        <Frame x:Name="zHomeFrame" Visibility="Collapsed" />
+
+        <!-- <Rectangle x:Name="zSettingsFrame_Rec" Fill="{DynamicResource settingsPage_background}" Height="32" VerticalAlignment="Top" Visibility="Collapsed" /> -->
+        <Frame x:Name="zSettingsFrame" Visibility="Collapsed" Margin="0,0,0,0">
             <Frame.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -1368,7 +1370,7 @@
             <Label x:Name="titleLabel" VerticalAlignment="Center" Margin="5,0,0,0" Foreground="White" Grid.Column="1" Content="{x:Static res:Resources.App_Title}"/>
 
             <!-- Window controls -->
-            <StackPanel x:Name="windowcontrol_stackpanel" Grid.Column="2" Orientation="Horizontal">
+            <StackPanel x:Name="windowcontrol_stackpanel" Grid.Column="2" Orientation="Horizontal" Visibility="Visible">
                 <usercontrols:WindowControlButton x:Name="minimizeButton" TextIcon="&#xe921;" Click="minimizeButton_Click"/>
                 <usercontrols:WindowControlButton x:Name="maximizeButton" TextIcon="&#xe922;" Click="maximizeButton_Click"/>
                 <usercontrols:WindowControlButton x:Name="closeButton" Tag="closeButton" TextIcon="&#xe8bb;" Click="closeButton_Click"/>

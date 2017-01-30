@@ -6,7 +6,7 @@
              xmlns:res="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.res"
              xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface.Controls"
              mc:Ignorable="d" 
-             Width="410" Height="170" Background="{DynamicResource MessageDialog_Background}">
+             Width="410" Height="195" Background="{DynamicResource MessageDialog_Background}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="65"/>
@@ -41,13 +41,6 @@
             <Grid VerticalAlignment="Center">
 
                 <StackPanel x:Name="mainStackPanel" HorizontalAlignment="Left" Margin="10">
-                    <StackPanel.Resources>
-                        <Style TargetType="RadioButton">
-                            <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="Margin" Value="5"/>
-                        </Style>
-                    </StackPanel.Resources>
 
                     <RadioButton Margin="5,0,5,5" Tag="default">
                         <RadioButton.Content>
@@ -58,11 +51,11 @@
                         </RadioButton.Content>
                     </RadioButton>
 
-                    <RadioButton Content="English" Tag="en" />
+                    <RadioButton Content="English" Tag="en" Margin="5" />
 
-                    <RadioButton Content="Magyar" Tag="hu" />
+                    <RadioButton Content="Magyar" Tag="hu" Margin="5" />
 
-                    <RadioButton Content="Français" Tag="fr" />
+                    <RadioButton Content="Français" Tag="fr" Margin="5" />
 
                 </StackPanel>
 

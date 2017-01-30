@@ -45,17 +45,17 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates.Control
 
         private void debug_TestInstallConfirmDialogButton_Click(object sender, RoutedEventArgs e)
         {
-            Popups.MessageDialog_FullWidth dialog = new Popups.MessageDialog_FullWidth()
+            Popups.MessageDialog dialog = new Popups.MessageDialog()
             {
                 Title = "The update null is ready to install...",
                 Content = "The update is %f %s in size. It is already downloaded, installation shouldn't take long.\n\n" +
                 "The application will close and a command prompt window will appear, showing the progress of the installation.\n\n" +
                 "Would you like to continue with the installation?",
-                FirstButtonContent = "Not yet",
-                SecondButtonContent = "Yes, install update"
+                FirstButtonContent = "Yes, install update",
+                SecondButtonContent = "Not yet"
             };
 
-            if (dialog.ShowDialogWithResult() == 1)
+            if (dialog.ShowDialogWithResult() == 0)
             {
                 // clicked install
             }
@@ -76,9 +76,9 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates.Control
 
         private void debug_DebugInfoButton_Click(object sender, RoutedEventArgs e)
         {
-            Popups.MessageDialog_FullWidth dlg = new Popups.MessageDialog_FullWidth();
+            Popups.ContentDialog dlg = new Popups.ContentDialog();
             dlg.Title = "";
-            dlg.Content =
+            dlg.Text =
                 "Update Debug Info\n" +
                 "-------------------------\n" +
                 "\nUpdate available: " +
@@ -87,7 +87,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates.Control
                 "\n" +
                 "-------------------------\n" +
                 "Update plugin version: ";
-            dlg.FirstButtonContent = "Close";
+            dlg.Button0_Text = "Close";
 
             dlg.ShowDialog();
         }

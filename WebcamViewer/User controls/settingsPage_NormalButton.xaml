@@ -74,7 +74,7 @@
 
             <Grid>
 
-                <TextBlock x:Name="textTextBlock" Foreground="{Binding ElementName=usercontrol, Path=Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="24,5" Margin="0" FontSize="{Binding ElementName=usercontrol, Path=FontSize}" Text="Button"/>
+                <TextBlock x:Name="textTextBlock" Foreground="{Binding ElementName=usercontrol, Path=Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="24,5" Margin="0" FontSize="{Binding ElementName=usercontrol, Path=FontSize}" Text="Button" TextTrimming="CharacterEllipsis"/>
 
             </Grid>
 

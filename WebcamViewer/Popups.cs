@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows.Media;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WebcamViewer
@@ -324,15 +326,23 @@ namespace WebcamViewer
             private MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
 
             public string Title = "Title";
-            public string Text = "";
+            public string Text = null;
 
-            public Grid ContentGrid = null;
+            public bool NoMarginDialog = false;
 
-            public string Button0_Text = "";
-            public string Button1_Text = "OK";
+            public UIElement ContentGrid = null;
+
+            public string Button0_Text = "OK";
+            public string Button1_Text = "";
 
             public RoutedEventHandler Button0_Click = null;
             public RoutedEventHandler Button1_Click = null;
+
+            public bool ButtonsCloseDialog = true;
+
+            public Brush Background = null;
+            public Brush Foreground = null;
+            public SolidColorBrush BorderBrush = null;
 
             public User_controls.ContentDialogControl._Theme Theme = User_controls.ContentDialogControl._Theme.Auto;
 
@@ -341,44 +351,78 @@ namespace WebcamViewer
                 User_controls.ContentDialogControl dialog = new User_controls.ContentDialogControl();
                 dialog.Title = Title;
 
+                if (Background != null)
+                    dialog.BackgroundBrush = Background;
+
+                if (Foreground != null)
+                    dialog.ForegroundBrush = Foreground;
+
+                if (BorderBrush != null)
+                    dialog.DialogBorderBrush = BorderBrush;
+
+                dialog.NoMarginDialog = NoMarginDialog;
+
                 if (Text != null && ContentGrid == null)
                     dialog.Text = Text;
                 else if (Text == null && ContentGrid != null)
+                {
+                    //if (ContentGrid.GetType() == (typeof(Grid)) || ContentGrid.GetType() == (typeof(StackPanel)))
                     dialog.ContentGrid = ContentGrid;
+                }
+                else if (Text == null && ContentGrid == null)
+                {
+                    // an empty dialog...
+                }
                 else
-                    dialog.Text = "Popups.cs: could not decide beetween Text or ContentGrid.";
+                    throw new Exception("Could not decide beetween Text or ContentGrid.");
 
                 dialog.Theme = Theme;
 
                 if (Button0_Text != "" & Button0_Text != null)
                     dialog.Button0_Text = Button0_Text;
                 else
-                    dialog.button0.Visibility = Visibility.Collapsed;
+                {
+                    dialog.buttons_columndef_0.Width = new GridLength(0);
+                    dialog.buttons_columndef_seperator.Width = new GridLength(0);
+                }
 
                 if (Button1_Text != "" & Button1_Text != null)
                     dialog.Button1_Text = Button1_Text;
                 else
                 {
+                    //dialog.buttons_columndef_seperator.Width = new GridLength(0);
+                    //dialog.buttons_columndef_1.Width = new GridLength(0);
+
                     dialog.button1.Visibility = Visibility.Collapsed;
                     Grid.SetColumn(dialog.button0, 2);
+                    //dialog.buttons_columndef_1.Width = new GridLength(180);
+                    dialog.button0.HorizontalAlignment = HorizontalAlignment.Right;
+                    dialog.button0.MinWidth = 180;
                 }
 
                 // button click events
 
                 // Button 0
-                if (Button0_Click == null) // no click event, make it close the dialog down
-                    dialog.button0.Click += (s, ev) => { mainwindow.CloseContentDialog(); };
-                else
-                    dialog.button0.Click += Button0_Click;
+                dialog.button0.Click += Button0_Click;
+                dialog.button0.Click += Button_ClickEvent;
 
                 // Button 1
-                if (Button1_Click == null) // no click event, make it close the dialog down
-                    dialog.button1.Click += (s, ev) => { mainwindow.CloseContentDialog(); };
-                else
-                    dialog.button1.Click += Button1_Click;
+                dialog.button1.Click += Button1_Click;
+                dialog.button1.Click += Button_ClickEvent;
 
                 // Show the dialog
                 mainwindow.ShowContentDialog(dialog);
+            }
+
+            private void Button_ClickEvent(object sender, RoutedEventArgs e)
+            {
+                if (ButtonsCloseDialog)
+                    mainwindow.CloseContentDialog();
+            }
+
+            public void Close()
+            {
+                mainwindow.CloseContentDialog();
             }
         }
 

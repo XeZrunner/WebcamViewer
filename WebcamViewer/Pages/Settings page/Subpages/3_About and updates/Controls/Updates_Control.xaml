@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates.Controls"
              xmlns:res="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._3_About_and_updates.res"
              xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
-             mc:Ignorable="d" Background="{DynamicResource settingsPage_background}">
+             mc:Ignorable="d" Background="Transparent">
     
     <Grid>
 
@@ -33,10 +33,10 @@
         <!-- Debug panel -->
         <StackPanel x:Name="debugPanel" Visibility="Visible">
             <Label FontSize="14">Updates Debug</Label>
-            <usercontrols:settingsPage_NormalButton x:Name="debug_TestProgressButton" Text="Test progress" Click="debug_TestProgressButton_Click" />
-            <usercontrols:settingsPage_NormalButton x:Name="debug_TestUpdateOverviewButton" Text="Test update overview" Click="debug_TestUpdateOverviewButton_Click" />
-            <usercontrols:settingsPage_NormalButton x:Name="debug_TestInstallConfirmDialogButton" Text="Show install confirmation dialog" Click="debug_TestInstallConfirmDialogButton_Click" />
-            <usercontrols:settingsPage_NormalButton x:Name="debug_DebugInfoButton" Text="Debug info" Click="debug_DebugInfoButton_Click"/>
+            <usercontrols:settingsPage_NormalButton x:Name="debug_TestProgressButton" Background="{DynamicResource settingsPage_backgroundSecondary4}" Text="Test progress" Click="debug_TestProgressButton_Click" />
+            <usercontrols:settingsPage_NormalButton x:Name="debug_TestUpdateOverviewButton" Background="{DynamicResource settingsPage_backgroundSecondary4}" Text="Test update overview" Click="debug_TestUpdateOverviewButton_Click" />
+            <usercontrols:settingsPage_NormalButton x:Name="debug_TestInstallConfirmDialogButton" Background="{DynamicResource settingsPage_backgroundSecondary4}" Text="Show install confirmation dialog" Click="debug_TestInstallConfirmDialogButton_Click" />
+            <usercontrols:settingsPage_NormalButton x:Name="debug_DebugInfoButton" Text="Debug info" Background="{DynamicResource settingsPage_backgroundSecondary4}" Click="debug_DebugInfoButton_Click"/>
         </StackPanel>
         
         <!-- debug panel button -->

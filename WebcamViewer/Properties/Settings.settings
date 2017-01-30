@@ -38,18 +38,47 @@
   &lt;string&gt;30&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
-    <Setting Name="versionid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Update 2 Beta
-Framework Development Branch, Edge Channel</Value>
+    <Setting Name="versionid" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Update 2 Beta - Development @ update2-development</Value>
     </Setting>
-    <Setting Name="buildid" Type="System.String" Scope="User">
-      <Value Profile="(Default)">20170102-01</Value>
+    <Setting Name="buildid" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">20170130-01</Value>
     </Setting>
-    <Setting Name="webcamengine_version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">1.2 Prerelease</Value>
+    <Setting Name="webcamengine_version" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1.2 Prerelease | 1.0 Prerelease</Value>
     </Setting>
-    <Setting Name="changelog" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2017.01.02; feature level 1
+    <Setting Name="changelog" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2017.01.30; feature level 1
+
+Improvements:
+- Global side menu for zSettings, broken on mobile view
+
+Developer:
+- Added view debug toggles for Overview
+- Modular home now displays Owner names
+- Preparations for save locations. Broken, DO NOT USE!
+- Modular home progress &amp; error UI, with debug
+---------------------------------------------
+
+Webcam Viewer Update 2 Beta - 2017.01.07; feature level 1
+
+Developer:
+- Created ContentDialog, it is going to replace all the older ContentDialog and MessageDialog windows we had earlier.
+The new ContentDialog  is much more efficient by being contained in the MainWindow, and it supports animations now aswell. The way you use them is the same, but the underlying
+code is much improved.
+- The new modular Home page's UI is finished, though the Webcam control hosting the progress UI and many other things is still undergoing development.
+- Work has begun on a side-menu navigation control for use in Settings pages.
+
+Improvements:
+- Fixed forced titlebar tint on zSettings, the splash now extends into the titlebar
+- Improved minimum window size.
+
+Fixes:
+- Fixed a bug in the Webcam editor page, where if you had lots of cameras and they didn't fit into the page height, the whole page would become scrollable, rather than just the camera list.
+The Webcam editor *page* can only scroll horizontally now.
+---------------------------------------------
+
+Webcam Viewer Update 2 Beta - 2017.01.02; feature level 1
 
 Happy new year! :)
 
@@ -112,7 +141,7 @@ The new ripple can no longer be moved by the user, in favor of the ripple slowly
     <Setting Name="app_logging" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="app_debugmode" Type="System.String" Scope="User">
+    <Setting Name="app_debugmode" Type="System.String" Scope="Application">
       <Value Profile="(Default)">developer</Value>
     </Setting>
     <Setting Name="app_firstrun" Type="System.Boolean" Scope="User">
@@ -122,7 +151,7 @@ The new ripple can no longer be moved by the user, in favor of the ripple slowly
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="ui_theme" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ui_animationspeed" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -157,7 +186,7 @@ The new ripple can no longer be moved by the user, in favor of the ripple slowly
     <Setting Name="app_language" Type="System.String" Scope="User">
       <Value Profile="(Default)">default</Value>
     </Setting>
-    <Setting Name="app_prereleasechannel" Type="System.String" Scope="User">
+    <Setting Name="app_prereleasechannel" Type="System.String" Scope="Application">
       <Value Profile="(Default)">update2-development</Value>
     </Setting>
     <Setting Name="home_imagesizing" Type="System.String" Scope="User">
@@ -168,6 +197,37 @@ The new ripple can no longer be moved by the user, in favor of the ripple slowly
     </Setting>
     <Setting Name="experiment_BothSave" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="camera_owners" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;Gecom s.r.o&lt;/string&gt;
+  &lt;string&gt;Gecom s.r.o&lt;/string&gt;
+  &lt;string&gt;Gecom s.r.o&lt;/string&gt;
+  &lt;string&gt;ugazdy.pl&lt;/string&gt;
+  &lt;string&gt;glavmore.ru&lt;/string&gt;
+  &lt;string&gt;Funsat&lt;/string&gt;
+  &lt;string&gt;Gecom s.r.o&lt;/string&gt;
+  &lt;string&gt;megasurf.pl&lt;/string&gt;
+  &lt;string&gt;Levoca&lt;/string&gt;
+  &lt;string /&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="camera_savelocations" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+  &lt;string /&gt;
+&lt;/ArrayOfString&gt;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

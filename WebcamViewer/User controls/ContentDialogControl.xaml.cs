@@ -10,9 +10,11 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WebcamViewer.User_controls
 {
@@ -21,27 +23,59 @@ namespace WebcamViewer.User_controls
         public ContentDialogControl()
         {
             InitializeComponent();
+
+            anim_In = FindResource("Anim_In") as Storyboard;
+            anim_Out = FindResource("Anim_Out") as Storyboard;
         }
 
-        MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+        private void usercontrol_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            // animate in and out
+            if (this.IsVisible)
+                anim_In.Begin();
+        }
+
+        private MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+
+        private Storyboard anim_In;
+        private Storyboard anim_Out;
 
         private string m_Text = "Text";
         private _Theme m_Theme = _Theme.Auto;
 
+        private bool _NoMarginDialog = false;
+
         private bool _wasBackgroundSet = false;
         private bool _wasForegroundSet = false;
 
-        Label textLabel = new Label();
+        #region Enums
+        public enum _Theme
+        {
+            Light,
+            Dark,
+            Auto
+        }
+        #endregion
+
+        TextBlock textLabel = new TextBlock() { FontSize = 14, Margin = new Thickness(5), TextWrapping = TextWrapping.Wrap };
 
         [Description("The title of the ContentDialog."), Category("Common")]
         public string Title
         {
             get { return titleLabel.Content as string; }
-            set { titleLabel.Content = value; }
+            set
+            {
+                titleLabel.Content = value;
+
+                if (value == "")
+                    rowdefinition_titleLabel.Height = new GridLength(0, GridUnitType.Pixel);
+                else
+                    rowdefinition_titleLabel.Height = new GridLength(1, GridUnitType.Auto);
+            }
         }
 
         [Description("Get or set the children of the ContentDialog's content grid."), Category("Common")]
-        public Grid ContentGrid
+        public UIElement ContentGrid
         {
             get
             {
@@ -66,11 +100,34 @@ namespace WebcamViewer.User_controls
 
                 Grid textGrid = new Grid();
 
-                textLabel.Content = m_Text;
+                textLabel.Text = m_Text;
 
                 textGrid.Children.Add(textLabel);
 
                 contentGrid.Children.Add(textGrid);
+
+                contentGrid_ScrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            }
+        }
+
+        [Description("Disable the top margin of the ContentDialog."), Category("Common")]
+        public bool NoMarginDialog
+        {
+            get { return _NoMarginDialog; }
+            set
+            {
+                _NoMarginDialog = value;
+
+                if (_NoMarginDialog)
+                {
+                    rowdefinition_titleLabel.Height = new GridLength(0, GridUnitType.Pixel);
+                    contentGrid.Margin = new Thickness(0);
+                }
+                else
+                {
+                    rowdefinition_titleLabel.Height = new GridLength(1, GridUnitType.Auto);
+                    contentGrid.Margin = new Thickness(24, 0, 24, 0);
+                }
             }
         }
 
@@ -92,7 +149,7 @@ namespace WebcamViewer.User_controls
 
         #region BackgroundBrush
 
-        static FrameworkPropertyMetadata BackgroundBrushPropertyMetaData = new FrameworkPropertyMetadata(Application.Current.Resources["settingsPage_background"] as SolidColorBrush, new PropertyChangedCallback(BackgroundBrushProperty_Changed));
+        static FrameworkPropertyMetadata BackgroundBrushPropertyMetaData = new FrameworkPropertyMetadata(Application.Current.Resources["settingsPage_background"] as Brush, new PropertyChangedCallback(BackgroundBrushProperty_Changed));
 
         static void BackgroundBrushProperty_Changed(DependencyObject dobj, DependencyPropertyChangedEventArgs e)
         {
@@ -103,16 +160,16 @@ namespace WebcamViewer.User_controls
             main._wasBackgroundSet = true;
         }
 
-        public static readonly DependencyProperty BackgroundBrushProperty = DependencyProperty.Register("BackgroundBrush", typeof(SolidColorBrush), typeof(ContentDialogControl), BackgroundBrushPropertyMetaData);
+        public static readonly DependencyProperty BackgroundBrushProperty = DependencyProperty.Register("BackgroundBrush", typeof(Brush), typeof(ContentDialogControl), BackgroundBrushPropertyMetaData);
 
         /// <summary>
         /// The background color.
         /// </summary>
         /// 
         [Description("The background brush of the ContentDialog"), Category("Brush")]
-        public SolidColorBrush BackgroundBrush
+        public Brush BackgroundBrush
         {
-            get { return GetValue(BackgroundBrushProperty) as SolidColorBrush; }
+            get { return GetValue(BackgroundBrushProperty) as Brush; }
             set
             {
                 SetValue(BackgroundBrushProperty, value);
@@ -123,7 +180,7 @@ namespace WebcamViewer.User_controls
 
         #region ForegroundBrush
 
-        static FrameworkPropertyMetadata ForegroundBrushPropertyMetaData = new FrameworkPropertyMetadata(Application.Current.Resources["settingsPage_foregroundText"] as SolidColorBrush, new PropertyChangedCallback(ForegroundBrushProperty_Changed));
+        static FrameworkPropertyMetadata ForegroundBrushPropertyMetaData = new FrameworkPropertyMetadata(Application.Current.Resources["settingsPage_foregroundText"] as Brush, new PropertyChangedCallback(ForegroundBrushProperty_Changed));
 
         static void ForegroundBrushProperty_Changed(DependencyObject dobj, DependencyPropertyChangedEventArgs e)
         {
@@ -135,16 +192,16 @@ namespace WebcamViewer.User_controls
             main._wasForegroundSet = true;
         }
 
-        public static readonly DependencyProperty ForegroundBrushProperty = DependencyProperty.Register("ForegroundBrush", typeof(SolidColorBrush), typeof(ContentDialogControl), ForegroundBrushPropertyMetaData);
+        public static readonly DependencyProperty ForegroundBrushProperty = DependencyProperty.Register("ForegroundBrush", typeof(Brush), typeof(ContentDialogControl), ForegroundBrushPropertyMetaData);
 
         /// <summary>
         /// The foreground color.
         /// </summary>
         /// 
         [Description("The foreground brush of the ContentDialog"), Category("Brush")]
-        public SolidColorBrush ForegroundBrush
+        public Brush ForegroundBrush
         {
-            get { return GetValue(ForegroundBrushProperty) as SolidColorBrush; }
+            get { return GetValue(ForegroundBrushProperty) as Brush; }
             set
             {
                 SetValue(ForegroundBrushProperty, value);
@@ -193,13 +250,6 @@ namespace WebcamViewer.User_controls
 
                 UpdateTheming();
             }
-        }
-
-        public enum _Theme
-        {
-            Light,
-            Dark,
-            Auto
         }
 
         private void UpdateTheming()
@@ -269,6 +319,11 @@ namespace WebcamViewer.User_controls
                 button1.Theme = settingsPage_NormalButton._Theme.Dark;
             }
 
+        }
+
+        public void FadeOut()
+        {
+            anim_Out.Begin();
         }
 
         #region Action buttons

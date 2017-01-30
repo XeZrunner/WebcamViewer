@@ -1,0 +1,43 @@
+﻿<UserControl x:Name="usercontrol" x:Class="WebcamViewer.Pages.Settings_page.Controls.Template_GlobalSettingsMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Controls"
+             xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
+             mc:Ignorable="d" 
+             >
+    <Grid>
+        <local:PageSideMenuNavigationControl x:Name="control" Background="{Binding ElementName=usercontrol, Path=Background}" SelectionChanged="control_SelectionChanged">
+
+            <local:PageSideMenuNavigationControl.ItemsStackPanel>
+
+                <StackPanel>
+
+                    <usercontrols:settingsPage_TabButton Title="Webcam editor" IconText="&#xe8fd;" />
+
+                    <usercontrols:settingsPage_TabButton Title="Camera settings" IconText="&#xe960;" />
+
+                    <usercontrols:settingsPage_TabButton Title="User interface" IconText="&#xe2b1;" />
+
+                    <usercontrols:settingsPage_TabButton Title="About &amp; updates" IconText="&#xe946;"/>
+
+                    <usercontrols:settingsPage_TabButton Title="Debug settings" IconText="&#xe90F;" />
+
+                    <usercontrols:settingsPage_TabButton Title="Internal settings" IconText="&#xe1de;" />
+
+                    <usercontrols:settingsPage_TabButton Title="Ripple debug" IconText="&#xe0;" />
+
+                    <usercontrols:settingsPage_TabButton Title="Snow background debug" IconText="&#xe0;" />
+
+                    <usercontrols:settingsPage_TabButton Title="Live camera testing" IconText="&#xe960;" />
+
+                    <usercontrols:settingsPage_TabButton Title="Samples" IconText="" />
+
+                </StackPanel>
+
+            </local:PageSideMenuNavigationControl.ItemsStackPanel>
+
+        </local:PageSideMenuNavigationControl>
+    </Grid>
+</UserControl>

@@ -181,12 +181,12 @@
     </Style>
 
     <!--#region Some controls here for theming-->
-    <Style TargetType="{x:Type RadioButton}">
+    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MetroRadioButton}">
         <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
         <Setter Property="Background" Value="Transparent"/>
     </Style>
 
-    <Style TargetType="{x:Type CheckBox}">
+    <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource MetroCheckBox}">
         <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
         <Setter Property="Background" Value="Transparent"/>
     </Style>

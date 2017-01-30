@@ -86,8 +86,8 @@
             <Grid VerticalAlignment="Stretch">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition x:Name="contentGrid_columnDefinition0" />
-                    <ColumnDefinition x:Name="contentGrid_columnDefinition1" Width="100"/>
+                    <ColumnDefinition x:Name="contentGrid_columnDefinition0" Width="*" />
+                    <ColumnDefinition x:Name="contentGrid_columnDefinition1" Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid x:Name="textGrid" Margin="15,0,15,0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -105,7 +105,7 @@
 
                 </Grid>
 
-                <usercontrols:settingsPage_Toggle x:Name="toggle" Tag="ToggleSwitchButton" Grid.Column="1" />
+                <usercontrols:settingsPage_Toggle x:Name="toggle" Tag="ToggleSwitchButton" Grid.Column="1" Margin="15,0,15,0" />
 
                 <controleffects:RippleDrawable Grid.ColumnSpan="2" Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}" />
 

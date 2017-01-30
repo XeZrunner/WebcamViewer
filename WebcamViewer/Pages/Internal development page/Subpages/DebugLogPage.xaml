@@ -20,12 +20,12 @@
 
             <Grid Grid.Row="0" Background="{DynamicResource accentcolor_light}">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="deleteLogFileButton" Foreground="White" Color="LightGray" Text="Delete log file" Click="deleteLogFileButton_Click"/>
-                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="toggleLoggingButton" Foreground="White" Color="LightGray" Text="Toggle logging" Click="toggleLoggingButton_Click"/>
-                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="testLogEntryButton" Foreground="White" Color="LightGray" Text="Test log entry" Click="testLogEntryButton_Click"/>
+                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="deleteLogFileButton" Foreground="White" Text="Delete log file" Click="deleteLogFileButton_Click"/>
+                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="toggleLoggingButton" Foreground="White" Text="Toggle logging" Click="toggleLoggingButton_Click"/>
+                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="testLogEntryButton" Foreground="White" Text="Test log entry" Click="testLogEntryButton_Click"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="refreshButton" Foreground="White" Color="LightGray" Text="Refresh" HorizontalAlignment="Right" Click="refreshButton_Click"/>
+                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="refreshButton" Foreground="White" Text="Refresh" HorizontalAlignment="Right" Click="refreshButton_Click"/>
                 </StackPanel>
             </Grid>
 

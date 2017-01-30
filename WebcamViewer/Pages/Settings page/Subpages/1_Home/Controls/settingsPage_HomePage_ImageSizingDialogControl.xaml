@@ -24,10 +24,6 @@
                         <Setter Property="Foreground" Value="White"/>
                         <Setter Property="HorizontalAlignment" Value="Left"/>
                     </Style>
-                    <Style TargetType="{x:Type RadioButton}">
-                        <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
-                        <Setter Property="Background" Value="Transparent"/>
-                    </Style>
                 </StackPanel.Resources>
 
                 <TextBlock FontFamily="Segoe UI Semibold" FontSize="16">Image sizing</TextBlock>

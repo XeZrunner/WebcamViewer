@@ -7,7 +7,7 @@
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.User_controls.settingsPage_TabButton"
              xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
              mc:Ignorable="d" Foreground="{DynamicResource settingsPage_foregroundText}"
-             Height="50" Width="290" ClipToBounds="True" SizeChanged="usercontrol_SizeChanged">
+             Height="50" MinWidth="290" ClipToBounds="True" SizeChanged="usercontrol_SizeChanged">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="{Binding ElementName=usercontrol, Path=Foreground}"/>

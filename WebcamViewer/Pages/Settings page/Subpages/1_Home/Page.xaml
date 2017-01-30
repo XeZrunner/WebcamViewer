@@ -6,24 +6,105 @@
              xmlns:local="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._1_Home"
              xmlns:res="clr-namespace:WebcamViewer.Pages.Settings_page.Subpages._1_Home.res"
              xmlns:usercontrols="clr-namespace:WebcamViewer.User_controls"
+             xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
              mc:Ignorable="d" 
-             d:DesignWidth="500" d:DesignHeight="572" Background="{DynamicResource settingsPage_background}" Loaded="page_Loaded" SizeChanged="page_SizeChanged">
+             d:DesignWidth="500" d:DesignHeight="780" Background="{DynamicResource settingsPage_background}" Loaded="page_Loaded" SizeChanged="page_SizeChanged">
     <Grid x:Name="grid">
-        
-        <ScrollViewer x:Name="scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
+        <ScrollViewer x:Name="scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel x:Name="settingsPage_HomeSettingsPage_MainStackPanel" Margin="10" MinWidth="250">
 
-                <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">Camera actions</Label>
+                <StackPanel>
+                    <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">Camera actions</Label>
 
-                <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_ArchiveOrgIntegrationToggleButton" Title="{x:Static res:Resources.ArchiveOrgIntegration}" Description="{x:Static res:Resources.ArchiveOrgIntegration_Description}" Tag="home_archiveorg" Click="settingsPage_ToggleButtonClick"/>
-                <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_AutorefreshToggleButton" Title="{x:Static res:Resources.Autorefresh}" Description="{x:Static res:Resources.Autorefresh_Description}" Tag="home_refreshenabled" Click="settingsPage_ToggleButtonClick"/>
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_ArchiveOrgIntegrationToggleButton" Title="{x:Static res:Resources.ArchiveOrgIntegration}" Description="{x:Static res:Resources.ArchiveOrgIntegration_Description}" Tag="home_archiveorg" Click="settingsPage_ToggleButtonClick"/>
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_AutorefreshToggleButton" Title="{x:Static res:Resources.Autorefresh}" Description="{x:Static res:Resources.Autorefresh_Description}" Tag="home_refreshenabled" Click="settingsPage_ToggleButtonClick"/>
+                </StackPanel>
 
-                <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">Camera image</Label>
+                <StackPanel>
+                    <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">Camera image</Label>
 
-                <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_ImageSizingButton" Title="{x:Static res:Resources.ImageSizing}" Description="{x:Static res:Resources.ImageSizingDescription}" IsToggleButton="False" Click="settingsPage_UserInterfacePage_Home_ImageSizingButton_Click"/>
+                    <usercontrols:settingsPage_ToggleSwitchButton x:Name="settingsPage_UserInterfacePage_Home_ImageSizingButton" Title="{x:Static res:Resources.ImageSizing}" Description="{x:Static res:Resources.ImageSizingDescription}" IsToggleButton="False" Click="settingsPage_UserInterfacePage_Home_ImageSizingButton_Click"/>
+                </StackPanel>
+
+                <StackPanel>
+
+                    <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,5,0,0">Camera engine</Label>
+
+                    <CheckBox Content="Use new modular webcam control at old Home page (unstable)" Margin="15,10,0,0" Padding="10,0,0,0" FontSize="14" />
+
+                </StackPanel>
+
+                <StackPanel>
+
+                    <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold" HorizontalAlignment="Left" Margin="10,10,0,0">Tips &amp; tricks</Label>
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="0,5,0,0">
+                        <StackPanel>
+
+                            <Grid Margin="-10,0,-10,0">
+                                <TextBlock Margin="20,0,20,0" Foreground="{DynamicResource settingsPage_foregroundText}" Padding="5" TextWrapping="Wrap">
+                            <TextBlock Foreground="{DynamicResource accentcolor_dark}" FontSize="14" Margin="0,0,0,5" TextWrapping="Wrap">Save image locally and on archive.org in a single click*</TextBlock>
+                            <LineBreak/>
+                            Beetween the
+                            <TextBlock Foreground="{DynamicResource accentcolor_dark}">Save image (local)</TextBlock>
+                            and the 
+                            <TextBlock Foreground="{DynamicResource accentcolor_dark}"> Save image on archive.org</TextBlock>
+                            buttons, there's what may look like empty space, but it's actually a button that makes the image be saved both locally and on archive.org.
+                            <LineBreak/>
+                            <LineBreak/>
+                            <TextBlock Foreground="{DynamicResource settingsPage_Dark_foregroundSecondary2}">*if there's no save location assigned to a camera, the save dialog will open.</TextBlock>
+                                 </TextBlock>
+
+                                <controleffects:RippleDrawable Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}" />
+                            </Grid>
+
+                            <Grid Margin="-10,10,-10,0">
+                                <TextBlock Margin="20,0,20,0" Foreground="{DynamicResource settingsPage_foregroundText}" Padding="5" TextWrapping="Wrap">
+                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" FontSize="14" Margin="0,0,0,5" TextWrapping="Wrap">Check out Overview</TextBlock>
+                                    <LineBreak/>
+                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}">Overview</TextBlock> puts your cameras in a grid view, allowing you to see all of them at once.
+                                    You can also save them using the little save buttons in the corner, as well as edit the cameras right away.
+                                </TextBlock>
+
+                                <controleffects:RippleDrawable Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}" />
+                            </Grid>
+
+                            <Grid Margin="-10,10,-10,0">
+                                <TextBlock Margin="20,0,20,0" Foreground="{DynamicResource settingsPage_foregroundText}" Padding="5" TextWrapping="Wrap">
+                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" FontSize="14" Margin="0,0,0,5" TextWrapping="Wrap">Test the new modular Home page (Winter testing, development builds only)</TextBlock>
+                                    <LineBreak/>
+                                    If you are running a development build newer than
+                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}">20170106-01</TextBlock>
+                                    , you can go to
+                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" Text="Settings "/>
+                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" Text="> "/>
+                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" Text="Debug settings "/>
+                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" Text="> "/>
+                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" Text="SwitchToPage debug "/>
+                                    and type the ID
+                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" Text="5"/>.
+                                    <LineBreak />
+                                    Click
+                                    <TextBlock Foreground="{DynamicResource accentcolor_dark}" Text="Call SwitchToPage"/>
+                                    and the app will switch to the new modular Home page.
+                                    <LineBreak />
+                                    Since it is early in development, bugs and incomplete features are expected.
+                                    <LineBreak />
+                                    <LineBreak />
+                                    The page is using the new camera control, which will host the progress UI, error page and previous/next buttons.
+                                </TextBlock>
+
+                                <controleffects:RippleDrawable Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}" />
+                            </Grid>
+
+                        </StackPanel>
+                    </ScrollViewer>
+
+                </StackPanel>
 
             </StackPanel>
         </ScrollViewer>
-        
+
     </Grid>
 </UserControl>

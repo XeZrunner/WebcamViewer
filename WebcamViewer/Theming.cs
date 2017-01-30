@@ -75,11 +75,16 @@ namespace WebcamViewer
             /// <summary>
             /// Sets the theme.
             /// </summary>
-            /// <param name="theme">The theme to set. Duh.</param>
+            /// <param name="theme">The theme to set. 0 = light, 1 = dark.</param>
             /// <param name="permanent">Whether to save it permanently into user settings.</param>
             public void SetTheme(int theme, bool permanent = false)
             {
+                Application.Current.Resources["webcamPage_Background"] = Application.Current.Resources[string.Format("webcamPage_{0}_Background", ThemeNames[theme])];
                 Application.Current.Resources["webcamPage_Foreground"] = Application.Current.Resources[string.Format("webcamPage_{0}_Foreground", ThemeNames[theme])];
+                Application.Current.Resources["webcamPage_BackgroundSecondary"] = Application.Current.Resources[string.Format("webcamPage_{0}_BackgroundSecondary", ThemeNames[theme])];
+                Application.Current.Resources["webcamPage_ForegroundSecondary"] = Application.Current.Resources[string.Format("webcamPage_{0}_ForegroundSecondary", ThemeNames[theme])];
+                Application.Current.Resources["webcamPage_ForegroundSecondary2"] = Application.Current.Resources[string.Format("webcamPage_{0}_ForegroundSecondary", ThemeNames[theme])];
+
                 Application.Current.Resources["webcamPage_menuBackground"] = Application.Current.Resources[string.Format("webcamPage_{0}_menuBackground", ThemeNames[theme])];
                 Application.Current.Resources["webcamPage_menuBackgroundSecondary"] = Application.Current.Resources[string.Format("webcamPage_{0}_menuBackgroundSecondary", ThemeNames[theme])];
 

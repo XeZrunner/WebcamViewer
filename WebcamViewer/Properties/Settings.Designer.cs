@@ -12,7 +12,7 @@ namespace WebcamViewer.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -86,79 +86,85 @@ namespace WebcamViewer.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta\r\nFramework Development Branch, Edge Channel")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta - Development @ update2-development")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
             }
-            set {
-                this["versionid"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20170102-01")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20170130-01")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
             }
-            set {
-                this["buildid"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.2 Prerelease")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.2 Prerelease | 1.0 Prerelease")]
         public string webcamengine_version {
             get {
                 return ((string)(this["webcamengine_version"]));
             }
-            set {
-                this["webcamengine_version"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Webcam Viewer Update 2 Beta - 2017.01.02; feature level 1\r\n\r\nHappy new year! :)\r\n" +
-            "\r\nThis build extends the menu blurbehind option to affect the new universal Save" +
-            " / camera error panel\'s blurbehind.\r\n-------------------------------------------" +
-            "--\r\n\r\nWebcam Viewer Update 2 Beta - 2016.12.27; feature level 1\r\n\r\nImprovements:" +
-            "\r\n- Overview can now reload individual cameras when they couldn\'t load.\r\n- We\'re" +
-            " getting closer to finishing the new zSettings. New improvements include loading" +
-            " pages into the memory for later use, and an universal control for both desktop " +
-            "and mobile views.\r\n\r\nDeveloper:\r\n- Overview debug received some debug buttons.\r\n" +
-            "- zSettings debug\r\n---------------------------------------------\r\n\r\n\r\nWebcam Vie" +
-            "wer Update 2 Beta - 2016.12.16; feature level 1\r\n\r\nNew features:\r\n- New image sa" +
-            "ving panel, replacing the old \"in-menu\" one completely\r\n\r\nDeveloper:\r\n- Added a " +
-            "new UI Controls Testing page to Settings with all the UI controls listed\r\n\r\nEarl" +
-            "y testing:\r\n- Experimental: zSettings Early Preview\r\nAccess in menu by clicking " +
-            "on zSettings.\r\n---------------------------------------------\r\n\r\nWebcam Viewer Up" +
-            "date 2 Beta - 2016.12.03; feature level 1\r\n\r\nNew features:\r\n- Experimental: new " +
-            "Overview!\r\nYou can test the new Overview by holding down Shift on your keyboard " +
-            "while clicking on the Overview button in the menu.\r\nSome features may not work j" +
-            "ust yet, it is going to get developed more and more in future builds.\r\n---------" +
-            "------------------------------------\r\n\r\nWebcam Viewer Update 2 Beta - 2016.11.16" +
-            "; feature level 1\r\n\r\nNew features:\r\n- Added the ability to change the image stre" +
-            "tching mode.\r\n\r\nDeveloper:\r\n- Added the default cameras page, with all the defau" +
-            "lt cameras listed.\r\n\r\nLogging:\r\n- Most basic things are logged now.\r\n-----------" +
-            "----------------------------------\r\n\r\nWebcam Viewer Update 2 Beta - 2016.11.12; " +
-            "feature level 1\r\n\r\nUser interface:\r\n- Unified RippleDrawable inclusion\r\nAll hard" +
-            "-coded ripple effects are replaced with the new XeZrunner.UI RippleDrawable cont" +
-            "rol which is further similiar to Google\'s Android Lollipop ripple.\r\nThe new ripp" +
-            "le can no longer be moved by the user, in favor of the ripple slowly \"expanding\"" +
-            " towards the center of the control, much like on the actual operating system.\r\n-" +
-            "--------------------------------------------")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Webcam Viewer Update 2 Beta - 2017.01.30; feature level 1\r\n\r\nImprovements:\r\n- Glo" +
+            "bal side menu for zSettings, broken on mobile view\r\n\r\nDeveloper:\r\n- Added view d" +
+            "ebug toggles for Overview\r\n- Modular home now displays Owner names\r\n- Preparatio" +
+            "ns for save locations. Broken, DO NOT USE!\r\n- Modular home progress & error UI, " +
+            "with debug\r\n---------------------------------------------\r\n\r\nWebcam Viewer Updat" +
+            "e 2 Beta - 2017.01.07; feature level 1\r\n\r\nDeveloper:\r\n- Created ContentDialog, i" +
+            "t is going to replace all the older ContentDialog and MessageDialog windows we h" +
+            "ad earlier.\r\nThe new ContentDialog  is much more efficient by being contained in" +
+            " the MainWindow, and it supports animations now aswell. The way you use them is " +
+            "the same, but the underlying\r\ncode is much improved.\r\n- The new modular Home pag" +
+            "e\'s UI is finished, though the Webcam control hosting the progress UI and many o" +
+            "ther things is still undergoing development.\r\n- Work has begun on a side-menu na" +
+            "vigation control for use in Settings pages.\r\n\r\nImprovements:\r\n- Fixed forced tit" +
+            "lebar tint on zSettings, the splash now extends into the titlebar\r\n- Improved mi" +
+            "nimum window size.\r\n\r\nFixes:\r\n- Fixed a bug in the Webcam editor page, where if " +
+            "you had lots of cameras and they didn\'t fit into the page height, the whole page" +
+            " would become scrollable, rather than just the camera list.\r\nThe Webcam editor *" +
+            "page* can only scroll horizontally now.\r\n---------------------------------------" +
+            "------\r\n\r\nWebcam Viewer Update 2 Beta - 2017.01.02; feature level 1\r\n\r\nHappy new" +
+            " year! :)\r\n\r\nThis build extends the menu blurbehind option to affect the new uni" +
+            "versal Save / camera error panel\'s blurbehind.\r\n--------------------------------" +
+            "-------------\r\n\r\nWebcam Viewer Update 2 Beta - 2016.12.27; feature level 1\r\n\r\nIm" +
+            "provements:\r\n- Overview can now reload individual cameras when they couldn\'t loa" +
+            "d.\r\n- We\'re getting closer to finishing the new zSettings. New improvements incl" +
+            "ude loading pages into the memory for later use, and an universal control for bo" +
+            "th desktop and mobile views.\r\n\r\nDeveloper:\r\n- Overview debug received some debug" +
+            " buttons.\r\n- zSettings debug\r\n---------------------------------------------\r\n\r\n\r" +
+            "\nWebcam Viewer Update 2 Beta - 2016.12.16; feature level 1\r\n\r\nNew features:\r\n- N" +
+            "ew image saving panel, replacing the old \"in-menu\" one completely\r\n\r\nDeveloper:\r" +
+            "\n- Added a new UI Controls Testing page to Settings with all the UI controls lis" +
+            "ted\r\n\r\nEarly testing:\r\n- Experimental: zSettings Early Preview\r\nAccess in menu b" +
+            "y clicking on zSettings.\r\n---------------------------------------------\r\n\r\nWebca" +
+            "m Viewer Update 2 Beta - 2016.12.03; feature level 1\r\n\r\nNew features:\r\n- Experim" +
+            "ental: new Overview!\r\nYou can test the new Overview by holding down Shift on you" +
+            "r keyboard while clicking on the Overview button in the menu.\r\nSome features may" +
+            " not work just yet, it is going to get developed more and more in future builds." +
+            "\r\n---------------------------------------------\r\n\r\nWebcam Viewer Update 2 Beta -" +
+            " 2016.11.16; feature level 1\r\n\r\nNew features:\r\n- Added the ability to change the" +
+            " image stretching mode.\r\n\r\nDeveloper:\r\n- Added the default cameras page, with al" +
+            "l the default cameras listed.\r\n\r\nLogging:\r\n- Most basic things are logged now.\r\n" +
+            "---------------------------------------------\r\n\r\nWebcam Viewer Update 2 Beta - 2" +
+            "016.11.12; feature level 1\r\n\r\nUser interface:\r\n- Unified RippleDrawable inclusio" +
+            "n\r\nAll hard-coded ripple effects are replaced with the new XeZrunner.UI RippleDr" +
+            "awable control which is further similiar to Google\'s Android Lollipop ripple.\r\nT" +
+            "he new ripple can no longer be moved by the user, in favor of the ripple slowly " +
+            "\"expanding\" towards the center of the control, much like on the actual operating" +
+            " system.\r\n---------------------------------------------")]
         public string changelog {
             get {
                 return ((string)(this["changelog"]));
-            }
-            set {
-                this["changelog"] = value;
             }
         }
         
@@ -174,15 +180,12 @@ namespace WebcamViewer.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("developer")]
         public string app_debugmode {
             get {
                 return ((string)(this["app_debugmode"]));
-            }
-            set {
-                this["app_debugmode"] = value;
             }
         }
         
@@ -212,7 +215,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int ui_theme {
             get {
                 return ((int)(this["ui_theme"]));
@@ -354,15 +357,12 @@ namespace WebcamViewer.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("update2-development")]
         public string app_prereleasechannel {
             get {
                 return ((string)(this["app_prereleasechannel"]));
-            }
-            set {
-                this["app_prereleasechannel"] = value;
             }
         }
         
@@ -399,6 +399,55 @@ namespace WebcamViewer.Properties {
             }
             set {
                 this["experiment_BothSave"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>Gecom s.r.o</string>
+  <string>Gecom s.r.o</string>
+  <string>Gecom s.r.o</string>
+  <string>ugazdy.pl</string>
+  <string>glavmore.ru</string>
+  <string>Funsat</string>
+  <string>Gecom s.r.o</string>
+  <string>megasurf.pl</string>
+  <string>Levoca</string>
+  <string />
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection camera_owners {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["camera_owners"]));
+            }
+            set {
+                this["camera_owners"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+  <string />
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection camera_savelocations {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["camera_savelocations"]));
+            }
+            set {
+                this["camera_savelocations"] = value;
             }
         }
     }

@@ -1,0 +1,81 @@
+﻿<UserControl x:Name="usercontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WebcamViewer.Pages.Home_page.Controls"
+             xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
+             xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls" x:Class="WebcamViewer.Pages.Home_page.Controls.ErrorPanel_LinkButton"
+             mc:Ignorable="d" Foreground="White" Background="Transparent"
+             Height="60" MinWidth="300">
+
+    <UserControl.Resources>
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{Binding ElementName=usercontrol, Path=Foreground}"/>
+            <Setter Property="Background" Value="{Binding ElementName=usercontrol, Path=Background}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="{DynamicResource FlatButtonFontSize}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                            <Custom:ContentControlEx x:Name="PART_ContentPresenter" ContentCharacterCasing="{Binding (Custom:ControlsHelper.ContentCharacterCasing), RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource settingsPage_Dark_foregroundSecondary3}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="{DynamicResource GrayBrush2}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <Button Style="{DynamicResource ButtonStyle}" Click="Button_Click">
+        <Grid>
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label x:Name="iconLabel" Grid.Column="0"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                       FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="20" TextOptions.TextRenderingMode="Aliased"
+                       Content="&#xe700;"/>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="Foreground" Value="{Binding ElementName=usercontrol, Path=Foreground}"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <Label x:Name="titleLabel" Content="Title"
+                           FontFamily="Segoe UI Semibold"/>
+                    
+                    <Label x:Name="descriptionLabel" Content="Description" Opacity="0.7" Padding="5,0,5,5"
+                       FontSize="13"/>
+
+                </StackPanel>
+
+            </Grid>
+
+            <controleffects:RippleDrawable x:Name="rippleDrawable" Color="{DynamicResource settingsPage_Dark_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_Dark_foregroundSecondary3}" />
+
+        </Grid>
+    </Button>
+
+</UserControl>

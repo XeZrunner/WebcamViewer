@@ -55,6 +55,11 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
             #endregion
         }
 
+        private void page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            sectionsPanel.MaxWidth = this.ActualWidth - 20;
+        }
+
         #region Dialogs
 
         /// <summary>
@@ -95,28 +100,6 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
 
         #endregion
 
-        void settingsPage_ToggleButtonClick(object sender, RoutedEventArgs e)
-        {
-            settingsPage_ToggleSwitchButton sBtn = sender as settingsPage_ToggleSwitchButton;
-
-            try
-            {
-                Properties.Settings.Default[(string)sBtn.Tag] = sBtn.IsActive;
-                Properties.Settings.Default.Save();
-
-                mainwindow.GetUserConfiguration(true);
-            }
-            catch (Exception ex)
-            {
-                sBtn.IsActive = !sBtn.IsActive;
-
-                if (sBtn.Tag != null)
-                    TextMessageDialog_FullWidth("Invalid property", "The setting " + sBtn.Tag.ToString() + " (probably) doesn't exist.\nCheck the button's Tag.\n\nExact error message : " + ex.Message);
-                else
-                    TextMessageDialog_FullWidth("No Tag on the button", "The button " + sBtn.Name + "does not contain a Tag. (the button's Tag equals null)");
-            }
-        }
-
         #region Buttons
 
         private void Rectangle_Loaded(object sender, RoutedEventArgs e)
@@ -139,34 +122,62 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
 
         private void settingsPage_UserInterfacePage_UI_AccentColorButton_Click(object sender, RoutedEventArgs e)
         {
-            Popups.MessageDialog dlg = new Popups.MessageDialog();
-            dlg.Title = "";
-
-            dlg.Content_DisableMargin = true;
-
-            Controls.settingsPage_UserInterfacePage_AccentControl content = new Controls.settingsPage_UserInterfacePage_AccentControl();
-
-            dlg.Content = content;
-
-            dlg.FirstButtonContent = "Go back";
-            dlg.SecondButtonContent = "Apply changes";
-
-            if (dlg.ShowDialogWithResult() == 1)
+            if (!Keyboard.IsKeyDown(Key.LeftShift))
             {
-                Theming.AccentColor.SetAccentColor(content.chosenAccent, true);
+                Popups.ContentDialog dlg = new Popups.ContentDialog();
+                dlg.Title = "";
 
-                mainwindow.GetUserConfiguration(true);
+                dlg.NoMarginDialog = true;
 
-                mainwindow.UpdateDefaultStyle();
+                Controls.settingsPage_UserInterfacePage_AccentControl content = new Controls.settingsPage_UserInterfacePage_AccentControl();
+
+                dlg.ContentGrid = content;
+
+                dlg.Button0_Text = "Go back";
+                dlg.Button1_Text = "Apply changes";
+
+                dlg.Button1_Click += (s, ev) =>
+                {
+                    Theming.AccentColor.SetAccentColor(content.chosenAccent, true);
+
+                    mainwindow.GetUserConfiguration(true);
+
+                    mainwindow.UpdateDefaultStyle();
+                };
+
+                dlg.ShowDialog();
+            }
+            else
+            {
+                Popups.ContentDialog dialog = new Popups.ContentDialog();
+                dialog.Title = "Set a custom accent color";
+                dialog.Button0_Text = "Cancel";
+                dialog.Button1_Text = "Apply";
+
+                //dialog.Theme = ContentDialogControl._Theme.Light;
+
+                StackPanel contentPanel = new StackPanel();
+                dialog.ContentGrid = contentPanel;
+
+                Xceed.Wpf.Toolkit.ColorCanvas picker = new Xceed.Wpf.Toolkit.ColorCanvas() { Background = Brushes.Transparent, BorderBrush = Brushes.Transparent, Margin = new Thickness(0, 10, 0, 0) };
+                Label lbl0 = new Label() { Content = "The color picker is experimental as of now.", FontSize = 14, Margin = new Thickness(0, 10, 0, 0) };
+                Label lbl_darkerr = new Label() { Content = "The dark theme is not supported on this dialog.", FontSize = 14, Foreground = Brushes.DarkOrange, Margin = new Thickness(0, 5, 0, 0) };
+
+                contentPanel.Children.Add(picker);
+                contentPanel.Children.Add(lbl0);
+                if (Properties.Settings.Default.ui_theme == 1)
+                    contentPanel.Children.Add(lbl_darkerr);
+
+                dialog.ShowDialog();
             }
         }
 
         private void settingsPage_UserInterfacePage_UI_ThemeButton_Click(object sender, RoutedEventArgs e)
         {
-            Popups.MessageDialog dlg = new Popups.MessageDialog();
+            Popups.ContentDialog dlg = new Popups.ContentDialog();
             dlg.Title = "";
 
-            dlg.Content_DisableMargin = true;
+            dlg.NoMarginDialog = true;
 
             Controls.settingsPage_UserInterfacePage_ThemeControl content = new Controls.settingsPage_UserInterfacePage_ThemeControl();
             #region control code
@@ -187,12 +198,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
                 content.checkbox_homepageBlackOverride.IsChecked = true;
             #endregion
 
-            dlg.Content = content;
+            dlg.ContentGrid = content;
 
-            dlg.FirstButtonContent = "Go back";
-            dlg.SecondButtonContent = "Apply changes";
+            dlg.Button0_Text = "Go back";
+            dlg.Button1_Text = "Apply changes";
 
-            if (dlg.ShowDialogWithResult() == 1)
+            dlg.Button1_Click += (s, ev) =>
             {
 
                 if (content.radiobutton_Light.IsChecked == true)
@@ -218,15 +229,17 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
                 }
 
                 mainwindow.GetUserConfiguration(true);
-            }
+            };
+
+            dlg.ShowDialog();
         }
 
         private void settingsPage_UserInterfacePage_UI_LanguageButton_Click(object sender, RoutedEventArgs e)
         {
-            Popups.MessageDialog dlg = new Popups.MessageDialog();
+            Popups.ContentDialog dlg = new Popups.ContentDialog();
             dlg.Title = "";
 
-            dlg.Content_DisableMargin = true;
+            dlg.NoMarginDialog = true;
 
             Controls.settingsPage_UserInterfacePage_LanguageControl content = new Controls.settingsPage_UserInterfacePage_LanguageControl();
             #region control code
@@ -237,12 +250,12 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
             }
             #endregion
 
-            dlg.Content = content;
+            dlg.ContentGrid = content;
 
-            dlg.FirstButtonContent = "Go back";
-            dlg.SecondButtonContent = "Apply changes";
+            dlg.Button0_Text = "Go back";
+            dlg.Button1_Text = "Apply changes";
 
-            if (dlg.ShowDialogWithResult() == 1)
+            dlg.Button1_Click += (s, ev) =>
             {
                 // change and save
                 string chosenlanguage = "default";
@@ -256,11 +269,11 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
                 Properties.Settings.Default.Save();
 
                 // restart popup
-                Popups.MessageDialog dlg2 = new Popups.MessageDialog()
+                Popups.ContentDialog dlg2 = new Popups.ContentDialog()
                 {
                     Title = "Restart required to change language",
-                    FirstButtonContent = "Restart later",
-                    SecondButtonContent = "Restart now"
+                    Button0_Text = "Restart later",
+                    Button1_Text = "Restart now"
                 };
 
                 StackPanel panel = new StackPanel();
@@ -270,25 +283,44 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._2_User_Interface
                 panel.Children.Add(lbl0);
                 panel.Children.Add(box0);
 
-                dlg2.Content = panel;
+                dlg2.ContentGrid = panel;
 
-                if (dlg2.ShowDialogWithResult() == 1)
+                dlg2.Button1_Click += (s1, ev1) =>
                 {
                     // bring back to same camera
                     System.Windows.Forms.Application.Restart();
                     Application.Current.Shutdown();
                     return;
-                }
+                };
 
                 mainwindow.GetUserConfiguration(true);
-            }
+            };
+
+            dlg.ShowDialog();
         }
 
         #endregion
 
-        private void page_SizeChanged(object sender, SizeChangedEventArgs e)
+        void settingsPage_ToggleButtonClick(object sender, RoutedEventArgs e)
         {
-            sectionsPanel.MaxWidth = this.ActualWidth - 20;
+            settingsPage_ToggleSwitchButton sBtn = sender as settingsPage_ToggleSwitchButton;
+
+            try
+            {
+                Properties.Settings.Default[(string)sBtn.Tag] = sBtn.IsActive;
+                Properties.Settings.Default.Save();
+
+                mainwindow.GetUserConfiguration(true);
+            }
+            catch (Exception ex)
+            {
+                sBtn.IsActive = !sBtn.IsActive;
+
+                if (sBtn.Tag != null)
+                    TextMessageDialog_FullWidth("Invalid property", "The setting " + sBtn.Tag.ToString() + " (probably) doesn't exist.\nCheck the button's Tag.\n\nExact error message : " + ex.Message);
+                else
+                    TextMessageDialog_FullWidth("No Tag on the button", "The button " + sBtn.Name + "does not contain a Tag. (the button's Tag equals null)");
+            }
         }
     }
 }

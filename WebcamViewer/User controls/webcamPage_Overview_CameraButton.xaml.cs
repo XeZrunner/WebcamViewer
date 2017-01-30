@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -110,6 +111,28 @@ namespace WebcamViewer.User_controls
             //bubble the event up to the parent
             if (this.Click != null)
                 this.Click(this, e);
+
+            rippledrawable.Visibility = Visibility.Visible;
+            rippledrawable.Button_Click(sender, e);
+        }
+
+        int previous_ZIndex;
+
+        private void usercontrol_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            previous_ZIndex = (int)this.GetValue(Panel.ZIndexProperty);
+            this.SetValue(Panel.ZIndexProperty, 9999);
+
+            rippledrawable.Visibility = Visibility.Visible;
+            rippledrawable.usercontrol_MouseDown(sender, e);
+        }
+
+        private async void usercontrol_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            rippledrawable.usercontrol_PreviewMouseUp(sender, e);
+            await Task.Delay(TimeSpan.FromSeconds(.3));
+            rippledrawable.Visibility = Visibility.Collapsed;
+            this.SetValue(Panel.ZIndexProperty, previous_ZIndex);
         }
     }
 }

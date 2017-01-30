@@ -10,7 +10,7 @@
 
     <Grid x:Name="settingsPage_WebcamEditorPage_Container">
 
-        <ScrollViewer x:Name="scrollviewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="10">
+        <ScrollViewer x:Name="scrollviewer" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto" Margin="10">
             <Grid x:Name="grid" MinWidth="400">
 
                 <Grid.RowDefinitions>
@@ -31,16 +31,20 @@
 
                 <Label Grid.Row="0" Foreground="{DynamicResource settingsPage_foregroundText}" FontFamily="Segoe UI Semilight" FontSize="16" Margin="5,0,0,0" Visibility="Visible">Webcams</Label>
 
-                <ListView Grid.Row="1" x:Name="settingsPage_WebcamEditorPage_ListView" Margin="0,5,0,10" SelectionChanged="settingsPage_WebcamEditorPage_ListView_SelectionChanged" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource WebcamEditor_ListViewStyle}" ItemContainerStyle="{DynamicResource WebcamEditor_ListView_ListViewItemStyle}">
-                    <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{DynamicResource WebcamEditor_ListView_GridViewColumnHeaderStyle}">
-                            <GridViewColumn Header="{x:Static res:Resources.Camera_name}" DisplayMemberBinding="{Binding Name}" />
-                            <GridViewColumn Header="{x:Static res:Resources.Camera_url}" DisplayMemberBinding="{Binding Url}" />
-                            <GridViewColumn Header="{x:Static res:Resources.Save_location}" DisplayMemberBinding="{Binding SaveLocation}"/>
-                            <GridViewColumn Header="{x:Static res:Resources.Refresh_rate}" DisplayMemberBinding="{Binding RefreshRate}"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <ListView x:Name="settingsPage_WebcamEditorPage_ListView" Margin="0,5,0,10" SelectionChanged="settingsPage_WebcamEditorPage_ListView_SelectionChanged" Style="{DynamicResource WebcamEditor_ListViewStyle}" ItemContainerStyle="{DynamicResource WebcamEditor_ListView_ListViewItemStyle}">
+                            <ListView.View>
+                                <GridView ColumnHeaderContainerStyle="{DynamicResource WebcamEditor_ListView_GridViewColumnHeaderStyle}">
+                                    <GridViewColumn Header="{x:Static res:Resources.Camera_name}" DisplayMemberBinding="{Binding Name}" />
+                                    <GridViewColumn Header="{x:Static res:Resources.Camera_url}" DisplayMemberBinding="{Binding Url}" />
+                                    <GridViewColumn Header="{x:Static res:Resources.Save_location}" DisplayMemberBinding="{Binding SaveLocation}"/>
+                                    <GridViewColumn Header="{x:Static res:Resources.Refresh_rate}" DisplayMemberBinding="{Binding RefreshRate}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
 
                 <!-- Item editor -->
                 <Grid Grid.Row="2" x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid" Background="{DynamicResource settingsPage_backgroundWebcamItemEditor}"
@@ -59,29 +63,32 @@
 
                     </StackPanel>
 
-                    <StackPanel x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid_Main" Margin="5,-5,5,-50" Visibility="Visible">
-                        <StackPanel.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
-                                <Setter Property="Margin" Value="0,10,5,10"/>
-                            </Style>
-                        </StackPanel.Resources>
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <StackPanel x:Name="settingsPage_WebcamEditorPage_ItemEditorGrid_Main" Margin="5,-5,5,5" Visibility="Visible">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
+                                    <Setter Property="Margin" Value="0,10,5,10"/>
+                                </Style>
+                            </StackPanel.Resources>
 
-                        <TextBlock Text="{x:Static res:Resources.Camera_name}"/>
-                        <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_NameTextBox"/>
+                            <TextBlock Text="{x:Static res:Resources.Camera_name}"/>
+                            <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_NameTextBox"/>
 
-                        <TextBlock Text="{x:Static res:Resources.Camera_url}"/>
-                        <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox"/>
+                            <TextBlock Text="{x:Static res:Resources.Camera_url}"/>
+                            <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox"/>
 
-                        <TextBlock Text="{x:Static res:Resources.Refresh_rate}"/>
-                        <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox"/>
+                            <TextBlock Text="Camera owner"/>
+                            <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_OwnerTextBox"/>
 
-                        <StackPanel x:Name="ItemEditor_NotFinishedYet_StackPanel" Visibility="Collapsed">
+                            <TextBlock Text="{x:Static res:Resources.Refresh_rate}"/>
+                            <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox"/>
+
                             <TextBlock Text="{x:Static res:Resources.Save_location}"/>
                             <TextBox x:Name="settingsPage_WebcamEditorPage_ItemEditor_SaveLocationTextBox"/>
-                        </StackPanel>
 
-                    </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
 
                 </Grid>
 

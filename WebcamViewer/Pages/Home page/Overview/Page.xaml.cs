@@ -27,9 +27,48 @@ namespace WebcamViewer.Pages.Home_page.Overview
                 mainView_debugButton.Visibility = Visibility.Collapsed;
         }
 
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (this.ActualWidth <= 545 & _currentViewType != ViewType.Mobile)
+                UpdateViewSizing(ViewType.Mobile);
+            else if (this.ActualWidth >= 545 & _currentViewType != ViewType.Desktop)
+                UpdateViewSizing(ViewType.Desktop);
+        }
+
         string app_debugmode = Properties.Settings.Default.app_debugmode;
 
         MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
+
+        private ViewType _currentViewType;
+
+        public void UpdateViewSizing(ViewType viewtype)
+        {
+            if (viewtype == ViewType.Mobile)
+            {
+                foreach (User_controls.webcamPage_Overview_CameraButton btn in mainView_wrappanel.Children)
+                {
+                    btn.UseMobileView = true;
+                    mainView_wrappanel.HorizontalAlignment = HorizontalAlignment.Stretch;
+                    mainView_wrappanel.VerticalAlignment = VerticalAlignment.Top;
+                    mainView_wrappanel.ItemWidth = this.ActualWidth;
+                }
+
+                _currentViewType = ViewType.Mobile;
+            }
+
+            if (viewtype == ViewType.Desktop)
+            {
+                foreach (User_controls.webcamPage_Overview_CameraButton btn in mainView_wrappanel.Children)
+                {
+                    btn.UseMobileView = false;
+                    mainView_wrappanel.HorizontalAlignment = HorizontalAlignment.Center;
+                    mainView_wrappanel.VerticalAlignment = VerticalAlignment.Center;
+                    mainView_wrappanel.ItemWidth = Double.NaN;
+                }
+
+                _currentViewType = ViewType.Desktop;
+            }
+        }
 
         #region Classes
 
@@ -47,6 +86,14 @@ namespace WebcamViewer.Pages.Home_page.Overview
 
         #endregion
 
+        #region Enums
+        public enum ViewType
+        {
+            Desktop,
+            Mobile
+        }
+        #endregion
+
         #region Main view
 
         private void mainView_backButton_Click(object sender, RoutedEventArgs e)
@@ -59,7 +106,7 @@ namespace WebcamViewer.Pages.Home_page.Overview
             return "?dummy=" + DateTime.Now.Ticks;
         }
 
-        public async void RefreshOverview()
+        public async Task RefreshOverview()
         {
             mainView_wrappanel.Children.Clear();
 
@@ -74,12 +121,12 @@ namespace WebcamViewer.Pages.Home_page.Overview
             {
                 BitmapImage image = null;
 
+                string url = Properties.Settings.Default.camera_urls[Properties.Settings.Default.camera_names.IndexOf(camera)];
+
                 using (WebClient client = new WebClient())
                 {
                     try
                     {
-                        string url = Properties.Settings.Default.camera_urls[Properties.Settings.Default.camera_names.IndexOf(camera)];
-
                         var bytes = await client.DownloadDataTaskAsync(url + camera_dummy());
 
                         image = new BitmapImage();
@@ -153,7 +200,7 @@ namespace WebcamViewer.Pages.Home_page.Overview
                 }
 
                 // Foreground color
-                button.SetResourceReference(User_controls.webcamPage_Overview_CameraButton.ForegroundProperty, "settingsPage_foregroundText");
+                button.SetResourceReference(User_controls.webcamPage_Overview_CameraButton.ForegroundProperty, "settingsPage_foregroundText"); // this should be on the actual control
 
                 // Click event
                 button.Click += overviewCameraButton_Click;
@@ -168,8 +215,6 @@ namespace WebcamViewer.Pages.Home_page.Overview
                 mainView_nocamerasLabel.Visibility = Visibility.Collapsed;
 
             mainView_progressarc.Visibility = Visibility.Hidden;
-
-            UpdateViewSizing();
         }
 
         /// <summary>
@@ -319,11 +364,15 @@ namespace WebcamViewer.Pages.Home_page.Overview
             RefreshOverview();
         }
 
+        #endregion
+
+        #region Debug stuff
+
         private void mainView_debugButton_Click(object sender, RoutedEventArgs e)
         {
-            Popups.MessageDialog dialog = new Popups.MessageDialog();
+            Popups.ContentDialog dialog = new Popups.ContentDialog();
             dialog.Title = "Overview debug";
-            dialog.FirstButtonContent = "Close";
+            dialog.Button0_Text = "Close";
 
             // create content
             StackPanel panel = new StackPanel();
@@ -356,9 +405,24 @@ namespace WebcamViewer.Pages.Home_page.Overview
             btn1.Click += (s, ev) =>
             {
                 if (mainView_debugButton.Visibility == Visibility.Visible)
-                { mainView_debugButton.Visibility = Visibility.Collapsed; btn1.Text = "Show debug buttons"; }
+                {
+                    Popups.MessageDialog caut_dialog = new Popups.MessageDialog() { Title = "Hide debug buttons", Content = "Hiding the debug buttons and closing the Overview Debug dialog will disable the debug buttons for this session.\nYou will need to restart the app to get them back." };
+                    caut_dialog.ShowDialog();
+
+                    mainView_debugButton.Visibility = Visibility.Collapsed;
+                    mobileViewButton.Visibility = Visibility.Collapsed;
+                    desktopViewButton.Visibility = Visibility.Collapsed;
+
+                    btn1.Text = "Show debug buttons";
+                }
                 else
-                { mainView_debugButton.Visibility = Visibility.Visible; btn1.Text = "Hide debug buttons"; }
+                {
+                    mainView_debugButton.Visibility = Visibility.Visible;
+                    mobileViewButton.Visibility = Visibility.Visible;
+                    desktopViewButton.Visibility = Visibility.Visible;
+
+                    btn1.Text = "Hide debug buttons";
+                }
             };
             btn2.Click += (s, ev) =>
             {
@@ -370,6 +434,9 @@ namespace WebcamViewer.Pages.Home_page.Overview
                     ErrorMessage = "Imagine there's an error...",
                     Tag = "ERRORTEST"
                 };
+
+                if (_currentViewType == ViewType.Mobile)
+                    button.UseMobileView = true;
 
                 // Foreground color
                 button.SetResourceReference(User_controls.webcamPage_Overview_CameraButton.ForegroundProperty, "settingsPage_foregroundText");
@@ -399,40 +466,21 @@ namespace WebcamViewer.Pages.Home_page.Overview
             panel.Children.Add(btn2);
 
             // add panel to dialog content
-            dialog.Content = panel;
+            dialog.ContentGrid = panel;
 
             dialog.ShowDialog();
         }
 
-        #endregion
-
-        void UpdateViewSizing()
+        private void mobileViewButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.ActualWidth <= 545)
-            {
-                foreach (User_controls.webcamPage_Overview_CameraButton btn in mainView_wrappanel.Children)
-                {
-                    btn.UseMobileView = true;
-                    mainView_wrappanel.HorizontalAlignment = HorizontalAlignment.Stretch;
-                    mainView_wrappanel.VerticalAlignment = VerticalAlignment.Top;
-                    mainView_wrappanel.ItemWidth = this.ActualWidth;
-                }
-            }
-            else
-            {
-                foreach (User_controls.webcamPage_Overview_CameraButton btn in mainView_wrappanel.Children)
-                {
-                    btn.UseMobileView = false;
-                    mainView_wrappanel.HorizontalAlignment = HorizontalAlignment.Center;
-                    mainView_wrappanel.VerticalAlignment = VerticalAlignment.Center;
-                    mainView_wrappanel.ItemWidth = Double.NaN;
-                }
-            }
+            UpdateViewSizing(ViewType.Mobile);
         }
 
-        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void desktopViewButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateViewSizing();
+            UpdateViewSizing(ViewType.Desktop);
         }
+
+        #endregion        
     }
 }

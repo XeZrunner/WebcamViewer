@@ -44,6 +44,7 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
             // disable some stuff
             settingsPage_WebcamEditorPage_ItemEditor_NameTextBox.Clear();
             settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox.Clear();
+            settingsPage_WebcamEditorPage_ItemEditor_OwnerTextBox.Clear();
             settingsPage_WebcamEditorPage_ItemEditor_SaveLocationTextBox.Clear();
             settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox.Clear();
 
@@ -152,7 +153,14 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
 
             foreach (string cameraname in Properties.Settings.Default.camera_names)
             {
-                WebcamEditor_ListView_items.Add(new settingsPage_WebcamEditorPage_Camera() { Name = cameraname, Url = Properties.Settings.Default.camera_urls[Properties.Settings.Default.camera_names.IndexOf(cameraname)], SaveLocation = "null", RefreshRate = 0 });
+                WebcamEditor_ListView_items.Add(new settingsPage_WebcamEditorPage_Camera()
+                {
+                    Name = cameraname,
+                    Url = Properties.Settings.Default.camera_urls[Properties.Settings.Default.camera_names.IndexOf(cameraname)],
+                    Owner = Properties.Settings.Default.camera_owners[Properties.Settings.Default.camera_names.IndexOf(cameraname)],
+                    SaveLocation = Properties.Settings.Default.camera_savelocations[Properties.Settings.Default.camera_names.IndexOf(cameraname)],
+                    RefreshRate = int.Parse(Properties.Settings.Default.camera_refreshrates[Properties.Settings.Default.camera_names.IndexOf(cameraname)])
+                });
             }
 
             settingsPage_WebcamEditorPage_ListView.ItemsSource = WebcamEditor_ListView_items;
@@ -184,13 +192,17 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
             {
                 settingsPage_WebcamEditorPage_ItemEditor_NameTextBox.Text = Properties.Settings.Default.camera_names[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
                 settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox.Text = Properties.Settings.Default.camera_urls[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
+                settingsPage_WebcamEditorPage_ItemEditor_OwnerTextBox.Text = Properties.Settings.Default.camera_owners[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
                 settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox.Text = Properties.Settings.Default.camera_refreshrates[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
+                settingsPage_WebcamEditorPage_ItemEditor_SaveLocationTextBox.Text = Properties.Settings.Default.camera_savelocations[settingsPage_WebcamEditorPage_ListView.SelectedIndex];
             }
             else
             {
                 settingsPage_WebcamEditorPage_ItemEditor_NameTextBox.Clear();
                 settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox.Clear();
+                settingsPage_WebcamEditorPage_ItemEditor_OwnerTextBox.Clear();
                 settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox.Clear();
+                settingsPage_WebcamEditorPage_ItemEditor_SaveLocationTextBox.Clear();
                 settingsPage_WebcamEditorPage_SaveButton.IsEnabled = false;
             }
         }
@@ -201,6 +213,8 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
             settingsPage_WebcamEditorPage_Camera targetListViewItem = settingsPage_WebcamEditorPage_ListView.Items[settingsPage_WebcamEditorPage_ListView.SelectedIndex] as settingsPage_WebcamEditorPage_Camera;
             targetListViewItem.Name = settingsPage_WebcamEditorPage_ItemEditor_NameTextBox.Text;
             targetListViewItem.Url = settingsPage_WebcamEditorPage_ItemEditor_UrlTextBox.Text;
+            targetListViewItem.Owner = settingsPage_WebcamEditorPage_ItemEditor_OwnerTextBox.Text;
+            targetListViewItem.SaveLocation = settingsPage_WebcamEditorPage_ItemEditor_SaveLocationTextBox.Text;
             try
             {
                 targetListViewItem.RefreshRate = int.Parse(settingsPage_WebcamEditorPage_ItemEditor_RefreshRateTextBox.Text);
@@ -213,7 +227,9 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
 
             Properties.Settings.Default.camera_names.Clear();
             Properties.Settings.Default.camera_urls.Clear();
+            Properties.Settings.Default.camera_owners.Clear();
             Properties.Settings.Default.camera_refreshrates.Clear();
+            Properties.Settings.Default.camera_savelocations.Clear();
 
             foreach (settingsPage_WebcamEditorPage_Camera item in settingsPage_WebcamEditorPage_ListView.Items)
             {
@@ -223,8 +239,14 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
                 // urls
                 Properties.Settings.Default.camera_urls.Add(item.Url);
 
+                // owners
+                Properties.Settings.Default.camera_owners.Add(item.Owner);
+
                 // refresh rates
                 Properties.Settings.Default.camera_refreshrates.Add(item.RefreshRate.ToString());
+
+                // save locations
+                Properties.Settings.Default.camera_savelocations.Add(item.SaveLocation);
             }
 
             Properties.Settings.Default.Save();
@@ -244,14 +266,16 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
             {
                 Name = String.Format(res.Resources.Camera + " #{0}", Properties.Settings.Default.camera_names.Count + 1),
                 Url = res.Resources.New_camera_Template,
+                Owner = "",
                 SaveLocation = "",
                 RefreshRate = 5
             };
 
             Properties.Settings.Default.camera_names.Add(newcamera.Name);
             Properties.Settings.Default.camera_urls.Add(newcamera.Url);
+            Properties.Settings.Default.camera_owners.Add(newcamera.Owner);
             Properties.Settings.Default.camera_refreshrates.Add(newcamera.RefreshRate.ToString());
-
+            Properties.Settings.Default.camera_savelocations.Add(newcamera.SaveLocation);
             Properties.Settings.Default.Save();
 
             comingfromNewCamera = true; RefreshItemList();
@@ -287,6 +311,8 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._0_Webcams
             public string Name { get; set; }
 
             public string Url { get; set; }
+
+            public string Owner { get; set; }
 
             public string SaveLocation { get; set; }
 
