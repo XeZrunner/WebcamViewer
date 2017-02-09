@@ -99,9 +99,6 @@
     </ApplicationDefinition>
     <Compile Include="Configuration.cs" />
     <Compile Include="Debug.cs" />
-    <Compile Include="Neon Experiment\Pages\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Home page\Controls\ErrorPanel_LinkButton.xaml.cs">
       <DependentUpon>ErrorPanel_LinkButton.xaml</DependentUpon>
     </Compile>
@@ -282,10 +279,6 @@
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Page Include="ControlStyles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Neon Experiment\Pages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -560,9 +553,7 @@
   <ItemGroup>
     <Resource Include="Resources\AboutBackground.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Neon Experiment\Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\XeZrunner\XeZrunner.UI\XeZrunner.UI\XeZrunner.UI.csproj">
       <Project>{d04773cb-bfb2-4dc9-ae70-da99c2b38da5}</Project>
