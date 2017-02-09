@@ -21,8 +21,8 @@
 
             </ResourceDictionary.MergedDictionaries>
 
-            <SolidColorBrush x:Key="accentcolor_dark" Color="#1997DD"/>
-            <SolidColorBrush x:Key="accentcolor_light" Color="#139DEA"/>
+            <SolidColorBrush x:Key="accentcolor_dark" Color="#27ae60"/>
+            <SolidColorBrush x:Key="accentcolor_light" Color="#2ecc71"/>
 
             <SolidColorBrush x:Key="webcamPage_Background" Color="White"/>
             <SolidColorBrush x:Key="webcamPage_Foreground" Color="#FF202020"/>

@@ -127,8 +127,8 @@
             </Grid.RowDefinitions>
 
             <!-- Titlebar tint -->
-            <Rectangle Grid.Row="0" Fill="{DynamicResource settingsPage_background}" />
-            <Rectangle Grid.Row="0" Fill="{DynamicResource settingsPage_foregroundSecondary2}" Opacity="0.1" />
+            <Rectangle x:Name="titlebarTint_Rectangle" Grid.Row="0" Fill="{DynamicResource settingsPage_background}" />
+            <!-- <Rectangle Grid.Row="0" Fill="{DynamicResource settingsPage_foregroundSecondary2}" Opacity="0.1" /> -->
 
             <!-- Content -->
             <Grid Grid.Row="1">
@@ -206,13 +206,19 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Grid x:Name="view_subpagegrid_GlobalMenu" Grid.Column="0" Grid.RowSpan="2" Margin="0,-32,0,0">
+                    <Frame x:Name="view_desktop_subpagegrid_Frame" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
+
+                    <Rectangle x:Name="view_desktop_subpagegrid_GlobalMenuDim" Fill="#5F000000" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="Hidden" />
+
+                    <Grid x:Name="view_subpagegrid_GlobalMenu" Grid.Column="0" Grid.RowSpan="2" Margin="0,-32,0,0"
+                          Background="{DynamicResource settingsPage_background}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="32"/>
                             <RowDefinition Height="48"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
+                        <!-- 
                         <Rectangle Grid.Row="0"
                                    Fill="{DynamicResource settingsPage_foregroundText}" Opacity="0.15"/>
 
@@ -223,6 +229,7 @@
                                    Fill="{DynamicResource settingsPage_background}"/>
                         <Rectangle Grid.Row="2"
                                    Fill="{DynamicResource settingsPage_foregroundText}" Opacity="0.05"/>
+                        -->
 
                         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="2">
 
@@ -246,8 +253,6 @@
                         </StackPanel>
 
                     </Grid>
-
-                    <Frame x:Name="view_desktop_subpagegrid_Frame" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" />
 
                 </Grid>
 

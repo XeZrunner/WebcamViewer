@@ -42,6 +42,9 @@ namespace WebcamViewer.Pages.Settings_page
 
         MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
 
+        Debug Debug = new Debug();
+        Theming Theming = new Theming();
+
         #region Storyboards
 
         Storyboard SubViewIn_Anim;
@@ -121,6 +124,8 @@ namespace WebcamViewer.Pages.Settings_page
             {
                 if (manualOverride == ViewModes.Mobile)
                 {
+                    _viewMode = ViewModes.Mobile;
+
                     foreach (Controls.SettingsItemControl item in view_desktopgrid_WrapPanel.Children)
                         item.ViewMode = Controls.SettingsItemControl.ViewModes.Mobile;
 
@@ -131,11 +136,11 @@ namespace WebcamViewer.Pages.Settings_page
 
                     view_subpagegrid_menuButton.Visibility = Visibility.Visible;
                     Subpage_CloseGlobalMenu();
-
-                    _viewMode = ViewModes.Mobile;
                 }
                 else
                 {
+                    _viewMode = ViewModes.Desktop;
+
                     foreach (Controls.SettingsItemControl item in view_desktopgrid_WrapPanel.Children)
                         item.ViewMode = Controls.SettingsItemControl.ViewModes.Desktop;
 
@@ -146,8 +151,6 @@ namespace WebcamViewer.Pages.Settings_page
 
                     view_subpagegrid_menuButton.Visibility = Visibility.Collapsed;
                     Subpage_OpenGlobalMenu();
-
-                    _viewMode = ViewModes.Desktop;
                 }
 
             }
@@ -379,50 +382,6 @@ namespace WebcamViewer.Pages.Settings_page
 
         #endregion
 
-        private void view_subpagegrid_backButton_Click(object sender, RoutedEventArgs e)
-        {
-            SubViewOut_Anim.Begin();
-        }
-
-        private void SettingsItemButton_Click(object sender, RoutedEventArgs e)
-        {
-            Controls.SettingsItemControl sButton = sender as Controls.SettingsItemControl;
-
-            int sButton_Tag = int.Parse((string)sButton.Tag);
-
-            NavigateToSubpage(sButton_Tag);
-
-            SubViewIn_Anim.Begin();
-        }
-
-        public void NavigateToSubpage(int page)
-        {
-            LoadSettingsPageIntoMemory(page);
-
-            try
-            {
-                view_desktop_subpagegrid_Frame.Navigate(currentSettingPage);
-                view_subpagegrid_activeSubpageLabel.Content = SettingsPages_Titles[page].ToUpper();
-
-                view_subpagegrid_SideMenuControl.control._SetButtonActiveState(page);
-            }
-            catch (Exception ex)
-            {
-                TextMessageDialog("Could not load subpage", "Make sure the button's Tag is a correct page ID.\n\nError: " + ex.Message + "\nButton tag: " + page.ToString());
-
-                return;
-            }
-        }
-
-        private void view_subpagegrid_SideMenuControl_SelectionChanged(object sender, EventArgs e)
-        {
-            User_controls.settingsPage_TabButton sBtn = sender as User_controls.settingsPage_TabButton;
-
-            int id_destination = (int)sBtn.Tag;
-
-            NavigateToSubpage(id_destination);
-        }
-
         #region Global menu
 
         private void view_subpagegrid_menuButton_Click(object sender, RoutedEventArgs e)
@@ -459,6 +418,15 @@ namespace WebcamViewer.Pages.Settings_page
 
             transform.BeginAnimation(TranslateTransform.XProperty, anim_menu);
 
+            if (_viewMode == ViewModes.Mobile)
+            {
+                // dim
+                view_desktop_subpagegrid_GlobalMenuDim.Visibility = Visibility.Visible;
+
+                DoubleAnimation anim_dim = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(.3));
+                view_desktop_subpagegrid_GlobalMenuDim.BeginAnimation(OpacityProperty, anim_dim);
+            }
+
             if (_viewMode == ViewModes.Desktop)
                 view_desktop_subpagegrid_Frame.BeginAnimation(MarginProperty, anim_content);
         }
@@ -467,12 +435,12 @@ namespace WebcamViewer.Pages.Settings_page
         {
             TranslateTransform transform = new TranslateTransform();
 
-            DoubleAnimation anim_menu = new DoubleAnimation(0, -300, TimeSpan.FromSeconds(.3));
+            DoubleAnimation anim_menu = new DoubleAnimation(-300, TimeSpan.FromSeconds(.3));
             anim_menu.EasingFunction = new QuadraticEase();
             anim_menu.Completed += (s, ev) => { view_subpagegrid_GlobalMenu.Visibility = Visibility.Hidden; };
 
 
-            ThicknessAnimation anim_content = new ThicknessAnimation(new Thickness(0), new Thickness(-300, 48, 0, 0), TimeSpan.FromSeconds(.3));
+            ThicknessAnimation anim_content = new ThicknessAnimation(new Thickness(-300, 48, 0, 0), TimeSpan.FromSeconds(.3));
             anim_content.EasingFunction = new QuadraticEase();
 
             if (!IsAnim)
@@ -485,10 +453,64 @@ namespace WebcamViewer.Pages.Settings_page
 
             transform.BeginAnimation(TranslateTransform.XProperty, anim_menu);
 
-            if (_viewMode == ViewModes.Desktop)
+            DoubleAnimation anim_dim = new DoubleAnimation(0, TimeSpan.FromSeconds(.3));
+            anim_dim.Completed += (s, ev) => { view_desktop_subpagegrid_GlobalMenuDim.Visibility = Visibility.Hidden; };
+            view_desktop_subpagegrid_GlobalMenuDim.BeginAnimation(OpacityProperty, anim_dim);
+
+            if (_viewMode == ViewModes.Mobile)
                 view_desktop_subpagegrid_Frame.BeginAnimation(MarginProperty, anim_content);
         }
 
         #endregion
+
+        private void view_subpagegrid_backButton_Click(object sender, RoutedEventArgs e)
+        {
+            SubViewOut_Anim.Begin();
+            SubViewOut_Anim.SetSpeedRatio(Properties.Settings.Default.ui_animationspeed);
+        }
+
+        private void SettingsItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            Controls.SettingsItemControl sButton = sender as Controls.SettingsItemControl;
+
+            int sButton_Tag = int.Parse((string)sButton.Tag);
+
+            NavigateToSubpage(sButton_Tag);
+
+            SubViewIn_Anim.Begin();
+            SubViewIn_Anim.SetSpeedRatio(Properties.Settings.Default.ui_animationspeed);
+        }
+
+        public void NavigateToSubpage(int page)
+        {
+            LoadSettingsPageIntoMemory(page);
+
+            try
+            {
+                view_desktop_subpagegrid_Frame.Navigate(currentSettingPage);
+                view_subpagegrid_activeSubpageLabel.Content = SettingsPages_Titles[page].ToUpper();
+
+                view_subpagegrid_SideMenuControl.control._SetButtonActiveState(page);
+            }
+            catch (Exception ex)
+            {
+                TextMessageDialog("Could not load subpage", "Make sure the button's Tag is a correct page ID.\n\nError: " + ex.Message + "\nButton tag: " + page.ToString());
+
+                return;
+            }
+        }
+
+        private void view_subpagegrid_SideMenuControl_SelectionChanged(object sender, EventArgs e)
+        {
+            User_controls.settingsPage_TabButton sBtn = sender as User_controls.settingsPage_TabButton;
+
+            int id_destination = (int)sBtn.Tag;
+
+            NavigateToSubpage(id_destination);
+
+            // close menu on Mobile view
+            if (_viewMode == ViewModes.Mobile)
+                Subpage_CloseGlobalMenu();
+        }
     }
 }

@@ -13,7 +13,8 @@
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="{DynamicResource settingsPage_foregroundText}"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="FontSize" Value="{DynamicResource FlatButtonFontSize}"/>
             <Setter Property="Padding" Value="0"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -29,7 +30,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-
+                    <Setter Property="BorderBrush" Value="{DynamicResource settingsPage_foregroundSecondary3}"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
 

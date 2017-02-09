@@ -28,157 +28,19 @@ namespace WebcamViewer.Pages.Home_page.Controls
             InitializeComponent();
         }
 
+        Debug Debug = new Debug();
+
         #region UI
 
-        #region enums: Progress UI
-        public enum ProgressType
-        {
-            Progressring,
-            Image_Saving,
-            BothSave
-        }
 
-        public enum ProgressStyles
-        {
-            ProgressArc,
-            ProgressBar
-        }
-
-        public enum BothSaveItemStatus
-        {
-            Progress,
-            Completed,
-            Failed
-        }
-        #endregion
-
-        /// <summary>
-        /// Shows the progress UI.
-        /// </summary>
-        /// <param name="progresstype">The type of progress UI to show.</param>
-        public void ShowProgressUI(ProgressType progresstype, ProgressStyles? progressstyle = ProgressStyles.ProgressArc)
-        {
-            DoubleAnimation anim_opacity = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(.3));
-
-            progressGrid.Visibility = Visibility.Visible;
-            progressGrid.BeginAnimation(OpacityProperty, anim_opacity);
-
-            #region show the type of progress UI
-
-            progressGrid_ArcProgressUI.Visibility = Visibility.Collapsed;
-            progressGrid_SavePanelUI.Visibility = Visibility.Collapsed;
-            progressGrid_BothSaveUI.Visibility = Visibility.Collapsed;
-
-            if (progresstype == ProgressType.Progressring)
-            {
-                progressGrid_ArcProgressUI.Visibility = Visibility.Visible;
-            }
-
-            if (progresstype == ProgressType.Image_Saving)
-            {
-                progressGrid_SavePanelUI.Visibility = Visibility.Visible;
-
-                if (progressstyle != null)
-                {
-                    if (progressstyle == ProgressStyles.ProgressArc)
-                        UpdateProgressStatusStyle(ProgressStyles.ProgressArc);
-                    else
-                        UpdateProgressStatusStyle(ProgressStyles.ProgressBar);
-                }
-                else
-                    UpdateProgressStatusStyle(ProgressStyles.ProgressArc);
-            }
-
-            if (progresstype == ProgressType.BothSave)
-            {
-                progressGrid_BothSaveUI.Visibility = Visibility.Visible;
-                UpdateBothSaveStatus(BothSaveItemStatus.Progress, BothSaveItemStatus.Progress);
-            }
-            #endregion
-        }
-
-        /// <summary>
-        /// Hides the progress UI.
-        /// </summary>
-        public void HideProgressUI()
-        {
-            DoubleAnimation anim_opacity = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(.3));
-            anim_opacity.Completed += (s, ev) => { progressGrid.Visibility = Visibility.Hidden; };
-
-            progressGrid.BeginAnimation(OpacityProperty, anim_opacity);
-
-            #region hide all types of the progress UI
-            // *hide* all grids
-            #endregion
-        }
-        
-        public void UpdateProgressStatus(string text)
-        {
-            progressGrid_statusLabel.Content = text;
-        }
-
-        public void UpdateProgressStatusStyle(ProgressStyles style)
-        {
-            progressGrid_ArcProgress.Visibility = Visibility.Collapsed;
-            progressGrid_ProgressBar.Visibility = Visibility.Collapsed;
-
-            if (style == ProgressStyles.ProgressArc)
-                progressGrid_ArcProgress.Visibility = Visibility.Visible;
-            else
-                progressGrid_ProgressBar.Visibility = Visibility.Visible;
-        }
-
-        public void UpdateBothSaveStatus(BothSaveItemStatus? localsave = null, BothSaveItemStatus? archiveorgsave = null)
-        {
-            if (localsave != null)
-            {
-                if (localsave == BothSaveItemStatus.Progress)
-                    progressGrid_BothSave_LocalIndicator.Content = "\ue10c";
-                if (localsave == BothSaveItemStatus.Completed)
-                    progressGrid_BothSave_LocalIndicator.Content = "\ue73e";
-                if (localsave == BothSaveItemStatus.Failed)
-                    progressGrid_BothSave_LocalIndicator.Content = "\ue8bb";
-            }
-
-            if (archiveorgsave != null)
-            {
-                if (archiveorgsave == BothSaveItemStatus.Progress)
-                    progressGrid_BothSave_ArchiveOrgIndicator.Content = "\ue10c";
-                if (archiveorgsave == BothSaveItemStatus.Completed)
-                    progressGrid_BothSave_ArchiveOrgIndicator.Content = "\ue73e";
-                if (archiveorgsave == BothSaveItemStatus.Failed)
-                    progressGrid_BothSave_ArchiveOrgIndicator.Content = "\ue8bb";
-            }
-
-            if ((string)progressGrid_BothSave_LocalIndicator.Content == "\ue73e" & (string)progressGrid_BothSave_ArchiveOrgIndicator.Content == "\ue73e")
-                HideProgressUI();
-        }
-
-        /// <summary>
-        /// Shows the error "tips" panel.
-        /// </summary>
-        public void ShowErrorUI()
-        {
-            DoubleAnimation anim_opacity = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(.3));
-
-            errorGrid.Visibility = Visibility.Visible;
-            errorGrid.BeginAnimation(OpacityProperty, anim_opacity);
-        }
-
-        /// <summary>
-        /// Hides the error panel.
-        /// </summary>
-        public void HideErrorUI()
-        {
-            DoubleAnimation anim_opacity = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(.3));
-            anim_opacity.Completed += (s, ev) => { errorGrid.Visibility = Visibility.Hidden; };
-
-            errorGrid.BeginAnimation(OpacityProperty, anim_opacity);
-        }
 
         #endregion
 
         #region Engine
+
+        public event EventHandler LoadCameraStarted;
+        public event EventHandler LoadCameraCompleted;
+        public event EventHandler LoadCameraFailed;
 
         /// <summary>
         /// Load a camera either from a string that's an URL to an image, or if you
@@ -191,8 +53,8 @@ namespace WebcamViewer.Pages.Home_page.Controls
         {
             BitmapImage image;
 
-            // Show progress UI
-            ShowProgressUI(WebcamImageControl.ProgressType.Progressring);
+            // 'Started' event
+            //LoadCameraStarted(this, new EventArgs());
 
             using (WebClient client = new WebClient())
             {
@@ -210,36 +72,20 @@ namespace WebcamViewer.Pages.Home_page.Controls
                 }
                 catch (WebException ex)
                 {
-                    new Popups.ContentDialog
-                    {
-                        Title = "Cannot load camera image...",
-                        Text = "Error: " + ex.Message
-                    }.ShowDialog();
+                    // 'Failed' event
+                    //LoadCameraFailed(ex, new EventArgs());
 
-                    // ShowErrorPanel();
+                    // Log error
+                    Debug.Log("HOME: Could not load camera\n" + ex.Message + "\n");
                 }
                 finally
                 {
-                    HideProgressUI();
+                    // 'Completed' event
+                    //LoadCameraCompleted(this, new EventArgs());
                 }
             }
         }
 
         #endregion
-
-        private void progressGrid_MoreInfoButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void progressGrid_CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void progressGrid_BothSave_CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            HideProgressUI();
-        }
     }
 }

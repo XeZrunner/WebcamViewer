@@ -99,8 +99,14 @@
     </ApplicationDefinition>
     <Compile Include="Configuration.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="Neon Experiment\Pages\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Home page\Controls\ErrorPanel_LinkButton.xaml.cs">
       <DependentUpon>ErrorPanel_LinkButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Home page\Controls\ProgressUI_BothSaveItem.xaml.cs">
+      <DependentUpon>ProgressUI_BothSaveItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home page\Controls\WebcamImageControl.xaml.cs">
       <DependentUpon>WebcamImageControl.xaml</DependentUpon>
@@ -250,6 +256,9 @@
     <Compile Include="User controls\settingsPage_ToggleSwitchButton.xaml.cs">
       <DependentUpon>settingsPage_ToggleSwitchButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User controls\TesterIntroControl.xaml.cs">
+      <DependentUpon>TesterIntroControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User controls\webcamPage_menuGrid_CameraActionButton.xaml.cs">
       <DependentUpon>webcamPage_menuGrid_CameraActionButton.xaml</DependentUpon>
     </Compile>
@@ -276,7 +285,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Neon Experiment\Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Home page\Controls\ErrorPanel_LinkButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Home page\Controls\ProgressUI_BothSaveItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -444,6 +461,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="User controls\TesterIntroControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="User controls\webcamPage_menuGrid_CameraActionButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -539,7 +560,9 @@
   <ItemGroup>
     <Resource Include="Resources\AboutBackground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Neon Experiment\Controls\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\XeZrunner\XeZrunner.UI\XeZrunner.UI\XeZrunner.UI.csproj">
       <Project>{d04773cb-bfb2-4dc9-ae70-da99c2b38da5}</Project>

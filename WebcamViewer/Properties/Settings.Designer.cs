@@ -12,7 +12,7 @@ namespace WebcamViewer.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.0.1.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -88,7 +88,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta - Development @ update2-development")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta - Development @ update2-development\r\nTester build")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
@@ -97,7 +97,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20170130-01")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20170205-00")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -115,53 +115,65 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Webcam Viewer Update 2 Beta - 2017.01.30; feature level 1\r\n\r\nImprovements:\r\n- Glo" +
-            "bal side menu for zSettings, broken on mobile view\r\n\r\nDeveloper:\r\n- Added view d" +
-            "ebug toggles for Overview\r\n- Modular home now displays Owner names\r\n- Preparatio" +
-            "ns for save locations. Broken, DO NOT USE!\r\n- Modular home progress & error UI, " +
-            "with debug\r\n---------------------------------------------\r\n\r\nWebcam Viewer Updat" +
-            "e 2 Beta - 2017.01.07; feature level 1\r\n\r\nDeveloper:\r\n- Created ContentDialog, i" +
-            "t is going to replace all the older ContentDialog and MessageDialog windows we h" +
-            "ad earlier.\r\nThe new ContentDialog  is much more efficient by being contained in" +
-            " the MainWindow, and it supports animations now aswell. The way you use them is " +
-            "the same, but the underlying\r\ncode is much improved.\r\n- The new modular Home pag" +
-            "e\'s UI is finished, though the Webcam control hosting the progress UI and many o" +
-            "ther things is still undergoing development.\r\n- Work has begun on a side-menu na" +
-            "vigation control for use in Settings pages.\r\n\r\nImprovements:\r\n- Fixed forced tit" +
-            "lebar tint on zSettings, the splash now extends into the titlebar\r\n- Improved mi" +
-            "nimum window size.\r\n\r\nFixes:\r\n- Fixed a bug in the Webcam editor page, where if " +
-            "you had lots of cameras and they didn\'t fit into the page height, the whole page" +
-            " would become scrollable, rather than just the camera list.\r\nThe Webcam editor *" +
-            "page* can only scroll horizontally now.\r\n---------------------------------------" +
-            "------\r\n\r\nWebcam Viewer Update 2 Beta - 2017.01.02; feature level 1\r\n\r\nHappy new" +
-            " year! :)\r\n\r\nThis build extends the menu blurbehind option to affect the new uni" +
-            "versal Save / camera error panel\'s blurbehind.\r\n--------------------------------" +
-            "-------------\r\n\r\nWebcam Viewer Update 2 Beta - 2016.12.27; feature level 1\r\n\r\nIm" +
-            "provements:\r\n- Overview can now reload individual cameras when they couldn\'t loa" +
-            "d.\r\n- We\'re getting closer to finishing the new zSettings. New improvements incl" +
-            "ude loading pages into the memory for later use, and an universal control for bo" +
-            "th desktop and mobile views.\r\n\r\nDeveloper:\r\n- Overview debug received some debug" +
-            " buttons.\r\n- zSettings debug\r\n---------------------------------------------\r\n\r\n\r" +
-            "\nWebcam Viewer Update 2 Beta - 2016.12.16; feature level 1\r\n\r\nNew features:\r\n- N" +
-            "ew image saving panel, replacing the old \"in-menu\" one completely\r\n\r\nDeveloper:\r" +
-            "\n- Added a new UI Controls Testing page to Settings with all the UI controls lis" +
-            "ted\r\n\r\nEarly testing:\r\n- Experimental: zSettings Early Preview\r\nAccess in menu b" +
-            "y clicking on zSettings.\r\n---------------------------------------------\r\n\r\nWebca" +
-            "m Viewer Update 2 Beta - 2016.12.03; feature level 1\r\n\r\nNew features:\r\n- Experim" +
-            "ental: new Overview!\r\nYou can test the new Overview by holding down Shift on you" +
-            "r keyboard while clicking on the Overview button in the menu.\r\nSome features may" +
-            " not work just yet, it is going to get developed more and more in future builds." +
-            "\r\n---------------------------------------------\r\n\r\nWebcam Viewer Update 2 Beta -" +
-            " 2016.11.16; feature level 1\r\n\r\nNew features:\r\n- Added the ability to change the" +
-            " image stretching mode.\r\n\r\nDeveloper:\r\n- Added the default cameras page, with al" +
-            "l the default cameras listed.\r\n\r\nLogging:\r\n- Most basic things are logged now.\r\n" +
-            "---------------------------------------------\r\n\r\nWebcam Viewer Update 2 Beta - 2" +
-            "016.11.12; feature level 1\r\n\r\nUser interface:\r\n- Unified RippleDrawable inclusio" +
-            "n\r\nAll hard-coded ripple effects are replaced with the new XeZrunner.UI RippleDr" +
-            "awable control which is further similiar to Google\'s Android Lollipop ripple.\r\nT" +
-            "he new ripple can no longer be moved by the user, in favor of the ripple slowly " +
-            "\"expanding\" towards the center of the control, much like on the actual operating" +
-            " system.\r\n---------------------------------------------")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-> Webcam Viewer Update 2 Beta - 2017.01.30; feature level 1\r\n\r\nImprovements:\r\n- " +
+            "zSettings Overview controls\' minor design change\r\n- Fixed the zSettings global m" +
+            "enu visibility and animation errors\r\n- zSettings subpage animations now respect " +
+            "transition animation scale\r\n\r\nKnown issues:\r\n- Camera owner and Camera save loca" +
+            "tion properties are broken - it is recommended to not touch them in the Webcam E" +
+            "ditor\r\n- [dev]The modular home page is broken. Broken as in saving and progress " +
+            "UI doesn\'t work.\r\n- Overview individual camera reloading is broken.\r\n- Legacy Ho" +
+            "me: clicking on Save image and cancelling the dialog will save the image anyway " +
+            "to the last accepted location.\r\n- Legacy Home: bothsave will not automatically c" +
+            "lose after both actions complete successfully.\r\n- Single-button dialogs have an " +
+            "incorrent button placement.\r\n- Localization has been mostly forgotten about, lot" +
+            "s of text is English-only throughout the UI.\r\n\r\n---------- OLDER BUILDS --------" +
+            "--\r\n\r\nWebcam Viewer Update 2 Beta - 2017.01.30; feature level 1\r\n\r\nImprovements:" +
+            "\r\n- Global side menu for zSettings, broken on mobile view\r\n\r\nDeveloper:\r\n- Added" +
+            " view debug toggles for Overview\r\n- Modular home now displays Owner names\r\n- Pre" +
+            "parations for save locations. Broken, DO NOT USE!\r\n- Modular home progress & err" +
+            "or UI, with debug\r\n\r\n---------------------------------------------\r\n\r\nWebcam Vie" +
+            "wer Update 2 Beta - 2017.01.07; feature level 1\r\n\r\nDeveloper:\r\n- Created Content" +
+            "Dialog, it is going to replace all the older ContentDialog and MessageDialog win" +
+            "dows we had earlier.\r\nThe new ContentDialog  is much more efficient by being con" +
+            "tained in the MainWindow, and it supports animations now aswell. The way you use" +
+            " them is the same, but the underlying\r\ncode is much improved.\r\n- The new modular" +
+            " Home page\'s UI is finished, though the Webcam control hosting the progress UI a" +
+            "nd many other things is still undergoing development.\r\n- Work has begun on a sid" +
+            "e-menu navigation control for use in Settings pages.\r\n\r\nImprovements:\r\n- Fixed f" +
+            "orced titlebar tint on zSettings, the splash now extends into the titlebar\r\n- Im" +
+            "proved minimum window size.\r\n\r\nFixes:\r\n- Fixed a bug in the Webcam editor page, " +
+            "where if you had lots of cameras and they didn\'t fit into the page height, the w" +
+            "hole page would become scrollable, rather than just the camera list.\r\nThe Webcam" +
+            " editor *page* can only scroll horizontally now.\r\n------------------------------" +
+            "---------------\r\n\r\nWebcam Viewer Update 2 Beta - 2017.01.02; feature level 1\r\n\r\n" +
+            "Happy new year! :)\r\n\r\nThis build extends the menu blurbehind option to affect th" +
+            "e new universal Save / camera error panel\'s blurbehind.\r\n-----------------------" +
+            "----------------------\r\n\r\nWebcam Viewer Update 2 Beta - 2016.12.27; feature leve" +
+            "l 1\r\n\r\nImprovements:\r\n- Overview can now reload individual cameras when they cou" +
+            "ldn\'t load.\r\n- We\'re getting closer to finishing the new zSettings. New improvem" +
+            "ents include loading pages into the memory for later use, and an universal contr" +
+            "ol for both desktop and mobile views.\r\n\r\nDeveloper:\r\n- Overview debug received s" +
+            "ome debug buttons.\r\n- zSettings debug\r\n-----------------------------------------" +
+            "----\r\n\r\n\r\nWebcam Viewer Update 2 Beta - 2016.12.16; feature level 1\r\n\r\nNew featu" +
+            "res:\r\n- New image saving panel, replacing the old \"in-menu\" one completely\r\n\r\nDe" +
+            "veloper:\r\n- Added a new UI Controls Testing page to Settings with all the UI con" +
+            "trols listed\r\n\r\nEarly testing:\r\n- Experimental: zSettings Early Preview\r\nAccess " +
+            "in menu by clicking on zSettings.\r\n---------------------------------------------" +
+            "\r\n\r\nWebcam Viewer Update 2 Beta - 2016.12.03; feature level 1\r\n\r\nNew features:\r\n" +
+            "- Experimental: new Overview!\r\nYou can test the new Overview by holding down Shi" +
+            "ft on your keyboard while clicking on the Overview button in the menu.\r\nSome fea" +
+            "tures may not work just yet, it is going to get developed more and more in futur" +
+            "e builds.\r\n---------------------------------------------\r\n\r\nWebcam Viewer Update" +
+            " 2 Beta - 2016.11.16; feature level 1\r\n\r\nNew features:\r\n- Added the ability to c" +
+            "hange the image stretching mode.\r\n\r\nDeveloper:\r\n- Added the default cameras page" +
+            ", with all the default cameras listed.\r\n\r\nLogging:\r\n- Most basic things are logg" +
+            "ed now.\r\n---------------------------------------------\r\n\r\nWebcam Viewer Update 2" +
+            " Beta - 2016.11.12; feature level 1\r\n\r\nUser interface:\r\n- Unified RippleDrawable" +
+            " inclusion\r\nAll hard-coded ripple effects are replaced with the new XeZrunner.UI" +
+            " RippleDrawable control which is further similiar to Google\'s Android Lollipop r" +
+            "ipple.\r\nThe new ripple can no longer be moved by the user, in favor of the rippl" +
+            "e slowly \"expanding\" towards the center of the control, much like on the actual " +
+            "operating system.\r\n---------------------------------------------")]
         public string changelog {
             get {
                 return ((string)(this["changelog"]));

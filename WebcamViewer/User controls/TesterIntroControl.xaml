@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="WebcamViewer.User_controls.TesterIntroControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WebcamViewer.User_controls"
+             mc:Ignorable="d" MaxWidth="490"
+             >
+    <TextBlock Foreground="{DynamicResource settingsPage_foregroundText}" TextWrapping="WrapWithOverflow" FontSize="14">
+
+        <TextBlock.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+            </Style>
+        </TextBlock.Resources>
+        
+        <TextBlock>Thank you for testing WebcamViewer!</TextBlock>
+        <LineBreak />
+        <LineBreak />
+        
+        <TextBlock Text="For your information, you are testing build " />
+        <TextBlock x:Name="buildID_block" Text="BUILDID" Foreground="{DynamicResource accentcolor_dark}" />
+        <TextBlock Text=" from the "/>
+        <TextBlock x:Name="channel_block" Text="CHANNEL" Foreground="{DynamicResource accentcolor_dark}" />
+        <TextBlock Text=" development channel."/>
+        <LineBreak/>
+        
+        <TextBlock Text="The app is in the" />
+        <TextBlock x:Name="debugmode_block" Text="MODE" Foreground="{DynamicResource accentcolor_dark}" />
+        <TextBlock Text="debug mode." />
+        
+        <LineBreak/>
+        <LineBreak/>
+        
+        <TextBlock Text="Since this is a development build, you may encounter several bugs that are about to be fixed." />
+        <TextBlock Text="For the list of known issues, please check out the "/>
+        <TextBlock x:Name="changeloglink" Text="Changelog" Foreground="{DynamicResource accentcolor_dark}" Cursor="Hand" TextDecorations="Underline"/>
+        <TextBlock Text="for the current build."/>
+        <LineBreak />
+        <LineBreak />
+        
+        <TextBlock Text="I welcome any feedback on your experience, on any bugs you encounter or suggestions for future builds."/>
+        <LineBreak />
+        <LineBreak />
+        <TextBlock Text="Have fun!"/>
+        
+    </TextBlock>
+</UserControl>

@@ -34,123 +34,225 @@
 
         </Grid>
 
-        <!-- Hamburger menu -->
-        <!-- 300 width seems optimal enough, might change -->
-        <Grid x:Name="hamburger_menu" Grid.Row="0" Grid.RowSpan="2" Visibility="Visible"
+        <!--#region OVERLAYS-->
+        <!-- Overlays are UI that are supposed to overlay everything else at all times. -->
+        <Grid Grid.Row="0" Grid.RowSpan="2">
+
+            <!-- Hamburger menu -->
+            <!-- 300 width seems optimal enough, might change -->
+            <Grid x:Name="hamburger_menu" Grid.Row="0" Grid.RowSpan="2" Visibility="Visible"
                   HorizontalAlignment="Left" Width="300">
 
-            <Border>
-                <Border.Background>
-                    <VisualBrush Visual="{Binding ElementName=contentGrid}" Stretch="None" AlignmentX="Left" AlignmentY="Bottom" />
-                </Border.Background>
-                <Border.Effect>
-                    <BlurEffect x:Name="menu_blureffect" Radius="5" />
-                </Border.Effect>
-            </Border>
+                <Border>
+                    <Border.Background>
+                        <VisualBrush Visual="{Binding ElementName=contentGrid}" Stretch="None" AlignmentX="Left" AlignmentY="Bottom" />
+                    </Border.Background>
+                    <Border.Effect>
+                        <BlurEffect x:Name="menu_blureffect" Radius="5" />
+                    </Border.Effect>
+                </Border>
 
-            <Rectangle Fill="{DynamicResource webcamPage_menuBackground}" />
+                <Rectangle Fill="{DynamicResource webcamPage_menuBackground}" />
 
-            <Grid Margin="0,32,0,0">
-
-                <Grid.RowDefinitions>
-
-                    <!-- Camera info -->
-                    <RowDefinition Height="Auto" />
-
-                    <!-- Camera actions -->
-                    <RowDefinition Height="Auto" />
-
-                    <!-- Camera list -->
-                    <RowDefinition Height="*" />
-
-                    <!-- Bottom navigation buttons (Webcam explorer, Settings...) -->
-                    <RowDefinition Height="Auto" />
-
-                </Grid.RowDefinitions>
-
-                <!-- Content -->
-
-                <Grid x:Name="menu_camerainfoPanel" Grid.Row="0">
+                <Grid Margin="0,32,0,0">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition x:Name="menu_camerainfo_RowDef_OwnerInfo" />
+
+                        <!-- Camera info -->
+                        <RowDefinition Height="Auto" />
+
+                        <!-- Camera actions -->
+                        <RowDefinition Height="Auto" />
+
+                        <!-- Camera list -->
+                        <RowDefinition Height="*" />
+
+                        <!-- Bottom navigation buttons (Webcam explorer, Settings...) -->
+                        <RowDefinition Height="Auto" />
+
                     </Grid.RowDefinitions>
 
-                    <Label x:Name="menu_camerainfo_Name" Grid.Row="0"
+                    <!-- Content -->
+
+                    <Grid x:Name="menu_camerainfoPanel" Grid.Row="0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition x:Name="menu_camerainfo_RowDef_OwnerInfo" />
+                        </Grid.RowDefinitions>
+
+                        <Label x:Name="menu_camerainfo_Name" Grid.Row="0"
                                Margin="10,5,10,0"
                                Content="CAMERA NAME" />
 
-                    <Label x:Name="menu_camerainfo_Url" Grid.Row="1"
+                        <Label x:Name="menu_camerainfo_Url" Grid.Row="1"
                                Margin="10,5,10,0"
                                Content="CAMERA URL" />
 
-                    <Label x:Name="menu_camerainfo_OwnerName" Grid.Row="2"
+                        <Label x:Name="menu_camerainfo_OwnerName" Grid.Row="2"
                                Margin="10,5,10,0"
                                Content="CAMERA OWNER" />
 
-                </Grid>
+                    </Grid>
 
-                <StackPanel x:Name="menu_cameraactionsPanel" Grid.Row="1"
+                    <StackPanel x:Name="menu_cameraactionsPanel" Grid.Row="1"
                             Margin="0,5,0,0">
 
-                    <Rectangle Fill="{DynamicResource webcamPage_ForegroundSecondary2}" Height="1" Opacity="0.55" Margin="15,0,15,5" />
+                        <Rectangle Fill="{DynamicResource webcamPage_ForegroundSecondary2}" Height="1" Opacity="0.55" Margin="15,0,15,5" />
 
-                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="menu_cameraactions_localsaveButton"
+                        <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="menu_cameraactions_localsaveButton"
                                                                          Margin="0,0,0,0"
                                                                          Text="SAVE IMAGE"
                                                                          Click="menu_cameraactions_localsaveButton_Click" />
 
-                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="menu_cameraactions_archivesaveButton"
+                        <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="menu_cameraactions_archivesaveButton"
                                                                          Margin="0,5,0,0"
                                                                          Text="SAVE IMAGE ON ARCHIVE.ORG"
                                                                          Click="menu_cameraactions_archivesaveButton_Click" />
 
-                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="menu_cameraactions_bothsaveButton"
+                        <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="menu_cameraactions_bothsaveButton"
                                                                          Margin="0,5,0,0"
                                                                          Text="SAVE IMAGE EVERYWHERE"
                                                                          Click="menu_cameraactions_bothsaveButton_Click" />
 
-                </StackPanel>
+                    </StackPanel>
 
-                <Grid Grid.Row="2" Margin="0,5,0,5">
+                    <Grid Grid.Row="2" Margin="0,5,0,5">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                    <Rectangle Fill="{DynamicResource webcamPage_ForegroundSecondary2}" Height="1" Opacity="0.55" Margin="15,-20,15,5" />
+                        <Rectangle Fill="{DynamicResource webcamPage_ForegroundSecondary2}" Height="1" Opacity="0.55" Margin="15,-20,15,5" />
 
-                    <Label Grid.Row="0"
+                        <Label Grid.Row="0"
                            Foreground="{DynamicResource webcamPage_ForegroundSecondary2}"
                            Margin="10,10,0,0"
                            Content="Cameras" />
 
-                    <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <StackPanel x:Name="menu_cameralist">
-                            <usercontrols:webcamPage_menuGrid_CameraButton />
-                            <usercontrols:webcamPage_menuGrid_CameraButton />
-                            <usercontrols:webcamPage_menuGrid_CameraButton />
-                        </StackPanel>
-                    </ScrollViewer>
+                        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <StackPanel x:Name="menu_cameralist">
+                                <usercontrols:webcamPage_menuGrid_CameraButton />
+                                <usercontrols:webcamPage_menuGrid_CameraButton />
+                                <usercontrols:webcamPage_menuGrid_CameraButton />
+                            </StackPanel>
+                        </ScrollViewer>
 
-                </Grid>
+                    </Grid>
 
-                <StackPanel x:Name="menu_bottomnavigationPanel" Grid.Row="3">
+                    <StackPanel x:Name="menu_bottomnavigationPanel" Grid.Row="3">
 
-                    <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="menu_debugButton"
+                        <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="menu_debugButton"
                                                                      Text="Debug menu" IconText="&#xe700;"
                                                                      Click="menu_debugButton_Click"/>
 
-                    <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="menu_settingsButton"
+                        <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="menu_settingsButton"
                                                                      Text="Settings" IconText="&#xe713;"
                                                                      Click="menu_settingsButton_Click"/>
 
-                </StackPanel>
+                    </StackPanel>
+
+                </Grid>
 
             </Grid>
+
+            <!-- Progress UI -->
+            <Grid x:Name="progressUI" Visibility="Hidden">
+
+                <!-- Background -->
+                <Rectangle Fill="{DynamicResource webcamPage_Background}" Opacity=".6" />
+
+                <!--#region Progress UIs-->
+
+                <!-- Generic ProgressArc -->
+                <Grid x:Name="progressUI_Generic" Visibility="Collapsed">
+
+                    <usercontrols:ArcProgress x:Name="progressUI_Generic_ArcProgress" Color="{DynamicResource accentcolor_dark}" />
+
+                </Grid>
+
+                <!-- Image saving ProgressArc -->
+                <Grid x:Name="progressUI_ImageSave" Visibility="Collapsed">
+
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        <!-- Animation -->
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            <!-- Icon -->
+                            <Grid Margin="-5,-5,0,0">
+                                <Label x:Name="progressUI_ImageSave_Icon"
+                               Foreground="{DynamicResource accentcolor_dark}" Opacity=".5"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="28"
+                               Content="&#xeb9f;"/>
+
+                                <Label x:Name="progressUI_ImageSave_Icon2"
+                               Foreground="{DynamicResource accentcolor_dark}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,20,0,0"
+                               FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="28"
+                               Content="&#xe896;"/>
+                            </Grid>
+
+                            <!-- ArcProgress -->
+                            <usercontrols:ArcProgress x:Name="progressUI_ImageSave_ArcProgress" Color="{DynamicResource accentcolor_dark}" Width="85" Height="85" />
+
+                        </Grid>
+
+                        <!-- Status text -->
+                        <Label x:Name="progressUI_ImageSave_StatusLabel" Content="placeholder status" Visibility="Visible"
+                               Foreground="{DynamicResource webcamPage_Foreground}"
+                               FontSize="13"
+                               Margin="0,15,0,0" HorizontalAlignment="Center"/>
+
+                        <!-- Bothsave panel -->
+                        <Grid x:Name="progressUI_ImageSave_BothSaveUI" Width="310" Margin="0,15,0,0" Visibility="Collapsed">
+
+                            <Rectangle Fill="{DynamicResource settingsPage_background}" Opacity="0.05" />
+
+                            <!-- Content -->
+                            <StackPanel Margin="10">
+
+                                <!-- items -->
+                                <StackPanel>
+
+                                    <Home_Controls:ProgressUI_BothSaveItem x:Name="progressUI_ImageSave_BothSaveUI_LocalSaveItem" />
+                                    <Home_Controls:ProgressUI_BothSaveItem x:Name="progressUI_ImageSave_BothSaveUI_ArchiveOrgSaveItem" />
+
+                                </StackPanel>
+
+                                <!-- buttons -->
+                                <Grid Margin="0,15,0,0" Visibility="Visible">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition x:Name="progressUI_ImageSave_BothSaveUI_Buttons_CancelButtonRowDefinition" />
+                                        <ColumnDefinition x:Name="progressUI_ImageSave_BothSaveUI_Buttons_OKButtonRowDefinition" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="progressUI_ImageSave_BothSaveUI_CancelButton" Grid.Column="0"
+                                                                                         Text="Cancel" TextAlignment="Center"
+                                                                                         Click="progressUI_ImageSave_BothSaveUI_CancelButton_Click"/>
+                                    
+                                    <usercontrols:webcamPage_menuGrid_CameraActionButton x:Name="progressUI_ImageSave_BothSaveUI_OKButton" Grid.Column="1" 
+                                                                                         Text="OK" TextAlignment="Center"
+                                                                                         Click="progressUI_ImageSave_BothSaveUI_OKButton_Click"/>
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <!--#endregion-->
+
+            </Grid>
+
+            <!--#endregion-->
 
         </Grid>
 

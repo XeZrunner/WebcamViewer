@@ -70,6 +70,28 @@ namespace WebcamViewer
             //SwitchToPage(5, true);
         }
 
+        public bool IsTesterBuild = true;
+        public void ShowTempTesterIntroduction()
+        {
+            Popups.ContentDialog dialog = new Popups.ContentDialog();
+            dialog.Title = "Welcome to this development build of Webcam Viewer, Tester!";
+            dialog.Button0_Text = "I understand, let's go!";
+
+            TesterIntroControl control = new TesterIntroControl();
+
+            control.changeloglink.MouseLeftButtonUp += async (s1, ev1) =>
+            {
+                dialog.Close();
+                await Task.Delay(700);
+
+                TextMessageDialog("Changelog", Properties.Settings.Default.changelog);
+            };
+
+            dialog.ContentGrid = control;
+
+            dialog.ShowDialog();
+        }
+
         #region Classes
 
         Theming Theming = new Theming();
@@ -116,7 +138,7 @@ namespace WebcamViewer
             webcamPage_debugoverlay_windowsizeTextBlock.Text = string.Format("Window size: {0} ({1})", this.Width + "x" + this.Height, (this.Width - 2) + "x" + (this.Height - 2 - 32));
 
             // Webcam page menu
-            if (this.Width <= 482)
+            if (this.Width <= 525)
             {
                 webcamPage_menuGrid.Width = Double.NaN;
                 webcamPage_menuGrid.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -493,6 +515,7 @@ namespace WebcamViewer
             }
         }
 
+        int counter = 0;
         public void HideSplashPage()
         {
             if (splashPage.Visibility == Visibility.Visible)
@@ -520,8 +543,12 @@ namespace WebcamViewer
 
                 Debug.Log("SPLASH: Splash hidden.");
             }
-            else
-                Debug.Log("SPLASH: Splash is already hidden.");
+
+            if (counter == 0)
+            {
+                ShowTempTesterIntroduction();
+                counter++;
+            }
         }
 
         private void splash_SkipButton_Click(object sender, RoutedEventArgs e)
@@ -800,6 +827,23 @@ namespace WebcamViewer
             if (this.Width <= 482)
             {
                 TextMessageDialog_FullWidth("Low resolution", "This version of Settings doesn't work well with low or mobile resolutions.\nWe advise using the newer zSettings on low resolutions.");
+            }
+
+            if (IsTesterBuild)
+            {
+                Popups.ContentDialog dialog = new Popups.ContentDialog();
+                dialog.Title = "This is the old Settings";
+                dialog.Text = "This Settings page is no longer in development. Any newer settings, and mobile view compatibility, along with added stability and more modular design, are included in the newer zSettings page.\nThis is kept here for legacy reasons only, and will be removed in future builds." +
+                    "\n\nHold LEFT SHIFT and click OK to continue to the legacy Settings page.";
+                dialog.Button0_Text = "OK";
+
+                dialog.Button0_Click += (s, ev) =>
+                {
+                    if (!Keyboard.IsKeyDown(Key.LeftShift))
+                        SwitchToPage(0);
+                };
+
+                dialog.ShowDialog();
             }
         }
 

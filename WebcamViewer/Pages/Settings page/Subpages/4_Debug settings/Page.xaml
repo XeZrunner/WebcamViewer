@@ -66,15 +66,12 @@
 
                 <!-- Experimental internal tests -->
                 <StackPanel x:Name="settingsPage_DebugMenuPage_ExpInternalSection" Margin="0,5,0,0">
-                    <StackPanel  HorizontalAlignment="Left" Margin="10,0,0,0">
+                    <StackPanel Margin="10,0,0,0">
                         <Label Foreground="{DynamicResource accentcolor_dark}" FontFamily="Segoe UI Semibold">Experimental internal tests</Label>
                         <Label Foreground="{DynamicResource settingsPage_foregroundSecondary2}" FontFamily="Segoe UI Semibold">These experiments are temporary, usually consist of UI experiments.</Label>
-                    </StackPanel>
-                </StackPanel>
 
-                <!-- First run debug -->
-                <StackPanel x:Name="settingsPage_DebugMenuPage_FirstRunSection" Margin="0,5,0,0">
-                    <StackPanel  HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                        <usercontrols:settingsPage_ToggleSwitchButton x:Name="Temp_TesterIntroDialogButton" Title="Tester introduction dialog" Description="" IsToggleButton="False" Click="Temp_TesterIntroDialogButton_Click" />
+                    </StackPanel>
                 </StackPanel>
 
             </StackPanel>

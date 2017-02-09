@@ -39,16 +39,35 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="versionid" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Update 2 Beta - Development @ update2-development</Value>
+      <Value Profile="(Default)">Update 2 Beta - Development @ update2-development
+Tester build</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20170130-01</Value>
+      <Value Profile="(Default)">20170205-00</Value>
     </Setting>
     <Setting Name="webcamengine_version" Type="System.String" Scope="Application">
       <Value Profile="(Default)">1.2 Prerelease | 1.0 Prerelease</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Webcam Viewer Update 2 Beta - 2017.01.30; feature level 1
+      <Value Profile="(Default)">-&gt; Webcam Viewer Update 2 Beta - 2017.01.30; feature level 1
+
+Improvements:
+- zSettings Overview controls' minor design change
+- Fixed the zSettings global menu visibility and animation errors
+- zSettings subpage animations now respect transition animation scale
+
+Known issues:
+- Camera owner and Camera save location properties are broken - it is recommended to not touch them in the Webcam Editor
+- [dev]The modular home page is broken. Broken as in saving and progress UI doesn't work.
+- Overview individual camera reloading is broken.
+- Legacy Home: clicking on Save image and cancelling the dialog will save the image anyway to the last accepted location.
+- Legacy Home: bothsave will not automatically close after both actions complete successfully.
+- Single-button dialogs have an incorrent button placement.
+- Localization has been mostly forgotten about, lots of text is English-only throughout the UI.
+
+---------- OLDER BUILDS ----------
+
+Webcam Viewer Update 2 Beta - 2017.01.30; feature level 1
 
 Improvements:
 - Global side menu for zSettings, broken on mobile view
@@ -58,6 +77,7 @@ Developer:
 - Modular home now displays Owner names
 - Preparations for save locations. Broken, DO NOT USE!
 - Modular home progress &amp; error UI, with debug
+
 ---------------------------------------------
 
 Webcam Viewer Update 2 Beta - 2017.01.07; feature level 1

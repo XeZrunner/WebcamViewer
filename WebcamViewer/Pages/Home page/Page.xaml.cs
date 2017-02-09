@@ -124,6 +124,22 @@ namespace WebcamViewer.Pages.Home_page
 
         #region UI
 
+        #region Page View
+
+        public void UpdateView(ViewType view)
+        {
+            if (view == ViewType.Mobile)
+            {
+
+            }
+            if (view == ViewType.Desktop)
+            {
+
+            }
+        }
+
+        #endregion
+
         #region Hamburger menu UI
 
         // the menu should not be open at start
@@ -206,38 +222,22 @@ namespace WebcamViewer.Pages.Home_page
             await HideMenu();
         }
 
-        #endregion
-
-        #region Views
-
-        public void UpdateView(ViewType view)
-        {
-            if (view == ViewType.Mobile)
-            {
-
-            }
-            if (view == ViewType.Desktop)
-            {
-
-            }
-        }
-
-        #endregion
+        #region Buttons 
 
         // image saving
         private void menu_cameraactions_localsaveButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveImage_Local(currentCameraUrl);
+            //SaveImage_Local(currentCameraUrl);
         }
 
         private async void menu_cameraactions_archivesaveButton_Click(object sender, RoutedEventArgs e)
         {
-            await SaveImage_ArchiveOrg(currentCameraUrl);
+            //await SaveImage_ArchiveOrg(currentCameraUrl);
         }
 
         private async void menu_cameraactions_bothsaveButton_Click(object sender, RoutedEventArgs e)
         {
-            await SaveImage_BothSave(currentCameraUrl);
+            //await SaveImage_BothSave(currentCameraUrl);
         }
 
         // menu bottom navigation
@@ -250,6 +250,173 @@ namespace WebcamViewer.Pages.Home_page
         {
             mainwindow.SwitchToPage(5);
         }
+
+        #endregion
+
+        #endregion
+
+        #endregion
+
+        #region Progress UI
+
+        #region Enums
+
+        public enum ProgressUI_Type
+        {
+            Generic,
+            ImageSave,
+            ImageSave_BothSave
+        }
+
+        #endregion
+
+        private double _animationspeed = Properties.Settings.Default.ui_animationspeed;
+
+        private bool _IsProgressUIVisible = false;
+
+        /// <summary>
+        /// Shows the Progress UI. Make sure you use UpdateProgressUI() to show the appropriate
+        /// UI. This just shows the progress UI container.
+        /// </summary>
+        public void ShowProgressUI()
+        {
+            // set Visibility to Visible
+            progressUI.Visibility = Visibility.Visible;
+
+            // animate! opacity
+            DoubleAnimation anim_opacity = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(.3 * _animationspeed));
+            progressUI.BeginAnimation(OpacityProperty, anim_opacity);
+
+            _IsProgressUIVisible = true;
+        }
+
+        /// <summary>
+        /// Updates the Progress UI type.
+        /// </summary>
+        /// <param name="UIType">The type of UI to update to.</param>
+        public void UpdateProgressUI(ProgressUI_Type UIType)
+        {
+            // Get animation ready
+            DoubleAnimation anim_in = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(.3 * _animationspeed));
+
+            switch (UIType)
+            {
+                case ProgressUI_Type.Generic:
+                    {
+                        // set UI visible
+                        progressUI_Generic.Visibility = Visibility.Visible;
+
+                        // animate!
+                        progressUI_Generic.BeginAnimation(OpacityProperty, anim_in);
+
+                        break;
+                    }
+                case ProgressUI_Type.ImageSave:
+                    {
+                        // set UI visible
+                        progressUI_ImageSave.Visibility = Visibility.Visible;
+
+                        // animate!
+                        progressUI_ImageSave.BeginAnimation(OpacityProperty, anim_in);
+
+                        break;
+                    }
+                case ProgressUI_Type.ImageSave_BothSave:
+                    {
+                        // set UI visible
+                        progressUI_ImageSave.Visibility = Visibility.Visible;
+                        progressUI_ImageSave_BothSaveUI.Visibility = Visibility.Visible;
+
+                        // animate!
+                        progressUI_ImageSave.BeginAnimation(OpacityProperty, anim_in);
+                        progressUI_ImageSave_BothSaveUI.BeginAnimation(OpacityProperty, anim_in);
+
+                        break;
+                    }
+            }
+
+            // Hide all other types
+            switch (UIType)
+            {
+                case ProgressUI_Type.Generic:
+                    {
+                        // remove ImageSave
+
+                        DoubleAnimation anim_out = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(.3 * _animationspeed));
+                        anim_out.Completed += (s, ev) =>
+                        {
+                            progressUI_ImageSave.Visibility = Visibility.Collapsed;
+                        };
+
+                        progressUI_ImageSave.BeginAnimation(OpacityProperty, anim_out);
+
+                        break;
+                    }
+                case ProgressUI_Type.ImageSave:
+                    {
+                        // remove Generic and ImageSave_BothSave
+                        DoubleAnimation anim_out = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(.3 * _animationspeed));
+                        anim_out.Completed += (s, ev) =>
+                        {
+                            progressUI_Generic.Visibility = Visibility.Collapsed;
+                            progressUI_ImageSave_BothSaveUI.Visibility = Visibility.Collapsed;
+                        };
+
+                        progressUI_Generic.BeginAnimation(OpacityProperty, anim_out);
+                        progressUI_ImageSave_BothSaveUI.BeginAnimation(OpacityProperty, anim_out);
+
+                        break;
+                    }
+                case ProgressUI_Type.ImageSave_BothSave:
+                    {
+                        // remove Generic
+
+                        DoubleAnimation anim_out = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(.3 * _animationspeed));
+                        anim_out.Completed += (s, ev) =>
+                        {
+                            progressUI_Generic.Visibility = Visibility.Collapsed;
+                        };
+
+                        progressUI_Generic.BeginAnimation(OpacityProperty, anim_out);
+
+                        break;
+                    }
+            }
+        }
+
+        /// <summary>
+        /// Hides the Progress UI.
+        /// </summary>
+        public void HideProgressUI()
+        {
+            // animate! opacity
+            DoubleAnimation anim_opacity = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(.3 * _animationspeed));
+
+            // set Completed event to hide the UI once animation completes
+            anim_opacity.Completed += (s, ev) =>
+            {
+                progressUI.Visibility = Visibility.Hidden;
+            };
+
+            progressUI.BeginAnimation(OpacityProperty, anim_opacity);
+
+            _IsProgressUIVisible = false;
+        }
+
+        #region Buttons
+
+        private void progressUI_ImageSave_BothSaveUI_OKButton_Click(object sender, RoutedEventArgs e)
+        {
+            HideProgressUI();
+        }
+
+        private void progressUI_ImageSave_BothSaveUI_CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            // do some black magic to cancel the save attempts...
+        }
+
+        #endregion
+
         #endregion
 
         #region Engine
@@ -395,223 +562,18 @@ namespace WebcamViewer.Pages.Home_page
 
         string localsave_destination = "";
 
-        public async void SaveImage_Local(string url = null, Webcam webcam = null)
-        {
-            Debug.Log("");
 
-            await HideMenu();
-
-            // show progress UI
-            if (!m_IsBothSave)
-                webcamimage.ShowProgressUI(WebcamImageControl.ProgressType.Image_Saving);
-            webcamimage.UpdateProgressStatus("Preparing to save locally...");
-
-            // the URL to be working with
-            string _url = "";
-
-            // get the URL
-            if (url != "" & url != null & webcam == null) // we have an URL
-                _url = url;
-            else if (webcam != null & url == "" || url == null) // we have a Webcam
-                _url = webcam.Url;
-
-            // bring up save dialog if no savelocation for camera
-            if (Properties.Settings.Default.camera_savelocations[currentCameraID] == "")
-            {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-                saveFileDialog.Filter = "JPG image (*.jpg)|*.jpg|All files (*.*)|*.*";
-                saveFileDialog.Title = "Save image";
-                saveFileDialog.DefaultExt = "jpg";
-
-                Nullable<bool> result = saveFileDialog.ShowDialog();
-
-                if (result == true)
-                    localsave_destination = saveFileDialog.FileName;
-                else
-                    return;
-            }
-            else
-                localsave_destination = Properties.Settings.Default.camera_savelocations[currentCameraID];
-
-            // save!
-
-            Thread thread = new Thread(() =>
-            {
-                WebClient client = new WebClient();
-                client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(client_DownloadProgressChanged);
-                client.DownloadFileCompleted += new AsyncCompletedEventHandler(client_DownloadFileCompleted);
-                client.DownloadFileAsync(new Uri(_url), localsave_destination);
-            });
-            thread.Start();
-
-            // StopRefresh();
-
-            Debug.Log("SAVEIMAGE: saving URL " + _url + "to " + localsave_destination);
-        }
-
-        void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            double bytesIn = double.Parse(e.BytesReceived.ToString());
-            double totalBytes = double.Parse(e.TotalBytesToReceive.ToString());
-            double percentage = bytesIn / totalBytes * 100;
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                webcamimage.UpdateProgressStatus(Properties.Resources.webcamPage_LocalSaveProgress + e.ProgressPercentage + "%");
-
-                webcamimage.progressGrid_ProgressBar.IsIndeterminate = false;
-                webcamimage.progressGrid_ProgressBar.Maximum = e.TotalBytesToReceive;
-                webcamimage.progressGrid_ProgressBar.Value = e.BytesReceived;
-            }));
-        }
-        void client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-            Application.Current.Dispatcher.Invoke(new Action(() =>
-            {
-                webcamimage.UpdateProgressStatus(Properties.Resources.webcamPage_LocalSaveProgressFinished);
-
-                if (m_IsBothSave)
-                    webcamimage.UpdateBothSaveStatus(WebcamImageControl.BothSaveItemStatus.Completed, null);
-
-                if (!m_IsBothSave)
-                    webcamimage.HideProgressUI();
-                //StartRefresh();
-
-                if (e.Error != null)
-                {
-                    TextContentDialog("Cannot download image", "An error occured while trying to download the image.\nError: " + e.Error.Message);
-                    File.Delete(localsave_destination);
-
-                    if (m_IsBothSave)
-                        webcamimage.UpdateBothSaveStatus(WebcamImageControl.BothSaveItemStatus.Failed, null);
-
-                    Debug.Log("SAVEIMAGE: Could not save image: " + e.Error.Message);
-                }
-
-                Debug.Log("SAVEIMAGE: Save finished.");
-            }));
-        }
 
         #endregion
 
         #region Archive.org save
 
-        public async Task SaveImage_ArchiveOrg(string url = null, Webcam webcam = null)
-        {
-            Debug.Log("SAVEIMAGE: archive.org saving initiated...");
 
-            await HideMenu();
-
-            // Show progress UI
-            if (!m_IsBothSave)
-                webcamimage.ShowProgressUI(WebcamImageControl.ProgressType.Image_Saving, WebcamImageControl.ProgressStyles.ProgressBar);
-            webcamimage.progressGrid_ProgressBar.IsIndeterminate = true;
-
-            webcamimage.UpdateProgressStatus(Properties.Resources.webcamPage_ArchiveOrgProgress);
-
-            // the URL to be working with
-            string _url = "";
-
-            // get the URL
-            if (url != "" & url != null & webcam == null) // we have an URL
-                _url = url;
-            else if (webcam != null & url == "" || url == null) // we have a Webcam
-                _url = webcam.Url;
-            else if (webcam == null & url == null & url == "")
-            {
-                TextContentDialog("Invalid camera", "The camera that a save was attempted on is invalid.");
-                webcamimage.HideProgressUI();
-                return;
-            }
-
-            // save on archive.org using WebRequest
-            try
-            {
-                WebRequest request = WebRequest.Create(_url);
-
-                Debug.Log("ARCHIVEORG: Initiated archive.org saving using WebRequest...");
-
-                using (WebResponse _response = await request.GetResponseAsync())
-                {
-                    HttpWebResponse response = _response as HttpWebResponse;
-
-                    if (response.StatusCode != HttpStatusCode.OK)
-                    {
-                        Debug.Log("ARCHIVEORG: Error: " + (int)response.StatusCode + " " + response.StatusCode.ToString());
-
-                        TextContentDialog("An error occured while saving on archive.org...", "Error: " + response.StatusCode + " " + response.StatusCode.ToString());
-
-                        if (m_IsBothSave)
-                            webcamimage.UpdateBothSaveStatus(null, WebcamImageControl.BothSaveItemStatus.Failed);
-                    }
-                    else
-                    {
-                        webcamimage.UpdateProgressStatus(Properties.Resources.webcamPage_ArchiveOrgProgressFinished); // Saved!
-
-                        if (m_IsBothSave)
-                            webcamimage.UpdateBothSaveStatus(null, WebcamImageControl.BothSaveItemStatus.Completed);
-                    }
-                }
-            }
-            catch (WebException ex)
-            {
-                Debug.Log("ARCHIVEORG: Couldn't connect to archive.org - " + ex.Message);
-
-                TextContentDialog("An error occured while saving on archive.org..." + "Error: " + ex.Message);
-
-                if (m_IsBothSave)
-                    webcamimage.UpdateBothSaveStatus(null, WebcamImageControl.BothSaveItemStatus.Failed);
-            }
-
-            if (!m_IsBothSave)
-                webcamimage.HideProgressUI();
-
-            //StartRefresh();
-
-            Debug.Log("SAVEIMAGE: saving URL " + _url + "to archive.org...");
-
-            //
-        }
 
         #endregion
 
         #region Both save
 
-        public async Task SaveImage_BothSave(string url, Webcam webcam = null)
-        {
-            Debug.Log("SAVEIMAGE: archive.org saving initiated...");
-
-            await HideMenu();
-
-            // show progress UI
-            webcamimage.ShowProgressUI(WebcamImageControl.ProgressType.BothSave);
-
-            // the URL to be working with
-            string _url = "";
-
-            // get the URL
-            if (url != "" & url != null & webcam == null) // we have an URL
-                _url = url;
-            else if (webcam != null & url == "" || url == null) // we have a Webcam
-                _url = webcam.Url;
-            else if (webcam == null & url == null & url == "")
-            {
-                TextContentDialog("Invalid camera", "The camera that a save was attempted on is invalid.");
-                webcamimage.HideProgressUI();
-                return;
-            }
-
-            // set global bothsave flag
-            m_IsBothSave = true;
-
-            // save!
-
-            SaveImage_Local(_url);
-
-            await SaveImage_ArchiveOrg(_url);
-
-            m_IsBothSave = false;
-        }
 
         #endregion
 
@@ -641,9 +603,7 @@ namespace WebcamViewer.Pages.Home_page
             User_controls.settingsPage_NormalButton btn1_getUserConfig = new User_controls.settingsPage_NormalButton { Text = "Get user cameras", Margin = new Thickness(0, 5, 0, 0), HorizontalAlignment = HorizontalAlignment.Stretch };
             User_controls.settingsPage_NormalButton btn2_addErrorTestCamera = new User_controls.settingsPage_NormalButton { Text = "Add an error testing camera", Margin = new Thickness(0, 5, 0, 0), HorizontalAlignment = HorizontalAlignment.Stretch };
 
-            User_controls.settingsPage_NormalButton btn3_tempErrorUITest = new User_controls.settingsPage_NormalButton { Text = "Test error UI", Margin = new Thickness(0, 10, 0, 0), HorizontalAlignment = HorizontalAlignment.Stretch };
-            User_controls.settingsPage_NormalButton btn4_tempProgressUI0Test = new User_controls.settingsPage_NormalButton { Text = "Test progress UI [ArcProgress] (10 seconds)", Margin = new Thickness(0, 10, 0, 0), HorizontalAlignment = HorizontalAlignment.Stretch };
-            User_controls.settingsPage_NormalButton btn4_1_tempProgressUI1Test = new User_controls.settingsPage_NormalButton { Text = "Test progress UI [Save panel] (10 seconds)", Margin = new Thickness(0, 5, 0, 0), HorizontalAlignment = HorizontalAlignment.Stretch };
+            User_controls.settingsPage_NormalButton btn3_ProgressUIDebug = new User_controls.settingsPage_NormalButton { Text = "Progress UI Debug", Margin = new Thickness(0, 10, 0, 0), HorizontalAlignment = HorizontalAlignment.Stretch };
 
             // add to panel
             panel.Children.Add(lbl0_usercameraCount);
@@ -657,9 +617,7 @@ namespace WebcamViewer.Pages.Home_page
             panel.Children.Add(btn1_getUserConfig);
             panel.Children.Add(btn2_addErrorTestCamera);
 
-            panel.Children.Add(btn3_tempErrorUITest);
-            panel.Children.Add(btn4_tempProgressUI0Test);
-            panel.Children.Add(btn4_1_tempProgressUI1Test);
+            panel.Children.Add(btn3_ProgressUIDebug);
 
             #endregion
             dialog.ContentGrid = panel;
@@ -707,52 +665,55 @@ namespace WebcamViewer.Pages.Home_page
                 AddCameraToMenu(errorWebcam);
             };
 
-            btn3_tempErrorUITest.Click += async (s, ev) =>
+            btn3_ProgressUIDebug.Click += async (s, ev) =>
             {
-                // Create timer
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(10);
-                timer.Tick += (s1, ev1) => { timer.Stop(); webcamimage.HideErrorUI(); };
-                timer.Start();
-
                 dialog.Close();
 
-                await HideMenu();
+                await Task.Delay(1000);
 
-                // Show error UI
-                webcamimage.ShowErrorUI();
-            };
+                Popups.ContentDialog dlg = new Popups.ContentDialog();
+                dlg.Title = "HOME: Progress UI Debug";
 
-            btn4_tempProgressUI0Test.Click += async (s, ev) =>
-                    {
-                        // Create timer
-                        DispatcherTimer timer = new DispatcherTimer();
-                        timer.Interval = TimeSpan.FromSeconds(10);
-                        timer.Tick += (s1, ev1) => { timer.Stop(); webcamimage.HideProgressUI(); };
-                        timer.Start();
+                dlg.Button0_Text = "Cancel";
+                dlg.Button1_Text = "Accept";
 
-                        dialog.Close();
+                #region Create content
 
-                        await HideMenu();
+                StackPanel pd_panel = new StackPanel();
 
-                        // Show progress UI
-                        webcamimage.ShowProgressUI(WebcamImageControl.ProgressType.Progressring);
-                    };
+                RadioButton btn0 = new RadioButton() { Content = "Generic", Margin = new Thickness(0, 0, 0, 0) };
+                RadioButton btn1 = new RadioButton() { Content = "ImageSave", Margin = new Thickness(0, 5, 0, 0) };
+                RadioButton btn2 = new RadioButton() { Content = "ImageSave_BothSave", Margin = new Thickness(0, 5, 0, 0) };
 
-            btn4_1_tempProgressUI1Test.Click += async (s, ev) =>
-            {
-                // Create timer
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(10);
-                timer.Tick += (s1, ev1) => { timer.Stop(); webcamimage.HideProgressUI(); };
-                timer.Start();
+                TextBox box0 = new TextBox() { Text = "Status text" };
 
-                dialog.Close();
+                pd_panel.Children.Add(btn0);
+                pd_panel.Children.Add(btn1);
+                pd_panel.Children.Add(btn2);
 
-                await HideMenu();
+                pd_panel.Children.Add(box0);
 
-                // Show progress UI
-                webcamimage.ShowProgressUI(WebcamImageControl.ProgressType.Image_Saving);
+                #endregion
+
+                dlg.ContentGrid = pd_panel;
+
+                dlg.Button1_Click += (s1, ev1) =>
+                {
+                    ShowProgressUI();
+                    if (btn0.IsChecked == true)
+                        UpdateProgressUI(ProgressUI_Type.Generic);
+                    if (btn1.IsChecked == true)
+                        UpdateProgressUI(ProgressUI_Type.ImageSave);
+                    if (btn2.IsChecked == true)
+                        UpdateProgressUI(ProgressUI_Type.ImageSave_BothSave);
+
+                    DispatcherTimer timer = new DispatcherTimer();
+                    timer.Interval = TimeSpan.FromSeconds(5);
+                    timer.Tick += (s2, ev2) => { timer.Stop(); HideProgressUI(); };
+                    timer.Start();
+                };
+
+                dlg.ShowDialog();
             };
 
             #endregion

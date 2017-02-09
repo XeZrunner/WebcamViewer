@@ -71,7 +71,7 @@ namespace WebcamViewer.Pages.Settings_page.Controls
                 this.Width = 200;
                 this.Height = 200;
 
-                button.Clip = borderRect;
+                button.Clip = /*borderRect*/ null;
             }
             else
             {

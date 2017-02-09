@@ -682,5 +682,13 @@ namespace WebcamViewer.Pages.Settings_page.Subpages._4_Debug_settings
         }
 
         #endregion
+
+        private void Temp_TesterIntroDialogButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftShift))
+                mainwindow.SwitchToPage(0, true);
+
+            mainwindow.ShowTempTesterIntroduction();
+        }
     }
 }

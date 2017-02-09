@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("Webcam Viewer")]
 [assembly: AssemblyDescription("A simple online webcam image viewer.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Xesign™")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Copyright © Felix XeZrunner 2016")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Webcam Viewer")]
+[assembly: AssemblyCopyright("Copyright © Felix XeZrunner 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,5 +51,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.2.0")]
-[assembly: AssemblyFileVersion("1.0.2.0")]
+[assembly: AssemblyVersion("1.0.2.1")]
+[assembly: AssemblyFileVersion("1.0.2.1")]
