@@ -39,8 +39,7 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="versionid" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Update 2 Beta - Development @ update2-development
-Tester build</Value>
+      <Value Profile="(Default)">Update 2 Beta - Development @ update2-development</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="Application">
       <Value Profile="(Default)">20170209-00</Value>

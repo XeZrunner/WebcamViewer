@@ -88,7 +88,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta - Development @ update2-development\r\nTester build")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Update 2 Beta - Development @ update2-development")]
         public string versionid {
             get {
                 return ((string)(this["versionid"]));
