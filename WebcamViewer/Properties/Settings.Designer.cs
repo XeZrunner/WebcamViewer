@@ -97,7 +97,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20170205-00")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20170209-00")]
         public string buildid {
             get {
                 return ((string)(this["buildid"]));
@@ -115,7 +115,7 @@ namespace WebcamViewer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-> Webcam Viewer Update 2 Beta - 2017.01.30; feature level 1\r\n\r\nImprovements:\r\n- " +
+        [global::System.Configuration.DefaultSettingValueAttribute("-> Webcam Viewer Update 2 Beta - 2017.02.05; feature level 1\r\n\r\nImprovements:\r\n- " +
             "zSettings Overview controls\' minor design change\r\n- Fixed the zSettings global m" +
             "enu visibility and animation errors\r\n- zSettings subpage animations now respect " +
             "transition animation scale\r\n\r\nKnown issues:\r\n- Camera owner and Camera save loca" +

@@ -70,26 +70,29 @@ namespace WebcamViewer
             //SwitchToPage(5, true);
         }
 
-        public bool IsTesterBuild = true;
+        public bool IsTesterBuild = false;
         public void ShowTempTesterIntroduction()
         {
-            Popups.ContentDialog dialog = new Popups.ContentDialog();
-            dialog.Title = "Welcome to this development build of Webcam Viewer, Tester!";
-            dialog.Button0_Text = "I understand, let's go!";
-
-            TesterIntroControl control = new TesterIntroControl();
-
-            control.changeloglink.MouseLeftButtonUp += async (s1, ev1) =>
+            if (IsTesterBuild)
             {
-                dialog.Close();
-                await Task.Delay(700);
+                Popups.ContentDialog dialog = new Popups.ContentDialog();
+                dialog.Title = "Welcome to this development build of Webcam Viewer, Tester!";
+                dialog.Button0_Text = "I understand, let's go!";
 
-                TextMessageDialog("Changelog", Properties.Settings.Default.changelog);
-            };
+                TesterIntroControl control = new TesterIntroControl();
 
-            dialog.ContentGrid = control;
+                control.changeloglink.MouseLeftButtonUp += async (s1, ev1) =>
+                {
+                    dialog.Close();
+                    await Task.Delay(700);
 
-            dialog.ShowDialog();
+                    TextMessageDialog("Changelog", Properties.Settings.Default.changelog);
+                };
+
+                dialog.ContentGrid = control;
+
+                dialog.ShowDialog();
+            }
         }
 
         #region Classes

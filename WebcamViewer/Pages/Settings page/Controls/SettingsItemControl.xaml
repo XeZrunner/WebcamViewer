@@ -33,7 +33,7 @@
                     <Setter Property="BorderBrush" Value="{DynamicResource settingsPage_foregroundSecondary3}"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-
+                    
                 </Trigger>
                 <Trigger Property="IsEnabled" Value="False">
                     <Setter Property="Foreground" Value="{DynamicResource GrayBrush2}"/>
@@ -50,7 +50,7 @@
             
             <Grid x:Name="desktopGrid" Visibility="Visible">
 
-                <TextBlock x:Name="iconTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="28"
+                <TextBlock x:Name="iconTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Fonts/#Segoe MDL2 Assets" FontSize="30"
                Foreground="{DynamicResource accentcolor_dark}" Text="&#xE90F;" />
 
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,120,0,0">
@@ -58,7 +58,7 @@
                     <TextBlock x:Name="titleTextBlock" HorizontalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="14"
                        Foreground="{DynamicResource accentcolor_dark}" Text="Title" />
 
-                    <TextBlock x:Name="descTextBlock" HorizontalAlignment="Center" FontSize="12" Margin="0,5,0,0" TextWrapping="WrapWithOverflow" TextAlignment="Center" Text="Description" />
+                    <TextBlock x:Name="descTextBlock" HorizontalAlignment="Center" FontSize="12" Margin="5,5,5,0" TextWrapping="WrapWithOverflow" TextAlignment="Center" Text="Description" />
 
                 </StackPanel>
 
@@ -87,7 +87,7 @@
 
             </Grid>
 
-            <controleffects:RippleDrawable  Grid.ColumnSpan="2" Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage_foregroundSecondary3}" />
+            <controleffects:RippleDrawable  Grid.ColumnSpan="2" Color="{DynamicResource settingsPage_foregroundSecondary3}" FillColor="{DynamicResource settingsPage__foregroundSecondary3}" />
 
         </Grid>
     </Button>

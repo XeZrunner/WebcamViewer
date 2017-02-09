@@ -43,13 +43,13 @@
 Tester build</Value>
     </Setting>
     <Setting Name="buildid" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">20170205-00</Value>
+      <Value Profile="(Default)">20170209-00</Value>
     </Setting>
     <Setting Name="webcamengine_version" Type="System.String" Scope="Application">
       <Value Profile="(Default)">1.2 Prerelease | 1.0 Prerelease</Value>
     </Setting>
     <Setting Name="changelog" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">-&gt; Webcam Viewer Update 2 Beta - 2017.01.30; feature level 1
+      <Value Profile="(Default)">-&gt; Webcam Viewer Update 2 Beta - 2017.02.05; feature level 1
 
 Improvements:
 - zSettings Overview controls' minor design change

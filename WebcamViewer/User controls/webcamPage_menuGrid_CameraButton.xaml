@@ -7,7 +7,7 @@
              xmlns:Custom="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:controleffects="clr-namespace:XeZrunner.UI.ControlEffects;assembly=XeZrunner.UI"
              mc:Ignorable="d" Foreground="{DynamicResource webcamPage_Foreground}"
-             Height="30" MinWidth="320" ClipToBounds="True">
+             Height="34" MinWidth="320" ClipToBounds="True">
     <UserControl.Resources>
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
 
@@ -72,7 +72,7 @@
             <Grid>
 
                 <!-- 20 -->
-                <Rectangle x:Name="activestateRectangle"  Width="4" HorizontalAlignment="Left" Fill="{DynamicResource accentcolor_dark}" Visibility="Hidden" />
+                <Rectangle x:Name="activestateRectangle"  Width="4" Height="24" HorizontalAlignment="Left" Fill="{DynamicResource accentcolor_dark}" Visibility="Hidden" />
 
                 <TextBlock x:Name="textTextBlock" Foreground="{DynamicResource webcamPage_Foreground}" Grid.Column="1" VerticalAlignment="Center" FontSize="13.5" Margin="15,0,0,0" Text="Camera button" TextTrimming="CharacterEllipsis"/>
 

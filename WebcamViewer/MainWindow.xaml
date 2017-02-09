@@ -991,8 +991,8 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock x:Name="webcamPage_menuGrid_cameraNameLabel" Grid.Row="0" Margin="15,0,0,0" VerticalAlignment="Center" FontFamily="Segoe UI Semibold">CAMERA NAME</TextBlock>
-                            <TextBlock x:Name="webcamPage_menuGrid_cameraUrlLabel" Grid.Row="1" Margin="15,0,0,0" VerticalAlignment="Center">http://camearurl.com/cam-1.jpg</TextBlock>
+                            <TextBlock x:Name="webcamPage_menuGrid_cameraNameLabel" Grid.Row="0" Margin="15,0,10,0" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" TextTrimming="CharacterEllipsis">CAMERA NAME</TextBlock>
+                            <TextBlock x:Name="webcamPage_menuGrid_cameraUrlLabel" Grid.Row="1" Margin="15,0,10,0" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">http://camearurl.com/cam-1.jpg</TextBlock>
 
                             <Grid Grid.Row="3" VerticalAlignment="Center" Margin="0,5,0,5">
 
@@ -1043,9 +1043,9 @@
 
                 <StackPanel Grid.Row="3" Orientation="Vertical" VerticalAlignment="Bottom">
 
-                    <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="webcamPage_SettingsShortcutButton" IconText="&#xe713;" Text="{x:Static res:Resources.Settings}" Click="webcamPage_SettingsShortcutButton_Click"/>
+                    <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="webcamPage_SettingsShortcutButton" IconText="&#xe713;" Text="Legacy Settings" Click="webcamPage_SettingsShortcutButton_Click" Opacity="0.5"/>
 
-                    <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="webcamPage_zSettingsShortcutButton" IconText="&#xe74C;" Text="zSettings" Click="webcamPage_zSettingsShortcutButton_Click"/>
+                    <usercontrols:webcamPage_menuGrid_ShortcutButton x:Name="webcamPage_zSettingsShortcutButton" IconText="&#xe713;" Text="{x:Static res:Resources.Settings}" Click="webcamPage_zSettingsShortcutButton_Click"/>
 
                 </StackPanel>
 
