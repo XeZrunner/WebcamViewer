@@ -32,6 +32,11 @@ namespace WebcamViewer.WebcamViewerM_EE
 
             GetCameras(); // get the cameras
             await LoadWebcam(cameras[0]); // load the first camera
+
+            await Task.Delay(1000);
+
+            Storyboard successBoard = (Storyboard)FindResource("particle");
+            successBoard.Begin();
         }
 
         MainWindow mainwindow = Application.Current.MainWindow as MainWindow;
