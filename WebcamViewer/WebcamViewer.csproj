@@ -553,16 +553,17 @@
   <ItemGroup>
     <Resource Include="Resources\AboutBackground.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\XeZrunner\XeZrunner.UI\XeZrunner.UI\XeZrunner.UI.csproj">
+    <ProjectReference Include="..\..\..\..\GitHub\XeZrunner.UI\XeZrunner.UI\XeZrunner.UI.csproj">
       <Project>{d04773cb-bfb2-4dc9-ae70-da99c2b38da5}</Project>
       <Name>XeZrunner.UI</Name>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\noise.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <UsingTask TaskName="CosturaCleanup" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" TaskFactory="CodeTaskFactory">

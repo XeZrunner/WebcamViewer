@@ -774,6 +774,16 @@
                 <!-- Dimming -->
                 <Grid x:Name="webcamPage_Dim" Background="{DynamicResource webcamPage_menuBackground}" Visibility="Hidden">
 
+                    <Border Opacity="0.04">
+                        <Border.Background>
+                            <VisualBrush TileMode="Tile" Viewport="0,0,0.5,0.5">
+                                <VisualBrush.Visual>
+                                    <Image Source="/Resources/noise.png"></Image>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Border.Background>
+                    </Border>
+
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 
                         <!-- <Controls:ProgressRing x:Name="webcamPage_progressRing" Foreground="{DynamicResource webcamPage_Foreground}" Width="60" Height="60" EllipseDiameterScale="0.85" Visibility="Collapsed" /> -->
@@ -804,6 +814,16 @@
                 </Border>
 
                 <Rectangle Fill="{DynamicResource webcamPage_menuBackground}"/>
+
+                <Border Opacity="0.04">
+                    <Border.Background>
+                        <VisualBrush TileMode="Tile" Viewport="0,0,0.5,0.5">
+                            <VisualBrush.Visual>
+                                <Image Source="/Resources/noise.png"></Image>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.Background>
+                </Border>
 
                 <Grid x:Name="webcamPage_saveGrid_SavePanel" Visibility="Hidden">
 
@@ -957,6 +977,16 @@
                     </Border.Effect>
                     <Border.Background>
                         <VisualBrush Visual="{Binding ElementName=webcamPage_MainContentGrid}" AlignmentX="Left" AlignmentY="Center" Stretch="None"/>
+                    </Border.Background>
+                </Border>
+
+                <Border x:Name="webcamPage_menuGrid_noiseBorder" Opacity="0.1">
+                    <Border.Background>
+                        <VisualBrush TileMode="Tile" Viewport="0,0,0.5,0.5">
+                            <VisualBrush.Visual>
+                                <Image Source="/Resources/noise.png"></Image>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
                     </Border.Background>
                 </Border>
 
@@ -1235,6 +1265,16 @@
             </Border>
 
             <Rectangle Fill="#7A000000"/>
+
+            <Border Opacity="0.05">
+                <Border.Background>
+                    <VisualBrush TileMode="Tile" Viewport="0,0,0.5,0.5">
+                        <VisualBrush.Visual>
+                            <Image Source="/Resources/noise.png"></Image>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Border.Background>
+            </Border>
 
             <Border Width="350" Height="300" BorderBrush="{DynamicResource accentcolor_dark}" BorderThickness="1" Background="Transparent">
 
