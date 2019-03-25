@@ -1,3 +1,8 @@
+## WARNING: This project is discontinued.
+**This project hasn't received any commits, and the latest release uploaded is quite behind as well.**  
+**Check [Webcam Viewer X by XesignSoftware](https://github.com/XesignSoftware/WebcamViewerX). It is a resurrection of this project by me, with much better development.**  
+Traverse this project with caution! It has been discontinued for a reason...
+
 # Webcam Viewer
 A simple image webcam viewer for Windows.
 
